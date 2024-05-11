@@ -3,9 +3,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import vue from '@vitejs/plugin-vue';
 import unoCss from '@unocss/vite';
 import createCompression from './compression';
-import createSvgIcon from './svg-icon';
 import createAutoImport from './auto-import';
 import viteBuildInfo from './info';
+import vueDevTools from 'vite-plugin-vue-devtools';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import removeNoMatch from 'vite-plugin-router-warn';
 import removeConsole from 'vite-plugin-remove-console';
@@ -20,6 +20,8 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 	const { VITE_BUILD_COMPRESS } = env as ImportMetaEnv;
 	const vitePlugins: PluginOption[] = [
 		vue(),
+		// vue 开发工具
+		vueDevTools(),
 		// 自动导入
 		...createAutoImport(),
 		// UnoCss 原子化
@@ -28,8 +30,6 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 		vueJsx(),
 		// 让setup语法糖支持 name 属性
 		vueSetupExtend(),
-		// svg 图标
-		createSvgIcon(command),
 		// svg 组件化支持
 		svgLoader(),
 		// Vxe-Table 按需引入

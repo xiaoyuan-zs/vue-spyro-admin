@@ -55,6 +55,8 @@ declare module 'vue' {
     HorizontalScroll: typeof import('./components/HorizontalScroll/src/HorizontalScroll.vue')['default']
     Icon: typeof import('./components/Icon/src/Icon.vue')['default']
     IconAntDesignCodeFilled: typeof import('~icons/ant-design/code-filled')['default']
+    IconVx500: typeof import('~icons/vx/500')['default']
+    IconVxBell: typeof import('~icons/vx/bell')['default']
     Loading: typeof import('./components/Loading/src/Loading.vue')['default']
     MultiUpload: typeof import('./components/MultiUpload/src/MultiUpload.vue')['default']
     Pagination: typeof import('./components/Pagination/src/Pagination.vue')['default']

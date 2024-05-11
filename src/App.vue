@@ -3,6 +3,7 @@
 <template>
 	<!-- <router-view /> -->
 	<IconAntDesignCodeFilled />
+	<IconVxBell />
 </template>
 
 <style lang="scss" scoped></style>

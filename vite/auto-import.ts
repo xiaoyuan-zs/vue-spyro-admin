@@ -3,6 +3,7 @@ import Components from 'unplugin-vue-components/vite';
 import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { FileSystemIconLoader } from 'unplugin-icons/loaders';
 export default function createAutoImport() {
 	return [
 		// 自动导入
@@ -33,14 +34,19 @@ export default function createAutoImport() {
 				 * {prefix}-{collection}-{icon}
 				 */
 				IconsResolver({
-					prefix: 'icon'
+					prefix: 'icon',
+					customCollections: ['vx']
 				})
 			]
 		}),
 		// Iconify图标按需导入(需自己手动引入)
 		Icons({
 			compiler: 'vue3', // 指定编译器
-			autoInstall: true // 自动安装图标
+			autoInstall: true, // 自动安装图标
+			// 自定义导入本地svg图标集
+			customCollections: {
+				vx: FileSystemIconLoader('src/assets/icons', (svg) => svg.replace(/^<svg /, '<svg fill="currentColor" '))
+			}
 		})
 	];
 }
