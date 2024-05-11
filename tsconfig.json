@@ -1,0 +1,51 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		//用于选择模块解析策略
+		"moduleResolution": "bundler",
+		//将 class 声明中的字段语义从 [[Set]] 变更到 [[Define]]
+		"useDefineForClassFields": true,
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		// 用来控制是否在编译时进行库文件检查的
+		"skipLibCheck": true,
+		"strict": true,
+		//是否检查未使用的局部变量
+		"noUnusedLocals": true,
+		//是否检查未使用的参数
+		"noUnusedParameters": true,
+		//检查switch中是否含有case没有使用break跳出
+		"noFallthroughCasesInSwitch": true,
+		//为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		// 用于 隔离（isolated）转译的功能 （具体原因请看 vite - TypeScript 编译器选项）
+		"isolatedModules": true,
+		"noEmit": true, // 是否生成编译后的文件，默认：false。
+		// 用来指定编译时是否生成.map文件
+		"sourceMap": false,
+		"jsx": "preserve",
+		"jsxImportSource": "vue",
+		"allowJs": false, // 允许编译JS
+		"extendedDiagnostics": false, //是否查看 TS 在编译时花费的时间
+		"noEmitOnError": true, //有错误时不进行编译
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		// 定义类型  用来指定需要包含的模块，只有在这里列出的模块声明文件才会被加载进来
+		"types": ["node", "vite/client", "element-plus/global"]
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		"types/*.d.ts",
+		"vite/**/*.ts",
+		"vite/**/*.d.ts",
+		"vite.config.ts"
+	],
+	"exclude": ["dist", "**/*.js", "node_modules"]
+}

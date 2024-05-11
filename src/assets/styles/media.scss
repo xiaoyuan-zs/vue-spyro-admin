@@ -1,0 +1,19 @@
+@import './mixins';
+
+// el-dialog 弹窗自定义自适应宽度
+.custom-dialog {
+	// 若组件内设置了宽度，以组件宽度为准
+	width: 60%;
+
+	@include responsive($width-large) {
+		width: 60%;
+	}
+
+	@include responsive($width-medium) {
+		width: 86%;
+	}
+
+	@include responsive($width-small) {
+		width: 98%;
+	}
+}

@@ -1,0 +1,15 @@
+// 主题变量
+:root {
+	--al-gradient-bg-color: linear-gradient(
+		to bottom,
+		var(--el-color-primary),
+		var(--el-color-primary-light-9) 60%,
+		var(--el-color-primary-light-8) 90%
+	);
+	--al-gradient-text-color: #fff;
+}
+
+// 自定义渐变变量
+:root[theme='gradient'] {
+	// XXX
+}

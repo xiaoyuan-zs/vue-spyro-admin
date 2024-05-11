@@ -1,0 +1,15 @@
+# Ignore artifacts:
+**/.git
+**/.svn
+**/.hg
+**/auto-import.d.ts
+**/auto-components.d.ts
+node_modules/
+build/
+dist/
+public/
+pnpm-lock.yaml
+
+# Ignore all HTML files:
+**/*.html
+

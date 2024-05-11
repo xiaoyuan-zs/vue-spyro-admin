@@ -1,0 +1,168 @@
+.layout-menu-light {
+	.el-menu {
+		--el-menu-hover-bg-color: transparent;
+		--el-menu-bg-color: transparent;
+
+		.el-sub-menu {
+			&.is-active > .el-sub-menu__title {
+				color: var(--el-color-primary);
+			}
+
+			.el-sub-menu__title {
+				& > * {
+					z-index: 1;
+				}
+
+				&:hover::before {
+					position: absolute;
+					inset: 2px 12px;
+					clear: both;
+					content: '';
+					background: var(--el-fill-color);
+					border-radius: 4px;
+				}
+			}
+		}
+
+		.el-menu-item {
+			padding: 0 20px;
+
+			& > * {
+				z-index: 1;
+			}
+
+			&.is-active > * {
+				color: var(--el-color-primary);
+			}
+
+			&:hover::before {
+				position: absolute;
+				inset: 2px 12px;
+				clear: both;
+				content: '';
+				background: var(--el-fill-color);
+				border-radius: 4px;
+			}
+
+			&.is-active::before {
+				position: absolute;
+				inset: 2px 12px;
+				clear: both;
+				content: '';
+				background: var(--el-color-primary-light-8);
+				border-radius: 4px;
+			}
+		}
+	}
+}
+
+.layout-menu-dark {
+	.el-aside {
+		--el-color-info-light-8: #2d2d2f;
+
+		background-color: #001529 !important;
+	}
+
+	.el-menu {
+		--el-menu-hover-bg-color: transparent;
+		--el-menu-bg-color: transparent;
+
+		.el-sub-menu {
+			&.is-active > .el-sub-menu__title {
+				color: var(--el-color-primary);
+			}
+
+			.el-sub-menu__title {
+				color: #bbb;
+
+				& > * {
+					z-index: 1;
+				}
+
+				&:hover::before {
+					position: absolute;
+					inset: 2px 12px;
+					clear: both;
+					content: '';
+					background: #8a8a8a49;
+					border-radius: 4px;
+				}
+			}
+		}
+
+		.el-menu-item {
+			padding: 0 20px;
+			color: #bbb;
+
+			& > * {
+				z-index: 1;
+			}
+
+			&.is-active > * {
+				color: #fff;
+			}
+
+			&:hover::before {
+				position: absolute;
+				inset: 2px 12px;
+				clear: both;
+				content: '';
+				background: #8a8a8a49;
+				border-radius: 4px;
+			}
+
+			&.is-active::before {
+				position: absolute;
+				inset: 2px 12px;
+				clear: both;
+				content: '';
+				background: var(--el-color-primary);
+				border-radius: 4px;
+			}
+		}
+	}
+
+	.el-menu--popup {
+		background-color: #001529;
+	}
+}
+
+// 渐变背景
+.layout-gradient {
+	background-image: var(--al-gradient-bg-color);
+}
+
+.el-main .el-scrollbar__view {
+	height: 100%;
+}
+
+// element-plus from
+.el-form .el-col {
+	.el-select,
+	.el-form-item {
+		width: 100%;
+	}
+}
+
+/* 去除el-drawer头部margin */
+.el-drawer {
+	.el-drawer__header {
+		margin: 0;
+	}
+}
+
+// 将 el-card__body高度设置100%
+.el-card {
+	.el-card__body {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+}
+
+// custom-table
+.custom-table {
+	.el-button {
+		margin-bottom: 12px;
+	}
+}
