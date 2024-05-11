@@ -7,8 +7,7 @@ import { DirectiveOptions } from '../types';
 const hasPerms: DirectiveOptions<'vPerms'> = {
 	name: 'perms',
 	directive: {
-		mounted(el: HTMLElement, binding: DirectiveBinding<string[]>) {
-		}
+		mounted(el: HTMLElement, binding: DirectiveBinding<string[]>) {}
 	}
 };
 

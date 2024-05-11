@@ -1,8 +1,5 @@
-<script setup lang="ts" name="Layout">
-</script>
+<script setup lang="ts" name="Layout"></script>
 
-<template>
-</template>
-
+<template></template>
 
 <style scoped lang="scss"></style>

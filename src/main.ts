@@ -6,7 +6,6 @@ import router from '@/router';
 // pinia
 import pinia from '@/store';
 
-
 // unoCss.css
 import 'virtual:uno.css';
 // import scss
@@ -25,7 +24,7 @@ const app = createApp(App);
 import './permission';
 
 const setApp = async () => {
-  app.use(pinia);
+	app.use(pinia);
 	app.use(router);
 	await router.isReady();
 	app.mount('#app');

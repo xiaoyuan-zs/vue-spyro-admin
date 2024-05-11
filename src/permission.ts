@@ -5,5 +5,4 @@ router.beforeEach(async (to, from, next) => {
 	next();
 });
 
-router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-});
+router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {});
