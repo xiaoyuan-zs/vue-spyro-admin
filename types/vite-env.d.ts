@@ -5,6 +5,10 @@ interface ImportMetaEnv {
 	 */
 	readonly VITE_APP_TITLE: string;
 	/**
+	 * 图标集前缀
+	 */
+	readonly VITE_ICONIFY_PREFIX: string;
+	/**
 	 * 环境路径
 	 */
 	readonly VITE_APP_CONTEXT_PATH: string;

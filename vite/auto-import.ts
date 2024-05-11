@@ -4,7 +4,7 @@ import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { FileSystemIconLoader } from 'unplugin-icons/loaders';
-export default function createAutoImport() {
+export default function createAutoImport(env: Record<string, string>) {
 	return [
 		// 自动导入
 		AutoImport({
@@ -19,7 +19,6 @@ export default function createAutoImport() {
 		}),
 		// 自动导入组件
 		Components({
-			include: [/\.vue$/], // 指定加载文件
 			dts: 'src/auto-components.d.ts',
 			resolvers: [
 				// 导入 scss
@@ -28,13 +27,13 @@ export default function createAutoImport() {
 				}),
 				/**
 				 * 自动引入图标组件解析器(解决手动引入)
-				 * prefix - 前缀，默认为 i，上面我们配置成了 icon，即组件名以 icon 开头
+				 * prefix - 前缀，默认为 i，若我们配置成了 icon，即组件名以 icon 开头
 				 * collection - 图标集名
 				 * icon - 图标名
 				 * {prefix}-{collection}-{icon}
 				 */
 				IconsResolver({
-					prefix: 'icon',
+					prefix: env.VITE_ICONIFY_PREFIX,
 					customCollections: ['vx']
 				})
 			]
