@@ -6,21 +6,9 @@ declare global {
 	type Component<T = any> = ReturnType<typeof defineComponent> | (() => Promise<typeof import('*.vue')>) | (() => Promise<T>);
 
 	/**
-	 * @description 子路由配置
-	 */
-	interface RouteChildOptionConfig {
-		path: string;
-		name?: string;
-		redirect?: string;
-		component?: Component | RouteComponent;
-		meta?: ChildRouteMeta;
-		children?: RouteChildOptionConfig[];
-	}
-
-	/**
 	 * @description 子路由 meta 配置
 	 */
-	interface ChildRouteMeta {
+	interface CustomizeRouteMeta {
 		// 菜单图标
 		icon?: string;
 		// 菜单标题
@@ -41,7 +29,28 @@ declare global {
 		perms?: string[];
 		// 页面是否缓存
 		keepAlive?: boolean;
+		// 页面路由动画
+		transition?: {
+			// 动画名称
+			name?: string;
+			// 进场动画
+			enterTransition?: string;
+			// 离场动画
+			leaveTransition?: string;
+		};
 	}
+
+	/**
+	 * @description 子路由（菜单）配置
+	 */
+	type RouteChildOptionConfig = {
+		path: string;
+		name?: string;
+		redirect?: string;
+		component?: Component | RouteComponent;
+		meta?: CustomizeRouteMeta;
+		children?: RouteChildOptionConfig[];
+	};
 
 	/**
 	 * @description 父级路由（目录） 配置
@@ -58,10 +67,11 @@ declare global {
 			title?: string;
 			// 是否隐藏某个菜单
 			hidden?: boolean;
+			// 菜单升序排序（只针对顶级路由）
+			rank?: number;
 		};
 		children?: RouteChildOptionConfig[];
 	} & RouteRecordRaw;
-
 }
 
 declare module 'vue-router' {

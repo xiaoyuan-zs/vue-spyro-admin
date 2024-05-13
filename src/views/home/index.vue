@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import echarts, { type ECOption } from '@/config/echarts';
+	import echarts, { type ECOption } from '@/plugins/echarts';
 	import { useEcharts } from '@/hooks';
 
 	const projectList = reactive([

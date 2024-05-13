@@ -8,14 +8,14 @@ export default {
 		'stylelint-config-html/vue',
 		'stylelint-config-standard-scss',
 		'stylelint-config-recommended-vue/scss',
-		'stylelint-config-recess-order',
+		'stylelint-config-recess-order'
 	],
 	// 指定不同文件对应的解析器
 	overrides: [
 		{
 			files: ['**/*.(css|html|vue)'],
-			customSyntax: 'postcss-html',
-		},
+			customSyntax: 'postcss-html'
+		}
 	],
 	// 自定义规则
 	rules: {
@@ -29,10 +29,10 @@ export default {
 			// 禁止未知的伪类选择器。
 			true,
 			{
-				ignorePseudoClasses: ['global', 'v-deep', 'deep', 'export'],
-			},
-		],
+				ignorePseudoClasses: ['global', 'v-deep', 'deep', 'export']
+			}
+		]
 	},
 	// 排除文件
-	ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.d.ts'],
+	ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.d.ts']
 };
