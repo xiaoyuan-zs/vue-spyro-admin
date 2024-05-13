@@ -2,15 +2,16 @@ import { defineConfig } from '@unocss/vite';
 import presetUno from '@unocss/preset-uno';
 import presetRemToPx from '@unocss/preset-rem-to-px';
 import transformerDirectives from '@unocss/transformer-directives';
+import presetIcons from '@unocss/preset-icons';
 
 export default defineConfig({
 	content: {
 		pipeline: {
-			exclude: ['node_modules', 'dist', '.git', '.husky', '.vscode', 'public', 'build', 'vite'],
-		},
+			exclude: ['node_modules', 'dist', '.git', '.husky', '.vscode', 'public', 'build', 'vite']
+		}
 	},
 	// css预设
-	presets: [presetUno({ dark: 'class' }), presetRemToPx()],
+	presets: [presetUno({ dark: 'class' }), presetRemToPx(), presetIcons()],
 	// unoCss 转换器
 	transformers: [transformerDirectives()],
 	// 规则
@@ -52,7 +53,7 @@ export default defineConfig({
 		'nowrap-hidden': 'whitespace-nowrap overflow-hidden',
 		'ellipsis-text': 'nowrap-hidden text-ellipsis',
 		'page-card': 'flex-col overflow-hidden p-5 rounded color-text bg-card',
-		'transition-base': 'transition-all duration-300 ease-in-out',
+		'transition-base': 'transition-all duration-300 ease-in-out'
 	},
 	// 主题颜色
 	theme: {
@@ -67,7 +68,7 @@ export default defineConfig({
 			text: 'var(--el-text-color-primary)',
 			card: 'var(--el-bg-color-overlay)',
 			background: 'var(--el-bg-color)',
-			borderColor: 'var(--el-border-color-lighter)',
-		},
-	},
+			borderColor: 'var(--el-border-color-lighter)'
+		}
+	}
 });

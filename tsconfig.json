@@ -35,7 +35,7 @@
 			"@/*": ["src/*"]
 		},
 		// 定义类型  用来指定需要包含的模块，只有在这里列出的模块声明文件才会被加载进来
-		"types": ["node", "vite/client", "element-plus/global"]
+		"types": ["node", "vite/client", "element-plus/global", "unplugin-icons/types/vue"]
 	},
 	"include": [
 		"src/**/*.ts",

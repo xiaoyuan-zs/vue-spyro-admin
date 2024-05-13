@@ -3,8 +3,6 @@
 	import { ElIcon } from 'element-plus';
 	import { Icon } from '@iconify/vue';
 
-	const VITE_ICONIFY_PREFIX = import.meta.env.VITE_ICONIFY_PREFIX;
-
 	export default defineComponent({
 		name: 'Icon',
 		props: {
@@ -36,7 +34,7 @@
 					() =>
 						h(Icon, {
 							inline: props.inline,
-							icon: props.name.replace(`${VITE_ICONIFY_PREFIX}:`, '')
+							icon: props.name
 						})
 				);
 		}

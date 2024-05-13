@@ -38,10 +38,13 @@ export default function createAutoImport(env: Record<string, string>) {
 				})
 			]
 		}),
-		// Iconify图标按需导入(需自己手动引入)
+		// Iconify图标按需导入(需自己手动引入import 对应图标)
 		Icons({
 			compiler: 'vue3', // 指定编译器
 			autoInstall: true, // 自动安装图标
+			// defaultClass: '', // 默认类名
+			// defaultStyle: '', // 默认样式
+			jsx: 'react', // 支持JSX
 			// 自定义导入本地svg图标集
 			customCollections: {
 				vx: FileSystemIconLoader('src/assets/icons', (svg) => svg.replace(/^<svg /, '<svg fill="currentColor" '))
