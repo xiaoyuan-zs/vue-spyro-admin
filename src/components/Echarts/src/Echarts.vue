@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-	import echarts, { type ECOption } from '@/plugins/echarts';
+	import echarts, { type ECOption } from '@/plugins';
 	import { type EChartsType } from 'echarts/core';
 	import { useDebounceFn } from '@vueuse/core';
 

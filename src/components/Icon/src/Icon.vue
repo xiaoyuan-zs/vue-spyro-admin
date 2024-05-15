@@ -1,6 +1,7 @@
-<script lang="ts">
-	import { h, defineComponent } from 'vue';
+<script lang="tsx">
+	import { defineComponent } from 'vue';
 	import { ElIcon } from 'element-plus';
+	import { propTypes } from '@/utils/propTypes';
 	import { Icon } from '@iconify/vue';
 
 	export default defineComponent({
@@ -10,33 +11,31 @@
 				type: String,
 				required: true
 			},
-			size: {
-				type: [String, Number],
-				default: 16
-			},
-			color: {
-				type: String,
-				default: 'inherit'
-			},
-			inline: {
-				type: Boolean,
-				default: true
-			}
+			size: propTypes.number.def(16),
+			color: propTypes.string.def('inherit'),
+			inline: propTypes.bool.def(true)
 		},
+
 		setup(props) {
-			return () =>
-				h(
-					ElIcon,
-					{
-						size: props.size || '16px',
-						color: props.color
-					},
-					() =>
-						h(Icon, {
-							inline: props.inline,
-							icon: props.name
-						})
-				);
+			// 是否是本地svg
+			const isLocal = computed(() => props.name.startsWith('vx:'));
+			// 本地svg href
+			const symbolId = computed(() => {
+				return unref(isLocal) ? `#icon-${props.name.split('vx:')[1]}` : props.name;
+			});
+			return () => (
+				<>
+					<ElIcon size={props.size} color={props.color}>
+						{isLocal.value ? (
+							<svg aria-hidden>
+								<use xlinkHref={symbolId.value}></use>
+							</svg>
+						) : (
+							<Icon icon={props.name} inline={props.inline}></Icon>
+						)}
+					</ElIcon>
+				</>
+			);
 		}
 	});
 </script>

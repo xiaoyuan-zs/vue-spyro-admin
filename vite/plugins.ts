@@ -1,4 +1,5 @@
 import { PluginOption } from 'vite';
+import path from 'path';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vue from '@vitejs/plugin-vue';
 import unoCss from '@unocss/vite';
@@ -10,6 +11,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import removeNoMatch from 'vite-plugin-router-warn';
 import removeConsole from 'vite-plugin-remove-console';
 import svgLoader from 'vite-svg-loader';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import';
 
@@ -35,6 +37,14 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 		// Vxe-Table 按需引入
 		createStyleImportPlugin({
 			resolves: [VxeTableResolve()]
+		}),
+		createSvgIconsPlugin({
+			// 指定要缓存的图标文件夹
+			iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+			// 指定symbolId格式
+			symbolId: 'icon-[dir]-[name]',
+			// svg压缩
+			svgoOptions: command
 		}),
 		/**
 		 * 开发环境下移除非必要的vue-router动态路由警告No match found for location with path

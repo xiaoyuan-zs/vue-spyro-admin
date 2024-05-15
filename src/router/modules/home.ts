@@ -7,8 +7,7 @@ export default {
 	redirect: '/index',
 	meta: {
 		icon: 'ep:home-filled',
-		title: '首页',
-		rank: 0
+		title: '首页'
 	},
 	children: [
 		{

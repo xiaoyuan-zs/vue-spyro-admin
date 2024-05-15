@@ -3,8 +3,7 @@ export default {
 	redirect: '/error/403',
 	meta: {
 		icon: 'ri:information-line',
-		title: '异常页面',
-		rank: 10
+		title: '异常页面'
 	},
 	children: [
 		{

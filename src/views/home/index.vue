@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="Home">
 	import echarts, { type ECOption } from '@/plugins/echarts';
 	import { useEcharts } from '@/hooks';
 

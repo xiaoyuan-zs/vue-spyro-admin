@@ -41,18 +41,6 @@ declare global {
 	}
 
 	/**
-	 * @description 子路由（菜单）配置
-	 */
-	type RouteChildOptionConfig = {
-		path: string;
-		name?: string;
-		redirect?: string;
-		component?: Component | RouteComponent;
-		meta?: CustomizeRouteMeta;
-		children?: RouteChildOptionConfig[];
-	};
-
-	/**
 	 * @description 父级路由（目录） 配置
 	 */
 	type RouteOptionConfig = {
@@ -67,13 +55,11 @@ declare global {
 			title?: string;
 			// 是否隐藏某个菜单
 			hidden?: boolean;
-			// 菜单升序排序（只针对顶级路由）
-			rank?: number;
 		};
-		children?: RouteChildOptionConfig[];
-	} & RouteRecordRaw;
+		children?: RouteOptionConfig[];
+	};
 }
 
 declare module 'vue-router' {
-	interface RouteMeta extends ChildRouteMeta {}
+	interface RouteMeta extends CustomizeRouteMeta {}
 }

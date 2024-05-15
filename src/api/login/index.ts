@@ -87,9 +87,9 @@ export const reqCheck = (data: RequestCheckBlockAndClickCaptcha) => {
  * 获取所有路由
  * @returns
  */
-export const getRouters = () => {
-	return request<SubMenuRouteRecordRaw[]>({
-		url: '/getRouters',
+export const getAsyncRouters = () => {
+	return request<RouteOptionConfig[]>({
+		url: '/getAsyncRouters',
 		method: 'get'
 	});
 };

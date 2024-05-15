@@ -1,4 +1,4 @@
-const Layout = () => import('@/layout/index.vue');
+const Layout = () => import('@/layouts/index.vue');
 
 export default [
 	{
@@ -19,7 +19,7 @@ export default [
 			{
 				path: '/redirect/:path(.*)',
 				name: 'Redirect',
-				component: () => import('@/layout/redirect.vue')
+				component: () => import('@/views/redirect/index.vue')
 			}
 		]
 	}

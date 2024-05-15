@@ -10,4 +10,5 @@ pinia.use(
 	})
 );
 
+export * from './modules';
 export default pinia;

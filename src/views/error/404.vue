@@ -1,7 +1,7 @@
-<script setup lang="ts" name=""></script>
+<script setup lang="ts"></script>
 
 <template>
-	<div>test</div>
+	<div>404</div>
 </template>
 
 <style lang="scss" scoped></style>

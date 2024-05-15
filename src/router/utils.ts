@@ -1,19 +1,24 @@
+import { clone } from 'radash';
+import { router } from './index';
 import { RouteRecordRaw } from 'vue-router';
+import { usePermissionStore } from '@/store/modules/permission';
+import { flatTreeToArray } from '@/utils/tree';
 
+const Layout = () => import('@/layouts/index.vue');
+const IFrameView = () => import('@/layouts/iframeView.vue');
 // 导入views 下的所有 vue 或 tsx
 const modulesRoutes = import.meta.glob('/src/views/**/*.{vue,tsx}');
 
-function handRank(routeInfo: any) {
-	const { name, path, parentId, meta } = routeInfo;
-	return isN(parentId) ? (isAllEmpty(meta?.rank) || (meta?.rank === 0 && name !== 'Home' && path !== '/') ? true : false) : false;
-}
-
 /**
- * 按照路由中meta下的rank字段升序来排序路由
- * @param routes 数组
- * @returns array
+ * 过滤meta中hidden为true的菜单
+ * @param data 路由数据
+ * @returns 返回去除hidden:true的路由对象数组
  */
-function ascending(routes: any[]) {}
+function filterHiddenTree(data: RouteRecordRaw[]) {
+	const newTree = clone(data).filter((v) => !v.meta?.hidden);
+	newTree.forEach((v) => v.children && (v.children = filterHiddenTree(v.children)));
+	return newTree;
+}
 
 /**
  * 一维数组处理成多级嵌套数组（三级及以上的路由全部扁平为二级，keep-alive 只支持到二级缓存）
@@ -23,9 +28,10 @@ function ascending(routes: any[]) {}
 function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 	if (routesList.length === 0) return routesList;
 	const newRoutesList: RouteRecordRaw[] = [];
+	const newChildrenList: RouteRecordRaw[] = [];
 	routesList.forEach((v: RouteRecordRaw) => {
 		if (v.path === '/') {
-			newRoutesList.push({
+			newRoutesList.unshift({
 				component: v.component,
 				name: v.name,
 				path: v.path,
@@ -34,10 +40,94 @@ function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 				children: []
 			});
 		} else {
-			newRoutesList[0]?.children!.push({ ...v });
+			newChildrenList.push({ ...v });
 		}
 	});
+	newRoutesList[0].children = newChildrenList;
 	return newRoutesList;
 }
 
-export { formatTwoStageRoutes };
+/**
+ * 解析组件
+ * @param component
+ * @returns
+ */
+function resolveView(component: any) {
+	let reg = /\..\/..\/views\/|.vue/g;
+	const path = Object.keys(modulesRoutes).find((key) => key.replaceAll(reg, '') === component) as string;
+	return modulesRoutes[path];
+}
+
+function addPathMatch() {
+	if (!router.hasRoute('pathMatch')) {
+		router.addRoute({
+			path: '/:pathMatch(.*)',
+			name: 'pathMatch',
+			redirect: '/error/404'
+		});
+	}
+}
+
+/**
+ * 处理动态路由（后端返回的路由）
+ * @param routes 动态路由数据
+ */
+function handleAsyncRoutes(routes: RouteRecordRaw[]) {
+	if (routes.length === 0) {
+		usePermissionStore().handleWholeMenus(routes);
+	} else {
+		// 扁平化处理之后的路由数据
+		flatTreeToArray(handleFilterAsyncRoute(routes)).map((el) => {
+			// 防止重复添加路由
+			if (router.options.routes[0].children?.findIndex((v) => v.name === el.name) !== -1) {
+				return;
+			} else {
+				// 将路由信息push到routes里面，然后再试addRoute添加路由
+				router.options.routes[0].children.push(el);
+				if (!router.hasRoute(el.name!)) router.addRoute(el);
+			}
+		});
+		usePermissionStore().handleWholeMenus(routes);
+	}
+	// 最后添加匹配路由
+	addPathMatch();
+}
+
+/**
+ * 过滤后端传来的动态路由 重新生成规范路由
+ * @param asyncRoutes 动态路由数据
+ * @param parentRoute 父级路由
+ * @returns
+ */
+function handleFilterAsyncRoute(asyncRoutes: RouteRecordRaw[], parentRoute?: RouteRecordRaw) {
+	if (!asyncRoutes || asyncRoutes.length === 0) return [];
+	asyncRoutes.forEach((route) => {
+		// 父级重定向：若子级存在且父级redirect不存在，则使用父级redirect（若不存在，使用path） 拼上子级path
+		if (route.children?.length && !route.redirect) route.redirect = parentRoute?.redirect || route.path + '/' + route.children[0].path;
+		// 父级路由名称：若子级存在且父级name属性不存在，则取第一个子级的Name + `Parent`
+		if (route.children?.length && !route.name) route.name = (route.children[0].name as string) + 'Parent';
+		if ((route.component as unknown as string) === 'Layout') {
+			route.component = Layout;
+		} else if (route.meta?.frameSrc) {
+			route.component = IFrameView;
+		} else {
+			route.component = resolveView(route.component);
+		}
+		if (route.children?.length) {
+			handleFilterAsyncRoute(route.children, route);
+		}
+	});
+	return asyncRoutes;
+}
+
+/**
+ * 获取动态路由
+ */
+function initRoutes() {
+	return new Promise((resolve) => {
+		// getAsyncRouters().then()
+		handleAsyncRoutes([]);
+	});
+}
+
+export { formatTwoStageRoutes, filterHiddenTree, initRoutes };

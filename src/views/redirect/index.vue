@@ -1,10 +1,14 @@
 <script setup lang="ts" name="Redirect">
 	import { useRouter } from 'vue-router';
 
-	const { replace } = useRouter();
-	const { params, query } = route;
+	const { currentRoute, replace } = useRouter();
+	const { params, query } = unref(currentRoute);
 	const { path } = params;
-	replace({ path: '/' + path, query });
+	const _path = Array.isArray(path) ? path.join('/') : path;
+	replace({
+		path: '/' + _path,
+		query
+	});
 </script>
 
 <template>

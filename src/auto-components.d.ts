@@ -55,9 +55,8 @@ declare module 'vue' {
     HorizontalScroll: typeof import('./components/HorizontalScroll/src/HorizontalScroll.vue')['default']
     Icon: typeof import('./components/Icon/src/Icon.vue')['default']
     IconAntDesignCodeFilled: typeof import('~icons/ant-design/code-filled')['default']
-    IconLineMdMenuFoldLeft: typeof import('~icons/line-md/menu-fold-left')['default']
-    IconVx500: typeof import('~icons/vx/500')['default']
     IconVxBell: typeof import('~icons/vx/bell')['default']
+    IconVxLogo: typeof import('~icons/vx/logo')['default']
     Loading: typeof import('./components/Loading/src/Loading.vue')['default']
     MultiUpload: typeof import('./components/MultiUpload/src/MultiUpload.vue')['default']
     Pagination: typeof import('./components/Pagination/src/Pagination.vue')['default']
@@ -70,5 +69,8 @@ declare module 'vue' {
     VerifySlide: typeof import('./components/Verifition/src/Verify/VerifySlide.vue')['default']
     VxIconPicker: typeof import('./components/VxIconPicker/src/VxIconPicker.vue')['default']
     VxToolTip: typeof import('./components/VxToolTip/src/VxToolTip.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
