@@ -1,10 +1,11 @@
 <script setup lang="ts" name="Layout">
+	import LayoutVertical from './LayoutVertical/index.vue';
 	const layoutComponent: Record<LayoutConfig, Component> = {
-		vertical: () => import('./LayoutVertical/index.vue'),
-		basic: () => import('./LayoutVertical/index.vue'),
-		horizontal: () => import('./LayoutVertical/index.vue'),
-		lattice: () => import('./LayoutVertical/index.vue'),
-		gradient: () => import('./LayoutVertical/index.vue')
+		vertical: LayoutVertical,
+		basic: LayoutVertical,
+		horizontal: LayoutVertical,
+		lattice: LayoutVertical,
+		gradient: LayoutVertical
 	};
 
 	// const layout = computed(() => );
