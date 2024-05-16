@@ -1,9 +1,3 @@
-<template>
-	<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill" @click="handleFull">
-		<Icon :name="icon" :size="20" />
-	</div>
-</template>
-
 <script lang="ts" setup>
 	import { useFullscreen } from '@vueuse/core';
 
@@ -13,4 +7,8 @@
 	const handleFull = () => (isFullscreen.value ? exit() : enter());
 </script>
 
-<style lang="scss" scoped></style>
+<template>
+	<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill" @click="handleFull">
+		<Icon :name="icon" :size="20" />
+	</div>
+</template>

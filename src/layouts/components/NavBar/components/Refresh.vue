@@ -1,9 +1,3 @@
-<template>
-	<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill" @click="handleRefresh">
-		<Icon :class="{ 'animate-spin': loading }" name="vx:refresh" :size="20" />
-	</div>
-</template>
-
 <script lang="ts" setup>
 	import { useAppStore } from '@/store';
 	const appStore = useAppStore();
@@ -21,4 +15,8 @@
 	};
 </script>
 
-<style lang="scss" scoped></style>
+<template>
+	<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill" @click="handleRefresh">
+		<Icon name="vx:refresh" :size="20" />
+	</div>
+</template>

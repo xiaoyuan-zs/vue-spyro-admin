@@ -127,13 +127,12 @@
 	}
 }
 
-// 渐变背景
-.layout-gradient {
-	background-image: var(--al-gradient-bg-color);
-}
-
 .el-main .el-scrollbar__view {
 	height: 100%;
+}
+
+.scrollbar-wrapper {
+	overflow-x: hidden !important;
 }
 
 // element-plus from

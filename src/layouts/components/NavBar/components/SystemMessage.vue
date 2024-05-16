@@ -1,32 +1,3 @@
-<template>
-	<el-popover ref="popover" trigger="hover" placement="bottom-end" width="250">
-		<template #reference>
-			<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill">
-				<el-badge :value="3" :max="99">
-					<svg-icon name="bell" width="20" height="20" />
-				</el-badge>
-			</div>
-		</template>
-		<el-tabs model-value="1">
-			<el-tab-pane label="通知(1)" name="1" />
-			<el-tab-pane label="关注(1)" name="2" />
-			<el-tab-pane label="代办(1)" name="3" />
-		</el-tabs>
-		<section>
-			<div v-for="(item, index) in list" :key="index" class="flex mb-5">
-				<el-avatar class="w-10 h-10 rounded-full mr-4 shrink-0" :src="item.avatar" />
-				<div class="flex-1 w-0">
-					<div>
-						<span class="mr-4 text-14px">{{ item.name }}</span>
-						<span class="time text-12px text-gray">{{ item.datetime }}</span>
-					</div>
-					<div class="truncate">{{ item.content }}</div>
-				</div>
-			</div>
-		</section>
-	</el-popover>
-</template>
-
 <script lang="ts" setup>
 	const list = [
 		{
@@ -50,4 +21,31 @@
 	];
 </script>
 
-<style lang="scss" scoped></style>
+<template>
+	<el-popover ref="popover" trigger="hover" placement="bottom-end" width="250">
+		<template #reference>
+			<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill">
+				<el-badge :value="3" :max="99">
+					<Icon name="vx:bell" :size="20" />
+				</el-badge>
+			</div>
+		</template>
+		<el-tabs model-value="1">
+			<el-tab-pane label="通知(1)" name="1" />
+			<el-tab-pane label="关注(1)" name="2" />
+			<el-tab-pane label="代办(1)" name="3" />
+		</el-tabs>
+		<section>
+			<div v-for="(item, index) in list" :key="index" class="flex mb-5">
+				<el-avatar class="w-10 h-10 rounded-full mr-4 shrink-0" :src="item.avatar" />
+				<div class="flex-1 w-0">
+					<div>
+						<span class="mr-4 text-14px">{{ item.name }}</span>
+						<span class="time text-12px text-gray">{{ item.datetime }}</span>
+					</div>
+					<div class="truncate">{{ item.content }}</div>
+				</div>
+			</div>
+		</section>
+	</el-popover>
+</template>

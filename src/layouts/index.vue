@@ -12,9 +12,7 @@
 </script>
 
 <template>
-	<Transition enter-active-class="animate__animated animate__fadeIn" mode="out-in">
-		<component :is="layoutComponent['vertical']" />
-	</Transition>
+	<component :is="layoutComponent['vertical']" />
 </template>
 
 <style scoped lang="scss"></style>

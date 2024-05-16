@@ -23,4 +23,4 @@ export default [
 			}
 		]
 	}
-] satisfies Array<RouteOptionConfig>;
+] satisfies Array<RouteOption>;

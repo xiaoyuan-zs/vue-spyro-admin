@@ -4,42 +4,42 @@
 
 	const projectList = reactive([
 		{
-			icon: 'el-icon-checked',
+			icon: 'ep:checked',
 			projectName: '消息列表体验优化',
 			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
 			author: '特怪小分队',
 			createTime: '2小时前'
 		},
 		{
-			icon: 'el-icon-checked',
+			icon: 'ep:checked',
 			projectName: 'xx 平台',
 			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
 			author: '特怪小分队',
 			createTime: '2小时前'
 		},
 		{
-			icon: 'el-icon-checked',
+			icon: 'ep:checked',
 			projectName: '5月日常小需求',
 			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
 			author: '特怪小分队',
 			createTime: '2小时前'
 		},
 		{
-			icon: 'el-icon-checked',
+			icon: 'ep:checked',
 			projectName: '功能效能',
 			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
 			author: '特怪小分队',
 			createTime: '2小时前'
 		},
 		{
-			icon: 'el-icon-checked',
+			icon: 'ep:checked',
 			projectName: '智能运营中心',
 			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
 			author: '特怪精英战队',
 			createTime: '2小时前'
 		},
 		{
-			icon: 'el-icon-checked',
+			icon: 'ep:checked',
 			projectName: 'bug处理',
 			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
 			author: '特怪二分队',
@@ -313,7 +313,7 @@
 					<div class="grid gap-8 py-4 lg:h-66 <lg:grid-cols-2 <sm:grid-cols-1 <md:grid-cols-2 grid-cols-3">
 						<div v-for="(item, index) in projectList" :key="index">
 							<div class="flex items-center">
-								<Icon :name="item.icon" size="20" color="var(--el-color-primary)" />
+								<Icon :name="item.icon" :size="20" color="var(--el-color-primary)" />
 								<span class="pl-2 font-700">{{ item.projectName }}</span>
 							</div>
 							<p class="text-gray py-2 <sm:truncate line-clamp-2">{{ item.projectDesc }}</p>

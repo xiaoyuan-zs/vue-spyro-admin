@@ -88,7 +88,7 @@ export const reqCheck = (data: RequestCheckBlockAndClickCaptcha) => {
  * @returns
  */
 export const getAsyncRouters = () => {
-	return request<RouteOptionConfig[]>({
+	return request<RouteOption[]>({
 		url: '/getAsyncRouters',
 		method: 'get'
 	});

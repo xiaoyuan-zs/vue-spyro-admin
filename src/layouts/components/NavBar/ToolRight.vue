@@ -1,9 +1,26 @@
-<template>
-	<tool-item />
-</template>
-
 <script setup lang="ts">
-	import { ToolItem } from './index';
+	import Refresh from './components/Refresh.vue';
+	import ClassicUser from './components/ClassicUser.vue';
+	import SystemMessage from './components/SystemMessage.vue';
+	import Language from './components/Language.vue';
+	import Search from './components/Search.vue';
+	import FullScreen from './components/FullScreen.vue';
 </script>
 
-<style scoped lang="scss"></style>
+<template>
+	<div class="flex-y-center h-full">
+		<!-- 搜索 -->
+		<Search />
+		<!-- 系统消息 -->
+		<SystemMessage />
+		<!-- i18图标 -->
+		<Language />
+		<!-- 布局尺寸图标 -->
+		<!-- 刷新 -->
+		<Refresh />
+		<!-- 全屏 -->
+		<FullScreen />
+		<!-- 用户信息 -->
+		<ClassicUser />
+	</div>
+</template>

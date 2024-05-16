@@ -9,7 +9,7 @@ const modules: Record<string, any> = import.meta.glob(['./modules/**/*.ts', '!./
 });
 
 // 原始静态路由
-const routes: RouteOptionConfig[] = [];
+const routes: RouteOption[] = [];
 Object.keys(modules).forEach((key) => {
 	routes.push(modules[key].default);
 });

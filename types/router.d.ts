@@ -41,9 +41,43 @@ declare global {
 	}
 
 	/**
-	 * @description 父级路由（目录） 配置
+	 * 菜单配置
 	 */
-	type RouteOptionConfig = {
+	interface MenuOption {
+		id?: number;
+		name?: string;
+		path?: string;
+		noShowingChildren?: boolean;
+		children?: MenuOption[];
+		value: unknown;
+		meta?: {
+			icon?: string;
+			title?: string;
+			rank?: number;
+			showParent?: boolean;
+		};
+		showTooltip?: boolean;
+		parentId?: number;
+		pathList?: number[];
+		redirect?: string;
+	}
+
+	/**
+	 * @description 子级路由（目录） 配置
+	 */
+	type RouteChildrenOption = {
+		path: string;
+		name?: string;
+		redirect?: string;
+		component?: Component | RouteComponent;
+		meta?: CustomizeRouteMeta;
+		children?: RouteOption[];
+	};
+
+	/**
+	 * @description 父级路由（目录） 配置 用于配置静态、动态路由类型
+	 */
+	type RouteOption = {
 		path: string;
 		name?: string;
 		redirect?: string;
@@ -56,7 +90,7 @@ declare global {
 			// 是否隐藏某个菜单
 			hidden?: boolean;
 		};
-		children?: RouteOptionConfig[];
+		children?: RouteChildrenOption[];
 	};
 }
 

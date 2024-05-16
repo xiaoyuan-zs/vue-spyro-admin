@@ -1,15 +1,3 @@
-<template>
-	<div v-if="breadcrumbs && !appStore.isMobile" class="breadcrumb mask-image-right">
-		<el-breadcrumb :separator-icon="ArrowRight">
-			<!-- <el-breadcrumb-item v-for="item in breadcrumbsMenu" :key="item.path">
-				<div class="breadcrumb-inner" :class="{ pointer: pointerCondition(item) }" @click.prevent="handleLink(item)">
-					<span>{{ translateRouteTitle(item.meta.title!) }}</span>
-				</div>
-			</el-breadcrumb-item> -->
-		</el-breadcrumb>
-	</div>
-</template>
-
 <script setup lang="ts">
 	import { useLayoutStore, useAppStore } from '@/store';
 	import { useRoute, useRouter, type RouteLocationMatched } from 'vue-router';
@@ -53,6 +41,18 @@
 		handleBreadCrumb();
 	});
 </script>
+
+<template>
+	<div v-if="breadcrumbs && !appStore.isMobile" class="breadcrumb mask-image-right">
+		<el-breadcrumb :separator-icon="ArrowRight">
+			<!-- <el-breadcrumb-item v-for="item in breadcrumbsMenu" :key="item.path">
+				<div class="breadcrumb-inner" :class="{ pointer: pointerCondition(item) }" @click.prevent="handleLink(item)">
+					<span>{{ translateRouteTitle(item.meta.title!) }}</span>
+				</div>
+			</el-breadcrumb-item> -->
+		</el-breadcrumb>
+	</div>
+</template>
 
 <style scoped lang="scss">
 	.breadcrumb {

@@ -31,4 +31,4 @@ export default {
 			}
 		}
 	]
-} satisfies RouteOptionConfig;
+} satisfies RouteOption;
