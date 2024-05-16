@@ -101,7 +101,6 @@ function findRouteByPath(path: string, routes: RouteRecordRaw[]): RouteRecordRaw
 /**
  * 解析组件
  * @param component
- * @returns
  */
 function resolveView(component: any) {
 	let reg = /\..\/..\/views\/|.vue/g;

@@ -10,8 +10,6 @@ const platformConfig: PlatFormConfig = {
 	isDark: false,
 	// 主题颜色
 	themeColor: '#1e90ff',
-	// 渐变背景文字颜色
-	gradientTextColor: '#ffffff',
 	// 标签栏
 	tabsHidden: true,
 	// 标签风格 圆滑smooth | 卡片card | 灵动nimble

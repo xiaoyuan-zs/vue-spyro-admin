@@ -37,7 +37,7 @@
 			}
 		},
 		render() {
-			const transitionName = transitions.value(this.route)?.name || 'fade-transform';
+			const transitionName = transitions.value(this.route)?.name || 'fade-slide';
 			const enterTransition = transitions.value(this.route)?.enterTransition;
 			const leaveTransition = transitions.value(this.route)?.leaveTransition;
 			return h(

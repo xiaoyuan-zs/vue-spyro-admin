@@ -19,7 +19,6 @@ declare global {
 		isOpenProgress?: boolean;
 		isDark?: boolean;
 		themeColor?: string;
-		gradientTextColor?: string;
 		tabsHidden?: boolean;
 		tabStyle?: string;
 		tabsIcon?: boolean;
