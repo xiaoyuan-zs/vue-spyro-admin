@@ -8,7 +8,7 @@
 	const route = useRoute();
 
 	const getMainStyle = computed(() => {
-		return ['h-full', 'p-4', layoutStore.layout === 'gradient' ? 'py-0' : ''];
+		return ['h-full', 'p-4', layoutStore.layout === 'minxin' ? 'py-0' : ''];
 	});
 
 	// 获取定义的 动画对象

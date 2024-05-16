@@ -8,7 +8,7 @@ declare global {
 	/**
 	 * 布局类型声明
 	 */
-	type LayoutConfig = 'basic' | 'vertical' | 'lattice' | 'horizontal' | 'gradient';
+	type LayoutConfig = 'basic' | 'vertical' | 'lattice' | 'horizontal' | 'minxin';
 
 	/**
 	 * 全局配置类型
