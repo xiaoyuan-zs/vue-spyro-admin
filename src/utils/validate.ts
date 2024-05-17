@@ -9,8 +9,7 @@ export const isHttp = (url: string): boolean => {
 
 /**
  * 判断path是否为外链
- * @param {string} path
- * @returns {Boolean}
+ * @param path
  */
 export const isExternal = (path: string) => {
 	return /^(https?:|mailto:|tel:)/.test(path);

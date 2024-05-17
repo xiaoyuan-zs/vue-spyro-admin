@@ -5,7 +5,7 @@
 		basic: LayoutVertical,
 		horizontal: LayoutVertical,
 		lattice: LayoutVertical,
-		minxin: LayoutVertical
+		mixins: LayoutVertical
 	};
 
 	// const layout = computed(() => );

@@ -17,6 +17,12 @@ Object.keys(modules).forEach((key) => {
 /** 导出处理后的静态路由（三级及以上的路由全部扁平化为二级，为keep-alive缓存使用） */
 export const staticRoutes: RouteRecordRaw[] = formatTwoStageRoutes(flatTreeToArray(buildHierarchyTree(routes.flat(Infinity))));
 
+/** 用于渲染本地静态、常量菜单，保持原始层级 */
+export const constantMenus = routes.flat(Infinity).concat(...constantRoutes) as RouteRecordRaw[];
+
+/** 过滤出常量路由，不参与菜单绘制 */
+export const excludePaths = constantRoutes.map((v) => v.path);
+
 /**
  * 注册路由
  */

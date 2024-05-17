@@ -1,4 +1,5 @@
 <script setup lang="ts" name="Menu">
+	import { excludePaths } from '@/router';
 	import SubMenu from './SubMenu.vue';
 	import { findRouteByPath, getParentPaths } from '@/router/utils';
 	import { usePermissionStore, useLayoutStore, useAppStore } from '@/store';
@@ -11,11 +12,13 @@
 
 	const isCollapse = computed(() => appStore.isCollapse);
 	const menuUnique = computed(() => layoutStore.menuUnique);
+	const { wholeMenus } = storeToRefs(permissionStore);
 
+	//
 	const subMenuData = ref<Array<RouteRecordRaw>>([]);
 	//菜单模式
 	const menuList = computed(() =>
-		['gradient', 'lattice'].includes(layoutStore.layout!) && !appStore.isMobile ? subMenuData.value : permissionStore.wholeMenus
+		['mixins', 'lattice'].includes(layoutStore.layout!) && !appStore.isMobile ? subMenuData.value : wholeMenus.value
 	);
 
 	const activeMenu = computed<string>(() => {
@@ -29,11 +32,15 @@
 		path = activeMenu.value;
 		subMenuData.value = [];
 		// path的上级路由组成的数组
-		const parentPathArr = getParentPaths(path, permissionStore.wholeMenus);
+		const parentPathArr = getParentPaths(path, wholeMenus.value);
 		// 当前路由的父级路由信息
-		const parentRoute = findRouteByPath(parentPathArr[0] || path, permissionStore.wholeMenus);
+		const parentRoute = findRouteByPath(parentPathArr[0] || path, wholeMenus.value);
 		if (!parentRoute?.children) return;
 		subMenuData.value = parentRoute?.children;
+	}
+
+	function menuSelect(indexPath: string) {
+		if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
 	}
 
 	watch(
@@ -41,6 +48,7 @@
 		() => {
 			if (route.path.includes('/redirect')) return;
 			getSubMenuData();
+			menuSelect(route.path);
 		}
 	);
 
@@ -59,7 +67,7 @@
 			:collapse="isCollapse"
 			:collapse-transition="false"
 			popper-effect="dark">
-			<SubMenu v-for="(menu, index) in menuList" :key="menu.path + index" :item="menu" :base-path="menu" />
+			<SubMenu v-for="(menu, index) in menuList" :key="menu.path + index" :item="<MenuOption>menu" :base-path="menu.path" />
 		</el-menu>
 	</el-scrollbar>
 </template>

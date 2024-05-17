@@ -108,6 +108,9 @@ function resolveView(component: any) {
 	return modulesRoutes[path];
 }
 
+/**
+ * 添加匹配路由
+ */
 function addPathMatch() {
 	if (!router.hasRoute('pathMatch')) {
 		router.addRoute({
