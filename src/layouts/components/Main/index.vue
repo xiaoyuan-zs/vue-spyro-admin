@@ -66,7 +66,7 @@
 				<router-view>
 					<template #default="{ Component, route }">
 						<el-backtop target=".el-main div .el-scrollbar__wrap" title="回到顶部" />
-						<transitionMain :route="route">
+						<transitionMain :route>
 							<keep-alive>
 								<component :is="Component" :key="route.name" v-if="appStore.reload" />
 							</keep-alive>

@@ -17,6 +17,7 @@
 
 	const onlyOneChild: MenuOption = ref(null);
 
+	// 处理只有一个子路由显示
 	function hasOneShowChild(children: MenuOption[] = [], parent: MenuOption) {
 		const showChildren = children.filter((item) => {
 			onlyOneChild.value = item;

@@ -27,6 +27,7 @@
 		return path;
 	});
 
+	// 混合布局、栅格布局获取子菜单
 	function getSubMenuData() {
 		let path = '';
 		path = activeMenu.value;
@@ -39,6 +40,7 @@
 		subMenuData.value = parentRoute?.children;
 	}
 
+	// 切换布局重新构建菜单
 	function menuSelect(indexPath: string) {
 		if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
 	}

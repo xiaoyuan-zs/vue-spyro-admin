@@ -53,7 +53,7 @@ declare global {
 		meta?: {
 			icon?: string;
 			title?: string;
-			rank?: number;
+			sort?: number;
 			showParent?: boolean;
 		};
 		showTooltip?: boolean;
@@ -89,6 +89,8 @@ declare global {
 			title?: string;
 			// 是否隐藏某个菜单
 			hidden?: boolean;
+			// 排序
+			sort?: number;
 		};
 		children?: RouteChildrenOption[];
 	};

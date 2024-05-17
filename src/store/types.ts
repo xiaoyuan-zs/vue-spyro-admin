@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 
 export type PermissionType = {
-	staticMenus: RouteRecordRaw[];
+	constantMenus: RouteRecordRaw[];
 	wholeMenus: RouteRecordRaw[];
 	cachePages: string[];
 };

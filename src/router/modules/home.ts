@@ -6,7 +6,8 @@ export default {
 	component: Layout,
 	redirect: '/index',
 	meta: {
-		title: '首页'
+		title: '首页',
+		sort: 1
 	},
 	children: [
 		{

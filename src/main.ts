@@ -22,6 +22,9 @@ import 'animate.css';
 
 const app = createApp(App);
 
+import { useVxeTable } from '@/plugins/vxe-table';
+useVxeTable(app);
+
 // 权限认证
 import './permission';
 

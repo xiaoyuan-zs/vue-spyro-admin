@@ -1,13 +1,26 @@
-import { clone } from 'radash';
-import { router } from './index';
+import { router } from '@/router';
+import { clone, isUndefined, orderBy } from 'xe-utils';
 import { RouteRecordRaw } from 'vue-router';
 import { usePermissionStore } from '@/store/modules/permission';
-import { flatTreeToArray } from '@/utils/tree';
+import { buildHierarchyTree, flatTreeToArray } from '@/utils/tree';
 
 const Layout = () => import('@/layouts/index.vue');
 const IFrameView = () => import('@/layouts/iframeView.vue');
 // 导入views 下的所有 vue 或 tsx
 const modulesRoutes = import.meta.glob('/src/views/**/*.{vue,tsx}');
+
+/**
+ * 对最外层路由进行过滤
+ * @param routes 路由
+ */
+function outerSortAsc(routes: any[]) {
+	// routes.forEach((el, index) => {
+	// 	if (isUndefined(el.meta.sort)) {
+	// 		el.meta.sort = index + 2;
+	// 	}
+	// });
+	return orderBy(routes, [[(item: any) => item.meta.sort, 'asc']]);
+}
 
 /**
  * 过滤meta中hidden为true的菜单
@@ -130,7 +143,7 @@ function handleAsyncRoutes(routes: RouteRecordRaw[]) {
 		usePermissionStore().handleWholeMenus(routes);
 	} else {
 		// 扁平化处理之后的路由数据
-		flatTreeToArray(handleFilterAsyncRoute(routes)).map((el) => {
+		formatTwoStageRoutes(flatTreeToArray(buildHierarchyTree(outerSortAsc(handleFilterAsyncRoute(routes).flat(Infinity))))).map((el) => {
 			// 防止重复添加路由
 			if (router.options.routes[0].children?.findIndex((v) => v.name === el.name) !== -1) {
 				return;
@@ -183,4 +196,4 @@ function initRoutes() {
 	});
 }
 
-export { formatTwoStageRoutes, filterHiddenTree, initRoutes, findRouteByPath, getParentPaths };
+export { outerSortAsc, formatTwoStageRoutes, filterHiddenTree, initRoutes, findRouteByPath, getParentPaths };
