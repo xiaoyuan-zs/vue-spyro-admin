@@ -1,5 +1,5 @@
 import { constantMenus } from '@/router';
-import { filterHiddenTree, outerSortAsc } from '@/router/utils';
+import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
 import { defineStore } from 'pinia';
 import { PermissionType } from '../types';
 import { RouteRecordRaw } from 'vue-router';

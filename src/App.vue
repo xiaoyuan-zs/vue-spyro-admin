@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { initRoutes } from './router/utils';
+	import { initRoutes } from './router/helpers/handleRoutes';
 
 	initRoutes();
 </script>

@@ -1,5 +1,5 @@
 import { buildHierarchyTree, flatTreeToArray } from '@/utils/tree';
-import { formatTwoStageRoutes, outerSortAsc } from './utils';
+import { formatTwoStageRoutes, outerSortAsc } from './helpers/utils';
 import constantRoutes from './modules/constant';
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
 

@@ -26,7 +26,6 @@
 		// 用来指定编译时是否生成.map文件
 		"sourceMap": false,
 		"jsx": "preserve",
-		"jsxImportSource": "vue",
 		"allowJs": false, // 允许编译JS
 		"extendedDiagnostics": false, //是否查看 TS 在编译时花费的时间
 		"noEmitOnError": true, //有错误时不进行编译

@@ -7,7 +7,7 @@ export default {
 	redirect: '/index',
 	meta: {
 		title: '首页',
-		sort: 1
+		sort: 0
 	},
 	children: [
 		{

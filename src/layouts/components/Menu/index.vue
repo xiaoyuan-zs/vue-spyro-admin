@@ -1,7 +1,7 @@
 <script setup lang="ts" name="Menu">
 	import { excludePaths } from '@/router';
 	import SubMenu from './SubMenu.vue';
-	import { findRouteByPath, getParentPaths } from '@/router/utils';
+	import { findRouteByPath, getParentPaths } from '@/router/helpers/utils';
 	import { usePermissionStore, useLayoutStore, useAppStore } from '@/store';
 	import { RouteRecordRaw, useRoute } from 'vue-router';
 
