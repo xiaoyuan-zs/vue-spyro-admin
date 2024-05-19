@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import AppSetting from './components/AppSetting/index.vue';
 	import { AppMask } from './components';
 	import { useAppStore, useLayoutStore } from '@/store';
 	import { useRenderLayout } from './components/useRenderLayout';
@@ -19,20 +20,20 @@
 	// 视口适配移动端
 	deviceDetection(containerRef);
 
-	const { LayoutVertical } = useRenderLayout();
+	const { LayoutVertical, LayoutBasic, LayoutHorizontal, LayoutLattice, LayoutMixins } = useRenderLayout();
 
 	const renderLayout = () => {
 		switch (unref(layoutStore.layout)) {
 			case 'vertical':
 				return LayoutVertical();
 			case 'basic':
-				return LayoutVertical();
+				return LayoutBasic();
 			case 'horizontal':
-				return LayoutVertical();
+				return LayoutHorizontal();
 			case 'lattice':
-				return LayoutVertical();
+				return LayoutLattice();
 			case 'mixins':
-				return LayoutVertical();
+				return LayoutMixins();
 			default:
 				break;
 		}
@@ -51,4 +52,5 @@
 		<AppMask v-show="showAppMask" @click.prevent="closeAppMask" />
 		<LayoutModel />
 	</el-container>
+	<app-setting />
 </template>

@@ -21,7 +21,7 @@ const asideClass =
 	'py-2 flex-col-stretch bg-background border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
 
 const headerClass =
-	'w-full flex-y-center justify-between border-b-1 border-solid border-[var(--el-color-info-light-8)] h-14 p-x-0 bg-[var(--el-bg-color)]';
+	'w-full flex-y-center justify-between border-b-1 border-solid border-[var(--el-color-info-light-8)] h-14 !p-x-2 bg-[var(--el-bg-color)]';
 
 export const useRenderLayout = () => {
 	const LayoutVertical = () => {
@@ -30,7 +30,87 @@ export const useRenderLayout = () => {
 				<ElAside class={[asideClass, { 'p-0 fixed top-0 bottom-0 left-0 z-9999': appStore.isMobile }]} width={collapseWidth.value}>
 					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
 						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-						<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
+						{appStore.isCollapse ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
+					</div>
+					<Menu />
+				</ElAside>
+				<ElContainer direction="vertical" class="relative">
+					<ElHeader class={headerClass}>
+						<ToolLeft />
+						<ToolRight />
+					</ElHeader>
+					<MainApp />
+				</ElContainer>
+			</>
+		);
+	};
+	const LayoutBasic = () => {
+		return (
+			<>
+				<ElAside class={[asideClass, { 'p-0 fixed top-0 bottom-0 left-0 z-9999': appStore.isMobile }]} width={collapseWidth.value}>
+					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
+						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+						{appStore.isCollapse ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
+					</div>
+					<Menu />
+				</ElAside>
+				<ElContainer direction="vertical" class="relative">
+					<ElHeader class={headerClass}>
+						<ToolLeft />
+						<ToolRight />
+					</ElHeader>
+					<MainApp />
+				</ElContainer>
+			</>
+		);
+	};
+	const LayoutHorizontal = () => {
+		return (
+			<>
+				<ElAside class={[asideClass, { 'p-0 fixed top-0 bottom-0 left-0 z-9999': appStore.isMobile }]} width={collapseWidth.value}>
+					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
+						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+						{appStore.isCollapse ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
+					</div>
+					<Menu />
+				</ElAside>
+				<ElContainer direction="vertical" class="relative">
+					<ElHeader class={headerClass}>
+						<ToolLeft />
+						<ToolRight />
+					</ElHeader>
+					<MainApp />
+				</ElContainer>
+			</>
+		);
+	};
+	const LayoutLattice = () => {
+		return (
+			<>
+				<ElAside class={[asideClass, { 'p-0 fixed top-0 bottom-0 left-0 z-9999': appStore.isMobile }]} width={collapseWidth.value}>
+					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
+						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+						{appStore.isCollapse ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
+					</div>
+					<Menu />
+				</ElAside>
+				<ElContainer direction="vertical" class="relative">
+					<ElHeader class={headerClass}>
+						<ToolLeft />
+						<ToolRight />
+					</ElHeader>
+					<MainApp />
+				</ElContainer>
+			</>
+		);
+	};
+	const LayoutMixins = () => {
+		return (
+			<>
+				<ElAside class={[asideClass, { 'p-0 fixed top-0 bottom-0 left-0 z-9999': appStore.isMobile }]} width={collapseWidth.value}>
+					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
+						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+						{appStore.isCollapse ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
 					</div>
 					<Menu />
 				</ElAside>
@@ -46,6 +126,10 @@ export const useRenderLayout = () => {
 	};
 
 	return {
-		LayoutVertical
+		LayoutVertical,
+		LayoutBasic,
+		LayoutHorizontal,
+		LayoutLattice,
+		LayoutMixins
 	};
 };

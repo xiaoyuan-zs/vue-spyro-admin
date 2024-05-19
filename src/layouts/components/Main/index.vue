@@ -37,7 +37,7 @@
 			}
 		},
 		render() {
-			const transitionName = transitions.value(this.route)?.name || 'fade-slide';
+			const transitionName = transitions.value(this.route)?.name || layoutStore.animateMode;
 			const enterTransition = transitions.value(this.route)?.enterTransition;
 			const leaveTransition = transitions.value(this.route)?.leaveTransition;
 			return h(
