@@ -25,7 +25,7 @@
 	<el-popover ref="popover" trigger="hover" placement="bottom-end" width="250">
 		<template #reference>
 			<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill">
-				<el-badge :value="3" :max="99">
+				<el-badge :value="3" :max="99" class="h-5">
 					<Icon name="vx:bell" :size="20" />
 				</el-badge>
 			</div>

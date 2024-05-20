@@ -26,10 +26,6 @@ export const useTheme = () => {
 
 	/**设置主题颜色 */
 	const setThemeColor = (val?: string) => {
-		if (!val) {
-			val = layoutStore.themeColor;
-			ElMessage.success('主题颜色已重置');
-		}
 		const colour: number = isDark.value ? 20.5 : 255;
 		const colors = {
 			// 设置 自定义主题颜色

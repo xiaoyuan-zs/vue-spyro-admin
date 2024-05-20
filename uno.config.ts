@@ -16,7 +16,7 @@ export default defineConfig({
 	transformers: [transformerDirectives()],
 	// 规则
 	rules: [],
-	// 自定义预设别名
+	// 自定义预设快捷方式
 	shortcuts: {
 		'wh-full': 'w-full h-full',
 		'flex-center': 'flex justify-center items-center',

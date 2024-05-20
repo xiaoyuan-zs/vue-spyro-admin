@@ -43,11 +43,4 @@ const settingConfig = {
 	asideMinWidth: '64px'
 };
 
-// 标签风格
-const tabsStyle = [
-	{ label: '卡片', value: 'card' },
-	{ label: '灵动', value: 'nimble' },
-	{ label: '圆滑', value: 'smooth' }
-];
-
-export { platformConfig, tabsStyle, settingConfig };
+export { platformConfig, settingConfig };

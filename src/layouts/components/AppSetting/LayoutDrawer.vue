@@ -1,3 +1,61 @@
+<script setup lang="ts" name="LayoutDrawer">
+	import { useIcon } from '@/hooks/modules/useIcon';
+	import { useTheme, useLayout } from '@/layouts/hooks';
+	import { useLayoutStore, useTabsStore } from '@/store';
+
+	const layoutStore = useLayoutStore();
+	const tabsStore = useTabsStore();
+
+	const { switchDark, setThemeColor, setMenuMode, setWeakNessMode, setGrayMode } = useTheme();
+	const { settings, layoutModeOptions, animateModeOptions, tabsStyleOptions } = useLayout();
+
+	const Moon = useIcon({ name: 'ep:moon' });
+	const Sunny = useIcon({ name: 'ep:sunny' });
+
+	// 预设主题颜色
+	const predefineColors = ref(['#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#1e90ff', '#c71585']);
+
+	// 切换暗黑模式
+	const changeDark = (value: any) => {
+		layoutStore.$patch({ isDark: value });
+		switchDark();
+	};
+	// 切换菜单主题
+	const changeMenuMode = (value: any) => {
+		layoutStore.$patch({ menuMode: value });
+		setMenuMode();
+	};
+	// 切换主题颜色
+	const changeThemeColor = (value: any) => {
+		setThemeColor(value);
+	};
+	// 设置布局
+	const changeLayoutModel = (value: any) => layoutStore.$patch({ layout: value });
+	// 切换布局动画
+	const changeAnimateMode = (value: any) => layoutStore.$patch({ animateMode: value });
+	// 菜单手风琴模式
+	const changeMenuUnique = (value: any) => layoutStore.$patch({ menuUnique: value });
+	// 标签是否隐藏
+	const changeTabsHidden = (value: any) => layoutStore.$patch({ tabsHidden: value });
+	// 标签页风格
+	const changeTabStyle = (value: any) => layoutStore.$patch({ tabStyle: value });
+	// 标签图标是否隐藏
+	const changeTabsIcon = (value: any) => layoutStore.$patch({ tabsIcon: value });
+	// 标签是否缓存
+	const changeTabsCache = (value: any) => {
+		layoutStore.$patch({ tabsCache: value });
+		tabsStore.handlePersistTabs();
+	};
+	// 面包屑
+	const changeBreadcrumbs = (value: any) => layoutStore.$patch({ breadcrumbs: value });
+	// 面包屑图标是否隐藏
+	const changeBreadcrumbsIcon = (value: any) => layoutStore.$patch({ breadcrumbsIcon: value });
+	// 灰色模式
+	const changeGrayMode = () => setGrayMode();
+	// 色弱模式
+	const changeWeakness = () => setWeakNessMode();
+</script>
+
 <template>
 	<el-scrollbar>
 		<el-divider>{{ $t('setting.layoutSetting') }}</el-divider>
@@ -88,60 +146,6 @@
 		<el-alert :title="$t('setting.tipDesc')" type="warning" :closable="false" />
 	</el-scrollbar>
 </template>
-
-<script setup lang="ts" name="LayoutDrawer">
-	import { useIcon } from '@/hooks/modules/useIcon';
-	import { useTheme, useLayout } from '@/layouts/hooks';
-	import { useLayoutStore } from '@/store';
-
-	const layoutStore = useLayoutStore();
-
-	const { switchDark, setThemeColor, setMenuMode, setWeakNessMode, setGrayMode } = useTheme();
-	const { settings, layoutModeOptions, animateModeOptions, tabsStyleOptions } = useLayout();
-
-	const Moon = useIcon({ name: 'ep:moon' });
-	const Sunny = useIcon({ name: 'ep:sunny' });
-
-	// 预设主题颜色
-	const predefineColors = ref(['#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#1e90ff', '#c71585']);
-
-	// 切换暗黑模式
-	const changeDark = (value: any) => {
-		layoutStore.$patch({ isDark: value });
-		switchDark();
-	};
-	// 切换菜单主题
-	const changeMenuMode = (value: any) => {
-		layoutStore.$patch({ menuMode: value });
-		setMenuMode();
-	};
-	// 切换主题颜色
-	const changeThemeColor = (value: any) => {
-		setThemeColor(value);
-	};
-	// 设置布局
-	const changeLayoutModel = (value: any) => layoutStore.$patch({ layout: value });
-	// 切换布局动画
-	const changeAnimateMode = (value: any) => layoutStore.$patch({ animateMode: value });
-	// 菜单手风琴模式
-	const changeMenuUnique = (value: any) => layoutStore.$patch({ menuUnique: value });
-	// 标签是否隐藏
-	const changeTabsHidden = (value: any) => layoutStore.$patch({ tabsHidden: value });
-	// 标签页风格
-	const changeTabStyle = (value: any) => layoutStore.$patch({ tabStyle: value });
-	// 标签图标是否隐藏
-	const changeTabsIcon = (value: any) => layoutStore.$patch({ tabsIcon: value });
-	// 标签是否缓存
-	const changeTabsCache = (value: any) => layoutStore.$patch({ tabsCache: value });
-	// 面包屑
-	const changeBreadcrumbs = (value: any) => layoutStore.$patch({ breadcrumbs: value });
-	// 面包屑图标是否隐藏
-	const changeBreadcrumbsIcon = (value: any) => layoutStore.$patch({ breadcrumbsIcon: value });
-	// 灰色模式
-	const changeGrayMode = () => setGrayMode();
-	// 色弱模式
-	const changeWeakness = () => setWeakNessMode();
-</script>
 
 <style scoped lang="scss">
 	.drawer-item {

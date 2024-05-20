@@ -65,9 +65,6 @@ dependencies:
   qs:
     specifier: 6.12.1
     version: 6.12.1
-  responsive-storage:
-    specifier: ^2.2.0
-    version: 2.2.0
   secure-ls:
     specifier: 1.2.6
     version: 1.2.6
@@ -6290,10 +6287,6 @@ packages:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
-
-  /responsive-storage@2.2.0:
-    resolution: {integrity: sha512-94W5Chr2F5kDBT6J+OCOeJguEkSTDc3jPOUQXYmzNG64DCNl5p7hoBDF7bx7u6EXAEcpUKF64OZR4b7Nn8h/Gg==, tarball: https://registry.npmmirror.com/responsive-storage/-/responsive-storage-2.2.0.tgz}
-    dev: false
 
   /restore-cursor@4.0.0:
     resolution: {integrity: sha512-I9fPXU9geO9bHOt9pHHOhOkYerIMsmVaWB0rA2AI9ERh/+x/i7MV5HKBNrg+ljO5eoPVgCcnFuRjJ9uH6I/3eg==, tarball: https://registry.npmmirror.com/restore-cursor/-/restore-cursor-4.0.0.tgz}

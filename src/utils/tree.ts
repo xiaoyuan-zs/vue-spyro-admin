@@ -33,6 +33,6 @@ export const flatTreeToArray = <T extends { children?: T[] }>(tree: T[]): T[] =>
 		return [];
 	}
 	return tree.reduce((arr: T[], { children, ...item }) => {
-		return arr.concat(item as T, children && children.length ? flatTreeToArray(children) : []);
+		return arr.concat({ children, ...item } as T, children && children.length ? flatTreeToArray(children) : []);
 	}, []);
 };

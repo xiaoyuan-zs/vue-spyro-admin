@@ -3,6 +3,7 @@ import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
 import { defineStore } from 'pinia';
 import { PermissionType } from '../types';
 import { RouteRecordRaw } from 'vue-router';
+import { flatTreeToArray } from '@/utils/tree';
 
 export const usePermissionStore = defineStore('permission', {
 	state: (): PermissionType => ({
@@ -13,6 +14,12 @@ export const usePermissionStore = defineStore('permission', {
 		// 缓存页面
 		cachePages: []
 	}),
+	getters: {
+		// 扁平化菜单
+		flatMenus(state) {
+			return flatTreeToArray(state.wholeMenus);
+		}
+	},
 	actions: {
 		/**
 		 * 合并静态动态路由生成菜单

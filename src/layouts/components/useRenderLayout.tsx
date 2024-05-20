@@ -1,7 +1,7 @@
 import ToolLeft from './NavBar/ToolLeft.vue';
 import ToolRight from './NavBar/ToolRight.vue';
 import { Icon } from '@/components/Icon/index';
-import { MainApp, Menu } from './index';
+import { MainApp, Menu, Tabs } from './index';
 import { useAppStore } from '@/store';
 import { settingConfig } from '@/config';
 import { ElContainer, ElAside, ElHeader } from 'element-plus';
@@ -39,6 +39,7 @@ export const useRenderLayout = () => {
 						<ToolLeft />
 						<ToolRight />
 					</ElHeader>
+					<Tabs />
 					<MainApp />
 				</ElContainer>
 			</>

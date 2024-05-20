@@ -11,15 +11,13 @@
 	<div class="flex-y-center h-full">
 		<!-- 搜索 -->
 		<Search />
-		<!-- 系统消息 -->
-		<SystemMessage />
 		<!-- i18图标 -->
 		<Language />
 		<!-- 布局尺寸图标 -->
-		<!-- 刷新 -->
-		<Refresh />
 		<!-- 全屏 -->
 		<FullScreen />
+		<!-- 系统消息 -->
+		<SystemMessage />
 		<!-- 用户信息 -->
 		<ClassicUser />
 	</div>

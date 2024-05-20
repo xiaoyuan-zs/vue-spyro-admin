@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+	import LayoutDrawer from './LayoutDrawer.vue';
+	const settingVisible = ref<boolean>(false);
+	// 生产模式不需要可自行修改
+	const isShow = import.meta.env.DEV && import.meta.env.VITE_APP_SETTING === 'Y';
+
+	const clearCache = () => {
+		localStorage.clear();
+		window.location.reload();
+	};
+</script>
+
 <template>
 	<div v-if="isShow" class="fixed z-99 flex-center w-fit h-fit top-40% right-0 rounded-l-md cursor-pointer">
 		<el-card shadow="never" :body-style="{ padding: '8px' }">
@@ -15,17 +27,5 @@
 		<layout-drawer />
 	</el-drawer>
 </template>
-
-<script lang="ts" setup>
-	import LayoutDrawer from './LayoutDrawer.vue';
-	const settingVisible = ref<boolean>(false);
-	// 生产模式不需要可自行修改
-	const isShow = import.meta.env.DEV && import.meta.env.VITE_APP_SETTING === 'Y';
-
-	const clearCache = () => {
-		localStorage.clear();
-		window.location.reload();
-	};
-</script>
 
 <style lang="scss" scoped></style>

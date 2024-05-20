@@ -6,7 +6,7 @@ export default {
 	component: Layout,
 	redirect: '/index',
 	meta: {
-		title: '首页',
+		title: 'menus.homepage',
 		sort: 0
 	},
 	children: [
@@ -16,7 +16,8 @@ export default {
 			component: () => import('@/views/home/index.vue'),
 			meta: {
 				icon: 'ep:home-filled',
-				title: '首页'
+				title: 'menus.homepage',
+				isFixed: true
 			}
 		}
 	]

@@ -53,7 +53,7 @@ function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 }
 
 /**
- * 通过指定 `key` 获取父级路径集合，默认 `key` 为 `path`
+ * 通过指定 `key` 获取父级路径集合，默认 `key` 为 `path` (无子父层级)
  * @param value 路由path
  * @param routes 路由数据
  * @param key
