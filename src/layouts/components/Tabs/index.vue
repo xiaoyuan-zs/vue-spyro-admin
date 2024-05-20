@@ -5,7 +5,7 @@
 	import { useRoute, useRouter } from 'vue-router';
 	import { TabPaneName, TabsPaneContext } from 'element-plus';
 	import { emitter } from '@/utils/mittBus';
-	import { useTabs } from '@/layouts/hooks/useTabs';
+	import { useTabs } from '@/layouts/hooks';
 	import { TabsMenuType } from '@/store/types';
 	import { translateRouteTitle } from '@/utils/locales';
 

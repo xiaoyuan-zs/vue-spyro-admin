@@ -16,7 +16,7 @@ export const useTabs = () => {
 	// 菜单列表
 	const contextMenuOptions: ContextMenuType[] = [
 		{
-			icon: 'vx:refresh',
+			icon: 'ep:refresh',
 			label: '刷新页面',
 			prop: 'refresh',
 			show: true,
