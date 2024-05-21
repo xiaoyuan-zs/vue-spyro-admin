@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import Refresh from './components/Refresh.vue';
 	import ClassicUser from './components/ClassicUser.vue';
 	import SystemMessage from './components/SystemMessage.vue';
 	import Language from './components/Language.vue';

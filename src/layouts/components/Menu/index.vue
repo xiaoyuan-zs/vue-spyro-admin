@@ -4,13 +4,17 @@
 	import { findRouteByPath, getParentPaths } from '@/router/helpers/utils';
 	import { usePermissionStore, useLayoutStore, useAppStore } from '@/store';
 	import { RouteRecordRaw, useRoute } from 'vue-router';
+	import { unref } from 'vue';
 
 	const layoutStore = useLayoutStore();
 	const permissionStore = usePermissionStore();
 	const appStore = useAppStore();
 	const route = useRoute();
 
+	const layout = computed(() => layoutStore.layout);
 	const isCollapse = computed(() => appStore.isCollapse);
+	const menuMode = computed(() => (unref(layout) === 'horizontal' ? 'horizontal' : 'vertical'));
+	const menuCollapse = computed(() => (unref(layout) === 'horizontal' ? false : unref(isCollapse)));
 	const menuUnique = computed(() => layoutStore.menuUnique);
 	const { wholeMenus } = storeToRefs(permissionStore);
 
@@ -60,18 +64,14 @@
 </script>
 
 <template>
-	<el-scrollbar wrap-class="scrollbar-wrapper">
-		<el-menu
-			class="!border-0 !w-full"
-			:default-active="activeMenu"
-			router
-			:unique-opened="menuUnique"
-			:collapse="isCollapse"
-			:collapse-transition="false"
-			popper-effect="dark">
-			<SubMenu v-for="(menu, index) in menuList" :key="menu.path + index" :item="<MenuOption>menu" :base-path="menu.path" />
-		</el-menu>
-	</el-scrollbar>
+	<el-menu
+		:class="{ '!border-0 !w-full': unref(layout) !== 'horizontal' }"
+		:default-active="unref(activeMenu)"
+		router
+		:mode="unref(menuMode)"
+		:unique-opened="unref(menuUnique)"
+		:collapse="unref(menuCollapse)"
+		:collapse-transition="false">
+		<SubMenu v-for="(menu, index) in menuList" :key="menu.path + index" :item="<MenuOption>menu" :base-path="menu.path" />
+	</el-menu>
 </template>
-
-<style scoped lang="scss"></style>

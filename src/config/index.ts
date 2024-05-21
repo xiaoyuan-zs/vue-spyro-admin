@@ -32,15 +32,4 @@ const platformConfig: PlatFormConfig = {
 	animateMode: 'zoom-fade'
 };
 
-const settingConfig = {
-	// 系统标题
-	title: import.meta.env.VITE_APP_TITLE,
-	// 侧边栏展开与搜索临界点
-	screenSize: 960,
-	// 侧边栏最大宽度
-	asideMaxWidth: '210px',
-	// 侧边栏最小宽度
-	asideMinWidth: '64px'
-};
-
-export { platformConfig, settingConfig };
+export { platformConfig };

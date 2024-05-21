@@ -1,10 +1,12 @@
 import { useLayoutStore } from '@/store';
-import { ElMessage } from 'element-plus';
 import { getThemeLightOrDarkHexColor } from '@/utils/color';
 
 export const useTheme = () => {
 	const layoutStore = useLayoutStore();
 	const isDark = computed(() => layoutStore.isDark);
+	const menuMode = computed(() => layoutStore.menuMode);
+	const themeColor = computed(() => layoutStore.themeColor);
+	const layout = computed(() => layoutStore.layout);
 	const html = document.documentElement as HTMLElement;
 
 	/**主题切换 */
@@ -15,13 +17,14 @@ export const useTheme = () => {
 		} else {
 			html.classList.remove('dark');
 		}
-		setThemeColor(layoutStore.themeColor);
+		setMenuMode();
+		setThemeColor(unref(themeColor));
 	};
 
 	/**设置菜单栏深色模式 */
 	const setMenuMode = () => {
 		const dark = isDark.value ? 'dark' : '';
-		html.className = `layout-menu-${layoutStore.menuMode} ${dark} `;
+		html.className = `layout-menu-${unref(menuMode)} ${dark} `;
 	};
 
 	/**设置主题颜色 */
@@ -62,7 +65,6 @@ export const useTheme = () => {
 	};
 
 	const initTheme = () => {
-		setMenuMode();
 		switchDark();
 		layoutStore.grayMode && setGrayMode();
 		layoutStore.weakness && setWeakNessMode();

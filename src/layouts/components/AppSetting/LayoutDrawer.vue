@@ -30,7 +30,9 @@
 		setThemeColor(value);
 	};
 	// 设置布局
-	const changeLayoutModel = (value: any) => layoutStore.$patch({ layout: value });
+	const changeLayoutModel = (value: any) => {
+		layoutStore.$patch({ layout: value });
+	};
 	// 切换布局动画
 	const changeAnimateMode = (value: any) => layoutStore.$patch({ animateMode: value });
 	// 菜单手风琴模式

@@ -1,15 +1,5 @@
 // 主题变量
 :root {
-	--vx-gradient-bg-color: linear-gradient(
-		to bottom,
-		var(--el-color-primary),
-		var(--el-color-primary-light-9) 60%,
-		var(--el-color-primary-light-8) 90%
-	);
-	--vx-gradient-text-color: #fff;
-}
-
-// 自定义渐变变量
-:root[theme='mixin'] {
-	// XXX
+	--left-menu-min-width: 64px;
+	--left-menu-max-width: 210px;
 }
