@@ -17,6 +17,7 @@
 		},
 
 		setup(props) {
+			if (!props.name) return () => {};
 			// 是否是本地svg
 			const isLocal = computed(() => props.name.startsWith('vx:'));
 			// 本地svg href

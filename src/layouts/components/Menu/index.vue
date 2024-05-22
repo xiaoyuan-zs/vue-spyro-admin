@@ -49,6 +49,7 @@
 		if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
 	}
 
+	// 监听路由的变化，过滤出当前路由的子路由集合(作用于栅格和混合布局)
 	watch(
 		() => [route.path, permissionStore.wholeMenus],
 		() => {

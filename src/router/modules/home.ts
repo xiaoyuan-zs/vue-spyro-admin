@@ -6,6 +6,7 @@ export default {
 	component: Layout,
 	redirect: '/index',
 	meta: {
+		icon: 'ep:home-filled',
 		title: 'menus.homepage',
 		sort: 0
 	},

@@ -1,5 +1,5 @@
 import { Icon } from '@/components/Icon/index';
-import { MainApp, Menu, Tabs, ToolLeft, ToolRight, CollapseIcon } from './index';
+import { MainApp, Menu, Tabs, ToolLeft, ToolRight, CollapseIcon, BreadCrumb, VerticalMenu } from './index';
 import { useAppStore } from '@/store';
 import { unref } from 'vue';
 import { ElContainer, ElAside, ElHeader, ElScrollbar } from 'element-plus';
@@ -120,22 +120,39 @@ export const useRenderLayout = () => {
 	};
 	const LayoutLattice = () => {
 		return (
-			<>
-				<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
-						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-						{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
+			<div class="w-full">
+				{unref(isMobile) ? (
+					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
+						<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
+							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+							{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
+						</div>
+					</ElAside>
+				) : undefined}
+				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+					<div class="flex-center">
+						{unref(isMobile) ? (
+							<CollapseIcon />
+						) : (
+							<div class="flex-center">
+								<div class={'flex-center shrink-0 h-14 nowrap-hidden cursor-pointer w-[var(--left-menu-max-width)]'}>
+									<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+									<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
+								</div>
+								<BreadCrumb />
+							</div>
+						)}
 					</div>
-					<Menu />
-				</ElAside>
-				<ElContainer direction="vertical" class="relative">
-					<ElHeader class={headerClass}>
-						<ToolLeft />
-						<ToolRight />
-					</ElHeader>
-					<MainApp />
+					<ToolRight />
+				</ElHeader>
+				<ElContainer class="relative !h-[calc(100%-60px)]">
+					<VerticalMenu />
+					<ElContainer direction="vertical" class="relative">
+						<Tabs />
+						<MainApp />
+					</ElContainer>
 				</ElContainer>
-			</>
+			</div>
 		);
 	};
 	const LayoutMixins = () => {

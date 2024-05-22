@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Echarts: typeof import('./components/Echarts/src/Echarts.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
+    ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBadge: typeof import('element-plus/es')['ElBadge']
@@ -24,6 +25,7 @@ declare module 'vue' {
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
@@ -37,6 +39,7 @@ declare module 'vue' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     HorizontalScroll: typeof import('./components/HorizontalScroll/src/HorizontalScroll.vue')['default']
     Icon: typeof import('./components/Icon/src/Icon.vue')['default']
     Pagination: typeof import('./components/Pagination/src/Pagination.vue')['default']
@@ -47,5 +50,8 @@ declare module 'vue' {
     VerifyPoints: typeof import('./components/Verifition/src/Verify/VerifyPoints.vue')['default']
     VerifySlide: typeof import('./components/Verifition/src/Verify/VerifySlide.vue')['default']
     VxToolTip: typeof import('./components/VxToolTip/src/VxToolTip.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

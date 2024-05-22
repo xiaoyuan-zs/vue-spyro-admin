@@ -1,3 +1,5 @@
+import { isArray, isObject, isString } from 'xe-utils';
+
 /**
  * 判断url是否是http或https
  * @returns {Boolean}
@@ -8,9 +10,33 @@ export const isHttp = (url: string): boolean => {
 };
 
 /**
- * 判断path是否为外链
+ * 判断是否是url地址
  * @param path
+ * @returns
  */
-export const isExternal = (path: string) => {
-	return /^(https?:|mailto:|tel:)/.test(path);
+export const isUrl = (path: string): boolean => {
+	const reg =
+		/(((^https?:(?:\/\/)?)(?:[-:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&%@.\w_]*)#?(?:[\w]*))?)$/;
+	return reg.test(path);
+};
+
+/**
+ * 判断数组、字符串、Map、Set、对象不为空
+ * @param val
+ * @returns
+ */
+export const isAllEmpty = <T = unknown>(val: T): val is T => {
+	if (isArray(val) || isString(val)) {
+		return val.length === 0;
+	}
+
+	if (val instanceof Map || val instanceof Set) {
+		return val.size === 0;
+	}
+
+	if (isObject(val)) {
+		return Object.keys(val).length === 0;
+	}
+
+	return false;
 };

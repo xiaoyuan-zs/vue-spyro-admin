@@ -11,7 +11,8 @@ const modules: Record<string, any> = import.meta.glob(['./modules/**/*.ts', '!./
 /** 原始静态路由 */
 const routes: RouteOption[] = [];
 Object.keys(modules).forEach((key) => {
-	routes.push(modules[key].default);
+	const route = modules[key].default;
+	Array.isArray(route) ? routes.push(...route) : routes.push(route);
 });
 
 /** 导出处理后的本地静态路由（三级及以上的路由全部扁平化为二级，为keep-alive缓存使用） */

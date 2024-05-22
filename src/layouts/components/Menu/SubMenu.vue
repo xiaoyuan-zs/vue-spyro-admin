@@ -3,7 +3,7 @@
 	import AppLink from './AppLink.vue';
 	import { PropType, toRaw } from 'vue';
 	import { propTypes } from '@/utils/propTypes';
-	import { isExternal } from '@/utils/validate';
+	import { isUrl } from '@/utils/validate';
 	import { translateRouteTitle } from '@/utils/locales';
 
 	const props = defineProps({
@@ -39,7 +39,7 @@
 	}
 
 	function resolvePath(routePath: string) {
-		if (isExternal(routePath) || isExternal(props.basePath)) {
+		if (isUrl(routePath) || isUrl(props.basePath)) {
 			return routePath || props.basePath;
 		} else {
 			// 使用path.posix.resolve替代path.resolve 避免windows环境下使用electron出现盘符问题
