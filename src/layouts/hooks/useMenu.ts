@@ -12,13 +12,13 @@ export const useMenu = () => {
 	let currName = ref<string | undefined>();
 
 	function resolvePath(route: any) {
-		if (isUrl(route.name)) return route.name;
-		const routeChildPath = route.children[0]?.path;
-		if (isUrl(routeChildPath)) {
-			return route.path + '/' + routeChildPath;
-		} else {
-			return routeChildPath;
+		// 第一级菜单
+		if (isUrl(route.name)) {
+			window.open(route.name);
+			return;
 		}
+		// 取该路由下第一个子级的path
+		return route.children[0]?.path;
 	}
 
 	return {

@@ -16,8 +16,7 @@ const include = [
 	'pinyin-pro',
 	'xe-utils',
 	// 'sortablejs',
-	'@vueuse/core',
-	'responsive-storage'
+	'@vueuse/core'
 ];
 
 /**

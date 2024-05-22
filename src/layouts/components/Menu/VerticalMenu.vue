@@ -1,12 +1,10 @@
 <script setup lang="ts">
 	import Menu from './index.vue';
-	import AppLink from './AppLink.vue';
 	import { RouteRecordRaw, useRouter } from 'vue-router';
 	import { translateRouteTitle } from '@/utils/locales';
 	import { useAppStore } from '@/store';
 	import { toRaw } from 'vue';
 	import { useMenu } from '@/layouts/hooks/useMenu';
-	import { isUrl } from '@/utils/validate';
 
 	const { push, currentRoute } = useRouter();
 	const appStore = useAppStore();
@@ -16,12 +14,8 @@
 	const defaultActive = ref<string>();
 
 	const changeMenu = (route: RouteRecordRaw) => {
-		if (isUrl(route.path)) {
-			window.open(route.path);
-			return;
-		}
-		console.log(321, resolvePath(route));
-		push(resolvePath(route));
+		const path = resolvePath(route);
+		if (path) push(path);
 	};
 
 	// 设置高亮
@@ -39,17 +33,15 @@
 	<el-aside class="aside !w-20">
 		<el-scrollbar>
 			<div class="h-full">
-				<div v-for="menu in parentRoutes" :key="menu.name">
-					<app-link :to="resolvePath(<MenuOption>menu)">
-						<div class="flex-col-center h-16 cursor-pointer hover:text-[var(--el-color-primary)] transition">
-							<span v-if="toRaw(menu.meta?.icon)">
-								<Icon :name="toRaw(menu.meta?.icon)!" />
-							</span>
-							<span class="text-xs">
-								{{ translateRouteTitle(menu.meta?.title!) }}
-							</span>
-						</div>
-					</app-link>
+				<div v-for="menu in parentRoutes" :key="menu.name" @click="changeMenu(menu)">
+					<div class="flex-col-center h-16 cursor-pointer hover:text-[var(--el-color-primary)] transition">
+						<span v-if="toRaw(menu.meta?.icon)">
+							<Icon :name="toRaw(menu.meta?.icon)!" />
+						</span>
+						<span class="text-xs">
+							{{ translateRouteTitle(menu.meta?.title!) }}
+						</span>
+					</div>
 				</div>
 			</div>
 		</el-scrollbar>

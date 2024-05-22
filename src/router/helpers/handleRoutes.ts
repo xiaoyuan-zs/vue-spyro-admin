@@ -4,10 +4,15 @@ import { buildHierarchyTree, flatTreeToArray } from '@/utils/tree';
 import { formatTwoStageRoutes, outerSortAsc } from './utils';
 import { RouteRecordRaw } from 'vue-router';
 
-const Layout = () => import('@/layouts/index.vue');
-const IFrameView = () => import('@/layouts/iframeView.vue');
 // 导入views 下的所有 vue 或 tsx
 const modulesRoutes = import.meta.glob('/src/views/**/*.{vue,tsx}');
+
+// 定义组件
+const layoutView = {
+	Layout: () => import('@/layouts/index.vue'),
+	IFrameView: () => import('@/layouts/iframeView.vue'),
+	LinkView: () => import('@/layouts/linkView.vue')
+};
 
 /**
  * 解析组件
@@ -70,13 +75,8 @@ function handleFilterAsyncRoute(asyncRoutes: RouteRecordRaw[], parentRoute?: Rou
 		if (route.children?.length && !route.redirect) route.redirect = parentRoute?.redirect || route.path + '/' + route.children[0].path;
 		// 父级路由名称：若子级存在且父级name属性不存在，则取第一个子级的Name + `Parent`
 		if (route.children?.length && !route.name) route.name = (route.children[0].name as string) + 'Parent';
-		if ((route.component as unknown as string) === 'Layout') {
-			route.component = Layout;
-		} else if (route.meta?.frameSrc) {
-			route.component = IFrameView;
-		} else {
-			route.component = resolveView(route.component);
-		}
+		const component = layoutView[route.component as unknown as keyof typeof layoutView];
+		route.component = component || resolveView(route.component);
 		if (route.children?.length) {
 			handleFilterAsyncRoute(route.children, route);
 		}

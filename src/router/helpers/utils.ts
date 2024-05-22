@@ -1,6 +1,5 @@
 import { clone, isUndefined, orderBy } from 'xe-utils';
 import { RouteRecordRaw } from 'vue-router';
-import { isAllEmpty, isUrl } from '@/utils/validate';
 
 /**
  * 对最外层路由进行过滤
@@ -36,7 +35,6 @@ function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 	const newRoutesList: RouteRecordRaw[] = [];
 	const newChildrenList: RouteRecordRaw[] = [];
 	routesList.forEach((v: RouteRecordRaw) => {
-		if (isUrl(v.path)) return;
 		if (v.path === '/') {
 			newRoutesList.unshift({
 				component: v.component,
