@@ -7,10 +7,6 @@
 	const appStore = useAppStore();
 	const route = useRoute();
 
-	const getMainStyle = computed(() => {
-		return ['h-full', 'p-4', layoutStore.layout === 'mixins' ? 'py-0' : ''];
-	});
-
 	// 获取定义的 动画对象
 	const transitions = computed(() => {
 		return (route: any) => {
@@ -61,7 +57,7 @@
 	<el-main class="!p-0 bg-[var(--el-bg-color-page)]">
 		<!-- 自定义指令实现 滚动加载 -->
 		<el-scrollbar ref="scrollbarRef">
-			<div :class="getMainStyle">
+			<div class="h-full p-4">
 				<!-- 解决子元素超出父元素高度问题 -->
 				<router-view>
 					<template #default="{ Component, route }">

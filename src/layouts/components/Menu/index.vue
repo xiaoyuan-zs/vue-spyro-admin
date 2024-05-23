@@ -14,6 +14,7 @@
 	const layout = computed(() => layoutStore.layout);
 	const isCollapse = computed(() => appStore.isCollapse);
 	const menuMode = computed(() => (unref(layout) === 'horizontal' ? 'horizontal' : 'vertical'));
+	// 横向布局不收缩
 	const menuCollapse = computed(() => (unref(layout) === 'horizontal' ? false : unref(isCollapse)));
 	const menuUnique = computed(() => layoutStore.menuUnique);
 	const { wholeMenus } = storeToRefs(permissionStore);

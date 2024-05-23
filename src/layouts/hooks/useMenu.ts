@@ -4,12 +4,10 @@ import { isUrl } from '@/utils/validate';
 
 // 垂直、横向菜单hooks
 export const useMenu = () => {
-	const route = useRoute();
 	const permissionStore = usePermissionStore();
 	const appStore = useAppStore();
 	const parentRoutes = computed(() => permissionStore.wholeMenus);
-
-	let currName = ref<string | undefined>();
+	const isMobile = computed(() => appStore.isMobile);
 
 	function resolvePath(route: any) {
 		// 第一级菜单若为外链则跳转外链
@@ -24,6 +22,6 @@ export const useMenu = () => {
 	return {
 		parentRoutes,
 		resolvePath,
-		currName
+		isMobile
 	};
 };

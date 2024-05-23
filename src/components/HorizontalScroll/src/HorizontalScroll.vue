@@ -1,13 +1,3 @@
-<template>
-	<div ref="horizontalRef" class="horizontal-container mask-image-left">
-		<div class="scroll">
-			<div class="content">
-				<slot></slot>
-			</div>
-		</div>
-	</div>
-</template>
-
 <script setup lang="ts">
 	import { useElementSize } from '@vueuse/core';
 	type hType = {
@@ -28,12 +18,17 @@
 	});
 </script>
 
-<style scoped lang="scss">
-	.horizontal-container {
-		width: 100%;
-		height: 100%;
-	}
+<template>
+	<div ref="horizontalRef" class="h-full w-full mask-image-left">
+		<div class="scroll">
+			<div class="content">
+				<slot></slot>
+			</div>
+		</div>
+	</div>
+</template>
 
+<style scoped lang="scss">
 	.scroll {
 		position: relative;
 
