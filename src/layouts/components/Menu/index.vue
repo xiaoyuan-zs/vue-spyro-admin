@@ -13,9 +13,15 @@
 
 	const layout = computed(() => layoutStore.layout);
 	const isCollapse = computed(() => appStore.isCollapse);
-	const menuMode = computed(() => (unref(layout) === 'horizontal' ? 'horizontal' : 'vertical'));
+	const isMobile = computed(() => appStore.isMobile);
+	// 横向布局菜单模式（移动端情况下垂直）
+	const menuMode = computed(() => (unref(layout) === 'horizontal' && !unref(isMobile) ? 'horizontal' : 'vertical'));
 	// 横向布局不收缩
-	const menuCollapse = computed(() => (unref(layout) === 'horizontal' ? false : unref(isCollapse)));
+	const menuCollapse = computed(() => {
+		if (unref(layout) === 'horizontal') return false;
+		if (unref(layout) === 'lattice') return false;
+		return unref(isCollapse);
+	});
 	const menuUnique = computed(() => layoutStore.menuUnique);
 	const { wholeMenus } = storeToRefs(permissionStore);
 
@@ -23,7 +29,7 @@
 	const subMenuData = ref<Array<RouteRecordRaw>>([]);
 	//菜单模式
 	const menuList = computed(() =>
-		['mixins', 'lattice'].includes(layoutStore.layout!) && !appStore.isMobile ? subMenuData.value : wholeMenus.value
+		['mixins', 'lattice'].includes(layoutStore.layout!) && !unref(isMobile) ? subMenuData.value : wholeMenus.value
 	);
 
 	const activeMenu = computed<string>(() => {

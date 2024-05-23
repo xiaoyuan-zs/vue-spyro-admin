@@ -5,25 +5,16 @@
 	import { translateRouteTitle } from '@/utils/locales';
 	import { toRaw, unref } from 'vue';
 	import { useMenu } from '@/layouts/hooks/useMenu';
-	import { getParentPaths } from '@/router/helpers/utils';
 
 	const showMenu = ref(false);
 
-	const { push, currentRoute } = useRouter();
-	const { parentRoutes, resolvePath } = useMenu();
+	const { push } = useRouter();
+	const { parentRoutes, resolvePath, isActive } = useMenu();
 
 	const changeMenu = (route: RouteRecordRaw) => {
 		showMenu.value = true;
 		const path = resolvePath(route);
 		if (path) push(path);
-	};
-
-	// 设置高亮
-	const isActive = (currentPath: string) => {
-		const { path } = unref(currentRoute);
-		// 获取当前路由的父级路径
-		const parentPathArr = getParentPaths(path, unref(parentRoutes));
-		return parentPathArr[0] === currentPath;
 	};
 
 	const clickOut = () => {
@@ -33,7 +24,7 @@
 
 <template>
 	<div class="h-full" v-click-outside="clickOut">
-		<el-aside class="aside !w-20">
+		<el-aside class="aside !w-20 !h-full">
 			<el-scrollbar>
 				<div v-for="menu in parentRoutes" :key="menu.name" @click="changeMenu(menu)">
 					<div

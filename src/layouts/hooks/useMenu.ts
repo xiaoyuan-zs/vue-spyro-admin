@@ -1,13 +1,14 @@
-import { useRoute } from 'vue-router';
-import { usePermissionStore, useAppStore } from '@/store';
+import { usePermissionStore } from '@/store';
+import { useRouter } from 'vue-router';
 import { isUrl } from '@/utils/validate';
+import { getParentPaths } from '@/router/helpers/utils';
 
 // 垂直、横向菜单hooks
 export const useMenu = () => {
 	const permissionStore = usePermissionStore();
-	const appStore = useAppStore();
 	const parentRoutes = computed(() => permissionStore.wholeMenus);
-	const isMobile = computed(() => appStore.isMobile);
+
+	const { currentRoute } = useRouter();
 
 	function resolvePath(route: any) {
 		// 第一级菜单若为外链则跳转外链
@@ -19,9 +20,17 @@ export const useMenu = () => {
 		return route.children[0]?.path;
 	}
 
+	// 设置高亮
+	const isActive = (currentPath: string) => {
+		const { path } = unref(currentRoute);
+		// 获取当前路由的父级路径
+		const parentPathArr = getParentPaths(path, unref(parentRoutes));
+		return parentPathArr[0] === currentPath;
+	};
+
 	return {
 		parentRoutes,
 		resolvePath,
-		isMobile
+		isActive
 	};
 };

@@ -95,6 +95,9 @@ export const useRenderLayout = () => {
 							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 							{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
 						</div>
+						<ElScrollbar wrap-class="scrollbar-wrapper">
+							<Menu />
+						</ElScrollbar>
 					</ElAside>
 				) : undefined}
 				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
@@ -127,6 +130,9 @@ export const useRenderLayout = () => {
 							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 							{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
 						</div>
+						<ElScrollbar wrap-class="scrollbar-wrapper">
+							<Menu />
+						</ElScrollbar>
 					</ElAside>
 				) : undefined}
 				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
@@ -144,7 +150,7 @@ export const useRenderLayout = () => {
 					<ToolRight />
 				</ElHeader>
 				<ElContainer class="relative !h-[calc(100%-60px)]">
-					<VerticalMenu />
+					{unref(isMobile) ? undefined : <VerticalMenu />}
 					<ElContainer direction="vertical" class="relative">
 						<Tabs />
 						<MainApp />
@@ -156,19 +162,11 @@ export const useRenderLayout = () => {
 	const LayoutMixins = () => {
 		return (
 			<div class="w-full">
-				{unref(isMobile) ? (
-					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-						<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
-							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-							{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
-						</div>
-					</ElAside>
-				) : undefined}
 				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
 					{unref(isMobile) ? (
 						<CollapseIcon />
 					) : (
-						<div class="flex-center">
+						<div class="flex-center h-full w-full">
 							<div class={'flex-center shrink-0 h-14 nowrap-hidden cursor-pointer w-[var(--left-menu-max-width)]'}>
 								<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 								<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
