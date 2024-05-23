@@ -38,6 +38,7 @@
 		subMenuData.value = [];
 		// path的上级路由组成的数组
 		const parentPathArr = getParentPaths(path, wholeMenus.value);
+
 		// 当前路由的父级路由信息
 		const parentRoute = findRouteByPath(parentPathArr[0] || path, wholeMenus.value);
 		if (!parentRoute?.children) return;
