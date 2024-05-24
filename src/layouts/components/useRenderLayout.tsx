@@ -3,6 +3,7 @@ import { MainApp, Menu, Tabs, ToolLeft, ToolRight, CollapseIcon, BreadCrumb, Ver
 import { useAppStore } from '@/store';
 import { unref } from 'vue';
 import { ElContainer, ElAside, ElHeader, ElScrollbar } from 'element-plus';
+import router from '@/router';
 
 const appTitle = import.meta.env.VITE_APP_TITLE;
 
@@ -20,6 +21,15 @@ const collapseWidth = computed(() =>
 			: '!w-[var(--left-menu-max-width)]'
 );
 
+const goHome = () => router.push('/index');
+
+const Logo = () => (
+	<div class={'flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer'} onClick={goHome}>
+		<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
+		<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
+	</div>
+);
+
 const asideClass =
 	'py-2 flex-col-stretch bg-background border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
 
@@ -31,7 +41,7 @@ export const useRenderLayout = () => {
 		return (
 			<>
 				<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
+					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer" onClick={goHome}>
 						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 						{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
 					</div>
@@ -54,12 +64,7 @@ export const useRenderLayout = () => {
 		return (
 			<div class="w-full">
 				<ElHeader class="flex justify-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
-					{!unref(isMobile) ? (
-						<div class={'flex-center shrink-0 h-14 nowrap-hidden cursor-pointer w-[var(--left-menu-max-width)]'}>
-							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-							<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
-						</div>
-					) : undefined}
+					{!unref(isMobile) ? <Logo class="!w-[var(--left-menu-max-width)]" /> : undefined}
 					<ElHeader
 						class={['!h-full !border-none', unref(isMobile) ? '!w-full' : '!w-[calc(100%-var(--left-menu-max-width))]', headerClass]}>
 						<ToolLeft />
@@ -68,12 +73,7 @@ export const useRenderLayout = () => {
 				</ElHeader>
 				<ElContainer class="relative !h-[calc(100%-60px)]">
 					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-						{unref(isMobile) ? (
-							<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
-								<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-								{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
-							</div>
-						) : undefined}
+						{unref(isMobile) ? <Logo /> : undefined}
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
 						</ElScrollbar>
@@ -90,11 +90,8 @@ export const useRenderLayout = () => {
 		return (
 			<div class="w-full">
 				{unref(isMobile) ? (
-					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-						<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
-							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-							{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
-						</div>
+					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 fixed top-0 bottom-0 left-0 z-9999']}>
+						<Logo />
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
 						</ElScrollbar>
@@ -104,13 +101,10 @@ export const useRenderLayout = () => {
 					{unref(isMobile) ? (
 						<CollapseIcon />
 					) : (
-						<div class="flex-1 flex-center">
-							<div class={'flex-center shrink-0 h-14 nowrap-hidden cursor-pointer w-[var(--left-menu-max-width)]'}>
-								<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-								<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
-							</div>
-							<Menu menuMode={'horizontal'} class="flex-1" />
-						</div>
+						<>
+							<Logo class="!w-[var(--left-menu-max-width)]" />
+							<Menu class="flex-1 overflow-hidden" />
+						</>
 					)}
 					<ToolRight />
 				</ElHeader>
@@ -125,11 +119,8 @@ export const useRenderLayout = () => {
 		return (
 			<div class="w-full">
 				{unref(isMobile) ? (
-					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-						<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
-							<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-							{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
-						</div>
+					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 fixed top-0 bottom-0 left-0 z-9999']}>
+						<Logo />
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
 						</ElScrollbar>
@@ -140,10 +131,7 @@ export const useRenderLayout = () => {
 						<CollapseIcon />
 					) : (
 						<div class="flex-center">
-							<div class={'flex-center shrink-0 h-14 nowrap-hidden cursor-pointer w-[var(--left-menu-max-width)]'}>
-								<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-								<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
-							</div>
+							<Logo class="!w-[var(--left-menu-max-width)]" />
 							<BreadCrumb />
 						</div>
 					)}
@@ -167,10 +155,7 @@ export const useRenderLayout = () => {
 						<CollapseIcon />
 					) : (
 						<div class="flex-center h-full w-full">
-							<div class={'flex-center shrink-0 h-14 nowrap-hidden cursor-pointer w-[var(--left-menu-max-width)]'}>
-								<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-								<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
-							</div>
+							<Logo class="!w-[var(--left-menu-max-width)]" />
 							<HorizontalMenu />
 						</div>
 					)}
@@ -178,12 +163,7 @@ export const useRenderLayout = () => {
 				</ElHeader>
 				<ElContainer class="relative !h-[calc(100%-60px)]">
 					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-						{unref(isMobile) ? (
-							<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer">
-								<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
-								{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
-							</div>
-						) : undefined}
+						{unref(isMobile) ? <Logo /> : undefined}
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
 						</ElScrollbar>

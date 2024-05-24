@@ -16,16 +16,19 @@
 	const isMobile = computed(() => appStore.isMobile);
 	// 横向布局菜单模式（移动端情况下垂直）
 	const menuMode = computed(() => (unref(layout) === 'horizontal' && !unref(isMobile) ? 'horizontal' : 'vertical'));
-	// 横向布局不收缩
+	// 以下布局不收缩
 	const menuCollapse = computed(() => {
-		if (unref(layout) === 'horizontal') return false;
-		if (unref(layout) === 'lattice') return false;
+		const layoutType: LayoutConfig[] = ['horizontal', 'lattice', 'mixins'];
+		if (layoutType.includes(unref(layout)!)) {
+			return false;
+		}
 		return unref(isCollapse);
 	});
+	// 是否只保持一个子菜单的展开
 	const menuUnique = computed(() => layoutStore.menuUnique);
+
 	const { wholeMenus } = storeToRefs(permissionStore);
 
-	//
 	const subMenuData = ref<Array<RouteRecordRaw>>([]);
 	//菜单模式
 	const menuList = computed(() =>
@@ -74,7 +77,7 @@
 
 <template>
 	<el-menu
-		:class="{ '!border-0 !w-full': unref(layout) !== 'horizontal' }"
+		:class="'!border-0 !w-full'"
 		:default-active="unref(activeMenu)"
 		router
 		:mode="unref(menuMode)"
