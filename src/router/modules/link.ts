@@ -16,7 +16,7 @@ export default [
 	},
 	{
 		path: '/link',
-		redirect: '/link/document',
+		redirect: '/link/strapi',
 		meta: {
 			icon: 'ep:home-filled',
 			title: '外链目录',
