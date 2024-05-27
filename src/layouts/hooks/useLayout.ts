@@ -4,7 +4,7 @@ const layoutStore = useLayoutStore();
 const {
 	layout,
 	isOpenProgress,
-	menuMode,
+	menuTheme,
 	isDark,
 	themeColor,
 	tabsHidden,
@@ -26,7 +26,7 @@ export const useLayout = () => {
 		// 内容区滚动条加载进度
 		isOpenProgress,
 		// 菜单栏模式(light|dark)
-		menuMode,
+		menuTheme,
 		// 暗黑模式
 		isDark,
 		// 主题颜色

@@ -13,7 +13,7 @@ export default {
 		themeColor: 'Theme color',
 		darkTheme: 'Dark theme',
 		interfaceSetting: 'Interface',
-		menuMode: 'Menu Mode',
+		menuTheme: 'Menu Theme',
 		menuUnique: 'Menu Unique',
 		tabs: 'Tabs',
 		tabsStyle: 'Tabs Style',

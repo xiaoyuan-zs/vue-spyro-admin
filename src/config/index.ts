@@ -4,8 +4,8 @@ const platformConfig: PlatFormConfig = {
 	layout: 'vertical',
 	// 内容区滚动条加载进度
 	isOpenProgress: true,
-	// 菜单栏模式(light|dark)
-	menuMode: 'light',
+	// 菜单主题
+	menuTheme: 'white',
 	// 暗黑模式
 	isDark: false,
 	// 主题颜色

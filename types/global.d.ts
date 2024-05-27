@@ -15,7 +15,7 @@ declare global {
 	 */
 	interface PlatFormConfig {
 		layout?: LayoutConfig;
-		menuMode?: string;
+		menuTheme?: string;
 		isOpenProgress?: boolean;
 		isDark?: boolean;
 		themeColor?: string;

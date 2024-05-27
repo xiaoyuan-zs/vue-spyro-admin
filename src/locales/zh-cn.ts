@@ -14,7 +14,7 @@ export default {
 		darkTheme: '暗黑主题',
 		gradientText: '渐变文字',
 		interfaceSetting: '界面设置',
-		menuMode: '深色菜单栏',
+		menuTheme: '菜单主题',
 		menuUnique: '菜单手风琴模式',
 		tabs: '标签页',
 		tabsStyle: '标签风格',

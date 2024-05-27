@@ -1,4 +1,5 @@
-.sw-menu {
+.el-menu-layout {
+	// 常规菜单
 	.el-menu {
 		width: 100%;
 		border-right: 0;
@@ -28,12 +29,14 @@
 		}
 	}
 
+	// 垂直菜单
 	.el-menu--horizontal {
 		.el-menu-item.is-active {
 			border-bottom: 2px solid var(--el-color-primary);
 		}
 	}
 
+	// 垂直菜单popper
 	.el-menu-popper {
 		.el-menu-item.is-active {
 			border-bottom: none;

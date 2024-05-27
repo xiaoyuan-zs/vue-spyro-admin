@@ -4,27 +4,24 @@ import { getThemeLightOrDarkHexColor } from '@/utils/color';
 export const useTheme = () => {
 	const layoutStore = useLayoutStore();
 	const isDark = computed(() => layoutStore.isDark);
-	const menuMode = computed(() => layoutStore.menuMode);
+	const menuTheme = computed(() => layoutStore.menuTheme);
 	const themeColor = computed(() => layoutStore.themeColor);
 	const html = document.documentElement as HTMLElement;
 
 	/**主题切换 */
 	const switchDark = () => {
 		if (isDark.value) {
-			layoutStore.$patch({ menuMode: 'light' });
-			html.className = 'sw-menu dark';
+			html.className = 'dark';
 		} else {
 			html.classList.remove('dark');
 		}
-		setMenuMode();
+		html.className = `el-menu-layout`;
+		setMenuTheme();
 		setThemeColor(unref(themeColor));
 	};
 
-	/**设置菜单栏深色模式 */
-	const setMenuMode = () => {
-		const dark = isDark.value ? 'dark' : '';
-		html.className = `sw-menu ${dark} `;
-	};
+	/**设置菜单栏主题 */
+	const setMenuTheme = () => {};
 
 	/**设置主题颜色 */
 	const setThemeColor = (val?: string) => {
@@ -71,7 +68,7 @@ export const useTheme = () => {
 	return {
 		initTheme,
 		switchDark,
-		setMenuMode,
+		setMenuTheme,
 		setThemeColor,
 		setGrayMode,
 		setWeakNessMode

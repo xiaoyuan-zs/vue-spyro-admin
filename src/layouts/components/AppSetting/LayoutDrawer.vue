@@ -6,7 +6,7 @@
 	const layoutStore = useLayoutStore();
 	const tabsStore = useTabsStore();
 
-	const { switchDark, setThemeColor, setMenuMode, setWeakNessMode, setGrayMode } = useTheme();
+	const { switchDark, setThemeColor, setMenuTheme, setWeakNessMode, setGrayMode } = useTheme();
 	const { settings, layoutModeOptions, animateModeOptions, tabsStyleOptions } = useLayout();
 
 	const Moon = useIcon({ name: 'ep:moon' });
@@ -21,9 +21,9 @@
 		switchDark();
 	};
 	// 切换菜单主题
-	const changeMenuMode = (value: any) => {
-		layoutStore.$patch({ menuMode: value });
-		setMenuMode();
+	const changeMenuTheme = (value: any) => {
+		layoutStore.$patch({ menuTheme: value });
+		setMenuTheme();
 	};
 	// 切换主题颜色
 	const changeThemeColor = (value: any) => {
@@ -81,14 +81,8 @@
 		<el-divider>{{ $t('setting.interfaceSetting') }}</el-divider>
 		<!-- 深色菜单栏 -->
 		<div class="drawer-item">
-			<span>{{ $t('setting.menuMode') }}</span>
-			<el-switch
-				v-model="settings.menuMode"
-				active-value="dark"
-				inactive-value="light"
-				:disabled="layoutStore.layout === 'horizontal'"
-				inline-prompt
-				@change="changeMenuMode" />
+			<span>{{ $t('setting.menuTheme') }}</span>
+			<el-switch v-model="settings.menuTheme" active-value="dark" inactive-value="light" inline-prompt @change="changeMenuTheme" />
 		</div>
 		<!-- 菜单手风琴模式 -->
 		<div class="drawer-item">
