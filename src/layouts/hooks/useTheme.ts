@@ -10,13 +10,8 @@ export const useTheme = () => {
 
 	/**主题切换 */
 	const switchDark = () => {
-		if (isDark.value) {
-			html.className = 'dark';
-		} else {
-			html.classList.remove('dark');
-		}
-		html.className = `el-menu-layout`;
-		setMenuTheme();
+		const dark = isDark.value ? 'dark' : '';
+		html.className = `el-menu-layout ${dark} `;
 		setThemeColor(unref(themeColor));
 	};
 
@@ -62,6 +57,7 @@ export const useTheme = () => {
 
 	const initTheme = () => {
 		switchDark();
+		setMenuTheme();
 		layoutStore.grayMode && setGrayMode();
 		layoutStore.weakness && setWeakNessMode();
 	};
