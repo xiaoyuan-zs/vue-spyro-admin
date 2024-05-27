@@ -6,10 +6,10 @@
 	import { RouteRecordRaw, useRoute } from 'vue-router';
 	import { unref } from 'vue';
 
-	const layoutStore = useLayoutStore();
-	const permissionStore = usePermissionStore();
 	const appStore = useAppStore();
 	const route = useRoute();
+	const layoutStore = useLayoutStore();
+	const permissionStore = usePermissionStore();
 
 	const layout = computed(() => layoutStore.layout);
 	const isCollapse = computed(() => appStore.isCollapse);
@@ -29,8 +29,9 @@
 
 	const { wholeMenus } = storeToRefs(permissionStore);
 
+	// 当前路由下的子菜单
 	const subMenuData = ref<Array<RouteRecordRaw>>([]);
-	//菜单模式
+	// 菜单模式
 	const menuList = computed(() =>
 		['mixins', 'lattice'].includes(layoutStore.layout!) && !unref(isMobile) ? subMenuData.value : wholeMenus.value
 	);
@@ -55,7 +56,7 @@
 		subMenuData.value = parentRoute?.children;
 	}
 
-	// 切换布局重新构建菜单
+	// 切换布局后操作
 	function menuSelect(indexPath: string) {
 		if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
 	}
@@ -77,9 +78,9 @@
 
 <template>
 	<el-menu
-		:class="'!border-0 !w-full'"
-		:default-active="unref(activeMenu)"
 		router
+		popper-class="el-menu-popper"
+		:default-active="unref(activeMenu)"
 		:mode="unref(menuMode)"
 		:unique-opened="unref(menuUnique)"
 		:collapse="unref(menuCollapse)"

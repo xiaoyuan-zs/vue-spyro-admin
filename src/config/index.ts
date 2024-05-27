@@ -9,7 +9,7 @@ const platformConfig: PlatFormConfig = {
 	// 暗黑模式
 	isDark: false,
 	// 主题颜色
-	themeColor: '#1e90ff',
+	themeColor: '#409EFF',
 	// 标签栏
 	tabsHidden: true,
 	// 标签风格 圆滑smooth | 卡片card | 灵动nimble

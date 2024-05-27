@@ -1,4 +1,4 @@
-<script lang="tsx" name="VxTitleFlow">
+<script lang="tsx" name="SwToolTip">
 	export default defineComponent({
 		props: {
 			textColor: {

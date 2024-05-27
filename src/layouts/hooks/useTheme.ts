@@ -6,14 +6,13 @@ export const useTheme = () => {
 	const isDark = computed(() => layoutStore.isDark);
 	const menuMode = computed(() => layoutStore.menuMode);
 	const themeColor = computed(() => layoutStore.themeColor);
-	const layout = computed(() => layoutStore.layout);
 	const html = document.documentElement as HTMLElement;
 
 	/**主题切换 */
 	const switchDark = () => {
 		if (isDark.value) {
 			layoutStore.$patch({ menuMode: 'light' });
-			html.className = 'layout-menu-light dark';
+			html.className = 'sw-menu dark';
 		} else {
 			html.classList.remove('dark');
 		}
@@ -24,7 +23,7 @@ export const useTheme = () => {
 	/**设置菜单栏深色模式 */
 	const setMenuMode = () => {
 		const dark = isDark.value ? 'dark' : '';
-		html.className = `layout-menu-${unref(menuMode)} ${dark} `;
+		html.className = `sw-menu ${dark} `;
 	};
 
 	/**设置主题颜色 */
@@ -37,7 +36,7 @@ export const useTheme = () => {
 			'--el-color-primary-dark-2': getThemeLightOrDarkHexColor(val as string, 0.1, colour) as string,
 			// 设置 自定义主题下 hover 颜色
 			...Array.from({ length: 9 }, (_: unknown, i: number) => ({
-				[`--el-color-primary-light-${i + 1}`]: getThemeLightOrDarkHexColor(val as string, i / 10, colour) as string
+				[`--el-color-primary-light-${i + 1}`]: getThemeLightOrDarkHexColor(val as string, (i + 1) / 10, colour) as string
 			})).reduce((acc, curr) => ({ ...acc, ...curr }), {})
 		};
 		const theme = (layoutStore.isDark ? 'html.dark' : ':root') + JSON.stringify(colors).replace(/,/g, ';').replace(/"/g, '');

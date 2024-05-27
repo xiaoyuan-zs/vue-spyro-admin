@@ -1,7 +1,7 @@
-.layout-menu-light {
+.sw-menu {
 	.el-menu {
-		--el-menu-hover-bg-color: transparent;
-		--el-menu-bg-color: transparent;
+		width: 100%;
+		border-right: 0;
 
 		.el-sub-menu {
 			&.is-active > .el-sub-menu__title {
@@ -9,122 +9,40 @@
 			}
 
 			.el-sub-menu__title {
-				& > * {
-					z-index: 1;
-				}
-
-				&:hover::before {
-					position: absolute;
-					inset: 2px 12px;
-					clear: both;
-					content: '';
-					background: var(--el-fill-color);
-					border-radius: 4px;
+				&:hover {
+					color: var(--el-color-primary);
+					background-color: transparent;
 				}
 			}
 		}
 
 		.el-menu-item {
-			padding: 0 20px;
-
-			& > * {
-				z-index: 1;
+			&.is-active {
+				background-color: var(--el-color-primary-light-9) !important;
 			}
 
-			&.is-active > * {
+			&:not(.is-active):hover {
 				color: var(--el-color-primary);
+				background-color: transparent !important;
 			}
+		}
+	}
 
-			&:hover::before {
-				position: absolute;
-				inset: 2px 12px;
-				clear: both;
-				content: '';
-				background: var(--el-fill-color);
-				border-radius: 4px;
-			}
+	.el-menu--horizontal {
+		.el-menu-item.is-active {
+			border-bottom: 2px solid var(--el-color-primary);
+		}
+	}
 
-			&.is-active::before {
-				position: absolute;
-				inset: 2px 12px;
-				clear: both;
-				content: '';
-				background: var(--el-color-primary-light-8);
-				border-radius: 4px;
-			}
+	.el-menu-popper {
+		.el-menu-item.is-active {
+			border-bottom: none;
 		}
 	}
 }
 
-.layout-menu-dark {
-	.el-aside {
-		--el-color-info-light-8: #2d2d2f;
-
-		background-color: #001529 !important;
-	}
-
-	.el-menu {
-		--el-menu-hover-bg-color: transparent;
-		--el-menu-bg-color: transparent;
-
-		.el-sub-menu {
-			&.is-active > .el-sub-menu__title {
-				color: var(--el-color-primary);
-			}
-
-			.el-sub-menu__title {
-				color: #bbb;
-
-				& > * {
-					z-index: 1;
-				}
-
-				&:hover::before {
-					position: absolute;
-					inset: 2px 12px;
-					clear: both;
-					content: '';
-					background: #8a8a8a49;
-					border-radius: 4px;
-				}
-			}
-		}
-
-		.el-menu-item {
-			padding: 0 20px;
-			color: #bbb;
-
-			& > * {
-				z-index: 1;
-			}
-
-			&.is-active > * {
-				color: #fff;
-			}
-
-			&:hover::before {
-				position: absolute;
-				inset: 2px 12px;
-				clear: both;
-				content: '';
-				background: #8a8a8a49;
-				border-radius: 4px;
-			}
-
-			&.is-active::before {
-				position: absolute;
-				inset: 2px 12px;
-				clear: both;
-				content: '';
-				background: var(--el-color-primary);
-				border-radius: 4px;
-			}
-		}
-	}
-
-	.el-menu--popup {
-		background-color: #001529;
-	}
+.submenu-title-noDropdown {
+	height: 100%;
 }
 
 .el-scrollbar__view {

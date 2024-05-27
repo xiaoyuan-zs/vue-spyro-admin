@@ -37,6 +37,7 @@
 <style scoped lang="scss">
 	.is-active {
 		color: var(--el-color-primary);
-		background-color: var(--el-color-primary-light-9);
+
+		// background-color: var(--el-color-primary-light-9);
 	}
 </style>
