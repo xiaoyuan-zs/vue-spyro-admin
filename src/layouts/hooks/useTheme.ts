@@ -10,13 +10,14 @@ export const useTheme = () => {
 
 	/**主题切换 */
 	const switchDark = () => {
-		const dark = isDark.value ? 'dark' : '';
-		html.className = `el-menu-layout ${dark} `;
+		html.className = isDark.value ? 'dark' : '';
 		setThemeColor(unref(themeColor));
 	};
 
 	/**设置菜单栏主题 */
 	const setMenuTheme = () => {};
+
+	const setHeaderTop = (value: string) => {};
 
 	/**设置主题颜色 */
 	const setThemeColor = (val?: string) => {

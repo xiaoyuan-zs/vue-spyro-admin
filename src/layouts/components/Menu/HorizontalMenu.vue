@@ -20,7 +20,7 @@
 				<div
 					:class="[
 						{ 'is-active': isActive(menu.path) },
-						'flex-center h-15 cursor-pointer px-5 hover:text-[var(--el-color-primary)] transition'
+						'flex-center h-[calc(var(--top-header-height)-1px)] cursor-pointer px-5 hover:text-[var(--el-color-primary)] transition'
 					]">
 					<span v-if="toRaw(menu.meta?.icon)">
 						<Icon :name="toRaw(menu.meta?.icon)!" />
@@ -37,7 +37,5 @@
 <style scoped lang="scss">
 	.is-active {
 		color: var(--el-color-primary);
-		background-color: var(--el-color-primary-light-9);
-		border-bottom: 3px solid var(--el-color-primary);
 	}
 </style>

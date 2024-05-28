@@ -73,7 +73,7 @@
 		<el-breadcrumb :separator-icon="ArrowRight">
 			<el-breadcrumb-item v-for="item in breadcrumbsMenu" :key="item.path">
 				<div class="breadcrumb-inner" :class="{ pointer: pointerCondition(item) }" @click.prevent="handleLink(item)">
-					<div v-show="breadcrumbsIcon" class="pr-0.5 pt-0.5">
+					<div v-show="breadcrumbsIcon" class="pr-1 pt-0.5">
 						<Icon v-if="item.meta?.icon" :name="item.meta.icon!" :size="16" />
 					</div>
 					<span>{{ translateRouteTitle(item.meta?.title!) }}</span>
@@ -98,12 +98,6 @@
 
 				.breadcrumb-inner {
 					display: inline-flex;
-
-					& .el-icon {
-						margin-top: 3px;
-						margin-right: 6px;
-						font-size: 14px;
-					}
 
 					& > span {
 						margin-top: 3px;

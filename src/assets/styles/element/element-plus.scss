@@ -1,4 +1,10 @@
+@import '../mixins';
+
+// 菜单样式
 .el-menu-layout {
+	--el-menu-item-height: var(--top-header-height) !important;
+	--el-menu-horizontal-height: var(--top-header-height) !important;
+
 	// 常规菜单
 	.el-menu {
 		width: 100%;
@@ -7,43 +13,82 @@
 		.el-sub-menu {
 			&.is-active > .el-sub-menu__title {
 				color: var(--el-color-primary);
+				border-bottom: none;
 			}
 
 			.el-sub-menu__title {
+				border-bottom: none;
+
+				& > * {
+					z-index: 1;
+				}
+
 				&:hover {
 					color: var(--el-color-primary);
 					background-color: transparent;
 				}
+
+				&:hover::before {
+					@include menu-before;
+
+					background: var(--el-fill-color);
+				}
+
+				&.is-active::before {
+					@include menu-before;
+
+					background: var(--el-color-primary-light-9);
+				}
 			}
 		}
 
-		.el-menu-item {
-			&.is-active {
-				background-color: var(--el-color-primary-light-9) !important;
-			}
+		@include menu-style;
+	}
 
-			&:not(.is-active):hover {
-				color: var(--el-color-primary);
-				background-color: transparent !important;
-			}
+	// 折叠动画隐藏文字
+	.horizontal-collapse-transition {
+		.el-menu__title {
+			display: none;
 		}
+	}
+
+	// 垂直菜单popper样式
+	&-popper {
+		@include menu-style;
 	}
 
 	// 垂直菜单
-	.el-menu--horizontal {
-		.el-menu-item.is-active {
-			border-bottom: 2px solid var(--el-color-primary);
-		}
-	}
+	&__horizontal {
+		.el-menu--horizontal {
+			.el-sub-menu {
+				.el-sub-menu__title {
+					&:hover::before,
+					&.is-active::before {
+						display: none;
+					}
+				}
+			}
 
-	// 垂直菜单popper
-	.el-menu-popper {
-		.el-menu-item.is-active {
-			border-bottom: none;
+			.el-menu-item {
+				&.is-active {
+					background-color: transparent !important;
+				}
+
+				&:not(.is-active):hover {
+					color: var(--el-color-primary);
+					background-color: transparent !important;
+				}
+
+				&:hover::before,
+				&.is-active::before {
+					display: none;
+				}
+			}
 		}
 	}
 }
 
+// 滚动条高度设置为100%
 .el-scrollbar__view {
 	height: 100%;
 }

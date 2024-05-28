@@ -24,24 +24,24 @@ const collapseWidth = computed(() =>
 const goHome = () => router.push('/index');
 
 const Logo = () => (
-	<div class={'flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer'} onClick={goHome}>
+	<div class={'flex-center shrink-0 h-full w-full nowrap-hidden cursor-pointer'} onClick={goHome}>
 		<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 		<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
 	</div>
 );
 
 const asideClass =
-	'py-2 flex-col-stretch bg-background border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
+	'flex-col-stretch bg-background border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
 
 const headerClass =
-	'w-full flex-y-center justify-between border-b-1 border-solid border-[var(--el-color-info-light-8)] h-14 !p-x-2 bg-[var(--el-bg-color)]';
+	'w-full !h-[var(--top-header-height)] flex-y-center justify-between border-b-1 border-solid border-[var(--el-color-info-light-8)] !p-x-0 bg-[var(--el-bg-color)]';
 
 export const useRenderLayout = () => {
 	const LayoutVertical = () => {
 		return (
 			<>
 				<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
-					<div class="flex-center shrink-0 h-14 w-full nowrap-hidden cursor-pointer" onClick={goHome}>
+					<div class="flex-center shrink-0 h-[var(--top-header-height)] w-full nowrap-hidden cursor-pointer" onClick={goHome}>
 						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 						{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
 					</div>
@@ -63,14 +63,13 @@ export const useRenderLayout = () => {
 	const LayoutBasic = () => {
 		return (
 			<div class="w-full">
-				<ElHeader class="flex justify-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+				<div class="flex justify-between h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
 					{!unref(isMobile) ? <Logo class="!w-[var(--left-menu-max-width)]" /> : undefined}
-					<ElHeader
-						class={['!h-full !border-none', unref(isMobile) ? '!w-full' : '!w-[calc(100%-var(--left-menu-max-width))]', headerClass]}>
+					<ElHeader class={[unref(isMobile) ? '!w-full' : '!w-[calc(100%-var(--left-menu-max-width))]', headerClass]}>
 						<ToolLeft />
 						<ToolRight />
 					</ElHeader>
-				</ElHeader>
+				</div>
 				<ElContainer class="relative !h-[calc(100%-60px)]">
 					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
 						{unref(isMobile) ? <Logo /> : undefined}
@@ -97,7 +96,7 @@ export const useRenderLayout = () => {
 						</ElScrollbar>
 					</ElAside>
 				) : undefined}
-				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+				<ElHeader class="flex-between !h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
 					{unref(isMobile) ? (
 						<CollapseIcon />
 					) : (
@@ -126,7 +125,7 @@ export const useRenderLayout = () => {
 						</ElScrollbar>
 					</ElAside>
 				) : undefined}
-				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+				<ElHeader class="flex-between !h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
 					{unref(isMobile) ? (
 						<CollapseIcon />
 					) : (
@@ -150,7 +149,7 @@ export const useRenderLayout = () => {
 	const LayoutMixins = () => {
 		return (
 			<div class="w-full">
-				<ElHeader class="flex-between !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+				<ElHeader class="flex-between !h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
 					{unref(isMobile) ? (
 						<CollapseIcon />
 					) : (

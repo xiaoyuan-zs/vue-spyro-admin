@@ -1,3 +1,40 @@
+@mixin menu-before {
+	position: absolute;
+	inset: 2px 5px;
+	clear: both;
+	content: '';
+	border-radius: 6px;
+}
+
+@mixin menu-style() {
+	.el-menu-item {
+		& > * {
+			z-index: 1;
+		}
+
+		&.is-active {
+			background-color: transparent !important;
+		}
+
+		&:not(.is-active):hover {
+			color: var(--el-color-primary);
+			background-color: transparent !important;
+		}
+
+		&:hover::before {
+			@include menu-before;
+
+			background: var(--el-fill-color);
+		}
+
+		&.is-active::before {
+			@include menu-before;
+
+			background: var(--el-color-primary-light-9);
+		}
+	}
+}
+
 // 屏幕分界点
 $width-small: 375px;
 $width-medium: 768px;

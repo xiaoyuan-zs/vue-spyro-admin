@@ -8,7 +8,7 @@
 </script>
 
 <template>
-	<div :class="['flex-center h-18 p-2.5 cursor-pointer']" @click="triggerCollapse">
+	<div :class="['flex-center h-full p-4 cursor-pointer']" @click="triggerCollapse">
 		<Icon :name="alignArrow" :size="20" />
 	</div>
 </template>

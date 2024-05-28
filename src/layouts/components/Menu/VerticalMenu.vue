@@ -24,14 +24,10 @@
 
 <template>
 	<div class="h-full" v-click-outside="clickOut">
-		<el-aside class="aside !w-20 !h-full">
+		<el-aside class="aside !w-[var(--left-vertical-menu-width)] !h-full">
 			<el-scrollbar>
 				<div v-for="menu in parentRoutes" :key="menu.name" @click="changeMenu(menu)">
-					<div
-						:class="[
-							{ 'is-active': isActive(menu.path) },
-							'flex-col-center h-16 cursor-pointer hover:text-[var(--el-color-primary)] transition'
-						]">
+					<div :class="[{ 'is-active': isActive(menu.path) }, 'vertical-menu']">
 						<span v-if="toRaw(menu.meta?.icon)">
 							<Icon :name="toRaw(menu.meta?.icon)!" />
 						</span>
@@ -54,11 +50,41 @@
 	}
 
 	.aside-menu {
-		@apply h-full absolute z-9999 overflow-hidden left-20 bg-[var(--el-bg-color)] border-[var(--el-color-info-light-8)] transition-width duration-300;
+		@apply h-full absolute z-9999 overflow-hidden left-[var(--left-vertical-menu-width)] bg-[var(--el-bg-color)] border-[var(--el-color-info-light-8)] transition-width duration-300;
 	}
 
-	.is-active {
-		color: var(--el-color-primary);
-		background-color: var(--el-color-primary-light-9);
+	.vertical-menu {
+		@apply relative flex-col-center h-16 cursor-pointer hover:text-[var(--el-color-primary)] transition;
+
+		& > * {
+			z-index: 1;
+		}
+
+		&:not(.is-active):hover {
+			background-color: transparent;
+		}
+
+		&:hover::before {
+			position: absolute;
+			inset: 2px 5px;
+			clear: both;
+			content: '';
+			background: var(--el-fill-color);
+			border-radius: 6px;
+		}
+
+		&.is-active {
+			position: relative;
+			color: var(--el-color-primary);
+
+			&::before {
+				position: absolute;
+				inset: 2px 5px;
+				clear: both;
+				content: '';
+				background-color: var(--el-color-primary-light-9);
+				border-radius: 6px;
+			}
+		}
 	}
 </style>

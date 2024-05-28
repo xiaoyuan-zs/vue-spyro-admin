@@ -1,90 +1,102 @@
-<script setup lang="ts" name="Menu">
+<script lang="tsx">
 	import { excludePaths } from '@/router';
 	import SubMenu from './SubMenu.vue';
 	import { findRouteByPath, getParentPaths } from '@/router/helpers/utils';
 	import { usePermissionStore, useLayoutStore, useAppStore } from '@/store';
 	import { RouteRecordRaw, useRoute } from 'vue-router';
 	import { unref } from 'vue';
+	import { ElMenu } from 'element-plus';
 
-	const appStore = useAppStore();
-	const route = useRoute();
-	const layoutStore = useLayoutStore();
-	const permissionStore = usePermissionStore();
+	export default defineComponent({
+		name: 'Menu',
+		setup() {
+			const appStore = useAppStore();
+			const route = useRoute();
+			const layoutStore = useLayoutStore();
+			const permissionStore = usePermissionStore();
 
-	const layout = computed(() => layoutStore.layout);
-	const isCollapse = computed(() => appStore.isCollapse);
-	const isMobile = computed(() => appStore.isMobile);
-	// 横向布局菜单模式（移动端情况下垂直）
-	const menuMode = computed(() => (unref(layout) === 'horizontal' && !unref(isMobile) ? 'horizontal' : 'vertical'));
-	// 以下布局不收缩
-	const menuCollapse = computed(() => {
-		const layoutType: LayoutConfig[] = ['horizontal', 'lattice', 'mixins'];
-		if (layoutType.includes(unref(layout)!)) {
-			return false;
+			const layout = computed(() => layoutStore.layout);
+			const isCollapse = computed(() => appStore.isCollapse);
+			const isMobile = computed(() => appStore.isMobile);
+			// 横向布局菜单模式（移动端情况下垂直）
+			const menuMode = computed(() => (unref(layout) === 'horizontal' && !unref(isMobile) ? 'horizontal' : 'vertical'));
+			// 以下布局不收缩
+			const menuCollapse = computed(() => {
+				const layoutType: LayoutConfig[] = ['horizontal', 'lattice', 'mixins'];
+				if (layoutType.includes(unref(layout)!)) {
+					return false;
+				}
+				return unref(isCollapse);
+			});
+			// 是否只保持一个子菜单的展开
+			const menuUnique = computed(() => layoutStore.menuUnique);
+
+			const { wholeMenus } = storeToRefs(permissionStore);
+
+			// 当前路由下的子菜单
+			const subMenuData = ref<Array<RouteRecordRaw>>([]);
+			// 菜单模式
+			const menuList = computed(() =>
+				['mixins', 'lattice'].includes(layoutStore.layout!) && !unref(isMobile) ? subMenuData.value : wholeMenus.value
+			);
+
+			const activeMenu = computed<string>(() => {
+				const { path, meta } = route;
+				if (meta.activeMenu) return meta.activeMenu;
+				return path;
+			});
+
+			// 混合布局、栅格布局获取子菜单
+			function getSubMenuData() {
+				let path = '';
+				path = activeMenu.value;
+				subMenuData.value = [];
+				// path的上级路由组成的数组
+				const parentPathArr = getParentPaths(path, wholeMenus.value);
+
+				// 当前路由的父级路由信息
+				const parentRoute = findRouteByPath(parentPathArr[0] || path, wholeMenus.value);
+				if (!parentRoute?.children) return;
+				subMenuData.value = parentRoute?.children;
+			}
+
+			// 切换布局后操作
+			function menuSelect(indexPath: string) {
+				if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
+			}
+
+			// 监听路由的变化，过滤出当前路由的子路由集合(作用于栅格和混合布局)
+			watch(
+				() => [route.path, permissionStore.wholeMenus],
+				() => {
+					if (route.path.includes('/redirect')) return;
+					getSubMenuData();
+					menuSelect(route.path);
+				}
+			);
+
+			onMounted(() => {
+				getSubMenuData();
+			});
+
+			const renderMenu = () => (
+				<ElMenu
+					router
+					popper-class="el-menu-layout-popper"
+					default-active={unref(activeMenu)}
+					mode={unref(menuMode)}
+					unique-opened={unref(menuUnique)}
+					collapse={unref(menuCollapse)}
+					collapse-transition={false}>
+					{menuList.value.map((menu, index) => (
+						<SubMenu key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />
+					))}
+				</ElMenu>
+			);
+
+			return () => {
+				return <div class={`el-menu-layout el-menu-layout__${unref(menuMode)}`}>{renderMenu()}</div>;
+			};
 		}
-		return unref(isCollapse);
-	});
-	// 是否只保持一个子菜单的展开
-	const menuUnique = computed(() => layoutStore.menuUnique);
-
-	const { wholeMenus } = storeToRefs(permissionStore);
-
-	// 当前路由下的子菜单
-	const subMenuData = ref<Array<RouteRecordRaw>>([]);
-	// 菜单模式
-	const menuList = computed(() =>
-		['mixins', 'lattice'].includes(layoutStore.layout!) && !unref(isMobile) ? subMenuData.value : wholeMenus.value
-	);
-
-	const activeMenu = computed<string>(() => {
-		const { path, meta } = route;
-		if (meta.activeMenu) return meta.activeMenu;
-		return path;
-	});
-
-	// 混合布局、栅格布局获取子菜单
-	function getSubMenuData() {
-		let path = '';
-		path = activeMenu.value;
-		subMenuData.value = [];
-		// path的上级路由组成的数组
-		const parentPathArr = getParentPaths(path, wholeMenus.value);
-
-		// 当前路由的父级路由信息
-		const parentRoute = findRouteByPath(parentPathArr[0] || path, wholeMenus.value);
-		if (!parentRoute?.children) return;
-		subMenuData.value = parentRoute?.children;
-	}
-
-	// 切换布局后操作
-	function menuSelect(indexPath: string) {
-		if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
-	}
-
-	// 监听路由的变化，过滤出当前路由的子路由集合(作用于栅格和混合布局)
-	watch(
-		() => [route.path, permissionStore.wholeMenus],
-		() => {
-			if (route.path.includes('/redirect')) return;
-			getSubMenuData();
-			menuSelect(route.path);
-		}
-	);
-
-	onMounted(() => {
-		getSubMenuData();
 	});
 </script>
-
-<template>
-	<el-menu
-		router
-		popper-class="el-menu-popper"
-		:default-active="unref(activeMenu)"
-		:mode="unref(menuMode)"
-		:unique-opened="unref(menuUnique)"
-		:collapse="unref(menuCollapse)"
-		:collapse-transition="false">
-		<SubMenu v-for="(menu, index) in menuList" :key="menu.path + index" :item="<MenuOption>menu" :base-path="menu.path" />
-	</el-menu>
-</template>
