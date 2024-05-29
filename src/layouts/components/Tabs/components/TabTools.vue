@@ -25,19 +25,17 @@
 </script>
 
 <template>
-	<div class="w-40px h-full flex-center cursor-pointer">
-		<el-dropdown class="h-full" @command="handleCommand" @visible-change="updateStatus">
-			<div class="flex-center h-full w-10 cursor-pointer hover:bg-fill">
-				<Icon name="vx:down-menu" :size="20" />
-			</div>
-			<template #dropdown>
-				<el-dropdown-menu>
-					<el-dropdown-item v-for="item in options" :key="item.prop" :disabled="item.disabled" :command="item.prop">
-						<Icon :name="item.icon" />
-						{{ item.label }}
-					</el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
-	</div>
+	<el-dropdown @command="handleCommand" @visible-change="updateStatus">
+		<div class="p-2 hover:bg-[var(--el-fill-color)] transition rounded-lg flex-center cursor-pointer">
+			<Icon name="ep:setting" :size="20" />
+		</div>
+		<template #dropdown>
+			<el-dropdown-menu>
+				<el-dropdown-item v-for="item in options" :key="item.prop" :disabled="item.disabled" :command="item.prop">
+					<Icon :name="item.icon" />
+					{{ item.label }}
+				</el-dropdown-item>
+			</el-dropdown-menu>
+		</template>
+	</el-dropdown>
 </template>

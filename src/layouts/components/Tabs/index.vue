@@ -4,7 +4,6 @@
 	import { usePermissionStore, useTabsStore, useLayoutStore } from '@/store';
 	import { useRoute, useRouter } from 'vue-router';
 	import { TabPaneName, TabsPaneContext } from 'element-plus';
-	import { emitter } from '@/utils/mittBus';
 	import { useTabs } from '@/layouts/hooks';
 	import { TabsMenuType } from '@/store/types';
 	import { translateRouteTitle } from '@/utils/locales';
@@ -15,7 +14,7 @@
 	const layoutStore = useLayoutStore();
 
 	const { tabsMenuList } = storeToRefs(tabsStore);
-	const { tabsHidden, tabsIcon, layout, tabStyle } = storeToRefs(layoutStore);
+	const { tabsHidden, tabsIcon, tabStyle } = storeToRefs(layoutStore);
 	const { contextMenuOptions, showContextMenu, clickTabMenu, menuClientX, menuClientY, menuStyle, filterTabMenu } = useTabs();
 
 	let currTabMenu = ref<string>('');
@@ -51,10 +50,6 @@
 	// 点击标签跳转
 	const changeTab = (pane: TabsPaneContext) => {
 		const routePath = pane.paneName as string;
-		// 如果是lattice 或 mixins 布局，需要栅格和横向菜单联动
-		if (['lattice', 'mixins'].includes(layout?.value!)) {
-			const currName = tabsMenuList.value.find((el) => el.path === routePath)?.name;
-		}
 		router.push(routePath);
 	};
 	// 删除标签
@@ -96,7 +91,7 @@
 			<el-tab-pane v-for="menu in tabsMenuList" :key="menu.name" :closable="!menu.isFixed" :name="menu.path">
 				<template #label>
 					<span
-						class="tab-item flex-center h-full pl-20px"
+						class="tab-item flex-center h-full pl-5"
 						@contextmenu.prevent="handleContextMenu($event as PointerEvent, menu.path, menu.isFixed)">
 						<div v-show="tabsIcon" class="pt-1">
 							<Icon v-if="menu.icon" :name="menu.icon" :size="16" />

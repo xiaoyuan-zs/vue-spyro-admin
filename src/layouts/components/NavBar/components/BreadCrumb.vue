@@ -71,14 +71,16 @@
 <template>
 	<div v-if="breadcrumbs && !appStore.isMobile" class="breadcrumb mask-image-right">
 		<el-breadcrumb :separator-icon="ArrowRight">
-			<el-breadcrumb-item v-for="item in breadcrumbsMenu" :key="item.path">
-				<div class="breadcrumb-inner" :class="{ pointer: pointerCondition(item) }" @click.prevent="handleLink(item)">
-					<div v-show="breadcrumbsIcon" class="pr-1 pt-0.5">
-						<Icon v-if="item.meta?.icon" :name="item.meta.icon!" :size="16" />
+			<transition-group appear enter-active-class="animate__animated animate__fadeInRight">
+				<el-breadcrumb-item v-for="item in breadcrumbsMenu" :key="item.path">
+					<div class="breadcrumb-inner" :class="{ pointer: pointerCondition(item) }" @click.prevent="handleLink(item)">
+						<div v-show="breadcrumbsIcon" class="pr-1 pt-0.5">
+							<Icon v-if="item.meta?.icon" :name="item.meta.icon!" :size="16" />
+						</div>
+						<span>{{ translateRouteTitle(item.meta?.title!) }}</span>
 					</div>
-					<span>{{ translateRouteTitle(item.meta?.title!) }}</span>
-				</div>
-			</el-breadcrumb-item>
+				</el-breadcrumb-item>
+			</transition-group>
 		</el-breadcrumb>
 	</div>
 </template>
@@ -87,6 +89,7 @@
 	.breadcrumb {
 		display: flex;
 		align-items: center;
+		margin-left: 12px;
 		overflow: hidden;
 
 		.el-breadcrumb {

@@ -25,17 +25,15 @@
 				return unref(isLocal) ? `#icon-${props.name.split('vx:')[1]}` : props.name;
 			});
 			return () => (
-				<>
-					<ElIcon size={props.size} color={props.color}>
-						{isLocal.value ? (
-							<svg aria-hidden>
-								<use xlinkHref={symbolId.value}></use>
-							</svg>
-						) : (
-							<Icon icon={props.name} inline={props.inline}></Icon>
-						)}
-					</ElIcon>
-				</>
+				<ElIcon size={props.size} color={props.color}>
+					{isLocal.value ? (
+						<svg aria-hidden>
+							<use xlinkHref={symbolId.value}></use>
+						</svg>
+					) : (
+						<Icon icon={props.name} inline={props.inline}></Icon>
+					)}
+				</ElIcon>
 			);
 		}
 	});

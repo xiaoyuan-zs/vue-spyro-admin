@@ -22,9 +22,9 @@
 
 <template>
 	<el-dropdown trigger="click" @command="handleCommand">
-		<span class="flex-center h-14 p-3 cursor-pointer hover:bg-fill">
-			<el-avatar :src="avatar" class="shrink-0 mr-2" />
-			<span>admin</span>
+		<span class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer">
+			<el-avatar :src="avatar" class="shrink-0 !w-5 !h-5" />
+			<span class="ml-2">Sparrow</span>
 		</span>
 		<template #dropdown>
 			<el-dropdown-menu>

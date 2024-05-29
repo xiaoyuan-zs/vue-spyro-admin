@@ -122,3 +122,10 @@
 		height: 100%;
 	}
 }
+
+// 去除el-dropdown focus 黑框
+.el-dropdown {
+	.el-tooltip__trigger:focus {
+		outline: none; // unset 这个也行
+	}
+}

@@ -31,15 +31,17 @@ export const useTabsStore = defineStore('tabs', () => {
 	// 移除tabs
 	const removeTabs = (path: string, isCurrRoute: boolean) => {
 		const newTabsList = tabsMenuList.value;
+		console.log(211, path, isCurrRoute, newTabsList);
 		if (isCurrRoute) {
 			newTabsList.forEach((newPath, index) => {
 				// 不满足条件跳出本次循环
 				if (newPath.path !== path) return;
+				// 寻找下一个或上一个路由
 				const nextTab = newTabsList[index + 1] || newTabsList[index - 1];
 				router.push((nextTab && nextTab.path) || '/index');
 			});
 		}
-		tabsMenuList.value = newTabsList.filter((item) => item.path !== path);
+		tabsMenuList.value = newTabsList.filter((item) => item.path !== path || item.isFixed);
 		handlePersistTabs();
 	};
 

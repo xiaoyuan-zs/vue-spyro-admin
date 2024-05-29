@@ -16,7 +16,7 @@
 </script>
 
 <template>
-	<div class="flex-center h-14 w-10 cursor-pointer hover:bg-fill" @click="handleRefresh">
+	<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer" @click="handleRefresh">
 		<Icon name="vx:refresh" :size="20" />
 	</div>
 </template>
