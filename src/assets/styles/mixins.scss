@@ -8,11 +8,14 @@
 
 @mixin menu-style() {
 	.el-menu-item {
+		color: var(--left-menu-text-color);
+
 		& > * {
 			z-index: 1;
 		}
 
 		&.is-active {
+			color: var(--left-menu-active-text-color);
 			background-color: transparent !important;
 		}
 
@@ -24,13 +27,13 @@
 		&:hover::before {
 			@include menu-before;
 
-			background: var(--el-fill-color);
+			background: var(--left-menu-hover-color);
 		}
 
 		&.is-active::before {
 			@include menu-before;
 
-			background: var(--el-color-primary-light-9);
+			background: var(--left-menu-active-color);
 		}
 	}
 }

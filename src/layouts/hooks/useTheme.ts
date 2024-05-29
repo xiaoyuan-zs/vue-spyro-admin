@@ -4,8 +4,8 @@ import { getThemeLightOrDarkHexColor } from '@/utils/color';
 export const useTheme = () => {
 	const layoutStore = useLayoutStore();
 	const isDark = computed(() => layoutStore.isDark);
-	const menuTheme = computed(() => layoutStore.menuTheme);
 	const themeColor = computed(() => layoutStore.themeColor);
+	const darkMenu = computed(() => layoutStore.darkMenu);
 	const html = document.documentElement as HTMLElement;
 
 	/**主题切换 */
@@ -15,9 +15,14 @@ export const useTheme = () => {
 	};
 
 	/**设置菜单栏主题 */
-	const setMenuTheme = () => {};
+	const setDarkMenu = () => {
+		darkMenu.value ? html.setAttribute('data-theme', 'menu-dark') : html.removeAttribute('data-theme');
+	};
 
-	const setHeaderTop = (value: string) => {};
+	// 修改头部高度
+	const setHeaderTop = (value: string) => {
+		html.style.setProperty('--top-header-height', value + 'px');
+	};
 
 	/**设置主题颜色 */
 	const setThemeColor = (val?: string) => {
@@ -58,16 +63,17 @@ export const useTheme = () => {
 
 	const initTheme = () => {
 		switchDark();
-		setMenuTheme();
+		setDarkMenu();
 		layoutStore.grayMode && setGrayMode();
 		layoutStore.weakness && setWeakNessMode();
 	};
 	return {
 		initTheme,
 		switchDark,
-		setMenuTheme,
+		setDarkMenu,
 		setThemeColor,
 		setGrayMode,
-		setWeakNessMode
+		setWeakNessMode,
+		setHeaderTop
 	};
 };

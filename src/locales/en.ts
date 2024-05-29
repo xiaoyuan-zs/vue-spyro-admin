@@ -6,14 +6,14 @@ export default {
 		returnToHome: 'Back Home'
 	},
 	setting: {
-		settings: 'Settings',
+		settings: 'System Config',
 		layoutSetting: 'Layout',
 		layout: 'Layout Mode',
 		themeSetting: 'Theme',
 		themeColor: 'Theme color',
 		darkTheme: 'Dark theme',
 		interfaceSetting: 'Interface',
-		menuTheme: 'Menu Theme',
+		darkMenu: 'Dark Menu',
 		menuUnique: 'Menu Unique',
 		tabs: 'Tabs',
 		tabsStyle: 'Tabs Style',

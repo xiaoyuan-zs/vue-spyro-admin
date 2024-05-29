@@ -2,8 +2,28 @@
 :root {
 	--left-menu-min-width: 64px;
 	--left-menu-max-width: 210px;
-	--top-header-height: 56px;
+	--left-menu-bg-color: var(--el-menu-bg-color);
+	--left-menu-text-color: var(--el-menu-text-color);
+	--left-menu-active-text-color: var(--el-color-primary);
+	--left-menu-hover-color: var(--el-fill-color);
+	--left-menu-active-color: var(--el-color-primary-light-9);
+
+	// logo高度
+	--logo-height: 56px;
+	--top-header-height: var(--logo-height);
 
 	// 栅格布局菜单宽度
 	--left-vertical-menu-width: 80px;
+
+	// el
+	--el-menu-item-height: var(--logo-height);
+	--el-menu-horizontal-height: var(--logo-height);
+}
+
+:root[data-theme='menu-dark'] {
+	--left-menu-bg-color: #273352;
+	--left-menu-hover-color: #273352;
+	--left-menu-text-color: #fff;
+	--left-menu-active-text-color: #fff;
+	--left-menu-active-color: var(--el-color-primary);
 }

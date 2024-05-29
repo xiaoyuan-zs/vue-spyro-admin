@@ -2,8 +2,7 @@
 
 // 菜单样式
 .el-menu-layout {
-	--el-menu-item-height: var(--top-header-height) !important;
-	--el-menu-horizontal-height: var(--top-header-height) !important;
+	--el-menu-bg-color: transparent;
 
 	// 常规菜单
 	.el-menu {
@@ -17,6 +16,7 @@
 			}
 
 			.el-sub-menu__title {
+				color: var(--left-menu-text-color);
 				border-bottom: none;
 
 				& > * {
@@ -31,13 +31,13 @@
 				&:hover::before {
 					@include menu-before;
 
-					background: var(--el-fill-color);
+					background: var(--left-menu-hover-color);
 				}
 
 				&.is-active::before {
 					@include menu-before;
 
-					background: var(--el-color-primary-light-9);
+					background: var(--left-menu-active-color);
 				}
 			}
 		}
@@ -60,6 +60,8 @@
 	// 垂直菜单
 	&__horizontal {
 		.el-menu--horizontal {
+			border: none;
+
 			.el-sub-menu {
 				.el-sub-menu__title {
 					&:hover::before,

@@ -24,14 +24,14 @@ const collapseWidth = computed(() =>
 const goHome = () => router.push('/index');
 
 const Logo = () => (
-	<div class={'flex-center shrink-0 h-full w-full nowrap-hidden cursor-pointer'} onClick={goHome}>
+	<div class={'flex-center shrink-0 h-[var(--logo-height)] w-full nowrap-hidden cursor-pointer'} onClick={goHome}>
 		<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 		<h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>
 	</div>
 );
 
 const asideClass =
-	'flex-col-stretch bg-background border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
+	'flex-col-stretch bg-[var(--left-menu-bg-color)] border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
 
 const headerClass =
 	'w-full !h-[var(--top-header-height)] flex-y-center justify-between border-b-1 border-solid border-[var(--el-color-info-light-8)] !p-x-2 bg-[var(--el-bg-color)]';
@@ -40,7 +40,7 @@ export const useRenderLayout = () => {
 	const LayoutVertical = () => {
 		return (
 			<>
-				<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
+				<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
 					<div class="flex-center shrink-0 h-[var(--top-header-height)] w-full nowrap-hidden cursor-pointer" onClick={goHome}>
 						<Icon name="vx:logo" size={30} color="var(--el-color-primary)" />
 						{unref(isCollapse) ? undefined : <h3 class="ml-2 text-4 text-primary truncate font-bold">{appTitle}</h3>}
@@ -70,8 +70,8 @@ export const useRenderLayout = () => {
 						<ToolRight />
 					</ElHeader>
 				</div>
-				<ElContainer class="relative !h-[calc(100%-60px)]">
-					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
+				<ElContainer class="relative !h-[calc(100%-var(--top-header-height))]">
+					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
 						{unref(isMobile) ? <Logo /> : undefined}
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
@@ -89,7 +89,7 @@ export const useRenderLayout = () => {
 		return (
 			<div class="w-full">
 				{unref(isMobile) ? (
-					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 fixed top-0 bottom-0 left-0 z-9999']}>
+					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999']}>
 						<Logo />
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
@@ -107,7 +107,7 @@ export const useRenderLayout = () => {
 					)}
 					<ToolRight />
 				</ElHeader>
-				<ElContainer direction="vertical" class="relative !h-[calc(100%-60px)]">
+				<ElContainer direction="vertical" class="relative !h-[calc(100%-var(--top-header-height))]">
 					<Tabs />
 					<MainApp />
 				</ElContainer>
@@ -118,7 +118,7 @@ export const useRenderLayout = () => {
 		return (
 			<div class="w-full">
 				{unref(isMobile) ? (
-					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 fixed top-0 bottom-0 left-0 z-9999']}>
+					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999']}>
 						<Logo />
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
@@ -136,7 +136,7 @@ export const useRenderLayout = () => {
 					)}
 					<ToolRight />
 				</ElHeader>
-				<ElContainer class="relative !h-[calc(100%-60px)]">
+				<ElContainer class="relative !h-[calc(100%-var(--top-header-height))]">
 					{unref(isMobile) ? undefined : <VerticalMenu />}
 					<ElContainer direction="vertical" class="relative">
 						<Tabs />
@@ -160,8 +160,8 @@ export const useRenderLayout = () => {
 					)}
 					<ToolRight />
 				</ElHeader>
-				<ElContainer class="relative !h-[calc(100%-60px)]">
-					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
+				<ElContainer class="relative !h-[calc(100%-var(--top-header-height))]">
+					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
 						{unref(isMobile) ? <Logo /> : undefined}
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />

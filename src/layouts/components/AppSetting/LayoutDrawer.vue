@@ -6,52 +6,16 @@
 	const layoutStore = useLayoutStore();
 	const tabsStore = useTabsStore();
 
-	const { switchDark, setThemeColor, setMenuTheme, setWeakNessMode, setGrayMode } = useTheme();
-	const { settings, layoutModeOptions, animateModeOptions, tabsStyleOptions } = useLayout();
+	const { switchDark, setThemeColor, setDarkMenu, setWeakNessMode, setGrayMode } = useTheme();
+	const { predefineThemeColors, layoutModeOptions, animateModeOptions, tabsStyleOptions } = useLayout();
 
 	const Moon = useIcon({ name: 'ep:moon' });
 	const Sunny = useIcon({ name: 'ep:sunny' });
 
-	// 预设主题颜色
-	const predefineColors = ref(['#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#1e90ff', '#c71585']);
-
-	// 切换暗黑模式
-	const changeDark = (value: any) => {
-		layoutStore.$patch({ isDark: value });
-		switchDark();
-	};
-	// 切换菜单主题
-	const changeMenuTheme = (value: any) => {
-		layoutStore.$patch({ menuTheme: value });
-		setMenuTheme();
-	};
-	// 切换主题颜色
-	const changeThemeColor = (value: any) => {
-		setThemeColor(value);
-	};
-	// 设置布局
-	const changeLayoutModel = (value: any) => {
-		layoutStore.$patch({ layout: value });
-	};
-	// 切换布局动画
-	const changeAnimateMode = (value: any) => layoutStore.$patch({ animateMode: value });
-	// 菜单手风琴模式
-	const changeMenuUnique = (value: any) => layoutStore.$patch({ menuUnique: value });
-	// 标签是否隐藏
-	const changeTabsHidden = (value: any) => layoutStore.$patch({ tabsHidden: value });
-	// 标签页风格
-	const changeTabStyle = (value: any) => layoutStore.$patch({ tabStyle: value });
-	// 标签图标是否隐藏
-	const changeTabsIcon = (value: any) => layoutStore.$patch({ tabsIcon: value });
+	// 切换系统主题颜色
+	const changeThemeColor = (value: any) => setThemeColor(value);
 	// 标签是否缓存
-	const changeTabsCache = (value: any) => {
-		layoutStore.$patch({ tabsCache: value });
-		tabsStore.handlePersistTabs();
-	};
-	// 面包屑
-	const changeBreadcrumbs = (value: any) => layoutStore.$patch({ breadcrumbs: value });
-	// 面包屑图标是否隐藏
-	const changeBreadcrumbsIcon = (value: any) => layoutStore.$patch({ breadcrumbsIcon: value });
+	const changeTabsCache = () => tabsStore.handlePersistTabs();
 	// 灰色模式
 	const changeGrayMode = () => setGrayMode();
 	// 色弱模式
@@ -63,78 +27,78 @@
 		<el-divider>{{ $t('setting.layoutSetting') }}</el-divider>
 		<div class="drawer-item">
 			<span>{{ $t('setting.layout') }}</span>
-			<el-select v-model="settings.layout" class="w-full" @change="changeLayoutModel">
+			<el-select v-model="layoutStore.layout" class="w-full">
 				<el-option v-for="item in layoutModeOptions" :key="item.value" :label="item.label" :value="item.value" />
 			</el-select>
 		</div>
 		<el-divider>{{ $t('setting.themeSetting') }}</el-divider>
-		<!-- 主题颜色 -->
+		<!-- 系统主题 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.themeColor') }}</span>
-			<el-color-picker v-model="settings.themeColor" color-format="hex" :predefine="predefineColors" @change="changeThemeColor" />
+			<el-color-picker v-model="layoutStore.themeColor" color-format="hex" :predefine="predefineThemeColors" @change="changeThemeColor" />
 		</div>
-		<!-- 暗黑主题 -->
+		<!-- 深色主题 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.darkTheme') }}</span>
-			<el-switch v-model="settings.isDark" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="changeDark" />
+			<el-switch v-model="layoutStore.isDark" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" />
+		</div>
+		<!-- 深色侧边栏 -->
+		<div class="drawer-item">
+			<span>{{ $t('setting.darkMenu') }}</span>
+			<el-switch v-model="layoutStore.darkMenu" inline-prompt @change="setDarkMenu" />
+		</div>
+		<!-- 灰色模式 -->
+		<div class="drawer-item">
+			<span>{{ $t('setting.grayMode') }}</span>
+			<el-switch v-model="layoutStore.grayMode" inline-prompt @change="changeGrayMode" />
+		</div>
+		<!-- 色弱模式 -->
+		<div class="drawer-item">
+			<span>{{ $t('setting.weaknessMode') }}</span>
+			<el-switch v-model="layoutStore.weakness" inline-prompt @change="changeWeakness" />
 		</div>
 		<el-divider>{{ $t('setting.interfaceSetting') }}</el-divider>
-		<!-- 深色菜单栏 -->
-		<div class="drawer-item">
-			<span>{{ $t('setting.menuTheme') }}</span>
-			<el-switch v-model="settings.menuTheme" active-value="dark" inactive-value="light" inline-prompt @change="changeMenuTheme" />
-		</div>
 		<!-- 菜单手风琴模式 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.menuUnique') }}</span>
-			<el-switch v-model="settings.menuUnique" inline-prompt @change="changeMenuUnique" />
+			<el-switch v-model="layoutStore.menuUnique" inline-prompt />
 		</div>
 		<!-- 标签页 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.tabs') }}</span>
-			<el-switch v-model="settings.tabsHidden" inline-prompt @change="changeTabsHidden" />
+			<el-switch v-model="layoutStore.tabsHidden" inline-prompt />
 		</div>
 		<!-- 标签页风格 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.tabsStyle') }}</span>
-			<el-select v-model="settings.tabStyle" class="w-full" @change="changeTabStyle">
+			<el-select v-model="layoutStore.tabStyle" class="w-full">
 				<el-option v-for="item in tabsStyleOptions" :key="item.value" :label="item.label" :value="item.value" />
 			</el-select>
 		</div>
 		<!-- 标签页图标 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.tabsIcon') }}</span>
-			<el-switch v-model="settings.tabsIcon" inline-prompt @change="changeTabsIcon" />
+			<el-switch v-model="layoutStore.tabsIcon" inline-prompt />
 		</div>
 		<!-- 标签页持久化 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.tabsCache') }}</span>
-			<el-switch v-model="settings.tabsCache" inline-prompt @change="changeTabsCache" />
+			<el-switch v-model="layoutStore.tabsCache" inline-prompt @change="changeTabsCache" />
 		</div>
 		<!-- 面包屑 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.breadCrumb') }}</span>
-			<el-switch v-model="settings.breadcrumbs" inline-prompt @change="changeBreadcrumbs" />
+			<el-switch v-model="layoutStore.breadcrumbs" inline-prompt />
 		</div>
 		<!-- 面包屑图标 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.breadCrumbIcon') }}</span>
-			<el-switch v-model="settings.breadcrumbsIcon" inline-prompt @change="changeBreadcrumbsIcon" />
-		</div>
-		<!-- 灰色模式 -->
-		<div class="drawer-item">
-			<span>{{ $t('setting.grayMode') }}</span>
-			<el-switch v-model="settings.grayMode" inline-prompt @change="changeGrayMode" />
-		</div>
-		<!-- 色弱模式 -->
-		<div class="drawer-item">
-			<span>{{ $t('setting.weaknessMode') }}</span>
-			<el-switch v-model="settings.weakness" inline-prompt @change="changeWeakness" />
+			<el-switch v-model="layoutStore.breadcrumbsIcon" inline-prompt />
 		</div>
 		<!-- 动画类型 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.animateMode') }}</span>
-			<el-select v-model="settings.animateMode" class="w-full" @change="changeAnimateMode">
+			<el-select v-model="layoutStore.animateMode" class="w-full">
 				<el-option v-for="item in animateModeOptions" :key="item.value" :label="item.label" :value="item.value" />
 			</el-select>
 		</div>

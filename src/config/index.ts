@@ -5,7 +5,7 @@ const platformConfig: PlatFormConfig = {
 	// 内容区滚动条加载进度
 	isOpenProgress: true,
 	// 菜单主题
-	menuTheme: 'white',
+	darkMenu: false,
 	// 暗黑模式
 	isDark: false,
 	// 主题颜色
