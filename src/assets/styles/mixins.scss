@@ -27,13 +27,13 @@
 		&:hover::before {
 			@include menu-before;
 
-			background: var(--left-menu-hover-color);
+			background: var(--left-menu-hover-bg-color);
 		}
 
 		&.is-active::before {
 			@include menu-before;
 
-			background: var(--left-menu-active-color);
+			background: var(--left-menu-active-bg-color);
 		}
 	}
 }

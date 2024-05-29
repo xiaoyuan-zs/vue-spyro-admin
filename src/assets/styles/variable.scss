@@ -5,8 +5,8 @@
 	--left-menu-bg-color: var(--el-menu-bg-color);
 	--left-menu-text-color: var(--el-menu-text-color);
 	--left-menu-active-text-color: var(--el-color-primary);
-	--left-menu-hover-color: var(--el-fill-color);
-	--left-menu-active-color: var(--el-color-primary-light-9);
+	--left-menu-hover-bg-color: var(--el-fill-color);
+	--left-menu-active-bg-color: var(--el-color-primary-light-9);
 
 	// logo高度
 	--logo-height: 56px;
@@ -22,8 +22,8 @@
 
 :root[data-theme='menu-dark'] {
 	--left-menu-bg-color: #273352;
-	--left-menu-hover-color: #273352;
+	--left-menu-hover-bg-color: #273352;
 	--left-menu-text-color: #fff;
 	--left-menu-active-text-color: #fff;
-	--left-menu-active-color: var(--el-color-primary);
+	--left-menu-active-bg-color: var(--el-color-primary);
 }
