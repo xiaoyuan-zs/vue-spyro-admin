@@ -63,7 +63,7 @@
 	}
 
 	.aside-menu {
-		@apply h-full absolute z-9999 overflow-hidden left-[var(--left-vertical-menu-width)] bg-[var(--el-bg-color)] border-[var(--el-color-info-light-8)] transition-width duration-300;
+		@apply h-full absolute z-9999 overflow-hidden left-[var(--left-vertical-menu-width)] bg-[var(--el-bg-color)] border-[var(--left-menu-border-color)] transition-width duration-300;
 	}
 
 	.vertical-menu {

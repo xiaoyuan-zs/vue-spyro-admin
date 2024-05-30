@@ -1,0 +1,33 @@
+@import './mixins';
+
+// 主题变量
+:root {
+	--left-menu-min-width: 64px;
+	--left-menu-max-width: 210px;
+	--left-menu-bg-color: var(--el-menu-bg-color);
+	--left-menu-text-color: var(--el-menu-text-color);
+	--left-menu-active-text-color: var(--el-color-primary);
+	--left-menu-hover-bg-color: var(--el-fill-color);
+	--left-menu-active-bg-color: var(--el-color-primary-light-9);
+	--left-menu-border-color: var(--el-color-info-light-8);
+
+	// logo高度
+	--logo-height: 56px;
+	--top-header-height: var(--logo-height);
+
+	// 栅格布局菜单宽度
+	--left-vertical-menu-width: 80px;
+
+	// el
+	--el-menu-item-height: var(--logo-height);
+	--el-menu-horizontal-height: var(--logo-height);
+}
+
+:root[data-theme='menu-dark'] {
+	--left-menu-bg-color: #273352; // 菜单背景默认色
+	--left-menu-hover-bg-color: #273352; // 菜单hover背景默认色色
+	--left-menu-text-color: #fff; // 菜单文字默认色
+	--left-menu-active-text-color: #fff; // 菜单文字选中默认色
+	--left-menu-active-bg-color: var(--el-color-primary); // 菜单选中背景默认色
+	--left-menu-border-color: #273352; // 菜单边框默认色
+}
