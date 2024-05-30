@@ -116,34 +116,27 @@ export const useRenderLayout = () => {
 	};
 	const LayoutLattice = () => {
 		return (
-			<div class="w-full">
+			<>
 				{unref(isMobile) ? (
-					<ElAside class={[asideClass, unref(collapseWidth), 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999']}>
+					<div class={[asideClass, unref(collapseWidth), 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999']}>
 						<Logo />
 						<ElScrollbar wrap-class="scrollbar-wrapper">
 							<Menu />
 						</ElScrollbar>
-					</ElAside>
+					</div>
 				) : undefined}
-				<ElHeader class="flex-between !h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
-					{unref(isMobile) ? (
-						<CollapseIcon />
-					) : (
-						<div class="flex-center">
-							<Logo class="!w-[var(--left-menu-max-width)]" />
-							<BreadCrumb />
-						</div>
-					)}
-					<ToolRight />
-				</ElHeader>
-				<ElContainer class="relative !h-[calc(100%-var(--top-header-height))]">
-					{unref(isMobile) ? undefined : <VerticalMenu />}
-					<ElContainer direction="vertical" class="relative">
+				{unref(isMobile) ? undefined : <VerticalMenu />}
+				<ElContainer direction="vertical" class="relative ">
+					<ElHeader class="flex-between !h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+						{unref(isMobile) ? <CollapseIcon /> : <BreadCrumb />}
+						<ToolRight />
+					</ElHeader>
+					<ElContainer direction="vertical" class="relative !h-[calc(100%-var(--top-header-height))]">
 						<Tabs />
 						<MainApp />
 					</ElContainer>
 				</ElContainer>
-			</div>
+			</>
 		);
 	};
 	const LayoutMixins = () => {

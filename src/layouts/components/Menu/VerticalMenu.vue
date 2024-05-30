@@ -5,11 +5,16 @@
 	import { translateRouteTitle } from '@/utils/locales';
 	import { toRaw, unref } from 'vue';
 	import { useMenu } from '@/layouts/hooks/useMenu';
+	import router from '@/router';
 
 	const showMenu = ref(false);
 
+	const appTitle = import.meta.env.VITE_APP_TITLE;
+
 	const { push } = useRouter();
 	const { parentRoutes, resolvePath, isActive } = useMenu();
+
+	const goHome = () => router.push('/index');
 
 	const changeMenu = (route: RouteRecordRaw) => {
 		showMenu.value = true;
@@ -25,6 +30,9 @@
 <template>
 	<div class="h-full" v-click-outside="clickOut">
 		<el-aside class="aside !w-[var(--left-vertical-menu-width)] !h-full">
+			<div class="flex-center shrink-0 h-[var(--logo-height)] w-full nowrap-hidden cursor-pointer" @click="goHome">
+				<Icon name="vx:logo" :size="30" color="var(--el-color-primary)" />
+			</div>
 			<el-scrollbar>
 				<div v-for="menu in parentRoutes" :key="menu.name" @click="changeMenu(menu)">
 					<div :class="[{ 'is-active': isActive(menu.path) }, 'vertical-menu']">
@@ -38,6 +46,11 @@
 				</div>
 			</el-scrollbar>
 			<div :class="['aside-menu', unref(showMenu) ? 'w-[var(--left-menu-max-width)] b-r-1' : 'w-0']">
+				<div
+					class="flex-center shrink-0 bg-[var(--left-menu-bg-color)] h-[var(--logo-height)] w-full nowrap-hidden cursor-pointer"
+					@click="goHome">
+					<h3 class="ml-2 text-4 text-primary truncate font-bold">{{ appTitle }}</h3>
+				</div>
 				<Menu />
 			</div>
 		</el-aside>
@@ -46,7 +59,7 @@
 
 <style scoped lang="scss">
 	.aside {
-		@apply flex-col-stretch bg-background  border-r-1  border-[var(--el-color-info-light-8)] transition-width duration-300;
+		@apply flex-col-stretch bg-[var(--left-menu-bg-color)]  border-r-1  border-[var(--left-menu-border-color)] transition-width duration-300;
 	}
 
 	.aside-menu {
@@ -54,7 +67,7 @@
 	}
 
 	.vertical-menu {
-		@apply relative flex-col-center h-16 cursor-pointer hover:text-[var(--el-color-primary)] transition;
+		@apply relative flex-col-center h-16 cursor-pointer text-[var(--left-menu-text-color)] hover:text-[var(--el-color-primary)] transition;
 
 		& > * {
 			z-index: 1;
@@ -69,20 +82,20 @@
 			inset: 2px 5px;
 			clear: both;
 			content: '';
-			background: var(--el-fill-color);
+			background: var(--left-menu-hover-bg-color);
 			border-radius: 6px;
 		}
 
 		&.is-active {
 			position: relative;
-			color: var(--el-color-primary);
+			color: var(--left-menu-active-text-color);
 
 			&::before {
 				position: absolute;
 				inset: 2px 5px;
 				clear: both;
 				content: '';
-				background-color: var(--el-color-primary-light-9);
+				background-color: var(--left-menu-active-bg-color);
 				border-radius: 6px;
 			}
 		}
