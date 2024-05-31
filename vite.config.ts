@@ -7,6 +7,7 @@ import { include, exclude } from './vite/optimize';
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 	// process.cwd() 方法返回的是当前Nodejs进程的工作目录  F:\study\vue\github\vx
 	const root = process.cwd();
+
 	// Vite 默认是不加载 .env 文件的，因为这些文件需要在执行完 Vite 配置后才能确定加载哪一个
 	// 根据当前工作目录中的 `mode` 加载 .env 文件
 	// loadEnv的第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。

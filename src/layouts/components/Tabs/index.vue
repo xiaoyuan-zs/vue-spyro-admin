@@ -10,6 +10,7 @@
 
 	const route = useRoute();
 	const router = useRouter();
+
 	const tabsStore = useTabsStore();
 	const layoutStore = useLayoutStore();
 
@@ -37,12 +38,13 @@
 	// 添加tabs
 	const addTabs = () => {
 		currTabMenu.value = route.fullPath;
+		const currRoute = route.matched.find((item) => item.path === route.fullPath)!;
 		const tabParams: TabsMenuType = {
-			title: route.meta.title as string,
-			name: route.name as string,
-			path: route.fullPath,
-			icon: route.meta.icon as string,
-			isFixed: route.meta.isFixed
+			title: currRoute.meta.title as string,
+			name: currRoute.name as string,
+			path: currRoute.path,
+			icon: currRoute.meta.icon as string,
+			isFixed: currRoute.meta.isFixed
 		};
 		tabsStore.addTabs(tabParams);
 	};

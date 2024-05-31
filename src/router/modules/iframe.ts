@@ -17,6 +17,7 @@ export default {
 			// 内嵌iframe组件
 			component: IframeView,
 			meta: {
+				icon: 'ep:apple',
 				title: 'Vue3 官网',
 				// showParent: true, // 只有一个子级需要开启该配置
 				iframeSrc: 'https://cn.vuejs.org/guide/quick-start.html'
@@ -30,6 +31,7 @@ export default {
 			// 内嵌iframe组件
 			component: IframeView,
 			meta: {
+				icon: 'ant-design:alipay-circle-outlined',
 				title: 'vite 官网',
 				iframeSrc: 'https://cn.vitejs.dev/'
 			}

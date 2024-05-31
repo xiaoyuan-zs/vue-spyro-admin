@@ -16,9 +16,7 @@ export const usePermissionStore = defineStore('permission', {
 	}),
 	getters: {
 		// 扁平化菜单
-		flatMenus(state) {
-			return flatTreeToArray(state.wholeMenus);
-		}
+		flatMenus: (state) => flatTreeToArray(state.wholeMenus)
 	},
 	actions: {
 		/**

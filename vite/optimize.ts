@@ -10,6 +10,7 @@ const include = [
 	'dayjs',
 	'axios',
 	'pinia',
+	'path',
 	'vue-types',
 	'js-cookie',
 	'vue-tippy',

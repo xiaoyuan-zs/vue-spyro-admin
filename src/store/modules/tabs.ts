@@ -31,7 +31,6 @@ export const useTabsStore = defineStore('tabs', () => {
 	// 移除tabs
 	const removeTabs = (path: string, isCurrRoute: boolean) => {
 		const newTabsList = tabsMenuList.value;
-		console.log(211, path, isCurrRoute, newTabsList);
 		if (isCurrRoute) {
 			newTabsList.forEach((newPath, index) => {
 				// 不满足条件跳出本次循环

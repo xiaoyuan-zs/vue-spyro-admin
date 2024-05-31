@@ -13,6 +13,7 @@ export default [
 	{
 		path: '/redirect',
 		component: Layout,
+		redirect: '/redirect/:path(.*)',
 		meta: {
 			title: '加载中...',
 			hidden: true
