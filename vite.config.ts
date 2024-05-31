@@ -32,7 +32,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 				scss: {
 					additionalData: `
                         @use "~/assets/styles/element/element-plus.scss" as *;
-						@use "~/assets/styles/theme.scss" as *;
+						@use "~/assets/styles/themify.scss" as *;
 						@use "~/assets/styles/media.scss" as *;
                     `
 				}

@@ -1,26 +1,27 @@
-@import './mixins';
-
 // 主题变量
 :root {
+	// 侧边栏宽度
 	--left-menu-min-width: 64px;
 	--left-menu-max-width: 210px;
+
+	// logo高度
+	--logo-height: 56px;
+	--top-header-height: var(--logo-height);
+
+	// 栅格布局侧边栏宽度
+	--left-vertical-menu-width: 80px;
+
+	//  el
+	--el-menu-item-height: var(--logo-height);
+	--el-menu-horizontal-height: var(--logo-height);
+
+	// 侧边栏样式
 	--left-menu-bg-color: var(--el-menu-bg-color);
 	--left-menu-text-color: var(--el-menu-text-color);
 	--left-menu-active-text-color: var(--el-color-primary);
 	--left-menu-hover-bg-color: var(--el-fill-color);
 	--left-menu-active-bg-color: var(--el-color-primary-light-9);
 	--left-menu-border-color: var(--el-color-info-light-8);
-
-	// logo高度
-	--logo-height: 56px;
-	--top-header-height: var(--logo-height);
-
-	// 栅格布局菜单宽度
-	--left-vertical-menu-width: 80px;
-
-	// el
-	--el-menu-item-height: var(--logo-height);
-	--el-menu-horizontal-height: var(--logo-height);
 }
 
 :root[data-theme='menu-dark'] {
