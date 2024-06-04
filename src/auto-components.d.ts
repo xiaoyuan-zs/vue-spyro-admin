@@ -30,10 +30,8 @@ declare module 'vue' {
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
-    ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPopover: typeof import('element-plus/es')['ElPopover']
@@ -55,9 +53,5 @@ declare module 'vue' {
     Verify: typeof import('./components/Verifition/src/Verify.vue')['default']
     VerifyPoints: typeof import('./components/Verifition/src/Verify/VerifyPoints.vue')['default']
     VerifySlide: typeof import('./components/Verifition/src/Verify/VerifySlide.vue')['default']
-    VxToolTip: typeof import('./components/VxToolTip/src/VxToolTip.vue')['default']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
