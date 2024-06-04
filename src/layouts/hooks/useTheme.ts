@@ -1,20 +1,23 @@
 import { useLayoutStore } from '@/store';
 import { getThemeLightOrDarkHexColor } from '@/utils/color';
-import { useColorMode } from '@vueuse/core';
 
 export const useTheme = () => {
 	const layoutStore = useLayoutStore();
 	const colorMode = computed(() => layoutStore.colorMode);
 	const themeColor = computed(() => layoutStore.themeColor);
 	const darkMenu = computed(() => layoutStore.darkMenu);
-	const { system } = useColorMode();
 	const html = document.documentElement as HTMLElement;
+	// 跟随系统主题
+	const match = window.matchMedia('(prefers-color-scheme: dark)');
 
 	/**主题切换 */
 	const switchDark = () => {
-		const currColorMode = computed(() => (colorMode.value === 'auto' ? system.value : colorMode.value));
-		html.className = currColorMode.value!;
 		setThemeColor(unref(themeColor));
+	};
+
+	// 跟随系统主题
+	const followSystemTheme = () => {
+		html.className = match.matches ? 'dark' : '';
 	};
 
 	/**设置菜单栏主题 */
@@ -70,6 +73,23 @@ export const useTheme = () => {
 		layoutStore.grayMode && setGrayMode();
 		layoutStore.weakness && setWeakNessMode();
 	};
+
+	watchEffect(() => {
+		// 使用 useColorMode() 无动画效果
+		// const { system, store } = useColorMode();
+		// const currColorMode = computed(() => (store.value === 'auto' ? system.value : store.value));
+		// store.value = layoutStore.colorMode!;
+
+		// 使用window自带matchMedia()
+		if (layoutStore.colorMode === 'auto') {
+			followSystemTheme();
+			match.addEventListener('change', followSystemTheme);
+		} else {
+			html.className = layoutStore.colorMode === 'dark' ? 'dark' : '';
+			match.removeEventListener('change', followSystemTheme);
+		}
+	});
+
 	return {
 		initTheme,
 		switchDark,

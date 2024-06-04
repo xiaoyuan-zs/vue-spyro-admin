@@ -1,5 +1,4 @@
 <script setup lang="ts" name="LayoutDrawer">
-	import { useIcon } from '@/hooks/modules/useIcon';
 	import { useTheme, useLayout } from '@/layouts/hooks';
 	import { useLayoutStore, useTabsStore } from '@/store';
 
@@ -36,7 +35,6 @@
 		<el-divider>{{ $t('setting.themeSetting') }}</el-divider>
 		<!-- 主题模式 -->
 		<div class="drawer-item">
-			<!-- <el-switch v-model="layoutStore.colorMode" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" /> -->
 			<div class="flex-center w-full">
 				<div class="flex bg-[var(--el-fill-color)] px-1 py-1 b-rd-2">
 					<div
@@ -44,7 +42,7 @@
 						:key="item.value"
 						:class="[
 							'px-4.5 py-2 b-rd-2 flex-center cursor-pointer transition duration-200',
-							{ 'bg-[var(--left-menu-bg-color)]': item.value === layoutStore.colorMode }
+							{ 'bg-[var(--el-color-info-light-7)]': item.value === layoutStore.colorMode }
 						]"
 						@click="changeColorModel(item.value)">
 						<Icon :name="item.icon" :size="20" />
