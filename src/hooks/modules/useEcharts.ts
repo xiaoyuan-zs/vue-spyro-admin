@@ -33,7 +33,7 @@ export const useEcharts = (el: HTMLDivElement, options: Ref<ECOption>) => {
 
 	// // 暗黑模式切换
 	// watch(
-	// 	() => layoutStore.isDark,
+	// 	() => layoutStore.colorMode,
 	// 	() => {
 	// 		if (myChart) {
 	// 			// 销毁实例，实例销毁后无法再被使用。

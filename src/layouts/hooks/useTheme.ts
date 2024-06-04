@@ -1,16 +1,19 @@
 import { useLayoutStore } from '@/store';
 import { getThemeLightOrDarkHexColor } from '@/utils/color';
+import { useColorMode } from '@vueuse/core';
 
 export const useTheme = () => {
 	const layoutStore = useLayoutStore();
-	const isDark = computed(() => layoutStore.isDark);
+	const colorMode = computed(() => layoutStore.colorMode);
 	const themeColor = computed(() => layoutStore.themeColor);
 	const darkMenu = computed(() => layoutStore.darkMenu);
+	const { system } = useColorMode();
 	const html = document.documentElement as HTMLElement;
 
 	/**主题切换 */
 	const switchDark = () => {
-		html.className = isDark.value ? 'dark' : '';
+		const currColorMode = computed(() => (colorMode.value === 'auto' ? system.value : colorMode.value));
+		html.className = currColorMode.value!;
 		setThemeColor(unref(themeColor));
 	};
 
@@ -26,7 +29,7 @@ export const useTheme = () => {
 
 	/**设置主题颜色 */
 	const setThemeColor = (val?: string) => {
-		const colour: number = isDark.value ? 20.5 : 255;
+		const colour: number = colorMode.value === 'dark' ? 20.5 : 255;
 		const colors = {
 			// 设置 自定义主题颜色
 			'--el-color-primary': val,
@@ -37,7 +40,7 @@ export const useTheme = () => {
 				[`--el-color-primary-light-${i + 1}`]: getThemeLightOrDarkHexColor(val as string, (i + 1) / 10, colour) as string
 			})).reduce((acc, curr) => ({ ...acc, ...curr }), {})
 		};
-		const theme = (layoutStore.isDark ? 'html.dark' : ':root') + JSON.stringify(colors).replace(/,/g, ';').replace(/"/g, '');
+		const theme = (layoutStore.colorMode === 'dark' ? 'html.dark' : ':root') + JSON.stringify(colors).replace(/,/g, ';').replace(/"/g, '');
 
 		// 将主题style挂到head上
 		let style = document.getElementById('theme-var');

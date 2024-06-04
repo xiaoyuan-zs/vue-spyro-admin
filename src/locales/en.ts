@@ -11,7 +11,7 @@ export default {
 		layout: 'Layout Mode',
 		themeSetting: 'Theme',
 		themeColor: 'Theme color',
-		darkTheme: 'Dark theme',
+		colorMode: 'Dark theme',
 		interfaceSetting: 'Interface',
 		darkMenu: 'Dark Menu',
 		menuUnique: 'Menu Unique',

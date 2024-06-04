@@ -6,8 +6,8 @@ const platformConfig: PlatFormConfig = {
 	isOpenProgress: true,
 	// 菜单主题
 	darkMenu: false,
-	// 暗黑模式
-	isDark: false,
+	// 主题模式
+	colorMode: 'auto',
 	// 主题颜色
 	themeColor: '#409EFF',
 	// 标签栏

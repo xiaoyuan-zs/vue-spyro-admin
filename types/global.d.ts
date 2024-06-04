@@ -17,7 +17,7 @@ declare global {
 		layout?: LayoutConfig;
 		darkMenu?: boolean;
 		isOpenProgress?: boolean;
-		isDark?: boolean;
+		colorMode?: 'auto' | 'dark' | 'light';
 		themeColor?: string;
 		tabsHidden?: boolean;
 		tabStyle?: string;

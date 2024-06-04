@@ -7,13 +7,15 @@
 	const tabsStore = useTabsStore();
 
 	const { switchDark, setThemeColor, setDarkMenu, setWeakNessMode, setGrayMode } = useTheme();
-	const { predefineThemeColors, layoutModeOptions, animateModeOptions, tabsStyleOptions } = useLayout();
-
-	const Moon = useIcon({ name: 'ep:moon' });
-	const Sunny = useIcon({ name: 'ep:sunny' });
+	const { predefineThemeColors, layoutModeOptions, animateModeOptions, tabsStyleOptions, colorModeOptions } = useLayout();
 
 	// 切换系统主题颜色
 	const changeThemeColor = (value: any) => setThemeColor(value);
+	// 切换主题模式
+	const changeColorModel = (value: any) => {
+		layoutStore.$patch({ colorMode: value });
+		switchDark();
+	};
 	// 标签是否缓存
 	const changeTabsCache = () => tabsStore.handlePersistTabs();
 	// 灰色模式
@@ -32,15 +34,28 @@
 			</el-select>
 		</div>
 		<el-divider>{{ $t('setting.themeSetting') }}</el-divider>
+		<!-- 主题模式 -->
+		<div class="drawer-item">
+			<!-- <el-switch v-model="layoutStore.colorMode" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" /> -->
+			<div class="flex-center w-full">
+				<div class="flex bg-[var(--el-fill-color)] px-1 py-1 b-rd-2">
+					<div
+						v-for="item in colorModeOptions"
+						:key="item.value"
+						:class="[
+							'px-4.5 py-2 b-rd-2 flex-center cursor-pointer transition duration-200',
+							{ 'bg-[var(--left-menu-bg-color)]': item.value === layoutStore.colorMode }
+						]"
+						@click="changeColorModel(item.value)">
+						<Icon :name="item.icon" :size="20" />
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 系统主题 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.themeColor') }}</span>
 			<el-color-picker v-model="layoutStore.themeColor" color-format="hex" :predefine="predefineThemeColors" @change="changeThemeColor" />
-		</div>
-		<!-- 深色主题 -->
-		<div class="drawer-item">
-			<span>{{ $t('setting.darkTheme') }}</span>
-			<el-switch v-model="layoutStore.isDark" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" />
 		</div>
 		<!-- 深色侧边栏 -->
 		<div class="drawer-item">

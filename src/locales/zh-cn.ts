@@ -11,7 +11,7 @@ export default {
 		layout: '布局模式',
 		themeSetting: '主题',
 		themeColor: '系统主题',
-		darkTheme: '深色主题',
+		colorMode: '主题模式',
 		gradientText: '渐变文字',
 		interfaceSetting: '界面设置',
 		darkMenu: '深色菜单',

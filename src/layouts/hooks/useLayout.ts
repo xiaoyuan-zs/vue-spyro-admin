@@ -25,10 +25,18 @@ export const useLayout = () => {
 		{ label: '圆滑', value: 'smooth' }
 	];
 
+	// 主题模式
+	const colorModeOptions = [
+		{ icon: 'line-md:computer', value: 'auto' },
+		{ icon: 'line-md:moon-alt-to-sunny-outline-loop-transition', value: 'light' },
+		{ icon: 'line-md:moon-alt-loop', value: 'dark' }
+	];
+
 	return {
 		predefineThemeColors,
 		layoutModeOptions,
 		animateModeOptions,
-		tabsStyleOptions
+		tabsStyleOptions,
+		colorModeOptions
 	};
 };

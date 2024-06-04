@@ -5,7 +5,7 @@
 			<h3 class="ml-2 text-4 text-primary font-bold">{{ appTitle }}</h3>
 		</div>
 		<div class="flex-center">
-			<el-switch v-model="layoutStore.isDark" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" />
+			<el-switch v-model="layoutStore.colorMode" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" />
 			<el-dropdown trigger="click" @command="handleCommand">
 				<div class="flex-center w-10 cursor-pointer hover:text-primary transition-base">
 					<svg-icon name="language" width="20" height="20" />
