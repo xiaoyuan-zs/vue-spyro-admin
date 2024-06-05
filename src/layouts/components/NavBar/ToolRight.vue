@@ -4,6 +4,10 @@
 	import Language from './components/Language.vue';
 	import Search from './components/Search.vue';
 	import FullScreen from './components/FullScreen.vue';
+	import SystemConfig from './components/SystemConfig.vue';
+
+	// 生产模式不需要可自行修改
+	const isShow = import.meta.env.DEV && import.meta.env.VITE_APP_SETTING === 'Y';
 </script>
 
 <template>
@@ -17,6 +21,8 @@
 		<FullScreen />
 		<!-- 系统消息 -->
 		<SystemMessage />
+		<!-- 系统配置 -->
+		<SystemConfig v-if="isShow" />
 		<!-- 用户信息 -->
 		<ClassicUser />
 	</div>

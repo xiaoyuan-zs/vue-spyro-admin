@@ -21,6 +21,12 @@
 	const changeGrayMode = () => setGrayMode();
 	// 色弱模式
 	const changeWeakness = () => setWeakNessMode();
+
+	// 清除缓存
+	const clearCache = () => {
+		localStorage.clear();
+		window.location.reload();
+	};
 </script>
 
 <template>
@@ -117,6 +123,10 @@
 		</div>
 		<el-divider>{{ $t('setting.tips') }}</el-divider>
 		<el-alert :title="$t('setting.tipDesc')" type="warning" :closable="false" />
+		<div class="mt-2 p-2 cursor-pointer bg-[var(--el-color-error-light-9)] b-rounded flex-center" @click="clearCache">
+			<Icon name="ep:delete" :size="16" color="var(--el-color-error)" />
+			<span class="text-error text-3 p-l-2">清除缓存</span>
+		</div>
 	</el-scrollbar>
 </template>
 
