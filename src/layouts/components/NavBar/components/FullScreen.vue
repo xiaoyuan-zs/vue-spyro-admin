@@ -2,7 +2,7 @@
 	import { useFullscreen } from '@vueuse/core';
 
 	const { isFullscreen, enter, exit } = useFullscreen();
-	const icon = computed(() => (isFullscreen.value ? 'vx:fullscreen-exit' : 'vx:fullscreen'));
+	const icon = computed(() => (isFullscreen.value ? 'sw:fullscreen-exit' : 'sw:fullscreen'));
 	// 是否全屏
 	const handleFull = () => (isFullscreen.value ? exit() : enter());
 </script>

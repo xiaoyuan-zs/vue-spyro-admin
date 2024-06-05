@@ -25,10 +25,13 @@ const app = createApp(App);
 import { useVxeTable } from '@/plugins/vxe-table';
 useVxeTable(app);
 
+import { setupLoading } from '@/plugins/loading';
+
 // 权限认证
 import './permission';
 
 const setApp = async () => {
+	setupLoading();
 	app.use(pinia);
 	app.use(i18n);
 	app.use(router);
