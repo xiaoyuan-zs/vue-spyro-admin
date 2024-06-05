@@ -48,7 +48,4 @@ declare module 'vue' {
     VerifyPoints: typeof import('./components/Verifition/src/Verify/VerifyPoints.vue')['default']
     VerifySlide: typeof import('./components/Verifition/src/Verify/VerifySlide.vue')['default']
   }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
-  }
 }

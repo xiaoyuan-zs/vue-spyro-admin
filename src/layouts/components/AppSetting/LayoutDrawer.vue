@@ -1,12 +1,16 @@
 <script setup lang="ts" name="LayoutDrawer">
+	import LayoutSelect from './LayoutSelect.vue';
 	import { useTheme, useLayout } from '@/layouts/hooks';
 	import { useLayoutStore, useTabsStore } from '@/store';
+	import { unref } from 'vue';
 
 	const layoutStore = useLayoutStore();
 	const tabsStore = useTabsStore();
 
 	const { switchDark, setThemeColor, setDarkMenu, setWeakNessMode, setGrayMode } = useTheme();
 	const { predefineThemeColors, layoutModeOptions, animateModeOptions, tabsStyleOptions, colorModeOptions } = useLayout();
+
+	const menuVisible = computed(() => !['horizontal', 'basic', 'mixins'].includes(layoutStore.layout!));
 
 	// 切换系统主题颜色
 	const changeThemeColor = (value: any) => setThemeColor(value);
@@ -32,11 +36,13 @@
 <template>
 	<el-scrollbar>
 		<el-divider>{{ $t('setting.layoutSetting') }}</el-divider>
+		<!-- 布局 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.layout') }}</span>
 			<el-select v-model="layoutStore.layout" class="w-full">
 				<el-option v-for="item in layoutModeOptions" :key="item.value" :label="item.label" :value="item.value" />
 			</el-select>
+			<LayoutSelect />
 		</div>
 		<el-divider>{{ $t('setting.themeSetting') }}</el-divider>
 		<!-- 主题模式 -->
@@ -62,10 +68,12 @@
 			<el-color-picker v-model="layoutStore.themeColor" color-format="hex" :predefine="predefineThemeColors" @change="changeThemeColor" />
 		</div>
 		<!-- 深色侧边栏 -->
-		<div class="drawer-item">
-			<span>{{ $t('setting.darkMenu') }}</span>
-			<el-switch v-model="layoutStore.darkMenu" inline-prompt @change="setDarkMenu" />
-		</div>
+		<Transition name="fade-slide" mode="out-in">
+			<div class="drawer-item" v-show="unref(menuVisible)">
+				<span>{{ $t('setting.darkMenu') }}</span>
+				<el-switch v-model="layoutStore.darkMenu" inline-prompt @change="setDarkMenu" />
+			</div>
+		</Transition>
 		<!-- 灰色模式 -->
 		<div class="drawer-item">
 			<span>{{ $t('setting.grayMode') }}</span>
@@ -123,6 +131,7 @@
 		</div>
 		<el-divider>{{ $t('setting.tips') }}</el-divider>
 		<el-alert :title="$t('setting.tipDesc')" type="warning" :closable="false" />
+		<!-- 清除缓存 -->
 		<div class="mt-2 p-2 cursor-pointer bg-[var(--el-color-error-light-9)] b-rounded flex-center" @click="clearCache">
 			<Icon name="ep:delete" :size="16" color="var(--el-color-error)" />
 			<span class="text-error text-3 p-l-2">清除缓存</span>

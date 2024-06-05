@@ -20,5 +20,3 @@
 		<layout-drawer />
 	</el-drawer>
 </template>
-
-<style lang="scss" scoped></style>
