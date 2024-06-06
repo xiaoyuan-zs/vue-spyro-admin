@@ -128,7 +128,9 @@
 /* 去除el-drawer头部margin */
 .el-drawer {
 	font-size: 14px;
-
+	.el-drawer__body {
+		padding: 0;
+	}
 	.el-drawer__header {
 		margin: 0;
 	}
