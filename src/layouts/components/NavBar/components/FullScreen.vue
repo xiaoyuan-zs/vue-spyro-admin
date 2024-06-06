@@ -8,7 +8,9 @@
 </script>
 
 <template>
-	<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer" @click="handleFull">
-		<Icon :name="icon" :size="20" />
-	</div>
+	<el-tooltip effect="dark" content="全屏" placement="bottom">
+		<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer" @click="handleFull">
+			<Icon :name="icon" :size="20" />
+		</div>
+	</el-tooltip>
 </template>
