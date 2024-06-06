@@ -37,7 +37,7 @@
 	<el-scrollbar>
 		<div class="p-5">
 			<el-divider>{{ $t('setting.layoutSetting') }}</el-divider>
-			<!-- 布局 -->
+			<!-- 布局模式 -->
 			<div class="drawer-item">
 				<LayoutSelect />
 			</div>

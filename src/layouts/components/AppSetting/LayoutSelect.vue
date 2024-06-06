@@ -7,8 +7,15 @@
 		setup() {
 			const layoutStore = useLayoutStore();
 			const layoutMode = computed(() => layoutStore.layout);
+			const darkMenu = computed(() => layoutStore.darkMenu);
+			const html = document.documentElement as HTMLElement;
 
 			const handleChangeLayout = (layout: LayoutConfig) => {
+				if (unref(darkMenu)) {
+					['horizontal', 'basic', 'mixins'].includes(layout)
+						? html.removeAttribute('data-theme')
+						: html.setAttribute('data-theme', 'menu-dark');
+				}
 				layoutStore.$patch({ layout });
 			};
 
@@ -17,8 +24,8 @@
 					<el-tooltip effect="dark" content="纵向模式" placement="bottom">
 						<div
 							class={[
-								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 transition-delay-150 flex gap-x-1 cursor-pointer b-2 b-transparent hover:b-primary',
-								{ 'b-primary': unref(layoutMode) === 'vertical' }
+								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex gap-x-1 cursor-pointer b-2 hover:b-primary',
+								unref(layoutMode) === 'vertical' ? 'b-primary' : 'b-transparent'
 							]}
 							onClick={() => handleChangeLayout('vertical')}>
 							<div class="w-6 h-full rounded-1 bg-[var(--el-color-primary-light-4)]" />
@@ -30,7 +37,10 @@
 					</el-tooltip>
 					<el-tooltip effect="dark" content="经典模式" placement="bottom">
 						<div
-							class="w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 transition-delay-150 flex-col gap-y-1 cursor-pointer b-2 b-transparent hover:b-primary"
+							class={[
+								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
+								unref(layoutMode) === 'basic' ? 'b-primary' : 'b-transparent'
+							]}
 							onClick={() => handleChangeLayout('basic')}>
 							<div class="w-full h-3 bg-[var(--el-color-primary-light-7)] rounded-1" />
 							<div class="w-full flex flex-1 gap-x-1">
@@ -41,7 +51,10 @@
 					</el-tooltip>
 					<el-tooltip effect="dark" content="横向模式" placement="bottom">
 						<div
-							class="w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 transition-delay-150 flex-col gap-y-1 cursor-pointer b-2 b-transparent hover:b-primary"
+							class={[
+								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
+								unref(layoutMode) === 'horizontal' ? 'b-primary' : 'b-transparent'
+							]}
 							onClick={() => handleChangeLayout('horizontal')}>
 							<div class="w-full h-3 bg-[var(--el-color-primary-light-4)] rounded-1" />
 							<div class="w-full flex-1 bg-[var(--el-color-primary-light-9)] rounded-1" />
@@ -49,7 +62,10 @@
 					</el-tooltip>
 					<el-tooltip effect="dark" content="栅格模式" placement="bottom">
 						<div
-							class="w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 transition-delay-150 flex gap-x-1 cursor-pointer b-2 b-transparent hover:b-primary"
+							class={[
+								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex gap-x-1 cursor-pointer b-2 hover:b-primary',
+								unref(layoutMode) === 'lattice' ? 'b-primary' : 'b-transparent'
+							]}
 							onClick={() => handleChangeLayout('lattice')}>
 							<div class="w-2 h-full rounded-1 bg-[var(--el-color-primary-light-4)]" />
 							<div class="w-5 h-full rounded-1 bg-[var(--el-color-primary-light-4)]" />
@@ -61,7 +77,10 @@
 					</el-tooltip>
 					<el-tooltip effect="dark" content="混合模式" placement="bottom">
 						<div
-							class="w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 transition-delay-150 flex-col gap-y-1 cursor-pointer b-2 b-transparent hover:b-primary"
+							class={[
+								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
+								unref(layoutMode) === 'mixins' ? 'b-primary' : 'b-transparent'
+							]}
 							onClick={() => handleChangeLayout('mixins')}>
 							<div class="w-full h-3 bg-[var(--el-color-primary-light-4)] rounded-1" />
 							<div class="w-full flex flex-1 gap-x-1">

@@ -105,7 +105,7 @@ export const useRenderLayout = () => {
 							<Menu class="flex-1 overflow-hidden" />
 						</>
 					)}
-					<ToolRight />
+					<ToolRight class="!px-2" />
 				</ElHeader>
 				<ElContainer direction="vertical" class="relative !h-[calc(100%-var(--top-header-height))]">
 					<Tabs />
@@ -127,7 +127,7 @@ export const useRenderLayout = () => {
 				) : undefined}
 				{unref(isMobile) ? undefined : <VerticalMenu />}
 				<ElContainer direction="vertical" class="relative ">
-					<ElHeader class="flex-between !h-[var(--top-header-height)] !p-0 border-b-1 border-[var(--el-color-info-light-8)]">
+					<ElHeader class="flex-between !h-[var(--top-header-height)] !px-2 border-b-1 border-[var(--el-color-info-light-8)]">
 						{unref(isMobile) ? <CollapseIcon /> : <BreadCrumb />}
 						<ToolRight />
 					</ElHeader>
@@ -151,7 +151,7 @@ export const useRenderLayout = () => {
 							<HorizontalMenu />
 						</div>
 					)}
-					<ToolRight />
+					<ToolRight class="!px-2" />
 				</ElHeader>
 				<ElContainer class="relative !h-[calc(100%-var(--top-header-height))]">
 					<ElAside class={[asideClass, unref(collapseWidth), { 'p-0 !b-0 fixed top-0 bottom-0 left-0 z-9999': unref(isMobile) }]}>
