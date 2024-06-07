@@ -5,7 +5,7 @@ import { localForage } from '@/utils/localforage';
 import router from '@/router';
 
 // 标签栏持久化key
-const persistKey = 'sparrow_tabs';
+const persistKey = 'spyro_tabs';
 
 export const useTabsStore = defineStore('tabs', () => {
 	// tab菜单列表

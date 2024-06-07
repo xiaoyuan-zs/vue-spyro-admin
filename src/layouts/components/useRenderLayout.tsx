@@ -31,7 +31,7 @@ const Logo = () => (
 );
 
 const asideClass =
-	'flex-col-stretch bg-[var(--left-menu-bg-color)] border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
+	'flex-col-stretch bg-[var(--left-menu-bg-color)] py-1 border-r-1 border-solid border-[var(--el-color-info-light-8)] transition-width duration-300';
 
 const headerClass =
 	'w-full !h-[var(--top-header-height)] flex-y-center justify-between border-b-1 border-solid border-[var(--el-color-info-light-8)] !p-x-2 bg-[var(--el-bg-color)]';
