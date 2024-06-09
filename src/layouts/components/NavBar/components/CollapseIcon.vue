@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { useAppStore } from '@/store';
 	const appStore = useAppStore();
-	const alignArrow = computed(() => (appStore.isCollapse ? 'sw:align-right' : 'sw:align-left'));
+	const alignArrow = computed(() => (appStore.isCollapse ? 'spyro:align-right' : 'spyro:align-left'));
 	const triggerCollapse = () => {
 		appStore.$patch({ isCollapse: !appStore.isCollapse });
 	};

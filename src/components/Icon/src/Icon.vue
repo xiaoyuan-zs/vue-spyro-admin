@@ -19,10 +19,10 @@
 		setup(props) {
 			if (!props.name) return () => {};
 			// 是否是本地svg
-			const isLocal = computed(() => props.name.startsWith('sw:'));
+			const isLocal = computed(() => props.name.startsWith('spyro:'));
 			// 本地svg href
 			const symbolId = computed(() => {
-				return unref(isLocal) ? `#icon-${props.name.split('sw:')[1]}` : props.name;
+				return unref(isLocal) ? `#icon-${props.name.split('spyro:')[1]}` : props.name;
 			});
 			return () => (
 				<ElIcon size={props.size} color={props.color}>

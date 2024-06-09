@@ -26,7 +26,7 @@
 		<template #reference>
 			<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer">
 				<el-badge :value="3" :max="99" class="h-5">
-					<Icon name="sw:bell" :size="20" />
+					<Icon name="spyro:bell" :size="20" />
 				</el-badge>
 			</div>
 		</template>

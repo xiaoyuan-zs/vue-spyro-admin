@@ -17,6 +17,6 @@
 
 <template>
 	<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer" @click="handleRefresh">
-		<Icon name="sw:refresh" :size="20" />
+		<Icon name="spyro:refresh" :size="20" />
 	</div>
 </template>

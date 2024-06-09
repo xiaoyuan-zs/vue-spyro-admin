@@ -6,14 +6,14 @@ export default {
 		returnToHome: '返回首页'
 	},
 	setting: {
-		settings: '系统配置',
+		settings: '主题配置',
 		layoutSetting: '布局',
 		layout: '布局模式',
 		themeSetting: '主题',
 		themeColor: '系统主题',
 		colorMode: '主题模式',
 		gradientText: '渐变文字',
-		interfaceSetting: '界面设置',
+		interfaceSetting: '界面',
 		darkMenu: '深色菜单',
 		menuUnique: '菜单手风琴模式',
 		tabs: '标签页',

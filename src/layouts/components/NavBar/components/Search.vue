@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-	<el-tooltip effect="dark" content="系统搜索" placement="bottom">
+	<el-tooltip effect="dark" content="搜索" placement="bottom">
 		<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer">
-			<Icon name="sw:search" :size="20" />
+			<Icon name="spyro:search" :size="20" />
 		</div>
 	</el-tooltip>
 </template>

@@ -31,7 +31,7 @@
 	<div class="h-full" v-click-outside="clickOut">
 		<el-aside class="aside !w-[var(--left-vertical-menu-width)] !h-full">
 			<div class="flex-center shrink-0 h-[var(--logo-height)] w-full nowrap-hidden cursor-pointer" @click="goHome">
-				<Icon name="sw:logo" :size="30" color="var(--el-color-primary)" />
+				<Icon name="spyro:logo" :size="30" color="var(--el-color-primary)" />
 			</div>
 			<el-scrollbar>
 				<div v-for="menu in parentRoutes" :key="menu.name" @click="changeMenu(menu)">

@@ -22,7 +22,7 @@
 	<el-tooltip effect="dark" content="语言切换" placement="left">
 		<el-dropdown trigger="click" @command="handleCommand">
 			<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer">
-				<Icon name="sw:language" :size="20" />
+				<Icon name="spyro:language" :size="20" />
 			</div>
 			<template #dropdown>
 				<el-dropdown-menu>
