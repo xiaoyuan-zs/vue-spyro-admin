@@ -44,7 +44,7 @@ declare module 'vue' {
     RightMenu: typeof import('./components/RightMenu/src/RightMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SwToolTip: typeof import('./components/SwToolTip/src/SwToolTip.vue')['default']
+    SwToolTip: typeof import('./components/SpyroToolTip/src/SwToolTip.vue')['default']
     Verify: typeof import('./components/Verifition/src/Verify.vue')['default']
     VerifyPoints: typeof import('./components/Verifition/src/Verify/VerifyPoints.vue')['default']
     VerifySlide: typeof import('./components/Verifition/src/Verify/VerifySlide.vue')['default']

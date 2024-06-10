@@ -56,7 +56,6 @@ declare global {
 			sort?: number;
 			showParent?: boolean;
 		};
-		showTooltip?: boolean;
 		parentId?: number;
 		pathList?: number[];
 		redirect?: string;

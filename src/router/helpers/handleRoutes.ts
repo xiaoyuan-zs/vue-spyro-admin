@@ -42,9 +42,7 @@ function addPathMatch() {
  * @param routes 动态路由数据
  */
 function handleAsyncRoutes(routes: RouteRecordRaw[]) {
-	if (routes.length === 0) {
-		usePermissionStore().handleWholeMenus(routes);
-	} else {
+	if (Array.isArray(routes) && routes.length) {
 		// 扁平化处理之后的路由数据
 		formatTwoStageRoutes(flatTreeToArray(buildHierarchyTree(outerSortAsc(handleFilterAsyncRoute(routes).flat(Infinity))))).map((el) => {
 			// 防止重复添加路由
@@ -56,8 +54,9 @@ function handleAsyncRoutes(routes: RouteRecordRaw[]) {
 				if (!router.hasRoute(el.name!)) router.addRoute(el);
 			}
 		});
-		usePermissionStore().handleWholeMenus(routes);
 	}
+	usePermissionStore().handleWholeMenus(routes);
+
 	// 最后添加匹配路由
 	addPathMatch();
 }
