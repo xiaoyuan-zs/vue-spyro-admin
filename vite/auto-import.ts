@@ -34,7 +34,7 @@ export default function createAutoImport(env: Record<string, string>) {
 				 */
 				IconsResolver({
 					prefix: env.VITE_ICONIFY_PREFIX,
-					customCollections: ['sw']
+					customCollections: ['spyro']
 				})
 			]
 		}),
@@ -47,7 +47,7 @@ export default function createAutoImport(env: Record<string, string>) {
 			jsx: 'react', // 支持JSX
 			// 自定义导入本地svg图标集
 			customCollections: {
-				sw: FileSystemIconLoader('src/assets/icons', (svg) => svg.replace(/^<svg /, '<svg fill="currentColor" '))
+				spyro: FileSystemIconLoader('src/assets/icons', (svg) => svg.replace(/^<svg /, '<svg fill="currentColor" '))
 			}
 		})
 	];
