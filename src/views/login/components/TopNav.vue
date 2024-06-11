@@ -1,14 +1,21 @@
-<!-- <template>
+<template>
 	<div class="flex-between w-full px-20 absolute left-0 top-0 right-0 h-20 <sm:px-5">
 		<div class="flex-center">
-			<Icon name="local-icon-logo" color="var(--el-color-primary)" size="30" />
+			<Icon name="spryo:logo" color="var(--el-color-primary)" :size="30" />
 			<h3 class="ml-2 text-4 text-primary font-bold">{{ appTitle }}</h3>
 		</div>
 		<div class="flex-center">
-			<el-switch v-model="layoutStore.colorMode" inline-prompt :active-action-icon="Moon" :inactive-action-icon="Sunny" @change="switchDark" />
+			<el-switch
+				v-model="layoutStore.colorMode"
+				inline-prompt
+				:active-action-icon="Moon"
+				:inactive-action-icon="Sunny"
+				active-value="dark"
+				inactive-value="light"
+				@change="changeColorModel" />
 			<el-dropdown trigger="click" @command="handleCommand">
 				<div class="flex-center w-10 cursor-pointer hover:text-primary transition-base">
-					<svg-icon name="language" width="20" height="20" />
+					<Icon name="spyro:language" :size="20" />
 				</div>
 				<template #dropdown>
 					<el-dropdown-menu>
@@ -23,19 +30,23 @@
 
 <script setup lang="ts">
 	import { useLayoutStore } from '@/store';
-	import { Moon, Sunny } from '@element-plus/icons-vue';
-	import { useTheme } from '@/hooks';
+	import { useTheme } from '@/layouts/hooks';
 	import { LocaleKey } from '@/locales/locales';
 	import { useAppStore } from '@/store';
 	import { useI18n } from 'vue-i18n';
+	import { useIcon } from '@/hooks/modules/useIcon';
 	const { locale } = useI18n();
 	const appStore = useAppStore();
 	const layoutStore = useLayoutStore();
+
 	// 切换语言
 	const handleCommand = (val: LocaleKey) => {
 		locale.value = val;
 		appStore.setLanguage(val);
 	};
+
+	const Moon = useIcon({ name: 'ep:moon' });
+	const Sunny = useIcon({ name: 'ep:sunny' });
 
 	const disabled = computed(() => {
 		return appStore.language === 'en';
@@ -44,6 +55,10 @@
 	const appTitle = computed(() => import.meta.env.VITE_APP_TITLE);
 
 	const { switchDark } = useTheme();
+	const changeColorModel = (value: any) => {
+		layoutStore.$patch({ colorMode: value });
+		switchDark();
+	};
 </script>
 
-<style scoped lang="scss"></style> -->
+<style scoped lang="scss"></style>

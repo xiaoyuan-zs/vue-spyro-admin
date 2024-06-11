@@ -4,8 +4,8 @@ export default {
 	path: '/iframe',
 	redirect: '/iframe/v3',
 	meta: {
-		icon: 'ep:home-filled',
-		title: '内嵌Iframe',
+		icon: 'ant-design:select-outlined',
+		title: '文档（内嵌）',
 		sort: 4
 	},
 	children: [
@@ -17,7 +17,7 @@ export default {
 			// 内嵌iframe组件
 			component: IframeView,
 			meta: {
-				icon: 'ep:apple',
+				icon: 'logos:vue',
 				title: 'Vue3 官网',
 				// showParent: true, // 只有一个子级需要开启该配置
 				iframeSrc: 'https://cn.vuejs.org/guide/quick-start.html'
@@ -31,8 +31,8 @@ export default {
 			// 内嵌iframe组件
 			component: IframeView,
 			meta: {
-				icon: 'ant-design:alipay-circle-outlined',
-				title: 'vite 官网',
+				icon: 'logos:vitejs',
+				title: 'Vite 官网',
 				iframeSrc: 'https://cn.vitejs.dev/'
 			}
 		}

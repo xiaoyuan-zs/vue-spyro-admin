@@ -17,12 +17,12 @@
 						@keyup.enter="getCode()" />
 				</el-form-item>
 				<el-form-item v-if="captchaEnabled">
-					<VerifyCode
+					<!-- <VerifyCode
 						ref="verifyRef"
 						:captcha-type="captchaType"
 						:img-size="{ width: '400px', height: '200px' }"
 						mode="pop"
-						@success="successVerify" />
+						@success="successVerify" /> -->
 				</el-form-item>
 				<el-form-item>
 					<div class="w-full flex-between">

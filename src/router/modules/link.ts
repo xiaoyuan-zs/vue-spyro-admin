@@ -9,17 +9,17 @@ export default [
 		name: 'https://cn.vuejs.org/guide/quick-start.html',
 		component: LinkView,
 		meta: {
-			icon: 'ep:box',
-			title: 'Vue3 官网',
-			sort: 7
+			icon: 'mdi:about',
+			title: '关于本站',
+			sort: 99
 		}
 	},
 	{
 		path: '/link',
 		redirect: '/link/strapi',
 		meta: {
-			icon: 'ep:home-filled',
-			title: '外链目录',
+			icon: 'ant-design:export-outlined',
+			title: '文档（外链）',
 			sort: 5
 		},
 		children: [
@@ -30,6 +30,7 @@ export default [
 				name: 'https://www.strapi.cn/',
 				component: LinkView,
 				meta: {
+					icon: 'logos:strapi-icon',
 					title: 'strapi 官网',
 					showParent: true
 				}
@@ -41,6 +42,7 @@ export default [
 				name: 'https://element-plus.org/zh-CN/component/menu.html',
 				component: LinkView,
 				meta: {
+					icon: 'logos:element',
 					title: 'element-plus 官网'
 				}
 			}

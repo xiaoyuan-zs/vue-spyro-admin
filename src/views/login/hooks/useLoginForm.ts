@@ -1,20 +1,18 @@
-import { RequestLoginForm } from '@/api/login/types';
 import { ElNotification, FormInstance, FormRules } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { useRouter, useRoute } from 'vue-router';
-import { getIsCaptchaOn } from '@/api/login';
 
 export const useLoginForm = () => {
 	const { t } = useI18n();
 	const ruleFormRef = ref<FormInstance>();
 	const router = useRouter();
 	const route = useRoute();
-	const rules = reactive<FormRules<RequestLoginForm>>({
+	const rules = reactive<FormRules<any>>({
 		username: [{ required: true, message: t(`login.usernamePlaceholder`), trigger: 'blur' }],
 		password: [{ required: true, message: t(`login.passwordPlaceholder`), trigger: 'blur' }]
 	});
 
-	const loginForm = reactive<RequestLoginForm>({
+	const loginForm = reactive<any>({
 		username: 'admin',
 		password: 'admin123'
 	});
@@ -91,14 +89,14 @@ export const useLoginForm = () => {
 
 	// 获取滑块、点选验证码
 	const getCaptchaCode = async () => {
-		let res = await getIsCaptchaOn();
-		captchaEnabled.value = res.data.isCaptchaOn;
-		if (captchaEnabled.value) {
-			captchaType.value = res.data.captchaType;
-		}
+		// let res = await getIsCaptchaOn();
+		// captchaEnabled.value = res.data.isCaptchaOn;
+		// if (captchaEnabled.value) {
+		// 	captchaType.value = res.data.captchaType;
+		// }
 	};
 
-	getCaptchaCode();
+	// getCaptchaCode();
 
 	onMounted(() => {
 		readCookie();
@@ -113,7 +111,6 @@ export const useLoginForm = () => {
 		captchaEnabled,
 		captchaType,
 		getCode,
-		getCaptchaCode,
 		successVerify
 	};
 };
