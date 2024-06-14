@@ -24,10 +24,10 @@
 		"email": "lcshuxiaoluo@163.com"
 	},
 	"dependencies": {
+		"@spyro/axios": "workspace:^",
 		"@vueuse/core": "10.9.0",
 		"animate.css": "^4.1.1",
 		"array-to-tree": "3.3.2",
-		"axios": "1.6.8",
 		"colorthief": "2.4.0",
 		"crypto-js": "^4.2.0",
 		"dayjs": "1.11.10",
