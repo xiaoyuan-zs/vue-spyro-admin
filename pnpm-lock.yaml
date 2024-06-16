@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@spyro/axios':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:packages/axios
       '@vueuse/core':
         specifier: 10.9.0

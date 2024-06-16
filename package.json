@@ -24,7 +24,7 @@
 		"email": "lcshuxiaoluo@163.com"
 	},
 	"dependencies": {
-		"@spyro/axios": "workspace:^",
+		"@spyro/axios": "workspace:*",
 		"@vueuse/core": "10.9.0",
 		"animate.css": "^4.1.1",
 		"array-to-tree": "3.3.2",
