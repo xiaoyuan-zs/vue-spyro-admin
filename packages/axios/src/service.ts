@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { AxiosInterceptor, AxiosOptions, ApiResponse } from './types';
+import { CancelAxios } from './cancelAxios';
 
 class AxiosConfig {
 	// axios instance
@@ -25,8 +26,18 @@ class AxiosConfig {
 
 		const { requestInterceptors, requestInterceptorsCatch, responseInterceptor, responseInterceptorsCatch } = this.interceptors;
 
+		// 创建取消请求示例
+		const cancelAxios = new CancelAxios();
+
 		//2. 初始化请求拦截器
 		this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+			// 是否清除重复请求标识
+			const abortRepetitiveRequest = (config as unknown as any).abortRepetitiveRequest ?? this.axiosOptions.abortRepetitiveRequest;
+			if (abortRepetitiveRequest) {
+				// 存储请求标识
+				cancelAxios.addPending(config);
+			}
+
 			// 外部传递的请求拦截器存在则使用外部拦截器
 			if (requestInterceptors) config = requestInterceptors(config);
 			return config;
@@ -36,6 +47,8 @@ class AxiosConfig {
 		//3. 初始化响应拦截器
 		this.axiosInstance.interceptors.response.use(
 			(response: AxiosResponse) => {
+				// 响应拦截取消请求
+				response && cancelAxios.removePending(response.config);
 				// 外部传递的响应拦截器存在则使用响应拦截器
 				if (responseInterceptor) response = responseInterceptor(response);
 				return response;

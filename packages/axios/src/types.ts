@@ -4,7 +4,7 @@ import { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConf
 export interface AxiosOptions extends AxiosRequestConfig {
 	// 定义拦截器
 	interceptors: AxiosInterceptor;
-	// 是否取消重复请求
+	// 是否取消重复请求标识
 	abortRepetitiveRequest?: boolean;
 	// 重连配置
 	retryConfig?: {
