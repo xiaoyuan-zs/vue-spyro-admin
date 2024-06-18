@@ -1,4 +1,4 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 /** 定义axios 配置, 继承AxiosRequestConfig，满足原本的 axios.create({}) 配置项，在其基础上拓展  */
 export interface AxiosOptions extends AxiosRequestConfig {

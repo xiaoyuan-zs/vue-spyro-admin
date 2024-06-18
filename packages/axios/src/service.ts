@@ -1,5 +1,11 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { AxiosInterceptor, AxiosOptions, ApiResponse } from './types';
+import axios, {
+	type AxiosError,
+	type AxiosInstance,
+	type AxiosRequestConfig,
+	type AxiosResponse,
+	type InternalAxiosRequestConfig
+} from 'axios';
+import type { AxiosInterceptor, AxiosOptions, ApiResponse } from './types';
 import { CancelAxios } from './cancelAxios';
 
 class AxiosConfig {
@@ -8,12 +14,12 @@ class AxiosConfig {
 	// axios options
 	private axiosOptions: AxiosOptions;
 	// axios interceptor
-	private interceptors: AxiosInterceptor;
+	private axiosInterceptors: AxiosInterceptor;
 
 	constructor(options: AxiosOptions) {
 		this.axiosInstance = axios.create(options);
 		this.axiosOptions = options;
-		this.interceptors = options.interceptors;
+		this.axiosInterceptors = options.interceptors;
 
 		// 初始化拦截器
 		this.setInterceptors();
@@ -22,9 +28,9 @@ class AxiosConfig {
 	// 注册拦截器
 	private setInterceptors() {
 		//1. 若拦截器不存在则退出
-		if (!this.interceptors) return;
+		if (!this.axiosInterceptors) return;
 
-		const { requestInterceptors, requestInterceptorsCatch, responseInterceptor, responseInterceptorsCatch } = this.interceptors;
+		const { requestInterceptors, requestInterceptorsCatch, responseInterceptor, responseInterceptorsCatch } = this.axiosInterceptors;
 
 		// 创建取消请求示例
 		const cancelAxios = new CancelAxios();
@@ -34,7 +40,7 @@ class AxiosConfig {
 			// 是否清除重复请求标识
 			const abortRepetitiveRequest = (config as unknown as any).abortRepetitiveRequest ?? this.axiosOptions.abortRepetitiveRequest;
 			if (abortRepetitiveRequest) {
-				// 存储请求标识
+				// 在请求拦截器中进行添加，当多次重复请求时，数据尚未响应，也就会多次调用该方法进行添加，发现存在重复请求，即取消之前未响应回来的请求
 				cancelAxios.addPending(config);
 			}
 
@@ -47,7 +53,7 @@ class AxiosConfig {
 		//3. 初始化响应拦截器
 		this.axiosInstance.interceptors.response.use(
 			(response: AxiosResponse) => {
-				// 响应拦截取消请求
+				// 在响应拦截器中，调用该方法，若数据已经响应回来，则删除存储请求控制器中的kv即可
 				response && cancelAxios.removePending(response.config);
 				// 外部传递的响应拦截器存在则使用响应拦截器
 				if (responseInterceptor) response = responseInterceptor(response);
