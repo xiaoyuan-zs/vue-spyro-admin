@@ -1,4 +1,4 @@
-import { defineConfig, ConfigEnv, UserConfig, loadEnv } from 'vite';
+import { defineConfig, type ConfigEnv, type UserConfig, loadEnv } from 'vite';
 import path from 'path';
 import { createVitePlugins } from './vite/plugins';
 import { include, exclude } from './vite/optimize';
