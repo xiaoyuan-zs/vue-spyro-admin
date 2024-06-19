@@ -21,11 +21,11 @@ class AxiosConfig {
 		this.axiosOptions = options;
 		this.axiosInterceptors = options.interceptors;
 
-		// 初始化拦截器
+		// 初始化默认拦截器
 		this.setInterceptors();
 	}
 
-	// 注册拦截器
+	// 注册默认拦截器
 	private setInterceptors() {
 		//1. 若拦截器不存在则退出
 		if (!this.axiosInterceptors) return;
@@ -61,7 +61,7 @@ class AxiosConfig {
 			},
 			(err: AxiosError) => {
 				// 请求响应错误，若存在外部响应错误拦截器则交给外部处理，否则直接返回错误
-				if (responseInterceptorsCatch) responseInterceptorsCatch(err);
+				if (responseInterceptorsCatch) return responseInterceptorsCatch(this.axiosInstance, err);
 				return err;
 			}
 		);

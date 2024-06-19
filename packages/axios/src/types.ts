@@ -1,4 +1,4 @@
-import type { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 /** 定义axios 配置, 继承AxiosRequestConfig，满足原本的 axios.create({}) 配置项，在其基础上拓展  */
 export interface AxiosOptions extends AxiosRequestConfig {
@@ -23,8 +23,8 @@ export abstract class AxiosInterceptor {
 	abstract requestInterceptorsCatch?: (err: Error) => Error;
 	// 响应拦截器
 	abstract responseInterceptor?: (res: AxiosResponse) => AxiosResponse;
-	// 响应错误拦截器
-	abstract responseInterceptorsCatch?: (error: AxiosError) => void;
+	// 响应错误拦截器（添加实例为了使用请求超时报错重试）
+	abstract responseInterceptorsCatch?: (instance: AxiosInstance, error: AxiosError) => void;
 }
 
 /**
@@ -35,3 +35,5 @@ export interface ApiResponse<T = any> {
 	msg: string;
 	data: T;
 }
+
+export type { AxiosError, AxiosInstance };
