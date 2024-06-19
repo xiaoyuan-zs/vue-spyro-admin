@@ -20,9 +20,9 @@ export abstract class AxiosInterceptor {
 	// 请求拦截器
 	abstract requestInterceptors?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig;
 	// 请求错误拦截器
-	abstract requestInterceptorsCatch?: (err: Error) => Error;
+	abstract requestInterceptorsCatch?: (error: Error) => Error;
 	// 响应拦截器
-	abstract responseInterceptor?: (res: AxiosResponse) => AxiosResponse;
+	abstract responseInterceptor?: (response: AxiosResponse) => AxiosResponse;
 	// 响应错误拦截器（添加实例为了使用请求超时报错重试）
 	abstract responseInterceptorsCatch?: (instance: AxiosInstance, error: AxiosError) => void;
 }
@@ -36,4 +36,4 @@ export interface ApiResponse<T = any> {
 	data: T;
 }
 
-export type { AxiosError, AxiosInstance };
+export type { AxiosError, AxiosInstance, AxiosResponse };

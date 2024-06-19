@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { useLayoutStore } from '@/store';
-import { TabsMenuType } from '../types';
+import type { TabsMenuType } from '../types';
 import { localForage } from '@/utils/localforage';
 import router from '@/router';
 

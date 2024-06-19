@@ -19,7 +19,7 @@ export default defineFlatConfig([
 			// globals: {}
 		},
 		plugins: {
-			prettier: pluginPrettier,
+			prettier: pluginPrettier
 		},
 		rules: {
 			...configPrettier.rules,
@@ -31,16 +31,16 @@ export default defineFlatConfig([
 				'warn',
 				{
 					argsIgnorePattern: '^_',
-					varsIgnorePattern: '^_',
-				},
+					varsIgnorePattern: '^_'
+				}
 			],
 			'prettier/prettier': [
 				'error',
 				{
-					endOfLine: 'auto',
-				},
-			],
-		},
+					endOfLine: 'auto'
+				}
+			]
+		}
 	},
 	// TS/TSX
 	{
@@ -49,11 +49,11 @@ export default defineFlatConfig([
 			parser: parserTypeScript,
 			// 配置解析器选项, 用于将选项直接传递给解析器
 			parserOptions: {
-				sourceType: 'module',
-			},
+				sourceType: 'module'
+			}
 		},
 		plugins: {
-			'@typescript-eslint': pluginTypeScript,
+			'@typescript-eslint': pluginTypeScript
 		},
 		// 规则 https://typescript-eslint.nodejs.cn/rules/
 		rules: {
@@ -67,19 +67,16 @@ export default defineFlatConfig([
 			'@typescript-eslint/no-non-null-assertion': 'off',
 			'@typescript-eslint/no-import-type-side-effects': 'error',
 			'@typescript-eslint/explicit-module-boundary-types': 'off',
-			'@typescript-eslint/consistent-type-imports': [
-				'error',
-				{ disallowTypeAnnotations: false, fixStyle: 'inline-type-imports' },
-			],
+			'@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false, fixStyle: 'inline-type-imports' }],
 			'@typescript-eslint/prefer-literal-enum-member': ['error', { allowBitwiseExpressions: true }],
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
 				{
 					argsIgnorePattern: '^_',
-					varsIgnorePattern: '^_',
-				},
-			],
-		},
+					varsIgnorePattern: '^_'
+				}
+			]
+		}
 	},
 	// JS
 	{
@@ -88,8 +85,8 @@ export default defineFlatConfig([
 			// 禁止 require() 方式导入
 			'@typescript-eslint/no-require-imports': 'off',
 			// 禁止使用 var foo = require("foo") 等形式
-			'@typescript-eslint/no-var-requires': 'off',
-		},
+			'@typescript-eslint/no-var-requires': 'off'
+		}
 	},
 	// Vue
 	{
@@ -100,15 +97,15 @@ export default defineFlatConfig([
 			jsxPragma: 'React',
 			parserOptions: {
 				ecmaFeatures: {
-					jsx: true,
+					jsx: true
 				},
 				extraFileExtensions: ['.vue'],
 				parser: '@typescript-eslint/parser',
-				sourceType: 'module',
-			},
+				sourceType: 'module'
+			}
 		},
 		plugins: {
-			vue: pluginVue,
+			vue: pluginVue
 		},
 		processor: pluginVue.processors['.vue'],
 		rules: {
@@ -128,12 +125,12 @@ export default defineFlatConfig([
 					html: {
 						void: 'always',
 						normal: 'always',
-						component: 'always',
+						component: 'always'
 					},
 					svg: 'always',
-					math: 'always',
-				},
-			],
-		},
-	},
+					math: 'always'
+				}
+			]
+		}
+	}
 ]);

@@ -1,5 +1,5 @@
 // 安装pinia持久化插件， 并导入
-import { Pinia } from 'pinia';
+import type { Pinia } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 const pinia: Pinia = createPinia();

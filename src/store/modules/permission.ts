@@ -1,8 +1,8 @@
 import { constantMenus } from '@/router';
 import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
 import { defineStore } from 'pinia';
-import { PermissionType } from '../types';
-import { RouteRecordRaw } from 'vue-router';
+import type { PermissionType } from '../types';
+import type { RouteRecordRaw } from 'vue-router';
 import { flatTreeToArray } from '@/utils/tree';
 
 export const usePermissionStore = defineStore('permission', {

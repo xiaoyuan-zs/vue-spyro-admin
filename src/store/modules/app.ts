@@ -1,6 +1,6 @@
-import { LocaleKey } from '@/locales/locales';
+import type { LocaleKey } from '@/locales/locales';
 import { defineStore } from 'pinia';
-import { AppType } from '../types';
+import type { AppType } from '../types';
 
 export const useAppStore = defineStore('app', {
 	state: (): AppType => ({
