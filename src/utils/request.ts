@@ -3,7 +3,7 @@ import { useUserStore } from '@/store';
 
 const request = new AxiosConfig({
 	baseURL: import.meta.env.VITE_APP_BASE_API,
-	// timeout: 10000,
+	timeout: 10000,
 	// 拦截器
 	interceptors: {
 		requestInterceptors(config) {
