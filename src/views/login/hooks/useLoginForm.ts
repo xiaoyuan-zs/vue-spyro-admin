@@ -11,12 +11,12 @@ export const useLoginForm = () => {
 	const route = useRoute();
 	const userStore = useUserStore();
 	const rules = reactive<FormRules<LoginParams>>({
-		username: [{ required: true, message: t(`login.usernamePlaceholder`), trigger: 'blur' }],
+		identifier: [{ required: true, message: t(`login.usernamePlaceholder`), trigger: 'blur' }],
 		password: [{ required: true, message: t(`login.passwordPlaceholder`), trigger: 'blur' }]
 	});
 
 	const loginForm = reactive<LoginParams>({
-		username: 'admin',
+		identifier: 'admin',
 		password: 'admin123'
 	});
 
@@ -47,7 +47,7 @@ export const useLoginForm = () => {
 
 	// 记住密码
 	const rememberPass = () => {
-		const { username, password } = loginForm;
+		// const { username, password } = loginForm;
 		// if (rememberPassword.value) {
 		// 	setCookie('username', rsaEncrypt(username), 30);
 		// 	setCookie('password', rsaEncrypt(password), 30);
@@ -61,12 +61,12 @@ export const useLoginForm = () => {
 
 	// 读取账号密码
 	const readCookie = () => {
-		const username = getCookie('username');
-		const password = getCookie('password');
-		const remember = getCookie('rememberPassword');
-		if (username) loginForm.username = rsaDecrypt(username);
-		if (username) loginForm.password = rsaDecrypt(password);
-		if (username) rememberPassword.value = !!remember;
+		// const username = getCookie('username');
+		// const password = getCookie('password');
+		// const remember = getCookie('rememberPassword');
+		// if (username) loginForm.username = rsaDecrypt(username);
+		// if (username) loginForm.password = rsaDecrypt(password);
+		// if (username) rememberPassword.value = !!remember;
 	};
 
 	onMounted(() => {
