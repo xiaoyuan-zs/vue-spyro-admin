@@ -1,7 +1,7 @@
 import { axios, checkErrorStatus, retryAxios, AxiosConfig, type AxiosError } from '@spyro/axios';
 import { useUserStore } from '@/store';
 
-const request = new AxiosConfig({
+export const service = new AxiosConfig({
 	baseURL: import.meta.env.VITE_APP_BASE_API,
 	timeout: 10000,
 	// 拦截器
@@ -38,9 +38,7 @@ const request = new AxiosConfig({
 	abortRepetitiveRequest: true,
 	// 超时重试
 	retryConfig: {
-		count: 10,
-		waitTime: 1000
+		count: 5,
+		waitTime: 10000
 	}
 });
-
-export default request;

@@ -1,18 +1,21 @@
-import { ElNotification, FormInstance, FormRules } from 'element-plus';
+import { ElNotification, type FormInstance, type FormRules } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { useRouter, useRoute } from 'vue-router';
+import { useUserStore } from '@/store';
+import type { LoginParams } from '@/api/login/types';
 
 export const useLoginForm = () => {
 	const { t } = useI18n();
 	const ruleFormRef = ref<FormInstance>();
 	const router = useRouter();
 	const route = useRoute();
-	const rules = reactive<FormRules<any>>({
+	const userStore = useUserStore();
+	const rules = reactive<FormRules<LoginParams>>({
 		username: [{ required: true, message: t(`login.usernamePlaceholder`), trigger: 'blur' }],
 		password: [{ required: true, message: t(`login.passwordPlaceholder`), trigger: 'blur' }]
 	});
 
-	const loginForm = reactive<any>({
+	const loginForm = reactive<LoginParams>({
 		username: 'admin',
 		password: 'admin123'
 	});
@@ -21,34 +24,13 @@ export const useLoginForm = () => {
 	let rememberPassword = ref(false);
 	// 验证码开关
 	let captchaEnabled = ref(false);
-	// 验证码类别 滑块、点选
-	let captchaType = ref('');
-
-	const verifyRef = ref();
-
-	const getCode = () => {
-		// 开启验证码并且为滑动或点击
-		if (captchaEnabled.value) {
-			verifyRef.value.show();
-		} else {
-			submitForm(ruleFormRef.value);
-		}
-	};
-
-	// 滑动点击验证码校验成功回调函数
-	const successVerify = ({ captchaVerification }: { captchaVerification: string }) => {
-		if (captchaVerification) {
-			loginForm.captchaVerification = captchaVerification;
-			submitForm(ruleFormRef.value);
-		}
-	};
 
 	// 登录提交
 	const submitForm = async (formEl: FormInstance | undefined) => {
 		if (!formEl) return;
 		await formEl.validate(async (valid) => {
 			if (valid) {
-				// await userStore.loginAction(loginForm);
+				await userStore.loginAction(loginForm);
 				rememberPass();
 				// "??" 运算符只会在左侧的值为 null 或 undefined 时返回默认值
 				router.replace((route.query?.redirect ?? '/') as string);
@@ -79,24 +61,13 @@ export const useLoginForm = () => {
 
 	// 读取账号密码
 	const readCookie = () => {
-		// const username = getCookie('username');
-		// const password = getCookie('password');
-		// const remember = getCookie('rememberPassword');
-		// if (username) loginForm.username = rsaDecrypt(username);
-		// if (username) loginForm.password = rsaDecrypt(password);
-		// if (username) rememberPassword.value = !!remember;
+		const username = getCookie('username');
+		const password = getCookie('password');
+		const remember = getCookie('rememberPassword');
+		if (username) loginForm.username = rsaDecrypt(username);
+		if (username) loginForm.password = rsaDecrypt(password);
+		if (username) rememberPassword.value = !!remember;
 	};
-
-	// 获取滑块、点选验证码
-	const getCaptchaCode = async () => {
-		// let res = await getIsCaptchaOn();
-		// captchaEnabled.value = res.data.isCaptchaOn;
-		// if (captchaEnabled.value) {
-		// 	captchaType.value = res.data.captchaType;
-		// }
-	};
-
-	// getCaptchaCode();
 
 	onMounted(() => {
 		readCookie();
@@ -104,13 +75,10 @@ export const useLoginForm = () => {
 
 	return {
 		ruleFormRef,
-		verifyRef,
 		rules,
 		loginForm,
 		rememberPassword,
 		captchaEnabled,
-		captchaType,
-		getCode,
-		successVerify
+		submitForm
 	};
 };
