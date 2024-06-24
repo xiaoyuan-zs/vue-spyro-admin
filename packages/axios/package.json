@@ -10,6 +10,10 @@
 	"author": "xiaoyuan-zs",
 	"license": "MIT",
 	"dependencies": {
-		"axios": "1.6.8"
+		"axios": "1.6.8",
+		"qs": "6.12.1"
+	},
+	"devDependencies": {
+		"@types/qs": "6.9.14"
 	}
 }
