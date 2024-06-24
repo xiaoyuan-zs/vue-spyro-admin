@@ -11,12 +11,12 @@ export const useLoginForm = () => {
 	const route = useRoute();
 	const userStore = useUserStore();
 	const rules = reactive<FormRules<LoginParams>>({
-		identifier: [{ required: true, message: t(`login.usernamePlaceholder`), trigger: 'blur' }],
+		username: [{ required: true, message: t(`login.usernamePlaceholder`), trigger: 'blur' }],
 		password: [{ required: true, message: t(`login.passwordPlaceholder`), trigger: 'blur' }]
 	});
 
 	const loginForm = reactive<LoginParams>({
-		identifier: 'admin',
+		username: 'admin',
 		password: 'admin123'
 	});
 
@@ -37,7 +37,7 @@ export const useLoginForm = () => {
 				ElNotification({
 					title: '登录成功',
 					type: 'success',
-					message: `欢迎回来！`
+					message: `欢迎回来！${userStore.nickname}`
 				});
 			} else {
 				throw new Error('校验失败');

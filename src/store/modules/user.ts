@@ -3,12 +3,16 @@ import type { LoginParams } from '@/api/login/types';
 import { defineStore } from 'pinia';
 export const useUserStore = defineStore('user', {
 	state: () => ({
-		token: ''
+		accessToken: '',
+		refreshToken: '',
+		nickname: ''
 	}),
 	actions: {
 		async loginAction(params: LoginParams) {
 			const { data } = await login(params);
-			this.token = data.token;
+			this.accessToken = data.accessToken;
+			this.refreshToken = data.refreshToken;
+			this.nickname = data.nickname;
 		}
 	}
 });

@@ -3,7 +3,7 @@ import { users } from './user.fake';
 
 export default defineFakeRoute([
 	{
-		url: '/mock/login',
+		url: '/login',
 		method: 'POST',
 		response: ({ body }) => {
 			const { username, password } = body;
@@ -12,7 +12,7 @@ export default defineFakeRoute([
 				return {
 					code: 200,
 					data: {
-						...user,
+						nickname: user.nickname,
 						accessToken: 'eyJhbGciOiJIUzUxMiJ9.admin',
 						refreshToken: 'eyJhbGciOiJIUzUxMiJ9.adminRefresh',
 						expires: '2024/07/01 00:00:00'

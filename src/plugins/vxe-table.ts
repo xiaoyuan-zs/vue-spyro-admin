@@ -1,5 +1,5 @@
 import { toFormatString, get } from 'xe-utils';
-import { App } from 'vue';
+import type { App } from 'vue';
 import {
 	// 全局对象
 	VXETable,

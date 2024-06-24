@@ -8,8 +8,8 @@ export const service = new AxiosConfig({
 	interceptors: {
 		requestInterceptors(config) {
 			const userStore = useUserStore();
-			if (userStore.token) {
-				config.headers['Authorization'] = userStore.token;
+			if (userStore.accessToken) {
+				config.headers['Authorization'] = userStore.accessToken;
 			}
 			return config;
 		},
@@ -35,10 +35,10 @@ export const service = new AxiosConfig({
 		}
 	},
 	// 是否取消重复请求
-	abortRepetitiveRequest: true
+	abortRepetitiveRequest: true,
 	// 超时重试
-	// retryConfig: {
-	// 	count: 5,
-	// 	waitTime: 10000
-	// }
+	retryConfig: {
+		count: 5,
+		waitTime: 5000
+	}
 });

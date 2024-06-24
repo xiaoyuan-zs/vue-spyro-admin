@@ -20,7 +20,7 @@ import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-impo
  * Vite注册所需插件
  */
 export function createVitePlugins(env: Record<string, string>, command: boolean): PluginOption[] {
-	const { VITE_BUILD_COMPRESS } = env as ImportMetaEnv;
+	const { VITE_BUILD_COMPRESS, VITE_MOCK_SERVER } = env as ImportMetaEnv;
 	const vitePlugins: PluginOption[] = [
 		vue(),
 		// vue 开发工具
@@ -53,7 +53,10 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 			// 响应超时
 			// timeout: 200,
 			// 设置mock文件夹名称
-			include: 'mock'
+			include: 'mock',
+			basename: 'mock',
+			enableDev: VITE_MOCK_SERVER,
+			enableProd: VITE_MOCK_SERVER
 		}),
 		/**
 		 * 开发环境下移除非必要的vue-router动态路由警告No match found for location with path

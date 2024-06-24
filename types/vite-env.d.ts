@@ -32,6 +32,11 @@ interface ImportMetaEnv {
 	 * 打包压缩方式
 	 */
 	readonly VITE_BUILD_COMPRESS: ViteCompression;
+
+	/**
+	 * 是否使用mock环境
+	 */
+	readonly VITE_MOCK_SERVER: boolean;
 }
 
 interface ImportMeta {

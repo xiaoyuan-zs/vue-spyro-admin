@@ -10,6 +10,7 @@ export function createRandomUser() {
 		sex: faker.person.sexType(),
 		status: faker.datatype.boolean(),
 		avatar: faker.image.avatar(),
+		phone: faker.phone.number(),
 		email: faker.internet.email(),
 		createTime: faker.date.anytime(),
 		role: ['common'],
@@ -27,16 +28,17 @@ export type User = typeof fakeUsers;
 // 管理员数据
 export const users: User = [
 	{
-		userId: '540000200805062762',
+		userId: faker.string.uuid(),
 		username: 'admin',
 		nickname: 'admin',
 		password: 'admin123',
-		sex: 'male',
-		status: true,
-		avatar: 'http://dummyimage.com/200x200',
-		email: 't.piwr@fzfwhyvjqw.tv',
+		sex: faker.person.sexType(),
+		status: faker.datatype.boolean(),
+		avatar: faker.image.avatar(),
+		phone: faker.phone.number(),
+		email: faker.internet.email(),
+		createTime: faker.date.anytime(),
 		role: ['admin'],
-		createTime: new Date(),
 		createBy: 'admin',
 		remark: '我是管理员'
 	},
@@ -45,12 +47,14 @@ export const users: User = [
 
 export default defineFakeRoute([
 	{
-		url: '/mock/users',
+		url: '/users',
 		method: 'GET',
-		response: () => {
+		response: ({ query }) => {
+			const { pageNum = 1, pageSize = 10, username, nickname, email, phone } = query;
+			const data = users.slice((Number(pageNum) - 1) * Number(pageSize), Number(pageSize) * Number(pageNum));
 			return {
 				code: 200,
-				data: users,
+				data,
 				total: users.length,
 				message: '操作成功'
 			};

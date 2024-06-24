@@ -5,8 +5,8 @@
 		<el-card class="w-100 !bg-transparent !rounded-4% !border-none <sm:w-83">
 			<h3 class="text-center mt-6 font-500 text-primary text-6">{{ $t(`login.login`) }}</h3>
 			<el-form ref="ruleFormRef" :model="loginForm" :rules="rules" class="mt-6">
-				<el-form-item prop="identifier">
-					<el-input v-model="loginForm.identifier" size="large" :placeholder="$t(`login.usernamePlaceholder`)" />
+				<el-form-item prop="username">
+					<el-input v-model="loginForm.username" size="large" :placeholder="$t(`login.usernamePlaceholder`)" />
 				</el-form-item>
 				<el-form-item prop="password">
 					<el-input
