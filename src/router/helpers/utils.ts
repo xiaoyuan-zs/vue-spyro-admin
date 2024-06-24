@@ -1,5 +1,5 @@
 import { clone, isUndefined, orderBy } from 'xe-utils';
-import { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 
 /**
  * 对最外层路由进行过滤
