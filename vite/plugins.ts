@@ -1,4 +1,4 @@
-import { PluginOption } from 'vite';
+import type { PluginOption } from 'vite';
 import path from 'path';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vue from '@vitejs/plugin-vue';
@@ -11,6 +11,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import removeNoMatch from 'vite-plugin-router-warn';
 import removeConsole from 'vite-plugin-remove-console';
 import svgLoader from 'vite-svg-loader';
+import { vitePluginFakeServer } from 'vite-plugin-fake-server';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import';
@@ -45,6 +46,14 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 			symbolId: 'icon-[dir]-[name]',
 			// svg压缩
 			svgoOptions: command
+		}),
+		vitePluginFakeServer({
+			// 是否在控制台输出日志
+			logger: false,
+			// 响应超时
+			// timeout: 200,
+			// 设置mock文件夹名称
+			include: 'mock'
 		}),
 		/**
 		 * 开发环境下移除非必要的vue-router动态路由警告No match found for location with path
