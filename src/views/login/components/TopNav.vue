@@ -1,7 +1,7 @@
 <template>
 	<div class="flex-between w-full px-20 absolute left-0 top-0 right-0 h-20 <sm:px-5">
 		<div class="flex-center">
-			<Icon name="spryo:logo" color="var(--el-color-primary)" :size="30" />
+			<Icon name="spyro:logo" color="var(--el-color-primary)" :size="30" />
 			<h3 class="ml-2 text-4 text-primary font-bold">{{ appTitle }}</h3>
 		</div>
 		<div class="flex-center">

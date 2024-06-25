@@ -1,8 +1,10 @@
 import { axios, checkErrorStatus, retryAxios, AxiosConfig, type AxiosError } from '@spyro/axios';
 import { useUserStore } from '@/store';
 
+const { VITE_MOCK_SERVER, VITE_APP_BASE_API } = import.meta.env;
+
 export const service = new AxiosConfig({
-	baseURL: import.meta.env.VITE_APP_BASE_API,
+	baseURL: VITE_MOCK_SERVER ? '/mock' : VITE_APP_BASE_API,
 	timeout: 10000,
 	// 拦截器
 	interceptors: {

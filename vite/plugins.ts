@@ -54,6 +54,7 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 			// timeout: 200,
 			// 设置mock文件夹名称
 			include: 'mock',
+			// 请求前缀
 			basename: 'mock',
 			enableDev: VITE_MOCK_SERVER,
 			enableProd: VITE_MOCK_SERVER
