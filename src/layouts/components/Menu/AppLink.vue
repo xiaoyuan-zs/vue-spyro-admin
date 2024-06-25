@@ -1,5 +1,5 @@
 <script setup lang="ts" name="AppLink">
-	import { isUrl } from '@/utils/validate';
+	import { isUrl } from '@spyro/utils';
 	import { computed } from 'vue';
 
 	const props = defineProps<{

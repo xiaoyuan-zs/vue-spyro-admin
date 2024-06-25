@@ -1,4 +1,4 @@
-import { clone, isUndefined, orderBy } from 'xe-utils';
+import { clone, isUndefined, orderBy } from '@spyro/utils';
 import type { RouteRecordRaw } from 'vue-router';
 
 /**

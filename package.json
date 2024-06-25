@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"@spyro/axios": "workspace:*",
+		"@spyro/utils": "workspace:*",
 		"@vueuse/core": "10.9.0",
 		"animate.css": "^4.1.1",
 		"array-to-tree": "3.3.2",
@@ -50,8 +51,7 @@
 		"vue-router": "4.3.0",
 		"vue-tippy": "^6.4.1",
 		"vue-types": "^5.1.2",
-		"vxe-table": "4.5.22",
-		"xe-utils": "^3.5.26"
+		"vxe-table": "4.5.22"
 	},
 	"engines": {
 		"node": ">=18.0.0 <=20.x.x",

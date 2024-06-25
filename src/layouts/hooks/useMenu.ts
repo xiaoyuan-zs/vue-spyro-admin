@@ -1,6 +1,6 @@
 import { usePermissionStore } from '@/store';
 import { useRouter } from 'vue-router';
-import { isUrl } from '@/utils/validate';
+import { isUrl } from '@spyro/utils';
 import { getParentPaths } from '@/router/helpers/utils';
 
 // 垂直、横向菜单hooks

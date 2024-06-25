@@ -15,7 +15,6 @@ const include = [
 	'js-cookie',
 	'vue-tippy',
 	'pinyin-pro',
-	'xe-utils',
 	// 'sortablejs',
 	'@vueuse/core'
 ];
@@ -24,6 +23,12 @@ const include = [
  * 在预构建中强制排除的依赖项, '@iconify-json/line-md', '@iconify-json/svg-spinners'
  * 温馨提示：所有以 `@iconify-icons/` 开头引入的的本地图标模块，都应该加入到下面的 `exclude` 里，因为平台推荐的使用方式是哪里需要哪里引入而且都是单个的引入，不需要预构建，直接让浏览器加载就好
  */
-const exclude = ['@iconify-json/ant-design', '@iconify-json/ep', '@iconify-json/line-md', '@iconify-json/svg-spinners'];
+const exclude = [
+	'@iconify-json/ant-design',
+	'@iconify-json/ep',
+	'@iconify-json/line-md',
+	'@iconify-json/svg-spinners',
+	'@iconify-json/logos'
+];
 
 export { include, exclude };

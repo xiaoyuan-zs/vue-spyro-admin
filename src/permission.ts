@@ -1,4 +1,4 @@
-import { RouteLocationNormalized } from 'vue-router';
+import type { RouteLocationNormalized } from 'vue-router';
 import router from '@/router';
 
 router.beforeEach(async (to, from, next) => {

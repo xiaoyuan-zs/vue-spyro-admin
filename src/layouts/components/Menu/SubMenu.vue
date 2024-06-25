@@ -3,7 +3,7 @@
 	import AppLink from './AppLink.vue';
 	import { PropType, toRaw } from 'vue';
 	import { propTypes } from '@/utils/propTypes';
-	import { isUrl } from '@/utils/validate';
+	import { isUrl } from '@spyro/utils';
 	import { translateRouteTitle } from '@/utils/locales';
 
 	const props = defineProps({
