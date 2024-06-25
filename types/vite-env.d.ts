@@ -36,7 +36,7 @@ interface ImportMetaEnv {
 	/**
 	 * 是否使用mock环境
 	 */
-	readonly VITE_MOCK_SERVER: boolean;
+	readonly VITE_MOCK_SERVER: string;
 }
 
 interface ImportMeta {
