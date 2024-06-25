@@ -40,6 +40,7 @@ export const service = new AxiosConfig({
 	abortRepetitiveRequest: true,
 	// 超时重试
 	retryConfig: {
+		retry: true,
 		count: 5,
 		waitTime: 5000
 	}

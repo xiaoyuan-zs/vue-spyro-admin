@@ -8,6 +8,8 @@ export interface AxiosOptions extends AxiosRequestConfig {
 	abortRepetitiveRequest?: boolean;
 	// 重连配置
 	retryConfig?: {
+		// 是否开启重连
+		retry: boolean;
 		// 重连次数
 		count: number;
 		// 每次请求间隔时间
