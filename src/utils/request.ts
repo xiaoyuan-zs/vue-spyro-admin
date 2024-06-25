@@ -9,6 +9,7 @@ export const service = new AxiosConfig({
 	// 拦截器
 	interceptors: {
 		requestInterceptors(config) {
+			console.log('requestConfig', config);
 			const userStore = useUserStore();
 			if (userStore.accessToken) {
 				config.headers['Authorization'] = userStore.accessToken;
@@ -19,6 +20,10 @@ export const service = new AxiosConfig({
 			return error;
 		},
 		responseInterceptor(response) {
+			if (response.data.code === 401) {
+				const userStore = useUserStore();
+				userStore.logoutAction();
+			}
 			return response;
 		},
 		responseInterceptorsCatch(instance, error) {
