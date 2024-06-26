@@ -34,7 +34,6 @@ export abstract class AxiosInterceptor {
  */
 export interface ApiResponse<T = any> {
 	code: number;
-	msg: string;
 	data: T;
 	message?: string;
 }

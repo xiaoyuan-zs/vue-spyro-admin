@@ -13,8 +13,6 @@ export const service = new AxiosConfig({
 	interceptors: {
 		requestInterceptors(config) {
 			const userStore = useUserStore();
-			console.log(211, userStore.accessToken);
-
 			if (userStore.accessToken) {
 				config.headers['Authorization'] = userStore.accessToken;
 			}
@@ -25,6 +23,25 @@ export const service = new AxiosConfig({
 		},
 		responseInterceptor(response) {
 			if (response.data.code === 401) {
+				const userStore = useUserStore();
+				if (!isRefresh) {
+					isRefresh = true;
+					setTimeout(() => {
+						userStore.refreshTokenAction().then(() => {
+							isRefresh = false;
+							requestQueue.forEach((item) => {
+								item.config.headers['Authorization'] = userStore.accessToken;
+								service.request(item.config).then();
+							});
+						});
+					}, 5000);
+				} else {
+					new Promise(() => {
+						requestQueue.push({
+							config: response.config
+						});
+					});
+				}
 				// const userStore = useUserStore();
 				// userStore.logoutAction();
 			}
@@ -45,7 +62,7 @@ export const service = new AxiosConfig({
 			return retryAxios(instance, error);
 		}
 	},
-	// 是否取消重复请求
+	// 是否取消重复请求 (无法取消mock请求，因为mock请求实际上未发出请求)
 	abortRepetitiveRequest: true,
 	// 超时重试
 	retryConfig: {

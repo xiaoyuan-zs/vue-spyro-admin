@@ -47,7 +47,11 @@ export default defineFakeRoute([
 		response: () => {
 			return {
 				code: 200,
-				message: '退出成功'
+				data: {
+					accessToken: accessToken + 2,
+					refreshToken: refreshToken
+				},
+				message: '操作成功'
 			};
 		}
 	}

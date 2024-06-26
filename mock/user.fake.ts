@@ -28,7 +28,7 @@ export type User = typeof fakeUsers;
 // 管理员数据
 export const users: User = [
 	{
-		userId: faker.string.uuid(),
+		userId: '123456',
 		username: 'admin',
 		nickname: 'admin',
 		password: 'admin123',
@@ -50,7 +50,8 @@ export default defineFakeRoute([
 		url: '/users',
 		method: 'GET',
 		response: ({ query, headers }) => {
-			if (headers.authorization) {
+			// 测试401 token 无感刷新
+			if (headers.authorization !== 'eyJhbGciOiJIUzUxMiJ9.admin2') {
 				return {
 					code: 401,
 					message: '登录失效，请重新登录'
@@ -62,6 +63,26 @@ export default defineFakeRoute([
 				code: 200,
 				data,
 				total: users.length,
+				message: '操作成功'
+			};
+		}
+	},
+	{
+		url: '/users/:id',
+		method: 'GET',
+		response: ({ params, headers }) => {
+			// 测试401 token 无感刷新
+			if (headers.authorization !== 'eyJhbGciOiJIUzUxMiJ9.admin2') {
+				return {
+					code: 401,
+					message: '登录失效，请重新登录'
+				};
+			}
+			const { id } = params;
+			const data = users.find((el) => el.userId === id);
+			return {
+				code: 200,
+				data,
 				message: '操作成功'
 			};
 		}
