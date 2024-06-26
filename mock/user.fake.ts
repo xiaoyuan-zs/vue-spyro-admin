@@ -49,7 +49,13 @@ export default defineFakeRoute([
 	{
 		url: '/users',
 		method: 'GET',
-		response: ({ query }) => {
+		response: ({ query, headers }) => {
+			if (headers.authorization) {
+				return {
+					code: 401,
+					message: '登录失效，请重新登录'
+				};
+			}
 			const { pageNum = 1, pageSize = 10, username, nickname, email, phone } = query;
 			const data = users.slice((Number(pageNum) - 1) * Number(pageSize), Number(pageSize) * Number(pageNum));
 			return {

@@ -59,7 +59,7 @@ class AxiosConfig {
 			}
 
 			return config;
-			//TODO 请求错误待默认处理
+			//TODO 默认请求错误待处理
 		}, requestInterceptorsCatch ?? undefined);
 
 		//3. 初始化响应拦截器

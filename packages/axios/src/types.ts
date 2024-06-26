@@ -39,4 +39,4 @@ export interface ApiResponse<T = any> {
 	message?: string;
 }
 
-export type { AxiosError, AxiosInstance, AxiosResponse };
+export type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig };

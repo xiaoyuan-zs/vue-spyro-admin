@@ -1,6 +1,10 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { users } from './user.fake';
 
+export const accessToken = 'eyJhbGciOiJIUzUxMiJ9.admin';
+export const refreshToken = 'eyJhbGciOiJIUzUxMiJ9.adminRefresh';
+export const accessTokenExpires = 3600;
+
 export default defineFakeRoute([
 	{
 		url: '/login',
@@ -13,9 +17,9 @@ export default defineFakeRoute([
 					code: 200,
 					data: {
 						nickname: user.nickname,
-						accessToken: 'eyJhbGciOiJIUzUxMiJ9.admin',
-						refreshToken: 'eyJhbGciOiJIUzUxMiJ9.adminRefresh',
-						expires: '2024/07/01 00:00:00'
+						accessToken,
+						refreshToken,
+						accessTokenExpires
 					},
 					message: '登录成功'
 				};
@@ -30,6 +34,16 @@ export default defineFakeRoute([
 	{
 		url: '/logout',
 		method: 'POST',
+		response: () => {
+			return {
+				code: 200,
+				message: '退出成功'
+			};
+		}
+	},
+	{
+		url: '/refresh',
+		method: 'get',
 		response: () => {
 			return {
 				code: 200,

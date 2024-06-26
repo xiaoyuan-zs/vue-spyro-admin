@@ -1,7 +1,10 @@
-import { axios, checkErrorStatus, retryAxios, AxiosConfig, type AxiosError } from '@spyro/axios';
+import { axios, checkErrorStatus, retryAxios, AxiosConfig, type AxiosError, type InternalAxiosRequestConfig } from '@spyro/axios';
 import { useUserStore } from '@/store';
 
 const { VITE_MOCK_SERVER, VITE_APP_BASE_API } = import.meta.env;
+
+let isRefresh = false;
+const requestQueue: Array<{ config: InternalAxiosRequestConfig }> = [];
 
 export const service = new AxiosConfig({
 	baseURL: VITE_MOCK_SERVER === 'true' ? '/mock' : VITE_APP_BASE_API,
@@ -10,6 +13,8 @@ export const service = new AxiosConfig({
 	interceptors: {
 		requestInterceptors(config) {
 			const userStore = useUserStore();
+			console.log(211, userStore.accessToken);
+
 			if (userStore.accessToken) {
 				config.headers['Authorization'] = userStore.accessToken;
 			}
@@ -20,8 +25,8 @@ export const service = new AxiosConfig({
 		},
 		responseInterceptor(response) {
 			if (response.data.code === 401) {
-				const userStore = useUserStore();
-				userStore.logoutAction();
+				// const userStore = useUserStore();
+				// userStore.logoutAction();
 			}
 			return response;
 		},
