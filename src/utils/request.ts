@@ -9,7 +9,6 @@ export const service = new AxiosConfig({
 	// 拦截器
 	interceptors: {
 		requestInterceptors(config) {
-			console.log('requestConfig', config);
 			const userStore = useUserStore();
 			if (userStore.accessToken) {
 				config.headers['Authorization'] = userStore.accessToken;
@@ -45,7 +44,7 @@ export const service = new AxiosConfig({
 	abortRepetitiveRequest: true,
 	// 超时重试
 	retryConfig: {
-		retry: true,
+		retry: false,
 		count: 5,
 		waitTime: 5000
 	}
