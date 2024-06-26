@@ -1,8 +1,6 @@
 <script setup lang="ts">
 	import avatar from '@/assets/images/avatar.jpg';
-	// import { useUserStore } from '@/store';
-
-	// const userStore = useUserStore();
+	import { useUserStore } from '@/store';
 
 	const handleCommand = (command: string) => {
 		switch (command) {
@@ -15,8 +13,7 @@
 	};
 
 	const logout = () => {
-		// userStore.logout();
-		location.href = '/login';
+		useUserStore().logoutAction();
 	};
 </script>
 

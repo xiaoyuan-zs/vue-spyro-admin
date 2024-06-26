@@ -1,5 +1,6 @@
 import { login, logout } from '@/api/login';
 import type { LoginParams } from '@/api/login/types';
+import { piniaPersist } from '@/plugins/piniaPersist';
 import { defineStore } from 'pinia';
 export const useUserStore = defineStore('user', {
 	state: () => ({
@@ -20,5 +21,6 @@ export const useUserStore = defineStore('user', {
 			this.refreshToken = '';
 			this.nickname = '';
 		}
-	}
+	},
+	persist: piniaPersist({ key: 'user', paths: ['accessToken'] })
 });

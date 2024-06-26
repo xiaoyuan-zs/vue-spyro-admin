@@ -22,9 +22,19 @@ export default defineFakeRoute([
 			} else {
 				return {
 					code: 401,
-					message: '登录失败'
+					message: '用户名或密码错误，登录失败'
 				};
 			}
+		}
+	},
+	{
+		url: '/logout',
+		method: 'POST',
+		response: () => {
+			return {
+				code: 200,
+				message: '退出成功'
+			};
 		}
 	}
 ]);

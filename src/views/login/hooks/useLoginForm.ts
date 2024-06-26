@@ -33,6 +33,7 @@ export const useLoginForm = () => {
 				await userStore.loginAction(loginForm);
 				rememberPass();
 				// "??" 运算符只会在左侧的值为 null 或 undefined 时返回默认值
+				console.log('query', route.query?.redirect);
 				router.replace((route.query?.redirect ?? '/') as string);
 				ElNotification({
 					title: '登录成功',

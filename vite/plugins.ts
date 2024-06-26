@@ -56,8 +56,8 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 			include: 'mock',
 			// 请求前缀
 			basename: 'mock',
-			enableDev: VITE_MOCK_SERVER,
-			enableProd: VITE_MOCK_SERVER
+			enableDev: VITE_MOCK_SERVER === 'true',
+			enableProd: VITE_MOCK_SERVER === 'true'
 		}),
 		/**
 		 * 开发环境下移除非必要的vue-router动态路由警告No match found for location with path
