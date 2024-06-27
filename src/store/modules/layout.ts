@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { piniaPersist } from '@/plugins/piniaPersist';
+import { piniaPersist } from '@/store/helpers/piniaPersist';
 import { platformConfig } from '@/config';
 export const useLayoutStore = defineStore('layout', {
 	state: (): PlatFormConfig => ({

@@ -1,9 +1,9 @@
 import { login, logout, refresh } from '@/api/login';
 import type { LoginParams } from '@/api/login/types';
 import { getUserInfo } from '@/api/user';
-import { piniaPersist } from '@/plugins/piniaPersist';
+import { piniaPersist } from '@/store/helpers/piniaPersist';
 import { defineStore } from 'pinia';
-import { UserStateType } from '../types';
+import type { UserStateType } from '../types';
 
 export const useUserStore = defineStore('user', {
 	state: (): UserStateType => ({
