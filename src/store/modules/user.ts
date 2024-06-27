@@ -4,6 +4,7 @@ import { getUserInfo } from '@/api/user';
 import { piniaPersist } from '@/store/helpers/piniaPersist';
 import { defineStore } from 'pinia';
 import type { UserStateType } from '../types';
+import router from '@/router';
 
 export const useUserStore = defineStore('user', {
 	state: (): UserStateType => ({
@@ -30,10 +31,18 @@ export const useUserStore = defineStore('user', {
 			this.refreshToken = data.refreshToken;
 		},
 		async logoutAction() {
-			await logout();
-			this.accessToken = '';
-			this.refreshToken = '';
-			this.nickname = '';
+			ElMessageBox.confirm('是否退出登录?', '温馨提示', {
+				confirmButtonText: '是',
+				cancelButtonText: '否',
+				type: 'warning'
+			})
+				.then(() => logout())
+				.then(() => {
+					this.accessToken = '';
+					this.refreshToken = '';
+					this.nickname = '';
+					router.replace('/login');
+				});
 		}
 	},
 	persist: piniaPersist({ key: 'user', paths: ['accessToken', 'refreshToken'] })
