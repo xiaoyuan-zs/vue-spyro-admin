@@ -1,5 +1,5 @@
-import { DirectiveBinding } from 'vue';
-import { DirectiveOptions } from '../types';
+import type { DirectiveBinding } from 'vue';
+import type { DirectiveOptions } from '../types';
 
 /**
  * 自定义指令-操作权限处理

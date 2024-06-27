@@ -2,7 +2,7 @@ import { router } from '@/router';
 import { usePermissionStore } from '@/store/modules/permission';
 import { buildHierarchyTree, flatTreeToArray } from '@/utils/tree';
 import { formatTwoStageRoutes, outerSortAsc } from './utils';
-import { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 
 // 导入views 下的所有 vue 或 tsx
 const modulesRoutes = import.meta.glob('/src/views/**/*.{vue,tsx}');
