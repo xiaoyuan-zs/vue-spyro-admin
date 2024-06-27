@@ -1,9 +1,7 @@
 <script setup lang="ts">
 	import { getUserList, getUserById } from '@/api/user';
 	const getList = () => {
-		getUserList({ pageNum: 2, pageSize: 10, ids: [1, 2] }).then((res) => {
-			console.log(111, res.data);
-		});
+		getUserList({ pageNum: 2, pageSize: 10, ids: [1, 2] }).then((res) => {});
 	};
 
 	const getOneUser = () => {

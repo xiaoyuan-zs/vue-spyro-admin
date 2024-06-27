@@ -40,8 +40,8 @@ class AxiosConfig {
 		//2. 初始化请求拦截器
 		this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 			// 修改axios中 GET请求参数的默认序列化方式
-			if (config.method === 'get' && !isAllEmpty(config.params)) {
-				let url = config.url! + '?';
+			if (config.method === 'get') {
+				let url = config.url! + (config.params && !isAllEmpty(config.params) ? '?' : '');
 				let params = qs.stringify(config.params, { arrayFormat: 'comma' });
 				url += params;
 				config.params = {};
@@ -56,8 +56,7 @@ class AxiosConfig {
 			}
 
 			// 外部传递的请求拦截器存在则使用外部拦截器
-			if (requestInterceptors) config = requestInterceptors(config);
-
+			if (requestInterceptors) return requestInterceptors(config);
 			return config;
 			//TODO 默认请求错误待处理
 		}, requestInterceptorsCatch ?? undefined);
@@ -68,7 +67,7 @@ class AxiosConfig {
 				// 在响应拦截器中，调用该方法，若数据已经响应回来，则删除存储请求控制器中的kv即可
 				response && cancelAxios.removePending(response.config);
 				// 外部传递的响应拦截器存在则使用响应拦截器
-				if (responseInterceptor) response = responseInterceptor(response);
+				if (responseInterceptor) return responseInterceptor(response);
 				return response;
 			},
 			(err: AxiosError) => {

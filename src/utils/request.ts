@@ -4,7 +4,7 @@ import { useUserStore } from '@/store';
 const { VITE_MOCK_SERVER, VITE_APP_BASE_API } = import.meta.env;
 
 let isRefresh = false;
-const requestQueue: Array<{ config: InternalAxiosRequestConfig }> = [];
+const requestQueue: Array<{ config: InternalAxiosRequestConfig; resolve: any }> = [];
 
 export const service = new AxiosConfig({
 	baseURL: VITE_MOCK_SERVER === 'true' ? '/mock' : VITE_APP_BASE_API,
@@ -23,27 +23,31 @@ export const service = new AxiosConfig({
 		},
 		responseInterceptor(response) {
 			if (response.data.code === 401) {
-				const userStore = useUserStore();
-				if (!isRefresh) {
-					isRefresh = true;
-					setTimeout(() => {
-						userStore.refreshTokenAction().then(() => {
-							isRefresh = false;
-							requestQueue.forEach((item) => {
-								item.config.headers['Authorization'] = userStore.accessToken;
-								service.request(item.config).then();
-							});
-						});
-					}, 5000);
-				} else {
-					new Promise(() => {
-						requestQueue.push({
-							config: response.config
-						});
+				return new Promise((resolve) => {
+					requestQueue.push({
+						config: response.config,
+						resolve
 					});
-				}
-				// const userStore = useUserStore();
-				// userStore.logoutAction();
+					console.log('requestQueue --> ', requestQueue);
+					const userStore = useUserStore();
+					if (!isRefresh) {
+						isRefresh = true;
+						userStore
+							.refreshTokenAction()
+							.then(() => {
+								isRefresh = false;
+								requestQueue.forEach(({ resolve, config }) => {
+									resolve(service.request(config));
+								});
+							})
+							.catch((err) => {
+								console.warn('refreshToken失效 ---> ', err);
+								const userStore = useUserStore();
+								userStore.logoutAction();
+								window.location.href = '/';
+							});
+					}
+				});
 			}
 			return response;
 		},

@@ -20,11 +20,13 @@ export interface AxiosOptions extends AxiosRequestConfig {
 /** 定义拦截器抽象类 */
 export abstract class AxiosInterceptor {
 	// 请求拦截器
-	abstract requestInterceptors?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig;
+	abstract requestInterceptors?: (
+		config: InternalAxiosRequestConfig
+	) => InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig<any>>;
 	// 请求错误拦截器
 	abstract requestInterceptorsCatch?: (error: Error) => Error;
 	// 响应拦截器
-	abstract responseInterceptor?: (response: AxiosResponse<ApiResponse>) => AxiosResponse<ApiResponse>;
+	abstract responseInterceptor?: (response: AxiosResponse<ApiResponse>) => AxiosResponse<ApiResponse> | Promise<AxiosResponse<ApiResponse>>;
 	// 响应错误拦截器（添加实例为了使用请求超时报错重试）
 	abstract responseInterceptorsCatch?: (instance: AxiosInstance, error: AxiosError) => void;
 }

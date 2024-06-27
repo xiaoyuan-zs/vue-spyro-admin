@@ -21,7 +21,7 @@ export const isUrl = (path: string): boolean => {
 };
 
 /**
- * 判断数组、字符串、Map、Set、对象是否为空
+ * 判断数组、字符串、Map、Set、对象是否为空, 上述为空则返回 true, 否则返回false, 其余类型全部返回 false
  * @param val
  * @returns
  */
