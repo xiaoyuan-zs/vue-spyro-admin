@@ -1,7 +1,7 @@
 export * from './validate';
-
 export {
 	toFormatString,
+	toArrayTree,
 	get,
 	clone,
 	isUndefined,
