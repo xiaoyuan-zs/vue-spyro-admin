@@ -1,5 +1,5 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
-import { users, type User } from './user.fake';
+import { users } from './user.fake';
 import { createAccessToken, createRefreshToken, verifyAccessToken, verifyRefreshToken } from './verifyJwt';
 
 export default defineFakeRoute([
