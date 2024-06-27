@@ -1,13 +1,16 @@
 import { login, logout, refresh } from '@/api/login';
 import type { LoginParams } from '@/api/login/types';
+import { getUserInfo } from '@/api/user';
 import { piniaPersist } from '@/plugins/piniaPersist';
 import { defineStore } from 'pinia';
+import { UserStateType } from '../types';
 
 export const useUserStore = defineStore('user', {
-	state: () => ({
+	state: (): UserStateType => ({
 		accessToken: '',
 		refreshToken: '',
-		nickname: ''
+		nickname: '',
+		userInfo: {}
 	}),
 	actions: {
 		async loginAction(params: LoginParams) {
@@ -15,6 +18,11 @@ export const useUserStore = defineStore('user', {
 			this.accessToken = data.accessToken;
 			this.refreshToken = data.refreshToken;
 			this.nickname = data.nickname;
+		},
+		async getUserInfoAction() {
+			const { data } = await getUserInfo();
+			this.nickname = data.nickname;
+			this.userInfo = data;
 		},
 		async refreshTokenAction() {
 			const { data } = await refresh({ refreshToken: this.refreshToken });

@@ -1,5 +1,6 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { faker } from '@faker-js/faker';
+import { verifyAccessToken } from './verifyJwt';
 
 export function createRandomUser() {
 	return {
@@ -23,10 +24,10 @@ export function createRandomUser() {
 export const fakeUsers = faker.helpers.multiple(createRandomUser, { count: 30 });
 
 // 导出类型
-export type User = typeof fakeUsers;
+export type User = (typeof fakeUsers)[0];
 
 // 管理员数据
-export const users: User = [
+export const users: User[] = [
 	{
 		userId: '123456',
 		username: 'admin',
@@ -50,11 +51,11 @@ export default defineFakeRoute([
 		url: '/users',
 		method: 'GET',
 		response: ({ query, headers }) => {
-			// 测试401 token 无感刷新
-			if (headers.authorization !== 'eyJhbGciOiJIUzUxMiJ9.admin2') {
+			const result = verifyAccessToken(headers.authorization!);
+			if (!result.verify) {
 				return {
 					code: 401,
-					message: '登录失效，请重新登录'
+					...result.err
 				};
 			}
 			const { pageNum = 1, pageSize = 10, username, nickname, email, phone } = query;
@@ -71,11 +72,11 @@ export default defineFakeRoute([
 		url: '/users/:id',
 		method: 'GET',
 		response: ({ params, headers }) => {
-			// 测试401 token 无感刷新
-			if (headers.authorization !== 'eyJhbGciOiJIUzUxMiJ9.admin2') {
+			const result = verifyAccessToken(headers.authorization!);
+			if (!result.verify) {
 				return {
 					code: 401,
-					message: '登录失效，请重新登录'
+					...result.err
 				};
 			}
 			const { id } = params;

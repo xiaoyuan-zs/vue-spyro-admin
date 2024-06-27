@@ -28,7 +28,6 @@ export const service = new AxiosConfig({
 						config: response.config,
 						resolve
 					});
-					console.log('requestQueue --> ', requestQueue);
 					const userStore = useUserStore();
 					if (!isRefresh) {
 						isRefresh = true;

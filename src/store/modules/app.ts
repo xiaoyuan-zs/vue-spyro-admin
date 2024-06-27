@@ -1,9 +1,9 @@
 import type { LocaleKey } from '@/locales/locales';
 import { defineStore } from 'pinia';
-import type { AppType } from '../types';
+import type { AppStateType } from '../types';
 
 export const useAppStore = defineStore('app', {
-	state: (): AppType => ({
+	state: (): AppStateType => ({
 		// 菜单是否收缩 是: false, 否: true
 		isCollapse: false,
 		// 移动端适配

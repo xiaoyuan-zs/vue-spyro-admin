@@ -1,7 +1,7 @@
 import { useEventListener } from '@vueuse/core';
 import { useTabsStore } from '@/store';
 import { useRoute } from 'vue-router';
-import { ContextMenuType } from '@/store/types';
+import type { ContextMenuType } from '@/store/types';
 
 export const useTabs = () => {
 	let menuClientX = ref<number>(0);

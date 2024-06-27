@@ -1,16 +1,24 @@
+import type { User } from '@/api/user/types';
 import type { RouteRecordRaw } from 'vue-router';
 
-export type PermissionType = {
+export type PermissionStateType = {
 	constantMenus: RouteRecordRaw[];
 	wholeMenus: RouteRecordRaw[];
 	cachePages: string[];
 };
 
-export type AppType = {
+export type AppStateType = {
 	isCollapse: boolean;
 	isMobile: boolean;
 	reload: boolean;
 	language: string;
+};
+
+export type UserStateType = {
+	accessToken: string;
+	refreshToken: string;
+	nickname: string;
+	userInfo: Partial<User>;
 };
 
 export type TabsMenuType = {

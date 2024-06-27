@@ -1,12 +1,12 @@
 import { constantMenus } from '@/router';
 import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
 import { defineStore } from 'pinia';
-import type { PermissionType } from '../types';
+import type { PermissionStateType } from '../types';
 import type { RouteRecordRaw } from 'vue-router';
 import { flatTreeToArray } from '@/utils/tree';
 
 export const usePermissionStore = defineStore('permission', {
-	state: (): PermissionType => ({
+	state: (): PermissionStateType => ({
 		// 静态路由生成菜单
 		constantMenus: constantMenus,
 		// 静态、动态路由生成菜单

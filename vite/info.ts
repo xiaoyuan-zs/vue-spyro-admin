@@ -1,7 +1,7 @@
 import type { Plugin } from 'vite';
 import gradientString from 'gradient-string';
 import boxen, { type Options as BoxenOptions } from 'boxen';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { type Dayjs } from 'dayjs';
 // Duration 增加了 .duration .isDuring API 来支持时间长度。
 // @see https://day.js.org/docs/zh-CN/plugin/duration
 import duration from 'dayjs/plugin/duration';
