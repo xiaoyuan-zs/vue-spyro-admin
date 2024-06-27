@@ -90,6 +90,7 @@ function initRoutes() {
 	return new Promise((resolve) => {
 		// getAsyncRouters().then()
 		handleAsyncRoutes([]);
+		resolve(router);
 	});
 }
 

@@ -1,5 +1,5 @@
 import echarts, { type ECOption } from '@/plugins/echarts';
-import { type EChartsType } from 'echarts/core';
+import type { EChartsType } from 'echarts/core';
 import { useDebounceFn } from '@vueuse/core';
 
 export const useEcharts = (el: HTMLDivElement, options: Ref<ECOption>) => {

@@ -3,15 +3,12 @@
 	import { useTheme } from '@/layouts/hooks/useTheme';
 	import zhCN from 'element-plus/es/locale/lang/zh-cn';
 	import en from 'element-plus/es/locale/lang/en';
-	import { initRoutes } from './router/helpers/handleRoutes';
 
 	const appStore = useAppStore();
 	const language = computed(() => (appStore.language === 'zh-CN' ? zhCN : en));
 
 	const { initTheme } = useTheme();
 	initTheme();
-
-	initRoutes();
 </script>
 
 <template>
