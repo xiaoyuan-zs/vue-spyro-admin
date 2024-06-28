@@ -1,12 +1,13 @@
 import echarts, { type ECOption } from '@/plugins/echarts';
 import type { EChartsType } from 'echarts/core';
 import { useDebounceFn } from '@vueuse/core';
+import { useLayoutStore } from '@/store';
 
 export const useEcharts = (el: HTMLDivElement, options: Ref<ECOption>) => {
 	let myChart: EChartsType | null = null;
 
 	const initCharts = () => {
-		const theme = 'light';
+		const theme = useLayoutStore().colorMode;
 		myChart = markRaw(echarts.init(el, theme));
 		setOptions(options.value);
 	};
@@ -31,17 +32,17 @@ export const useEcharts = (el: HTMLDivElement, options: Ref<ECOption>) => {
 		{ deep: true }
 	);
 
-	// // 暗黑模式切换
-	// watch(
-	// 	() => layoutStore.colorMode,
-	// 	() => {
-	// 		if (myChart) {
-	// 			// 销毁实例，实例销毁后无法再被使用。
-	// 			myChart.dispose();
-	// 			initCharts();
-	// 		}
-	// 	}
-	// );
+	// 暗黑模式切换
+	watch(
+		() => useLayoutStore().colorMode,
+		() => {
+			if (myChart) {
+				// 销毁实例，实例销毁后无法再被使用。
+				myChart.dispose();
+				initCharts();
+			}
+		}
+	);
 
 	window.addEventListener('resize', resize);
 

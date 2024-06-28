@@ -1,12 +1,12 @@
-<script lang="tsx" name="SwToolTip">
+<script lang="tsx">
+	import { propTypes } from '@/utils/propTypes';
 	export default defineComponent({
+		name: 'SoToolTip',
 		props: {
-			textColor: {
-				type: String
-			},
+			textColor: propTypes.string.def('text-inherit'),
 			content: [String, Number],
-			lineClamp: String,
-			popoverWidth: Number
+			lineClamp: propTypes.string.def('line-clamp-2'),
+			popoverWidth: propTypes.number.def(230)
 		},
 		setup(props) {
 			const { content, lineClamp, popoverWidth, textColor } = toRefs(props);

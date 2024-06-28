@@ -6,6 +6,7 @@
 	import echarts, { type ECOption } from '@/plugins/echarts';
 	import { type EChartsType } from 'echarts/core';
 	import { useDebounceFn } from '@vueuse/core';
+	import { useLayoutStore } from '@/store';
 
 	interface Props {
 		option: ECOption;
@@ -18,7 +19,7 @@
 	}
 
 	const props = withDefaults(defineProps<Props>(), {
-		theme: 'light',
+		theme: useLayoutStore().colorMode,
 		loading: false
 	});
 
