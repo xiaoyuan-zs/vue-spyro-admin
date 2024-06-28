@@ -4,6 +4,12 @@
 			<span>基本表格示例</span>
 		</template>
 		<SoTable ref="SoTableRef" height="100%" :column-list="columns" :table-data />
+		<!-- <Pagination
+			v-show="total"
+			v-model:currentPage="queryparams.pageNum"
+			v-model:pageSize="queryparams.pageSize"
+			:total="total"
+			@get-list="getList" /> -->
 	</el-card>
 </template>
 
@@ -16,7 +22,7 @@
 		{
 			type: 'index',
 			label: '序号',
-			width: '50'
+			width: '55'
 		},
 		{
 			prop: 'username',
@@ -24,7 +30,10 @@
 		},
 		{
 			prop: 'nickname',
-			label: '昵称'
+			label: '昵称',
+			tagConfig: {
+				initiate: true
+			}
 		},
 		{
 			prop: 'sex',

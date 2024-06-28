@@ -20,7 +20,7 @@
 					</template>
 					<!-- 拖拽排序 -->
 					<el-tag v-if="column.type === 'sortable'">
-						<el-icon><DCaret /></el-icon>
+						<Icon name="ep:d-caret" />
 					</el-tag>
 				</template>
 				<template #header="scope">
@@ -28,7 +28,7 @@
 					<slot v-else :name="`${column.type}Header`" v-bind="scope"></slot>
 				</template>
 			</el-table-column>
-			<SoTableColumn />
+			<SoTableColumn v-if="!column.type && column.prop" :column />
 		</template>
 		<!-- 默认插槽 支持el-table 的columns -->
 		<slot />
@@ -44,9 +44,12 @@
 </template>
 
 <script setup lang="tsx">
+	import { PropType } from 'vue';
 	import { ElTable, ElTableColumn } from 'element-plus';
-	import { ColumnProps } from '@/components/SoTable';
-	const props = withDefaults(
+	import { ColumnProps, ContentRendererType, HeaderRendererType } from '@/components/SoTable';
+	import { SoToolTip } from '@/components/SoToolTip';
+
+	withDefaults(
 		defineProps<{
 			tableData: any[];
 			columnList: ColumnProps[];
@@ -62,11 +65,51 @@
 	// 表格实例
 	const tableRef = ref<InstanceType<typeof ElTable>>();
 
+	// 处理TableColumn
+	const slots = defineSlots();
+	const TableColumn = (column: ColumnProps) => (
+		<ElTableColumn {...column} align={column.align ?? 'center'}>
+			{{
+				default: (scope: ContentRendererType<any>) => {
+					if (column.renderer) return column.renderer(scope);
+					if (slots[column.prop!]) return slots[column.prop!](scope);
+					if (column.children?.length) return column.children.map((item) => TableColumn(item));
+					if (column.tagConfig?.initiate) return <el-tag type={column.tagConfig.type ?? 'primary'}>{scope.row[column.prop!]}</el-tag>;
+					return (
+						<>
+							{column.overflowConfig?.initiate ? (
+								<SoToolTip
+									textColor={column.overflowConfig.color}
+									popoverWidth={column.overflowConfig.width}
+									lineClamp={column.overflowConfig.line}
+									content={scope.row[column.prop!]}
+								/>
+							) : (
+								scope.row[column.prop!]
+							)}
+						</>
+					);
+				},
+				header: (scope: HeaderRendererType<any>) => {
+					if (column.headerRenderer) return column.headerRenderer(scope);
+					if (slots[`${column.prop!}Header`]) return slots[`${column.prop!}Header`](scope);
+					return column.label;
+				}
+			}}
+		</ElTableColumn>
+	);
+
 	// 渲染表格列
 	const SoTableColumn = defineComponent({
 		name: 'SoTableColumn',
-		render() {
-			return h(ElTableColumn, {});
+		props: {
+			column: {
+				type: Object as PropType<ColumnProps>,
+				required: true
+			}
+		},
+		setup({ column }) {
+			return () => TableColumn(column);
 		}
 	});
 </script>

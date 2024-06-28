@@ -1,2 +1,2 @@
-import SwToolTip from './src/SwToolTip.vue';
-export { SwToolTip };
+import SoToolTip from './src/SoToolTip.vue';
+export { SoToolTip };
