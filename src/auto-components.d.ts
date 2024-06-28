@@ -50,8 +50,6 @@ declare module 'vue' {
     RightMenu: typeof import('./components/RightMenu/src/RightMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+    SoToolTip: typeof import('./components/SoToolTip/src/SoToolTip.vue')['default']
   }
 }

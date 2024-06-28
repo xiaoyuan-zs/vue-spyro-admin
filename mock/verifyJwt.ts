@@ -7,17 +7,29 @@ interface VerifyToken {
 	err: VerifyErrors;
 }
 
+interface VerifyUser extends User {
+	iat?: number;
+	exp?: number;
+}
+
 const privateAccessKey = '@spyroAdminAccess!123';
 const privateRefreshKey = '@spyroAdminRefresh!123';
 
-export const createAccessToken = (user: User) =>
-	jwt.sign(user, privateAccessKey, {
+export const createAccessToken = (user: VerifyUser) => {
+	delete user.exp;
+	delete user.iat;
+	return jwt.sign(user, privateAccessKey, {
 		expiresIn: 60 * 60
 	});
-export const createRefreshToken = (user: User) =>
-	jwt.sign(user, privateRefreshKey, {
+};
+
+export const createRefreshToken = (user: VerifyUser) => {
+	delete user.exp;
+	delete user.iat;
+	return jwt.sign(user, privateRefreshKey, {
 		expiresIn: 60 * 60 * 24
 	});
+};
 
 // 验证token是否有效或过期
 export const verifyAccessToken = (token: string) => {
