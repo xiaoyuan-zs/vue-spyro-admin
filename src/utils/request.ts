@@ -41,9 +41,15 @@ export const service = new AxiosConfig({
 							})
 							.catch((err) => {
 								console.warn('refreshToken失效 ---> ', err);
-								const userStore = useUserStore();
-								userStore.logoutAction();
-								window.location.href = '/';
+								ElMessageBox.confirm('登录失效，是否重新登录?', '温馨提示', {
+									confirmButtonText: '是',
+									cancelButtonText: '否',
+									type: 'warning'
+								}).then(() => {
+									const userStore = useUserStore();
+									userStore.logoutAction();
+									window.location.href = '/';
+								});
 							});
 					}
 				});
