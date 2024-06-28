@@ -1,19 +1,7 @@
-<script setup lang="ts">
-	import { getUserList, getUserById } from '@/api/user';
-	const getList = () => {
-		getUserList({ pageNum: 2, pageSize: 10, ids: [1, 2] }).then((res) => {});
-	};
-
-	const getOneUser = () => {
-		getUserById('123456').then(() => {});
-	};
-</script>
+<script setup lang="ts"></script>
 
 <template>
-	<div>
-		<el-button type="primary" @click="getList">用户列表</el-button>
-		<el-button type="primary" @click="getOneUser">某个用户</el-button>
-	</div>
+	<div>404</div>
 </template>
 
 <style lang="scss" scoped></style>

@@ -27,7 +27,7 @@ export default {
         "never" - 将每一段散文拆成一行。
         "preserve" - 什么都不做，让散文保持原样。 在 v1.9.0 中首次可用
      */
-	proseWrap: 'preserve',
+	proseWrap: 'never',
 	// vue文件内script和style标签缩进
 	vueIndentScriptAndStyle: true
 };
