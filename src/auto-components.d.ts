@@ -52,4 +52,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SoToolTip: typeof import('./components/SoToolTip/src/SoToolTip.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }

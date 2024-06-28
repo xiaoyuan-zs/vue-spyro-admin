@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue';
-import { RouteComponent, RouteRecordRaw } from 'vue-router';
+import type { defineComponent } from 'vue';
+import type { RouteComponent } from 'vue-router';
 
 declare global {
 	// 定义组件类型
@@ -70,7 +70,7 @@ declare global {
 		redirect?: string;
 		component?: Component | RouteComponent;
 		meta?: CustomizeRouteMeta;
-		children?: RouteOption[];
+		children?: RouteChildrenOption[];
 	};
 
 	/**
