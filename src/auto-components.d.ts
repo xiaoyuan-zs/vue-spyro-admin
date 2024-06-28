@@ -51,9 +51,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SwToolTip: typeof import('./components/SpyroToolTip/src/SwToolTip.vue')['default']
-    Verify: typeof import('./components/Verifition/src/Verify.vue')['default']
-    VerifyPoints: typeof import('./components/Verifition/src/Verify/VerifyPoints.vue')['default']
-    VerifySlide: typeof import('./components/Verifition/src/Verify/VerifySlide.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

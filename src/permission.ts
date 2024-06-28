@@ -1,5 +1,4 @@
 import router from '@/router';
-import type { RouteLocationNormalized } from 'vue-router';
 import { start, done } from '@/plugins/nprogress';
 import { useUserStore, usePermissionStore } from '@/store';
 import { initRoutes } from '@/router/helpers/handleRoutes';
@@ -9,7 +8,7 @@ import { translateRouteTitle } from '@/utils/locales';
 const whiteList = ['/login'];
 const title = import.meta.env.VITE_APP_TITLE;
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _, next) => {
 	start();
 	const permissionStore = usePermissionStore();
 	const userStore = useUserStore();
@@ -18,11 +17,12 @@ router.beforeEach(async (to, from, next) => {
 		if (whiteList.includes(to.path)) {
 			// 在免登录白名单，直接进入
 			next();
+			return;
 		} else {
+			// 否则全部重定向到登录页
 			next({
-				path: `/login`,
-				query: { redirect: to.fullPath }
-			}); // 否则全部重定向到登录页
+				path: `/login?redirect=${to.fullPath}`
+			});
 		}
 	}
 	// 如去登陆页自动跳转到主页
@@ -32,14 +32,14 @@ router.beforeEach(async (to, from, next) => {
 
 	if (!permissionStore.wholeMenus.length) {
 		try {
+			await userStore.getUserInfoAction();
 			await initRoutes();
 			next({ ...to, replace: true });
 		} catch (error) {
 			// 退出token 并跳转登录页
 			await userStore.logoutAction();
 			next({
-				path: `/login`,
-				query: { redirect: to.fullPath }
+				path: `/login?redirect=${to.fullPath}`
 			});
 		}
 	} else {
@@ -47,7 +47,7 @@ router.beforeEach(async (to, from, next) => {
 	}
 });
 
-router.afterEach((to: RouteLocationNormalized) => {
+router.afterEach((to) => {
 	if (to.meta.title) {
 		document.title = translateRouteTitle(to.meta.title) + '-' + title;
 	}
