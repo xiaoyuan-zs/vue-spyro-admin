@@ -1,5 +1,6 @@
 export * from './validate';
 export * from './tree';
+export * from './use';
 export {
 	toFormatString,
 	toArrayTree,

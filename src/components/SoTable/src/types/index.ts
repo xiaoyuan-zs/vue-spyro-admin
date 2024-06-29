@@ -30,7 +30,7 @@ export interface ColumnProps<T = any>
 	dictConfig?: {
 		value?: string; // 字典回显值字段
 		label?: string; // 字典回显标签字段
-		options?: any[]; // 字典，用于回显单元格内容
+		options?: () => any[]; // 字典，用于回显单元格内容
 	};
 	// popover悬浮展示配置
 	overflowConfig?: {

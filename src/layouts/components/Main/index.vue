@@ -26,6 +26,7 @@
 
 	//自定义动画组件
 	const transitionMain = defineComponent({
+		name: 'TransitionMain',
 		props: {
 			route: {
 				type: undefined,

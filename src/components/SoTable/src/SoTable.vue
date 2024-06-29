@@ -48,6 +48,7 @@
 	import { ElTable, ElTableColumn, ElTag } from 'element-plus';
 	import { ColumnProps, ContentRendererType, HeaderRendererType } from '@/components/SoTable';
 	import { SoToolTip } from '@/components/SoToolTip';
+	import { selectDictLabel } from '@spyro/utils';
 
 	withDefaults(
 		defineProps<{
@@ -74,7 +75,13 @@
 					if (column.renderer) return column.renderer(scope);
 					if (slots[column.prop!]) return slots[column.prop!](scope);
 					if (column.children?.length) return column.children.map((item) => renderColumn(item));
-					if (column.tagConfig?.initiate) return <ElTag type={column.tagConfig.type ?? 'primary'}>{scope.row[column.prop!]}</ElTag>;
+					const dictFormatter = selectDictLabel(
+						(column.dictConfig?.options && column.dictConfig?.options()) || [],
+						scope.row[column.prop!],
+						column.dictConfig?.value,
+						column.dictConfig?.label
+					);
+					if (column.tagConfig?.initiate) return <ElTag type={column.tagConfig.type ?? 'primary'}>{dictFormatter}</ElTag>;
 					return (
 						<>
 							{column.overflowConfig?.initiate ? (
@@ -82,10 +89,10 @@
 									textColor={column.overflowConfig.color}
 									popoverWidth={column.overflowConfig.width}
 									lineClamp={column.overflowConfig.line}
-									content={scope.row[column.prop!]}
+									content={dictFormatter}
 								/>
 							) : (
-								scope.row[column.prop!]
+								dictFormatter
 							)}
 						</>
 					);
@@ -110,15 +117,21 @@
 	// 				if (column.renderer) return column.renderer(scope);
 	// 				if (slots[column.prop!]) return slots[column.prop!](scope);
 	// 				if (column.children?.length) return column.children.map((item) => renderColumn(item));
-	// 				if (column.tagConfig?.initiate) return h(ElTag, { type: column.tagConfig.type ?? 'primary' }, () => scope.row[column.prop!]);
+	// 				const dictFormatter = selectDictLabel(
+	// 					(column.dictConfig?.options && column.dictConfig?.options()) || [],
+	// 					scope.row[column.prop!],
+	// 					column.dictConfig?.value,
+	// 					column.dictConfig?.label
+	// 				);
+	// 				if (column.tagConfig?.initiate) return h(ElTag, { type: column.tagConfig.type ?? 'primary' }, () => dictFormatter);
 	// 				return column.overflowConfig?.initiate
 	// 					? h(SoToolTip, {
 	// 							textColor: column.overflowConfig?.color,
 	// 							popoverWidth: column.overflowConfig?.width,
 	// 							lineClamp: column.overflowConfig?.line,
-	// 							content: scope.row[column.prop!]
+	// 							content: dictFormatter
 	// 						})
-	// 					: scope.row[column.prop!];
+	// 					: dictFormatter;
 	// 			},
 	// 			header: (scope: HeaderRendererType<any>) => {
 	// 				if (column.headerRenderer) return column.headerRenderer(scope);

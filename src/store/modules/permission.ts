@@ -3,7 +3,7 @@ import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
 import { defineStore } from 'pinia';
 import type { PermissionStateType } from '../types';
 import type { RouteRecordRaw } from 'vue-router';
-import { flatTreeToArray } from '@/utils/tree';
+import { flatTreeToArray } from '@spyro/utils';
 
 export const usePermissionStore = defineStore('permission', {
 	state: (): PermissionStateType => ({
