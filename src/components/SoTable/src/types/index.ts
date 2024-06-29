@@ -19,7 +19,7 @@ export interface ContentRendererType<T> extends HeaderRendererType<T> {
 export interface ColumnProps<T = any>
 	extends Partial<Omit<TableColumnCtx<T>, 'type' | 'prop' | 'children' | 'renderCell' | 'renderHeader'>> {
 	type?: ColumnType; // 列的类型
-	prop?: keyof T & string;
+	prop?: (keyof T & string) | 'operation';
 	visible?: boolean; // 是否显示该列
 	// 标签显示
 	tagConfig?: {
