@@ -38,6 +38,7 @@ export interface ApiResponse<T = any> {
 	code: number;
 	data: T;
 	message?: string;
+	total?: number;
 }
 
 export type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig };

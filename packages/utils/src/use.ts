@@ -17,8 +17,6 @@ export function selectDictLabel<
 	if (!option?.length) return field;
 	const data = option.find((item) => {
 		if (typeof item[value] === 'string') return item[value] === field + '';
-		console.log('field', field, Number(field));
-
 		return item[value] === Number(field);
 	});
 	if (data) return data[label];
