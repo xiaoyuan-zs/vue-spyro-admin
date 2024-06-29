@@ -1,4 +1,5 @@
 export * from './validate';
+export * from './tree';
 export {
 	toFormatString,
 	toArrayTree,

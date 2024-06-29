@@ -1,6 +1,6 @@
 import { router } from '@/router';
 import { usePermissionStore } from '@/store/modules/permission';
-import { buildHierarchyTree, flatTreeToArray } from '@/utils/tree';
+import { buildHierarchyTree, flatTreeToArray } from '@spyro/utils';
 import { formatTwoStageRoutes, outerSortAsc } from './utils';
 import type { RouteRecordRaw } from 'vue-router';
 

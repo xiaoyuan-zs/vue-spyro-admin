@@ -29,6 +29,7 @@ export const service = new AxiosConfig({
 						resolve
 					});
 					const userStore = useUserStore();
+					// 防止多次刷新token
 					if (!isRefresh) {
 						isRefresh = true;
 						userStore

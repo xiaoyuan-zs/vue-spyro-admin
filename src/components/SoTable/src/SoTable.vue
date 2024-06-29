@@ -45,7 +45,7 @@
 
 <script setup lang="tsx">
 	import { PropType } from 'vue';
-	import { ElTable, ElTableColumn } from 'element-plus';
+	import { ElTable, ElTableColumn, ElTag } from 'element-plus';
 	import { ColumnProps, ContentRendererType, HeaderRendererType } from '@/components/SoTable';
 	import { SoToolTip } from '@/components/SoToolTip';
 
@@ -67,14 +67,14 @@
 
 	// 处理TableColumn
 	const slots = defineSlots();
-	const TableColumn = (column: ColumnProps) => (
+	const renderColumn = (column: ColumnProps) => (
 		<ElTableColumn {...column} align={column.align ?? 'center'}>
 			{{
 				default: (scope: ContentRendererType<any>) => {
 					if (column.renderer) return column.renderer(scope);
 					if (slots[column.prop!]) return slots[column.prop!](scope);
-					if (column.children?.length) return column.children.map((item) => TableColumn(item));
-					if (column.tagConfig?.initiate) return <el-tag type={column.tagConfig.type ?? 'primary'}>{scope.row[column.prop!]}</el-tag>;
+					if (column.children?.length) return column.children.map((item) => renderColumn(item));
+					if (column.tagConfig?.initiate) return <ElTag type={column.tagConfig.type ?? 'primary'}>{scope.row[column.prop!]}</ElTag>;
 					return (
 						<>
 							{column.overflowConfig?.initiate ? (
@@ -99,6 +99,36 @@
 		</ElTableColumn>
 	);
 
+	// const renderColumn = (column: ColumnProps) => {
+	// 	return h(
+	// 		ElTableColumn,
+	// 		{
+	// 			...column
+	// 		},
+	// 		{
+	// 			default: (scope: ContentRendererType<any>) => {
+	// 				if (column.renderer) return column.renderer(scope);
+	// 				if (slots[column.prop!]) return slots[column.prop!](scope);
+	// 				if (column.children?.length) return column.children.map((item) => renderColumn(item));
+	// 				if (column.tagConfig?.initiate) return h(ElTag, { type: column.tagConfig.type ?? 'primary' }, () => scope.row[column.prop!]);
+	// 				return column.overflowConfig?.initiate
+	// 					? h(SoToolTip, {
+	// 							textColor: column.overflowConfig?.color,
+	// 							popoverWidth: column.overflowConfig?.width,
+	// 							lineClamp: column.overflowConfig?.line,
+	// 							content: scope.row[column.prop!]
+	// 						})
+	// 					: scope.row[column.prop!];
+	// 			},
+	// 			header: (scope: HeaderRendererType<any>) => {
+	// 				if (column.headerRenderer) return column.headerRenderer(scope);
+	// 				if (slots[`${column.prop!}Header`]) return slots[`${column.prop!}Header`](scope);
+	// 				return column.label;
+	// 			}
+	// 		}
+	// 	);
+	// };
+
 	// 渲染表格列
 	const SoTableColumn = defineComponent({
 		name: 'SoTableColumn',
@@ -109,7 +139,7 @@
 			}
 		},
 		setup({ column }) {
-			return () => TableColumn(column);
+			return () => renderColumn(column);
 		}
 	});
 </script>

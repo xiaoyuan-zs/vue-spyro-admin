@@ -3,7 +3,7 @@
 		<template #header>
 			<span>基本表格示例</span>
 		</template>
-		<SoTable ref="SoTableRef" height="100%" :column-list="columns" :table-data />
+		<SoTable ref="SoTableRef" height="100%" :column-list="columns" :table-data></SoTable>
 		<!-- <Pagination
 			v-show="total"
 			v-model:currentPage="queryparams.pageNum"
@@ -26,7 +26,10 @@
 		},
 		{
 			prop: 'username',
-			label: '用户名'
+			label: '用户名',
+			overflowConfig: {
+				initiate: true
+			}
 		},
 		{
 			prop: 'nickname',

@@ -1,7 +1,7 @@
-import { buildHierarchyTree, flatTreeToArray } from '@/utils/tree';
+import { buildHierarchyTree, flatTreeToArray } from '@spyro/utils';
 import { formatTwoStageRoutes, outerSortAsc } from './helpers/utils';
 import constantRoutes from './modules/constant';
-import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, type Router, type RouteRecordRaw } from 'vue-router';
 
 /** 导入modules 下的静态路由 */
 const modules: Record<string, any> = import.meta.glob(['./modules/**/*.ts', '!./modules/**/constant.ts'], {
