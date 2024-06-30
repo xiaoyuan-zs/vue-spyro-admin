@@ -1,18 +1,3 @@
-<template>
-	<el-pagination
-		class="pt-4"
-		v-model:current-page="currentPage"
-		v-model:page-size="pageSize"
-		:page-sizes="pageSizes"
-		:small="small"
-		:disabled="disabled"
-		:background="background"
-		:layout="layout"
-		:total="total"
-		@size-change="handleSizeChange"
-		@current-change="handleCurrentChange" />
-</template>
-
 <script setup lang="ts">
 	interface PageProps {
 		small?: boolean;
@@ -50,3 +35,18 @@
 		emit('getList');
 	};
 </script>
+
+<template>
+	<el-pagination
+		class="pt-4"
+		v-model:current-page="currentPage"
+		v-model:page-size="pageSize"
+		:page-sizes="pageSizes"
+		:small="small"
+		:disabled="disabled"
+		:background="background"
+		:layout="layout"
+		:total="total"
+		@size-change="handleSizeChange"
+		@current-change="handleCurrentChange" />
+</template>

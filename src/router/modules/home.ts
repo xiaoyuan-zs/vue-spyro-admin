@@ -19,7 +19,8 @@ export default {
 			meta: {
 				icon: 'ep:home-filled',
 				title: 'menus.homepage',
-				isFixed: true
+				isFixed: true,
+				keepAlive: true
 			}
 		}
 	]

@@ -10,13 +10,15 @@ export const usePermissionStore = defineStore('permission', {
 		// 静态路由生成菜单
 		constantMenus: constantMenus,
 		// 静态、动态路由生成菜单
-		wholeMenus: [],
-		// 缓存页面
-		cachePages: []
+		wholeMenus: []
 	}),
 	getters: {
 		// 扁平化菜单
-		flatMenus: (state) => flatTreeToArray(state.wholeMenus)
+		flatMenus: (state) => flatTreeToArray(state.wholeMenus),
+		// 缓存页面
+		cachePages(): string[] {
+			return this.flatMenus.filter((item) => item.meta?.keepAlive).map((item) => item.name as string);
+		}
 	},
 	actions: {
 		/**

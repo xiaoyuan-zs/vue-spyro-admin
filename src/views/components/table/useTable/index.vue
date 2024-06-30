@@ -1,3 +1,5 @@
+<script setup lang="ts" name="UseTable"></script>
+
 <template>
 	<el-card shadow="hover" class="h-full">
 		<div class="h-full flex-col">
@@ -7,5 +9,3 @@
 		</div>
 	</el-card>
 </template>
-
-<script setup lang="ts" name="UseTable"></script>

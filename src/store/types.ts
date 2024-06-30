@@ -4,7 +4,6 @@ import type { RouteRecordRaw } from 'vue-router';
 export type PermissionStateType = {
 	constantMenus: RouteRecordRaw[];
 	wholeMenus: RouteRecordRaw[];
-	cachePages: string[];
 };
 
 export type AppStateType = {

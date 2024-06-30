@@ -20,9 +20,10 @@ export default {
 					name: 'BasicTable',
 					component: () => import('@/views/components/table/basicTable/index.vue'),
 					meta: {
-						title: '基础表格'
+						title: '基础表格',
 						// 当只有一个子菜单时需要显示父级菜单时，需开启此配置
 						// showParent: true
+						keepAlive: true
 					}
 				},
 				{
@@ -30,7 +31,8 @@ export default {
 					name: 'UseTable',
 					component: () => import('@/views/components/table/useTable/index.vue'),
 					meta: {
-						title: 'useTable'
+						title: 'useTable',
+						keepAlive: true
 					}
 				}
 			]
@@ -50,7 +52,8 @@ export default {
 					meta: {
 						title: '基础表单',
 						// 当只有一个子菜单时需要显示父级菜单时，需开启此配置
-						showParent: true
+						showParent: true,
+						keepAlive: true
 					}
 				}
 			]

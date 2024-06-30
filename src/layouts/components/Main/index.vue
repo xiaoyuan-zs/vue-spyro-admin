@@ -1,8 +1,10 @@
 <script setup lang="ts" name="AppMain">
-	import { useLayoutStore, useAppStore } from '@/store';
+	import { useLayoutStore, useAppStore, usePermissionStore } from '@/store';
 	import { ElScrollbar } from 'element-plus';
 	import { Transition } from 'vue';
 	import { useRoute } from 'vue-router';
+
+	const permissionStore = usePermissionStore();
 	const layoutStore = useLayoutStore();
 	const appStore = useAppStore();
 	const route = useRoute();
@@ -64,7 +66,7 @@
 					<template #default="{ Component, route }">
 						<el-backtop target=".el-main div .el-scrollbar__wrap" title="回到顶部" />
 						<transitionMain :route>
-							<keep-alive>
+							<keep-alive :include="permissionStore.cachePages">
 								<component :is="Component" :key="route.name" v-if="appStore.reload" />
 							</keep-alive>
 						</transitionMain>

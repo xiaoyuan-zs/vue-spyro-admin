@@ -1,7 +1,3 @@
-<template>
-	<div ref="echartRef" :style="{ width, height }"></div>
-</template>
-
 <script setup lang="ts">
 	import echarts, { type ECOption } from '@/plugins/echarts';
 	import { type EChartsType } from 'echarts/core';
@@ -93,3 +89,7 @@
 		window.removeEventListener('resize', debouncedResize);
 	});
 </script>
+
+<template>
+	<div ref="echartRef" :style="{ width, height }"></div>
+</template>

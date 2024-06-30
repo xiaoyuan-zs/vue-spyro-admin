@@ -20,7 +20,8 @@ export default {
 				icon: 'logos:vue',
 				title: 'Vue3 官网',
 				// showParent: true, // 只有一个子级需要开启该配置
-				iframeSrc: 'https://cn.vuejs.org/guide/quick-start.html'
+				iframeSrc: 'https://cn.vuejs.org/guide/quick-start.html',
+				keepAlive: true
 			}
 		},
 		{
@@ -33,7 +34,8 @@ export default {
 			meta: {
 				icon: 'logos:vitejs',
 				title: 'Vite 官网',
-				iframeSrc: 'https://cn.vitejs.dev/'
+				iframeSrc: 'https://cn.vitejs.dev/',
+				keepAlive: true
 			}
 		}
 	]
