@@ -14,7 +14,7 @@ import svgLoader from 'vite-svg-loader';
 import { vitePluginFakeServer } from 'vite-plugin-fake-server';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { visualizer } from 'rollup-plugin-visualizer';
-import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import';
+// import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import';
 
 /**
  * Vite注册所需插件
@@ -36,9 +36,9 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 		// svg 组件化支持
 		svgLoader(),
 		// Vxe-Table 按需引入
-		createStyleImportPlugin({
-			resolves: [VxeTableResolve()]
-		}),
+		// createStyleImportPlugin({
+		// 	resolves: [VxeTableResolve()]
+		// }),
 		createSvgIconsPlugin({
 			// 指定要缓存的图标文件夹
 			iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],

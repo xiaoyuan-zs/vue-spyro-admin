@@ -1,16 +1,16 @@
 import zhCN from './zh-cn';
 import en from './en';
-import vxeZhCN from 'vxe-table/lib/locale/lang/zh-CN';
-import vxeEnUS from 'vxe-table/lib/locale/lang/en-US';
+// import vxeZhCN from 'vxe-table/lib/locale/lang/zh-CN';
+// import vxeEnUS from 'vxe-table/lib/locale/lang/en-US';
 
 const locales = {
 	'zh-CN': {
-		...zhCN,
-		...vxeZhCN
+		...zhCN
+		// ...vxeZhCN
 	},
 	en: {
-		...en,
-		...vxeEnUS
+		...en
+		// ...vxeEnUS
 	}
 };
 
