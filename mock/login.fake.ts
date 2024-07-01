@@ -63,7 +63,7 @@ export default defineFakeRoute([
 			const result = verifyRefreshToken(refreshToken as string);
 			if (!result.verify) {
 				return {
-					code: 401,
+					code: 400,
 					...result.err
 				};
 			}

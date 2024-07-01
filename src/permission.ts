@@ -36,6 +36,7 @@ router.beforeEach(async (to, _, next) => {
 			await initRoutes();
 			next({ ...to, replace: true });
 		} catch (error) {
+			console.log('error ---> error');
 			// 退出token 并跳转登录页
 			await userStore.logoutAction();
 			next({

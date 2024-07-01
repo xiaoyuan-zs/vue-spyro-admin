@@ -143,7 +143,7 @@
 <template>
 	<el-card shadow="hover" class="h-full">
 		<div class="h-full flex-col">
-			<h2 class="mb-4 underline underline-offset-8 decoration-2 flex items-center">
+			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
 				<span>基本表格示例</span>
 				<el-tooltip effect="dark" content="基于 ElementPlus 的 Table 组件进行二次封装" placement="top">
 					<Icon name="ep:info-filled" class="cursor-pointer ml-2" />

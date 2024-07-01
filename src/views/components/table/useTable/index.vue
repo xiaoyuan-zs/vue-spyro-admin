@@ -1,4 +1,14 @@
-<script setup lang="ts" name="UseTable"></script>
+<script setup lang="ts" name="UseTable">
+	import { useTable } from '@/components/SoTable';
+	import { getUserList } from '@/api/user';
+	import { User } from '@/api/user/types';
+
+	const { state } = useTable({
+		fetchApi: getUserList,
+		params: {},
+		dataCallBack: (data: User) => data
+	});
+</script>
 
 <template>
 	<el-card shadow="hover" class="h-full">
