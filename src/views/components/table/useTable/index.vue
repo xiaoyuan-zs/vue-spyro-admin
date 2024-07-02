@@ -1,12 +1,15 @@
 <script setup lang="ts" name="UseTable">
 	import { useTable } from '@/components/SoTable';
 	import { getUserList } from '@/api/user';
-	import { User } from '@/api/user/types';
 
 	const { state } = useTable({
-		fetchApi: getUserList,
-		params: {},
-		dataCallBack: (data: User) => data
+		fetchApi: async () => {
+			const { data, total = 0 } = await getUserList();
+			return {
+				data,
+				total
+			};
+		}
 	});
 </script>
 

@@ -9,6 +9,7 @@
  * @param value 字典回显值字段
  * @param label 字典回显标签字段
  */
+// export function selectDictLabel<T extends Record<string, any>> 等价于 下面写法
 export function selectDictLabel<
 	T extends {
 		[key: string]: any;

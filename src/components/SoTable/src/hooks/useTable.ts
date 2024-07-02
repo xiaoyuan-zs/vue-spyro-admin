@@ -1,9 +1,9 @@
-import type { ApiResponse } from '@spyro/axios';
+import type { SoTable } from '@/components/SoTable';
 
 interface UseTableProps<T> {
-	fetchApi: (params?: any) => Promise<ApiResponse<T[]>>;
-	params?: { [key: string]: any };
-	dataCallBack?: (params: any) => any; // 数据响应成功回调, 进行数据处理,
+	// 表格数据获取及处理
+	fetchApi: () => Promise<{ data: T[]; total: number }>;
+	// 删除表格数据
 }
 
 interface TableState<T> {
@@ -14,9 +14,7 @@ interface TableState<T> {
 
 /**
  * @description useTable<T> 泛型 T ---> 响应结果数据类型
- * @field fetchApi: 请求数据接口(必填)
- * @field params: 请求参数(可选)
- * @field dataCallBack: 数据响应成功回调, 进行数据处理(可选)
+ * @field fetchApi: 表格数据获取及处理(必填)
  */
 export const useTable = <T = any>(props: UseTableProps<T>) => {
 	// 表格数据状态
@@ -25,6 +23,14 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 		data: [],
 		total: 0
 	});
+
+	// SoTable 实例
+	const soTableRef = ref<InstanceType<typeof SoTable>>();
+	// 获取表格实例
+	const getTableInstance = () => {};
+
+	// 操作表格方法
+	const tableMethods = {};
 
 	return {
 		state
