@@ -31,19 +31,20 @@ router.beforeEach(async (to, _, next) => {
 	}
 
 	if (!permissionStore.wholeMenus.length) {
-		try {
-			await userStore.getUserInfoAction();
-		} catch (error) {
-			console.log('error ---> error');
-			// 退出token 并跳转登录页
-			await userStore.logoutAction();
-			next({
-				path: `/login?redirect=${to.fullPath}`
-			});
-		} finally {
-			await initRoutes();
-			next({ ...to, replace: true });
-		}
+		// try {
+
+		// } catch (error) {
+		// 	console.log('error ---> error');
+		// 	// 退出token 并跳转登录页
+		// 	await userStore.logoutAction();
+		// 	next({
+		// 		path: `/login?redirect=${to.fullPath}`
+		// 	});
+		// } finally {
+		await userStore.getUserInfoAction();
+		await initRoutes();
+		next({ ...to, replace: true });
+		// }
 	} else {
 		next();
 	}
