@@ -35,7 +35,6 @@ export const useUserStore = defineStore('user', {
 			this.accessToken = '';
 			this.refreshToken = '';
 			this.nickname = '';
-			router.replace('/login');
 		}
 	},
 	persist: piniaPersist({ key: 'user', paths: ['accessToken', 'refreshToken'] })

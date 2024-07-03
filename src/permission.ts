@@ -33,8 +33,6 @@ router.beforeEach(async (to, _, next) => {
 	if (!permissionStore.wholeMenus.length) {
 		try {
 			await userStore.getUserInfoAction();
-			await initRoutes();
-			next({ ...to, replace: true });
 		} catch (error) {
 			console.log('error ---> error');
 			// 退出token 并跳转登录页
@@ -42,6 +40,9 @@ router.beforeEach(async (to, _, next) => {
 			next({
 				path: `/login?redirect=${to.fullPath}`
 			});
+		} finally {
+			await initRoutes();
+			next({ ...to, replace: true });
 		}
 	} else {
 		next();

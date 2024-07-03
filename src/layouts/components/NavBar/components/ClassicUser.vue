@@ -12,8 +12,9 @@
 		}
 	};
 
-	const logout = () => {
-		useUserStore().logoutAction();
+	const logout = async () => {
+		await useUserStore().logoutAction();
+		window.location.href = '/';
 	};
 </script>
 
