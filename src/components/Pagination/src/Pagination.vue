@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	interface PageProps {
+	export interface PageProps {
 		small?: boolean;
 		disabled?: boolean;
 		background?: boolean;

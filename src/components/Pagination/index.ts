@@ -1,3 +1,3 @@
-import Pagination from './src/Pagination.vue';
+import Pagination, { type PageProps } from './src/Pagination.vue';
 
-export { Pagination };
+export { Pagination, PageProps };

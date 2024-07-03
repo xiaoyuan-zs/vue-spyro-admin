@@ -142,27 +142,30 @@
 
 <template>
 	<el-card shadow="hover" class="h-full">
-		<div class="h-full flex-col">
-			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
-				<span>基本表格示例</span>
-				<el-tooltip effect="dark" content="基于 ElementPlus 的 Table 组件进行二次封装" placement="top">
-					<Icon name="ep:info-filled" class="cursor-pointer ml-2" />
-				</el-tooltip>
-			</h2>
-			<SoTable ref="SoTableRef" class="flex-1" height="100%" v-loading="loading" :column-list="columns" :table-data>
-				<template #usernameHeader>
-					<el-button type="primary" @click="handleSlotRender('表头')">用户名</el-button>
-				</template>
-				<template #username="{ row }">
-					<el-button type="primary" link @click="handleSlotRender('内容')">{{ row.username }}</el-button>
-				</template>
-			</SoTable>
-			<Pagination
-				v-show="total"
-				v-model:currentPage="queryparams.pageNum"
-				v-model:pageSize="queryparams.pageSize"
-				:total="total"
-				@get-list="getList" />
-		</div>
+		<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
+			<span>基本表格示例</span>
+			<el-tooltip effect="dark" content="基于 ElementPlus 的 Table 组件进行二次封装" placement="top">
+				<Icon name="ep:info-filled" class="cursor-pointer ml-2" />
+			</el-tooltip>
+		</h2>
+		<SoTable
+			ref="soTableRef"
+			height="100%"
+			v-model:currentPage="queryparams.pageNum"
+			v-model:pageSize="queryparams.pageSize"
+			v-loading="loading"
+			:column-list="columns"
+			:table-data
+			:page-props="{
+				total
+			}"
+			@refresh="getList">
+			<template #usernameHeader>
+				<el-button type="primary" @click="handleSlotRender('表头')">用户名</el-button>
+			</template>
+			<template #username="{ row }">
+				<el-button type="primary" link @click="handleSlotRender('内容')">{{ row.username }}</el-button>
+			</template>
+		</SoTable>
 	</el-card>
 </template>
