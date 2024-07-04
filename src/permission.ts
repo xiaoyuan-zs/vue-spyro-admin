@@ -34,7 +34,7 @@ router.beforeEach(async (to, _, next) => {
 		try {
 			await userStore.getUserInfoAction();
 		} catch (error) {
-			console.log('error ---> error');
+			console.log('error --->', error);
 			next();
 		} finally {
 			await initRoutes();

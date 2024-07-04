@@ -49,7 +49,6 @@ export const service = new AxiosConfig({
 								}).then(() => {
 									const userStore = useUserStore();
 									userStore.logoutAction();
-									window.location.href = '/';
 								});
 							});
 					}
