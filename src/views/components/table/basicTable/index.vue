@@ -121,7 +121,7 @@
 	};
 
 	// 获取数据
-	const queryparams = reactive({
+	const queryParams = reactive({
 		pageNum: 1,
 		pageSize: 10
 	});
@@ -129,7 +129,7 @@
 	const loading = ref(false);
 	const getList = async () => {
 		loading.value = true;
-		const res = await getUserList(queryparams);
+		const res = await getUserList(queryParams);
 		tableData.value = res.data;
 		total.value = res.total!;
 		loading.value = false;
@@ -151,8 +151,8 @@
 		<SoTable
 			ref="soTableRef"
 			height="100%"
-			v-model:currentPage="queryparams.pageNum"
-			v-model:pageSize="queryparams.pageSize"
+			v-model:currentPage="queryParams.pageNum"
+			v-model:pageSize="queryParams.pageSize"
 			v-loading="loading"
 			:column-list="columns"
 			:table-data

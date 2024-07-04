@@ -1,5 +1,6 @@
-import SoTable from './src/SoTable.vue';
-import { useTable } from './src/hooks/useTable';
+import SoTable, { type TableProps } from './src/SoTable.vue';
 
 export * from './src/types';
-export { SoTable, useTable };
+export * from './src/hooks/useTable';
+
+export { SoTable, TableProps };
