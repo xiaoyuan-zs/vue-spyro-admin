@@ -24,7 +24,7 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 	const vitePlugins: PluginOption[] = [
 		vue(),
 		// vue 开发工具
-		vueDevTools(),
+		// vueDevTools(),
 		// 自动导入
 		...createAutoImport(env),
 		// UnoCss 原子化

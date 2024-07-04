@@ -57,6 +57,27 @@ export default {
 					}
 				}
 			]
+		},
+		{
+			path: '/components/dialog',
+			redirect: '/components/dialog/basicDialog',
+			meta: {
+				icon: 'mdi:form-outline',
+				title: '弹窗'
+			},
+			children: [
+				{
+					path: '/components/dialog/basicDialog',
+					name: 'BasicDialog',
+					component: () => import('@/views/components/table/basicTable/index.vue'),
+					meta: {
+						title: '基础弹窗',
+						// 当只有一个子菜单时需要显示父级菜单时，需开启此配置
+						showParent: true,
+						keepAlive: true
+					}
+				}
+			]
 		}
 	]
 } satisfies RouteOption;

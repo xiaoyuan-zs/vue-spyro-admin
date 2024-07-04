@@ -1,6 +1,7 @@
 import type { ColumnProps, SoTable, TableProps } from '@/components/SoTable';
 import { useConfirm } from '@/hooks/modules/useConfirm';
 import type { ApiResponse } from '@spyro/axios';
+import type { ElTable } from 'element-plus';
 
 interface UseTableProps<T> {
 	// 表格数据获取及处理
@@ -10,9 +11,9 @@ interface UseTableProps<T> {
 }
 
 interface TableState<T> {
-	loading?: boolean;
-	data?: T[];
-	total?: number;
+	loading: boolean;
+	data: T[];
+	total: number;
 }
 
 /**
@@ -28,16 +29,19 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 	});
 
 	// SoTable 实例
-	const tableRef = ref<InstanceType<typeof SoTable>>();
+	const soTableRef = ref<InstanceType<typeof SoTable>>();
+	// ElTable 实例
+	const elTableRef = ref<InstanceType<typeof ElTable>>();
 
-	const tableMount = (ref: InstanceType<typeof SoTable>) => {
-		tableRef.value = ref;
+	const tableMount = ({ soRef, elRef }: { soRef: InstanceType<typeof SoTable>; elRef: InstanceType<typeof ElTable> }) => {
+		soTableRef.value = soRef;
+		elTableRef.value = elRef;
 	};
 
-	// 获取表格实例
-	const getTableInstance = async () => {
+	// 获取SoTable表格实例
+	const getSoTableInstance = async () => {
 		await nextTick();
-		const table = unref(tableRef);
+		const table = unref(soTableRef);
 		if (!table) {
 			console.error('表格实例不存在，请检查表格是否挂载完成');
 		}
@@ -67,18 +71,23 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 		},
 		// 设置表格props
 		setProps: async (props: TableProps) => {
-			const instance = await getTableInstance();
+			const instance = await getSoTableInstance();
 			instance?.setProps(props);
 		},
 		// 添加表格列
 		addColumn: async (column: ColumnProps, index?: number) => {
-			const instance = await getTableInstance();
+			const instance = await getSoTableInstance();
 			instance?.addColumn(column, index);
 		},
 		// 删除表格具体列
 		delColumn: async (prop: string) => {
-			const instance = await getTableInstance();
+			const instance = await getSoTableInstance();
 			instance?.delColumn(prop);
+		},
+		// ElTable 实例
+		getElTableInstance: async () => {
+			await getSoTableInstance();
+			return unref(elTableRef);
 		},
 		// 刷新数据
 		refresh: async () => {

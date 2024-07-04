@@ -26,12 +26,21 @@
 			dictValue: 1
 		}
 	]);
-
 	// 表格列
 	const columns = reactive<ColumnProps<User>[]>([
 		{
 			type: 'selection',
 			width: '55'
+		},
+		{
+			type: 'expand',
+			label: '展开',
+			width: '55',
+			renderer: ({ row }) => (
+				<div class="block px-2">
+					<el-text type="success">tsx渲染：{JSON.stringify(row)}</el-text>
+				</div>
+			)
 		},
 		{
 			type: 'index',
@@ -89,6 +98,7 @@
 			)
 		}
 	]);
+	// 查询参数
 	const queryParams = reactive({
 		pageNum: 1,
 		pageSize: 10
@@ -100,8 +110,8 @@
 			return { data, total };
 		}
 	});
-	const { loading } = toRefs(tableState);
-	const { setProps, addColumn, delColumn, delData, refresh } = tableMethods;
+	const { loading, data } = toRefs(tableState);
+	const { setProps, addColumn, delColumn, delData, getElTableInstance, refresh } = tableMethods;
 
 	const handleUpdate = () => {
 		ElMessage.success(`仅供预览展示`);
@@ -109,6 +119,66 @@
 	const handleDelete = () => {
 		ElMessage.success(`仅供预览展示`);
 	};
+
+	// 显示隐藏分页
+	const handlePage = (flag: boolean) => {
+		setProps({
+			pagination: flag
+		});
+	};
+
+	// 显示隐藏多选
+	const handleMultiSelect = (flag: boolean) => {
+		flag
+			? addColumn(
+					{
+						type: 'selection',
+						width: '55'
+					},
+					0
+				)
+			: delColumn('selection');
+	};
+
+	// 展开行必须绑定rowKey
+	// 显示隐藏展开行
+	let expand = ref(false);
+	const toggleExpandRow = async () => {
+		expand.value = !expand.value;
+		const elTableRef = await getElTableInstance();
+		data.value.forEach((el) => {
+			elTableRef?.toggleRowExpansion(el, expand.value);
+		});
+	};
+
+	// 显示隐藏全选
+	const toggleAllSelect = async () => {
+		const elTableRef = await getElTableInstance();
+		elTableRef?.toggleAllSelection();
+	};
+
+	// 显示隐藏操作
+	let operation = ref(true);
+	const toggleOperation = () => {
+		operation.value = !operation.value;
+		operation.value
+			? addColumn({
+					prop: 'operation',
+					label: '操作',
+					renderer: () => (
+						<>
+							<ElButton type="primary" link onClick={handleUpdate}>
+								修改
+							</ElButton>
+							<ElButton type="primary" link onClick={handleDelete}>
+								删除
+							</ElButton>
+						</>
+					)
+				})
+			: delColumn('operation');
+	};
+
 	onMounted(() => {
 		setProps({
 			columnList: columns
@@ -120,27 +190,28 @@
 	<div class="h-full flex-col">
 		<el-card shadow="hover">
 			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
-				<span>useTable操作</span>
+				<span>useTable 操作</span>
 			</h2>
 			<div>
-				<el-button>显示分页</el-button>
-				<el-button>隐藏分页</el-button>
-				<el-button>显示分页</el-button>
-				<el-button>显示/隐藏展开行</el-button>
-				<el-button></el-button>
-				<el-button>隐藏分页</el-button>
+				<el-button @click="handlePage(true)">显示分页</el-button>
+				<el-button @click="handlePage(false)">隐藏分页</el-button>
+				<el-button @click="handleMultiSelect(true)">显示多选</el-button>
+				<el-button @click="handleMultiSelect(false)">隐藏多选</el-button>
+				<el-button @click="toggleExpandRow">显示/隐藏展开行</el-button>
+				<el-button @click="toggleAllSelect">全选/全不选</el-button>
+				<el-button @click="toggleOperation">添加/删除操作列</el-button>
 			</div>
 		</el-card>
 		<el-card shadow="hover" class="flex-1 mt-4">
 			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
-				<span>useTable示例</span>
+				<span>useTable 示例</span>
 			</h2>
 			<SoTable
-				ref="tableRef"
 				height="100%"
+				row-key="userId"
 				v-model:currentPage="queryParams.pageNum"
 				v-model:pageSize="queryParams.pageSize"
-				v-loading="loading!"
+				v-loading="loading"
 				@refresh="refresh"
 				@mount="tableMount" />
 		</el-card>

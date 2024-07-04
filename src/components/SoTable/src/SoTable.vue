@@ -76,13 +76,18 @@
 	// 添加列
 	const addColumn = (column: ColumnProps, index?: number) => {
 		const { columnList } = unref(allProps);
+		const exitIndex = columnList.findIndex((el) => {
+			if (el.prop) return el.prop === column.prop;
+			if (el.type) return el.type === column.type;
+		});
+		if (exitIndex > -1) return;
 		index !== void 0 ? columnList.splice(index, 0, column) : columnList.push(column);
 	};
 
 	// 删除列
 	const delColumn = (prop: string) => {
 		const { columnList } = unref(allProps);
-		const index = columnList.findIndex((el) => el.prop === prop);
+		const index = columnList.findIndex((el) => el.prop === prop || el.type === prop);
 		if (index > -1) columnList.splice(index, 1);
 	};
 
@@ -143,7 +148,10 @@
 
 	onMounted(() => {
 		// 初始化完成表格挂载
-		emit('mount', unref(tableRef)?.$parent);
+		emit('mount', {
+			soRef: unref(tableRef)?.$parent,
+			elRef: unref(tableRef)
+		});
 	});
 
 	defineExpose({
@@ -158,7 +166,7 @@
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
 		<el-table ref="tableRef" class="flex-1" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
-			<template v-for="column in allProps.columnList" :key="column.type || column.prop">
+			<template v-for="column in allProps.columnList" :key="column">
 				<el-table-column
 					v-if="column.type"
 					v-bind="column"
