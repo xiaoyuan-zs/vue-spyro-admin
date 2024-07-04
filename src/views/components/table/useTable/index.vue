@@ -117,17 +117,32 @@
 </script>
 
 <template>
-	<el-card shadow="hover" class="h-full">
-		<h2 class="mb-4 underline underline-offset-8 decoration-2 flex items-center">
-			<span>useTable示例</span>
-		</h2>
-		<SoTable
-			ref="tableRef"
-			height="100%"
-			v-model:currentPage="queryParams.pageNum"
-			v-model:pageSize="queryParams.pageSize"
-			v-loading="loading!"
-			@refresh="refresh"
-			@mount="tableMount" />
-	</el-card>
+	<div class="h-full flex-col">
+		<el-card shadow="hover">
+			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
+				<span>useTable操作</span>
+			</h2>
+			<div>
+				<el-button>显示分页</el-button>
+				<el-button>隐藏分页</el-button>
+				<el-button>显示分页</el-button>
+				<el-button>显示/隐藏展开行</el-button>
+				<el-button></el-button>
+				<el-button>隐藏分页</el-button>
+			</div>
+		</el-card>
+		<el-card shadow="hover" class="flex-1 mt-4">
+			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
+				<span>useTable示例</span>
+			</h2>
+			<SoTable
+				ref="tableRef"
+				height="100%"
+				v-model:currentPage="queryParams.pageNum"
+				v-model:pageSize="queryParams.pageSize"
+				v-loading="loading!"
+				@refresh="refresh"
+				@mount="tableMount" />
+		</el-card>
+	</div>
 </template>
