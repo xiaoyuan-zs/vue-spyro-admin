@@ -111,7 +111,7 @@
 		}
 	});
 	const { loading, data } = toRefs(tableState);
-	const { setProps, addColumn, delColumn, delData, getElTableInstance, refresh } = tableMethods;
+	const { setProps, addColumn, delColumn, getElTableInstance, refresh } = tableMethods;
 
 	const handleUpdate = () => {
 		ElMessage.success(`仅供预览展示`);
@@ -202,10 +202,7 @@
 				<el-button @click="toggleOperation">添加/删除操作列</el-button>
 			</div>
 		</el-card>
-		<el-card shadow="hover" class="flex-1 mt-4">
-			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
-				<span>useTable 示例</span>
-			</h2>
+		<SoCard title="useTable 示例" class="flex-1 mt-4">
 			<SoTable
 				height="100%"
 				row-key="userId"
@@ -214,6 +211,6 @@
 				v-loading="loading"
 				@refresh="refresh"
 				@mount="tableMount" />
-		</el-card>
+		</SoCard>
 	</div>
 </template>

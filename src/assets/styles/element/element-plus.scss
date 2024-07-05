@@ -136,15 +136,6 @@
 	}
 }
 
-// 将 el-card__body高度设置100%
-.el-card {
-	.el-card__body {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-	}
-}
-
 // 去除el-dropdown focus 黑框
 .el-dropdown {
 	.el-tooltip__trigger:focus {
