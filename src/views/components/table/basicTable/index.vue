@@ -156,6 +156,7 @@
 			v-loading="loading"
 			:column-list="columns"
 			:table-data
+			:table-tool="false"
 			:page-props="{
 				total
 			}"
