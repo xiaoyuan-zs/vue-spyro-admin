@@ -14,7 +14,7 @@
 </script>
 
 <template>
-	<horizontal-scroll>
+	<SoHorizontalScroll>
 		<div class="flex-center flex-nowrap w-full h-full">
 			<div v-for="menu in parentRoutes" :key="menu.name" @click="changeMenu(menu)">
 				<div
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 		</div>
-	</horizontal-scroll>
+	</SoHorizontalScroll>
 </template>
 
 <style scoped lang="scss">

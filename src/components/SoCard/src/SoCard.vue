@@ -5,7 +5,7 @@
 			shadow?: 'always' | 'hover' | 'never';
 		}>(),
 		{
-			shadow: 'never'
+			shadow: 'hover'
 		}
 	);
 
@@ -18,7 +18,7 @@
 			return (
 				<>
 					{props.title ? (
-						<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
+						<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-primary duration-200 flex items-center">
 							<span>{props.title}</span>
 						</h2>
 					) : undefined}

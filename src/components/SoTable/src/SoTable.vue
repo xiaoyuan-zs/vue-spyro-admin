@@ -2,8 +2,9 @@
 	import { PropType } from 'vue';
 	import { ElTable, ElTableColumn, ElTag, TableProps as ElTableProps } from 'element-plus';
 	import { ColumnProps, ContentRendererType, HeaderRendererType } from '@/components/SoTable';
-	import type { PageProps } from '@/components/Pagination';
+	import type { PageProps } from '@/components/SoPagination';
 	import { SoToolTip } from '@/components/SoToolTip';
+	import { SoTableTool } from '@/components/SoTableTool';
 	import { selectDictLabel } from '@spyro/utils';
 
 	// SoTable Props Type
@@ -16,6 +17,7 @@
 		border?: boolean;
 		pagination?: boolean;
 		pageProps?: PageProps;
+		tableTool?: boolean;
 	}
 
 	// SoTable and ElTable Props Type
@@ -27,7 +29,8 @@
 		columnList: () => [],
 		border: true,
 		rowKey: 'id',
-		pagination: true
+		pagination: true,
+		tableTool: true
 	});
 
 	const emit = defineEmits<{
@@ -163,6 +166,15 @@
 
 <template>
 	<div class="flex-col flex-1 h-full overflow-hidden">
+		<!-- 表格工具栏 -->
+		<el-row justify="space-between">
+			<el-col :span="1.5">
+				<slot name="operation" />
+			</el-col>
+			<template v-if="tableTool">
+				<SoTableTool :columns="allProps.columnList" />
+			</template>
+		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
 		<el-table ref="tableRef" class="flex-1" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
@@ -200,7 +212,7 @@
 				<el-empty description="暂无数据" />
 			</template>
 		</el-table>
-		<Pagination
+		<SoPagination
 			v-show="pageVisible"
 			v-model:currentPage="currentPage"
 			v-model:pageSize="pageSize"

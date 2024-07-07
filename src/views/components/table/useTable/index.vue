@@ -3,6 +3,10 @@
 	import { ColumnProps, useTable } from '@/components/SoTable';
 	import { getUserList } from '@/api/user';
 	import { User } from '@/api/user/types';
+	import { useIcon } from '@/hooks/modules/useIcon';
+
+	const PlusIcon = useIcon({ name: 'ep:plus' });
+	const DeleteIcon = useIcon({ name: 'ep:delete' });
 
 	// 性别字典
 	const sexOptions = reactive([
@@ -41,6 +45,11 @@
 					<el-text type="success">tsx渲染：{JSON.stringify(row)}</el-text>
 				</div>
 			)
+		},
+		{
+			type: 'sortable',
+			label: '排序',
+			width: 80
 		},
 		{
 			type: 'index',
@@ -181,6 +190,7 @@
 
 	onMounted(() => {
 		setProps({
+			rowKey: 'userId',
 			columnList: columns
 		});
 	});
@@ -188,10 +198,7 @@
 
 <template>
 	<div class="h-full flex-col">
-		<el-card shadow="hover">
-			<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
-				<span>useTable 操作</span>
-			</h2>
+		<SoCard title="useTable 操作">
 			<div>
 				<el-button @click="handlePage(true)">显示分页</el-button>
 				<el-button @click="handlePage(false)">隐藏分页</el-button>
@@ -201,16 +208,20 @@
 				<el-button @click="toggleAllSelect">全选/全不选</el-button>
 				<el-button @click="toggleOperation">添加/删除操作列</el-button>
 			</div>
-		</el-card>
+		</SoCard>
 		<SoCard title="useTable 示例" class="flex-1 mt-4">
 			<SoTable
 				height="100%"
-				row-key="userId"
 				v-model:currentPage="queryParams.pageNum"
 				v-model:pageSize="queryParams.pageSize"
 				v-loading="loading"
 				@refresh="refresh"
-				@mount="tableMount" />
+				@mount="tableMount">
+				<template #operation>
+					<el-button type="primary" :icon="PlusIcon" plain>新增</el-button>
+					<el-button type="danger" :icon="DeleteIcon" plain>批量删除</el-button>
+				</template>
+			</SoTable>
 		</SoCard>
 	</div>
 </template>

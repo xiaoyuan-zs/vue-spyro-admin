@@ -141,7 +141,7 @@
 </script>
 
 <template>
-	<el-card shadow="hover" class="h-full">
+	<SoCard class="h-full">
 		<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
 			<span>基本表格示例</span>
 			<el-tooltip effect="dark" content="基于 ElementPlus 的 Table 组件进行二次封装" placement="top">
@@ -167,5 +167,5 @@
 				<el-button type="primary" link @click="handleSlotRender('内容')">{{ row.username }}</el-button>
 			</template>
 		</SoTable>
-	</el-card>
+	</SoCard>
 </template>
