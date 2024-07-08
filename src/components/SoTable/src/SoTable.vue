@@ -49,6 +49,8 @@
 	// 分页
 	const currentPage = defineModel('currentPage', { type: Number });
 	const pageSize = defineModel('pageSize', { type: Number });
+	// 显示隐藏搜索栏
+	const showSearch = defineModel('showSearch', { type: Boolean });
 
 	// 合并setProps传递的props 和 父组件传递的 props
 	const allProps = computed(() => {
@@ -167,12 +169,12 @@
 <template>
 	<div class="flex-col flex-1 h-full overflow-hidden">
 		<!-- 表格工具栏 -->
-		<el-row justify="space-between">
+		<el-row justify="space-between" class="mb-2">
 			<el-col :span="1.5">
 				<slot name="operation" />
 			</el-col>
 			<template v-if="tableTool">
-				<SoTableTool :columns="allProps.columnList" />
+				<SoTableTool v-model:show-search="showSearch" :columns="allProps.columnList" @refresh="refresh" />
 			</template>
 		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->

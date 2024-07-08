@@ -11,7 +11,7 @@
 				type: String,
 				required: true
 			},
-			size: propTypes.number.def(16),
+			size: propTypes.number.def(14),
 			color: propTypes.string.def('inherit'),
 			inline: propTypes.bool.def(true)
 		},

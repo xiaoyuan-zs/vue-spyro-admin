@@ -22,7 +22,7 @@ export const service = new AxiosConfig({
 			return error;
 		},
 		responseInterceptor(response) {
-			if (response.data.code === 401 && response.config.url !== '/refresh') {
+			if (response.data.code === 401 && !response.config.url?.includes('/refresh')) {
 				return new Promise((resolve) => {
 					requestQueue.push({
 						config: response.config,

@@ -3,10 +3,8 @@
 	import { ColumnProps, useTable } from '@/components/SoTable';
 	import { getUserList } from '@/api/user';
 	import { User } from '@/api/user/types';
-	import { useIcon } from '@/hooks/modules/useIcon';
 
-	const PlusIcon = useIcon({ name: 'ep:plus' });
-	const DeleteIcon = useIcon({ name: 'ep:delete' });
+	const showSearch = ref(true);
 
 	// 性别字典
 	const sexOptions = reactive([
@@ -198,7 +196,7 @@
 
 <template>
 	<div class="h-full flex-col">
-		<SoCard title="useTable 操作">
+		<SoCard v-show="showSearch" title="useTable 操作" class="mb-4">
 			<div>
 				<el-button @click="handlePage(true)">显示分页</el-button>
 				<el-button @click="handlePage(false)">隐藏分页</el-button>
@@ -209,19 +207,15 @@
 				<el-button @click="toggleOperation">添加/删除操作列</el-button>
 			</div>
 		</SoCard>
-		<SoCard title="useTable 示例" class="flex-1 mt-4">
+		<SoCard title="useTable 示例" class="flex-1">
 			<SoTable
 				height="100%"
 				v-model:currentPage="queryParams.pageNum"
 				v-model:pageSize="queryParams.pageSize"
+				v-model:showSearch="showSearch"
 				v-loading="loading"
 				@refresh="refresh"
-				@mount="tableMount">
-				<template #operation>
-					<el-button type="primary" :icon="PlusIcon" plain>新增</el-button>
-					<el-button type="danger" :icon="DeleteIcon" plain>批量删除</el-button>
-				</template>
-			</SoTable>
+				@mount="tableMount" />
 		</SoCard>
 	</div>
 </template>
