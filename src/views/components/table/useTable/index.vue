@@ -32,6 +32,7 @@
 	const columns = reactive<ColumnProps<User>[]>([
 		{
 			type: 'selection',
+			label: '勾选',
 			width: '55'
 		},
 		{

@@ -1,5 +1,4 @@
 <script lang="tsx">
-	import { ElButton } from 'element-plus';
 	import { useIcon } from '@/hooks/modules/useIcon';
 	import { ColumnProps } from '@/components/SoTable';
 	import { propTypes } from '@/utils/propTypes';
@@ -7,7 +6,7 @@
 		name: 'SoTableTool',
 		props: {
 			showSearch: propTypes.bool.def(true),
-			columnList: {
+			columns: {
 				type: Array as PropType<ColumnProps[]>,
 				default: () => []
 			}
@@ -17,6 +16,7 @@
 			const Setting = useIcon({ name: 'ep:setting', size: 12 });
 			const Refresh = useIcon({ name: 'ep:refresh', size: 12 });
 			const Search = useIcon({ name: 'ep:search', size: 12 });
+			const Draggable = useIcon({ name: 'ri:draggable' });
 
 			// 实现 showSearch 的 v-model
 			const showSearch = computed({
@@ -24,25 +24,36 @@
 				set: (value) => emit('update:show-search', value)
 			});
 
-			// 表格右侧工具栏
-			const RightTool = () => {
-				return (
-					<div class="flex-center">
-						<ElButton size="small" circle icon={Search} onClick={() => (showSearch.value = !showSearch.value)}></ElButton>
-						<ElButton size="small" circle icon={Refresh} onClick={() => emit('refresh')}></ElButton>
-						<ElButton size="small" circle icon={Setting}></ElButton>
-					</div>
-				);
+			return {
+				showSearch,
+				Draggable,
+				Search,
+				Refresh,
+				Setting
 			};
-
-			// 列设置
-			const columnSet = () => {};
-
-			return () => (
-				<div class="relative flex flex-justify-end">
-					<RightTool />
-				</div>
-			);
 		}
 	});
 </script>
+
+<template>
+	<div class="relative flex flex-justify-end">
+		<el-button size="small" circle :icon="Search" @click="showSearch = !showSearch"></el-button>
+		<el-button size="small" circle :icon="Refresh" @click="$emit('refresh')"></el-button>
+		<el-dropdown trigger="click" popper-class="dropdown-menu" placement="bottom-end" :hide-on-click="false">
+			<el-button size="small" class="ml-3" circle :icon="Setting"></el-button>
+			<template #dropdown>
+				<el-dropdown-menu>
+					<el-dropdown-item v-for="item in columns" :key="item.prop || item.type" :icon="Draggable">
+						<el-checkbox v-model="item.visible" :label="item.label" size="small" />
+					</el-dropdown-item>
+				</el-dropdown-menu>
+			</template>
+		</el-dropdown>
+	</div>
+</template>
+
+<style lang="scss">
+	.dropdown-menu .el-dropdown-menu .el-dropdown-menu__item {
+		@apply mx-2 rounded-md;
+	}
+</style>
