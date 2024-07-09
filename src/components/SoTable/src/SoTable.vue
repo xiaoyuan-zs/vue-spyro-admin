@@ -58,6 +58,7 @@
 		Object.assign(obj, unref(mergeProps));
 		return obj;
 	});
+
 	// 是否显示分页插件
 	const pageVisible = computed(() => {
 		const { pagination, pageProps } = unref(allProps);
@@ -180,7 +181,7 @@
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
 		<el-table ref="tableRef" class="flex-1" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
-			<template v-for="column in allProps.columnList" :key="column">
+			<template v-for="column in allProps.columnList" :key="column.prop || column.type">
 				<el-table-column
 					v-if="column.type"
 					v-bind="column"

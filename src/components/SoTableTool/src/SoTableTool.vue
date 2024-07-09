@@ -40,6 +40,7 @@
 
 			return {
 				showSearch,
+				columns,
 				Draggable,
 				Search,
 				Refresh,
