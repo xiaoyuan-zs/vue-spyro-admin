@@ -59,6 +59,14 @@
 		return obj;
 	});
 
+	// 表格列
+	const columns = computed(() => {
+		unref(allProps).columnList.forEach((col) => {
+			col.visible = col.visible ?? true;
+		});
+		return unref(allProps).columnList;
+	});
+
 	// 是否显示分页插件
 	const pageVisible = computed(() => {
 		const { pagination, pageProps } = unref(allProps);
@@ -175,13 +183,13 @@
 				<slot name="operation" />
 			</el-col>
 			<template v-if="tableTool">
-				<SoTableTool v-model:show-search="showSearch" v-model:columns="allProps.columnList" @refresh="refresh" />
+				<SoTableTool v-model:show-search="showSearch" :columns="columns" @refresh="refresh" />
 			</template>
 		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
 		<el-table ref="tableRef" class="flex-1" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
-			<template v-for="column in allProps.columnList" :key="column.prop || column.type">
+			<template v-for="column in columns" :key="column.prop || column.type">
 				<el-table-column
 					v-if="column.type && column.visible"
 					v-bind="column"

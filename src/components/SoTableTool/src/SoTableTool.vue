@@ -28,10 +28,7 @@
 				set: (value) => emit('update:show-search', value)
 			});
 
-			const columns = computed({
-				get: () => props.columns,
-				set: (value) => emit('update:columns', value)
-			});
+			const columns = computed(() => props.columns);
 
 			const onUpdate = (e: SortableEvent) => {
 				const [column] = unref(columns).splice(e.oldIndex!, 1);
