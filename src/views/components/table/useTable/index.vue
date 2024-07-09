@@ -141,7 +141,8 @@
 			? addColumn(
 					{
 						type: 'selection',
-						width: '55'
+						width: '55',
+						label: '勾选'
 					},
 					0
 				)
