@@ -75,8 +75,8 @@
 	});
 
 	// 设置 props
-	const setProps = (props: TableProps = {}) => {
-		mergeProps.value = Object.assign(unref(mergeProps), props);
+	const setProps = (tableProp: TableProps = {}) => {
+		mergeProps.value = Object.assign(unref(mergeProps), tableProp);
 	};
 
 	// 添加列
@@ -183,7 +183,7 @@
 		<el-table ref="tableRef" class="flex-1" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
 			<template v-for="column in allProps.columnList" :key="column.prop || column.type">
 				<el-table-column
-					v-if="column.type"
+					v-if="column.type && column.visible"
 					v-bind="column"
 					:align="column.align ?? 'center'"
 					:reserve-selection="column.type === 'selection'">
@@ -202,7 +202,7 @@
 						<slot v-else :name="`${column.type}Header`" v-bind="scope"></slot>
 					</template>
 				</el-table-column>
-				<SoTableColumn v-if="!column.type && column.prop" :column />
+				<SoTableColumn v-if="!column.type && column.prop && column.visible" :column />
 			</template>
 			<!-- 默认插槽 支持el-table 的columns -->
 			<slot />

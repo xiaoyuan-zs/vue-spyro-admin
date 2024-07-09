@@ -34,8 +34,8 @@
 			});
 
 			const onUpdate = (e: SortableEvent) => {
-				const column = unref(columns).splice(e.oldIndex!, 1);
-				unref(columns).splice(e.newIndex!, 0, column[0]);
+				const [column] = unref(columns).splice(e.oldIndex!, 1);
+				unref(columns).splice(e.newIndex!, 0, column);
 			};
 
 			return {
