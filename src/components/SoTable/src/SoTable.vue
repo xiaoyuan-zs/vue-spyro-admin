@@ -174,7 +174,7 @@
 				<slot name="operation" />
 			</el-col>
 			<template v-if="tableTool">
-				<SoTableTool v-model:show-search="showSearch" :columns="allProps.columnList" @refresh="refresh" />
+				<SoTableTool v-model:show-search="showSearch" v-model:columns="allProps.columnList" @refresh="refresh" />
 			</template>
 		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
