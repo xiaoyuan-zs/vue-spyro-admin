@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 /**
  * 功能性工具方法
  */

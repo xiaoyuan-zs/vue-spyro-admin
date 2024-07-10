@@ -30,3 +30,9 @@
 .mask-image-left {
 	@extend %mask-image;
 }
+
+/* 拖拽背景 */
+.ghost {
+	background: var(--el-color-primary-light-8);
+	opacity: 0.5;
+}

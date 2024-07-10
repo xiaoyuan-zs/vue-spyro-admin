@@ -188,6 +188,13 @@
 			: delColumn('operation');
 	};
 
+	// 拖拽回调
+	const dragSort = ({ newIndex, oldIndex }: { newIndex?: number; oldIndex?: number }) => {
+		console.log('newIndex: ', newIndex);
+		console.log('oldIndex: ', oldIndex);
+		ElMessage.success('拖拽排序成功');
+	};
+
 	onMounted(() => {
 		setProps({
 			rowKey: 'userId',
@@ -217,7 +224,8 @@
 				v-model:showSearch="showSearch"
 				v-loading="loading"
 				@refresh="refresh"
-				@mount="tableMount" />
+				@mount="tableMount"
+				@dragSort="dragSort" />
 		</SoCard>
 	</div>
 </template>

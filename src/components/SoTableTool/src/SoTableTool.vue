@@ -74,13 +74,6 @@
 		</el-dropdown>
 	</div>
 </template>
-
-<style lang="scss" scoped>
-	.ghost {
-		background: #c8ebfb;
-		opacity: 0.5;
-	}
-</style>
 <style lang="scss">
 	.dropdown-menu .el-dropdown-menu .el-dropdown-menu__item {
 		@apply mx-2 rounded-md py-0 px-2;

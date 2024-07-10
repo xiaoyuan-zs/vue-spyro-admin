@@ -37,6 +37,7 @@
 	const emit = defineEmits<{
 		(event: 'refresh'): void;
 		(event: 'mount', params: any): void;
+		(event: 'dragSort', { newIndex, oldIndex }: { newIndex?: number; oldIndex?: number }): void;
 	}>();
 
 	const slots = defineSlots();
@@ -111,11 +112,16 @@
 	// 刷新表格数据
 	const refresh = () => emit('refresh');
 
+	// 拖拽
 	const dragSort = () => {
-		useDraggable(`tbody`, ref(unref(allProps).tableData), {
+		useDraggable(`#${uuid.value} tbody`, ref(unref(allProps).tableData), {
 			animation: 200,
-			onStart: () => {
-				console.log(777);
+			handle: '.move',
+			ghostClass: 'ghost',
+			onUpdate: ({ newIndex, oldIndex }) => {
+				const [data] = unref(allProps).tableData.splice(oldIndex!, 1);
+				unref(allProps).tableData.splice(newIndex!, 0, data);
+				emit('dragSort', { newIndex, oldIndex });
 			}
 		});
 	};
@@ -172,8 +178,15 @@
 		}
 	});
 
+	watch(
+		() => unref(allProps).tableData,
+		(newVal) => {
+			// 需要等待数据返回之后，在调用拖拽，否则在无数据之前调用拖拽无效果
+			if (newVal) dragSort();
+		}
+	);
+
 	onMounted(() => {
-		dragSort();
 		// 初始化完成表格挂载
 		emit('mount', {
 			soRef: unref(tableRef)?.$parent,
@@ -215,7 +228,7 @@
 						</template>
 						<!-- 拖拽排序 -->
 						<el-tag v-if="column.type === 'sortable'" class="move cursor-move">
-							<Icon name="ep:d-caret" />
+							<Icon name="ep:d-caret" class="cursor-move!" />
 						</el-tag>
 					</template>
 					<template #header="scope">
