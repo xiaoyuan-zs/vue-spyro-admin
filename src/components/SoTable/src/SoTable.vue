@@ -5,7 +5,8 @@
 	import type { PageProps } from '@/components/SoPagination';
 	import { SoToolTip } from '@/components/SoToolTip';
 	import { SoTableTool } from '@/components/SoTableTool';
-	import { selectDictLabel } from '@spyro/utils';
+	import { selectDictLabel, nanoid } from '@spyro/utils';
+	import { useDraggable } from 'vue-draggable-plus';
 
 	// SoTable Props Type
 	interface Props {
@@ -45,6 +46,8 @@
 	const tableRef = ref<InstanceType<typeof ElTable>>();
 	// 合并setProps传递的Props
 	const mergeProps = ref<TableProps>({});
+	// 表格唯一标识
+	const uuid = ref('id-' + nanoid());
 
 	// 分页
 	const currentPage = defineModel('currentPage', { type: Number });
@@ -108,6 +111,15 @@
 	// 刷新表格数据
 	const refresh = () => emit('refresh');
 
+	const dragSort = () => {
+		useDraggable(`tbody`, ref(unref(allProps).tableData), {
+			animation: 200,
+			onStart: () => {
+				console.log(777);
+			}
+		});
+	};
+
 	// 处理renderColumn
 	const renderColumn = (column: ColumnProps) => (
 		<ElTableColumn {...column} align={column.align ?? 'center'}>
@@ -161,6 +173,7 @@
 	});
 
 	onMounted(() => {
+		dragSort();
 		// 初始化完成表格挂载
 		emit('mount', {
 			soRef: unref(tableRef)?.$parent,
@@ -188,7 +201,7 @@
 		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
-		<el-table ref="tableRef" class="flex-1" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
+		<el-table ref="tableRef" class="flex-1" :id="uuid" :data="allProps.tableData" :cell-style="{ height: '63px' }" v-bind="bindValue">
 			<template v-for="column in columns" :key="column.prop || column.type">
 				<el-table-column
 					v-if="column.type && column.visible"
@@ -201,7 +214,7 @@
 							<slot v-else :name="column.type" v-bind="scope"></slot>
 						</template>
 						<!-- 拖拽排序 -->
-						<el-tag v-if="column.type === 'sortable'">
+						<el-tag v-if="column.type === 'sortable'" class="move cursor-move">
 							<Icon name="ep:d-caret" />
 						</el-tag>
 					</template>

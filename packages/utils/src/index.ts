@@ -1,6 +1,8 @@
 export * from './validate';
 export * from './tree';
 export * from './use';
+
+export { nanoid } from 'nanoid';
 export {
 	toFormatString,
 	toArrayTree,

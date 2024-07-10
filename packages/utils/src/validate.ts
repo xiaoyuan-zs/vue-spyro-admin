@@ -1,7 +1,7 @@
 import { isArray, isObject, isString } from 'xe-utils';
 
 /**
- * 判断url是否是http或https
+ * @description 判断url是否是http或https
  * @returns {Boolean}
  * @param url
  */
@@ -10,7 +10,7 @@ export const isHttp = (url: string): boolean => {
 };
 
 /**
- * 判断是否是url地址
+ * @description 判断是否是url地址
  * @param path
  * @returns
  */
@@ -21,7 +21,7 @@ export const isUrl = (path: string): boolean => {
 };
 
 /**
- * 判断数组、字符串、Map、Set、对象是否为空, 上述为空则返回 true, 否则返回false, 其余类型全部返回 false
+ * @description 判断数组、字符串、Map、Set、对象是否为空, 上述为空则返回 true, 否则返回false, 其余类型全部返回 false
  * @param val
  * @returns
  */

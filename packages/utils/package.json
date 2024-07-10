@@ -17,7 +17,8 @@
 	"author": "xiaoyuan-zs",
 	"license": "MIT",
 	"dependencies": {
-		"radash": "^12.1.0",
+		"es-toolkit": "^1.8.0",
+		"nanoid": "^5.0.7",
 		"xe-utils": "^3.5.27"
 	}
 }
