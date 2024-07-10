@@ -6,8 +6,10 @@
 		to: MenuOption;
 	}>();
 
+	// 判断 是否是 外链
 	const isExternalLink = computed(() => isUrl(props.to.name!));
 	const getLinkProps = (item: MenuOption) => {
+		// 若为外链 则打开新的窗口
 		if (isExternalLink.value) {
 			return {
 				href: item.name,

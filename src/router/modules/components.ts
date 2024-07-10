@@ -34,6 +34,15 @@ export default {
 						title: 'useTable',
 						keepAlive: true
 					}
+				},
+				{
+					path: '/components/table/treeTable',
+					name: 'TreeTable',
+					component: () => import('@/views/components/table/treeTable/index.vue'),
+					meta: {
+						title: 'treeTable',
+						keepAlive: true
+					}
 				}
 			]
 		},

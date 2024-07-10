@@ -22,7 +22,9 @@ export const useTheme = () => {
 
 	/**设置菜单栏主题 */
 	const setDarkMenu = () => {
-		darkMenu.value ? html.setAttribute('data-theme', 'menu-dark') : html.removeAttribute('data-theme');
+		unref(darkMenu)
+			? !['horizontal', 'basic', 'mixins'].includes(layoutStore.layout!) && html.setAttribute('data-theme', 'menu-dark')
+			: html.removeAttribute('data-theme');
 	};
 
 	// 修改头部高度
@@ -32,7 +34,7 @@ export const useTheme = () => {
 
 	/**设置主题颜色 */
 	const setThemeColor = (val?: string) => {
-		const colour: number = colorMode.value === 'dark' ? 20.5 : 255;
+		const colour: number = unref(colorMode) === 'dark' ? 20.5 : 255;
 		const colors = {
 			// 设置 自定义主题颜色
 			'--el-color-primary': val,
@@ -43,7 +45,7 @@ export const useTheme = () => {
 				[`--el-color-primary-light-${i + 1}`]: getThemeLightOrDarkHexColor(val as string, (i + 1) / 10, colour) as string
 			})).reduce((acc, curr) => ({ ...acc, ...curr }), {})
 		};
-		const theme = (layoutStore.colorMode === 'dark' ? 'html.dark' : ':root') + JSON.stringify(colors).replace(/,/g, ';').replace(/"/g, '');
+		const theme = (unref(colorMode) === 'dark' ? 'html.dark' : ':root') + JSON.stringify(colors).replace(/,/g, ';').replace(/"/g, '');
 
 		// 将主题style挂到head上
 		let style = document.getElementById('theme-var');
@@ -78,14 +80,14 @@ export const useTheme = () => {
 		// 使用 useColorMode() 无动画效果
 		// const { system, store } = useColorMode();
 		// const currColorMode = computed(() => (store.value === 'auto' ? system.value : store.value));
-		// store.value = layoutStore.colorMode!;
+		// store.value = unref(colorMode)!;
 
 		// 使用window自带matchMedia()
-		if (layoutStore.colorMode === 'auto') {
+		if (unref(colorMode) === 'auto') {
 			followSystemTheme();
 			match.addEventListener('change', followSystemTheme);
 		} else {
-			html.className = layoutStore.colorMode === 'dark' ? 'dark' : '';
+			html.className = unref(colorMode) === 'dark' ? 'dark' : '';
 			match.removeEventListener('change', followSystemTheme);
 		}
 	});
