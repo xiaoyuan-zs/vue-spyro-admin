@@ -1,5 +1,5 @@
 import { service } from '@/utils/request';
-import type { ApiResponse } from 'packages/axios/src';
+import type { ApiResponse } from '@spyro/axios';
 import type { User } from './types';
 
 // 获取用户列表

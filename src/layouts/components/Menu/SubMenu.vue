@@ -49,7 +49,7 @@
 			return routePath || props.basePath;
 		} else {
 			// 使用path.posix.resolve替代path.resolve 避免windows环境下使用electron出现盘符问题
-			return path.resolve(props.basePath, routePath);
+			return path.posix.resolve(props.basePath, routePath);
 		}
 	}
 </script>
@@ -57,16 +57,16 @@
 <template>
 	<app-link v-if="hasOneShowChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren)" :to="item">
 		<el-menu-item :index="resolvePath(onlyOneChild.path!)" :class="{ 'submenu-title-noDropdown': !isNest }">
-			<Icon v-if="toRaw(onlyOneChild.meta?.icon)" :name="toRaw(onlyOneChild.meta?.icon) || item.meta?.icon!" :size="20" />
+			<Icon v-if="toRaw(onlyOneChild.meta?.icon)" :name="toRaw(onlyOneChild.meta?.icon) || item.meta?.icon!" :size="16" />
 			<template #title>
 				<!-- truncate 多行溢出省略号 -->
 				<span :class="['truncate', !toRaw(onlyOneChild.meta?.icon) && 'pl-7']">{{ translateRouteTitle(onlyOneChild.meta?.title!) }}</span>
 			</template>
 		</el-menu-item>
 	</app-link>
-	<el-sub-menu v-else :index="resolvePath(item.path!)">
+	<el-sub-menu v-else teleported :index="resolvePath(item.path!)">
 		<template #title>
-			<Icon v-if="toRaw(item.meta?.icon)" :name="toRaw(item.meta?.icon) || item.meta?.icon!" :size="20" />
+			<Icon v-if="toRaw(item.meta?.icon)" :name="toRaw(item.meta?.icon) || item.meta?.icon!" :size="16" />
 			<!-- truncate 多行溢出省略号 -->
 			<span :class="['truncate', !toRaw(item.meta?.icon) && 'pl-7']">{{ translateRouteTitle(item.meta?.title!) }}</span>
 		</template>
