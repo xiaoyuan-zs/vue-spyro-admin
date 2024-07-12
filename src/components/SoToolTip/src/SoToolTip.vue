@@ -23,20 +23,18 @@
 
 			return () => (
 				<>
-					<div>
-						{show.value ? (
-							<el-popover placement="top" width={popoverWidth.value} trigger="hover">
-								{{
-									default: () => <span>{content.value}</span>,
-									reference: () => <span class={`${lineClamp.value} ${textColor.value} leading-23px cursor-pointer`}>{content.value}</span>
-								}}
-							</el-popover>
-						) : (
-							<span ref={tooltipContentRef} class={`${lineClamp.value} leading-23px`}>
-								{content.value}
-							</span>
-						)}
-					</div>
+					{show.value ? (
+						<el-popover placement="top" width={popoverWidth.value} trigger="hover">
+							{{
+								default: () => <span>{content.value}</span>,
+								reference: () => <span class={`${lineClamp.value} ${textColor.value} leading-23px cursor-pointer`}>{content.value}</span>
+							}}
+						</el-popover>
+					) : (
+						<span ref={tooltipContentRef} class={`${lineClamp.value} leading-23px`}>
+							{content.value}
+						</span>
+					)}
 				</>
 			);
 		}

@@ -1,6 +1,6 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { users } from './user.fake';
-import { createAccessToken, createRefreshToken, verifyAccessToken, verifyRefreshToken } from './verifyJwt';
+import { createAccessToken, createRefreshToken, verifyIdentity } from './verifyJwt';
 
 export default defineFakeRoute([
 	{
@@ -31,16 +31,11 @@ export default defineFakeRoute([
 		url: '/getUserInfo',
 		method: 'GET',
 		response: ({ headers }) => {
-			const result = verifyAccessToken(headers.authorization!);
-			if (!result.verify) {
-				return {
-					code: 401,
-					...result.err
-				};
-			}
+			const { flag, data } = verifyIdentity(headers.authorization!, 'access');
+			if (!flag) return data;
 			return {
 				code: 200,
-				data: result.decoded,
+				data: data.decoded,
 				message: '操作成功'
 			};
 		}
@@ -60,18 +55,13 @@ export default defineFakeRoute([
 		method: 'get',
 		response: ({ query }) => {
 			const { refreshToken } = query;
-			const result = verifyRefreshToken(refreshToken as string);
-			if (!result.verify) {
-				return {
-					code: 401,
-					...result.err
-				};
-			}
+			const { flag, data } = verifyIdentity(refreshToken as string, 'refresh');
+			if (!flag) return data;
 			return {
 				code: 200,
 				data: {
-					accessToken: createAccessToken(result.decoded),
-					refreshToken: createRefreshToken(result.decoded)
+					accessToken: createAccessToken(data.decoded),
+					refreshToken: createRefreshToken(data.decoded)
 				},
 				message: '操作成功'
 			};

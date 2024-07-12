@@ -1,11 +1,5 @@
-import jwt, { type VerifyErrors } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import type { User } from './user.fake';
-
-interface VerifyToken {
-	verify: boolean;
-	decoded: User;
-	err: VerifyErrors;
-}
 
 interface VerifyUser extends User {
 	iat?: number;
@@ -31,35 +25,24 @@ export const createRefreshToken = (user: VerifyUser) => {
 	});
 };
 
-// 验证token是否有效或过期
-export const verifyAccessToken = (token: string) => {
-	const decoded = jwt.verify(token, privateAccessKey, function (err, decoded) {
+export const verifyIdentity = (token: string, type: 'access' | 'refresh') => {
+	const key = type === 'access' ? privateAccessKey : privateRefreshKey;
+	let flag = true;
+	let data: any = {};
+	jwt.verify(token, key, function (err, decoded) {
 		if (err) {
-			return {
-				verify: false,
-				err
+			flag = false;
+			data = {
+				code: 401,
+				data: err
 			};
+		} else {
+			flag = true;
+			data = { decoded };
 		}
-		return {
-			verify: true,
-			decoded
-		};
-	}) as unknown as VerifyToken;
-	return decoded;
-};
-// 验证refreshToken是否有效或过期
-export const verifyRefreshToken = (token: string) => {
-	const decoded = jwt.verify(token, privateRefreshKey, function (err, decoded) {
-		if (err) {
-			return {
-				verify: false,
-				err
-			};
-		}
-		return {
-			verify: true,
-			decoded
-		};
-	}) as unknown as VerifyToken;
-	return decoded;
+	});
+	return {
+		flag,
+		data
+	};
 };

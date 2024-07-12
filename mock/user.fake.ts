@@ -1,6 +1,6 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { faker } from '@faker-js/faker';
-import { verifyAccessToken } from './verifyJwt';
+import { verifyIdentity } from './verifyJwt';
 
 export function createRandomUser() {
 	return {
@@ -51,18 +51,13 @@ export default defineFakeRoute([
 		url: '/users',
 		method: 'GET',
 		response: ({ query, headers }) => {
-			const result = verifyAccessToken(headers.authorization!);
-			if (!result.verify) {
-				return {
-					code: 401,
-					...result.err
-				};
-			}
+			const { flag, data } = verifyIdentity(headers.authorization!, 'access');
+			if (!flag) return data;
 			const { pageNum = 1, pageSize = 10, username, nickname, email, phone } = query;
-			const data = users.slice((Number(pageNum) - 1) * Number(pageSize), Number(pageSize) * Number(pageNum));
+			const list = users.slice((Number(pageNum) - 1) * Number(pageSize), Number(pageSize) * Number(pageNum));
 			return {
 				code: 200,
-				data,
+				data: list,
 				total: users.length,
 				message: '操作成功'
 			};
@@ -72,18 +67,13 @@ export default defineFakeRoute([
 		url: '/users/:id',
 		method: 'GET',
 		response: ({ params, headers }) => {
-			const result = verifyAccessToken(headers.authorization!);
-			if (!result.verify) {
-				return {
-					code: 401,
-					...result.err
-				};
-			}
+			const { flag, data } = verifyIdentity(headers.authorization!, 'access');
+			if (!flag) return data;
 			const { id } = params;
-			const data = users.find((el) => el.userId === id);
+			const user = users.find((el) => el.userId === id);
 			return {
 				code: 200,
-				data,
+				data: user,
 				message: '操作成功'
 			};
 		}

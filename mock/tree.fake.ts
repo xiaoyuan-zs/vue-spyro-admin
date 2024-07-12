@@ -1,9 +1,9 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { faker } from '@faker-js/faker';
-import { verifyAccessToken } from './verifyJwt';
+import { verifyIdentity } from './verifyJwt';
 
 type TreeNode = {
-	id: string;
+	uuid: string;
 	label: string;
 	sex: string;
 	status: boolean;
@@ -24,7 +24,7 @@ function generateTree(depth: number = 1, width: number = 1) {
 			}
 		}
 		return {
-			id: faker.string.uuid(),
+			uuid: faker.string.uuid(),
 			label: faker.lorem.sentence(),
 			sex: faker.person.sexType(),
 			status: faker.datatype.boolean(),
@@ -53,13 +53,8 @@ export default defineFakeRoute([
 		url: '/trees',
 		method: 'GET',
 		response: ({ headers }) => {
-			const result = verifyAccessToken(headers.authorization!);
-			if (!result.verify) {
-				return {
-					code: 401,
-					...result.err
-				};
-			}
+			const { flag, data } = verifyIdentity(headers.authorization!, 'access');
+			if (!flag) return data;
 			return {
 				code: 200,
 				data: generateManyTree(30),
