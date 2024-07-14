@@ -1,5 +1,7 @@
 <script lang="tsx">
 	import { propTypes } from '@/utils/propTypes';
+	import { useIntersectionObserver } from '@vueuse/core';
+
 	export default defineComponent({
 		name: 'SoToolTip',
 		props: {
@@ -13,12 +15,22 @@
 			let tooltipContentRef = ref<HTMLElement | null>(null);
 			let show = ref(false);
 
-			onMounted(() => {
+			//元素是否可见
+			const targetIsVisible = ref(false);
+			useIntersectionObserver(tooltipContentRef, ([{ isIntersecting }]) => {
+				targetIsVisible.value = isIntersecting;
+			});
+
+			const computedShow = () => {
 				nextTick(() => {
 					// 计算元素高度
 					const { offsetHeight, scrollHeight } = tooltipContentRef.value!;
 					show.value = scrollHeight - offsetHeight > 0;
 				});
+			};
+
+			watchEffect(() => {
+				if (targetIsVisible.value) computedShow();
 			});
 
 			return () => (

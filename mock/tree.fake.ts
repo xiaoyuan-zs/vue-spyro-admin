@@ -57,7 +57,7 @@ export default defineFakeRoute([
 			if (!flag) return data;
 			return {
 				code: 200,
-				data: generateManyTree(30),
+				data: generateManyTree(2),
 				message: '操作成功'
 			};
 		}

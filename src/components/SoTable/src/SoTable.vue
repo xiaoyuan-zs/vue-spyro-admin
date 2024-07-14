@@ -21,7 +21,7 @@
 		tableTool?: boolean;
 	}
 	// SoTable and ElTable Props Type
-	export interface TableProps extends Props, Partial<Omit<ElTableProps<any>, 'data' | 'rowKey'>> {}
+	export interface TableProps extends Props, Partial<Omit<ElTableProps<any>, 'data' | 'rowKey' | 'cellStyle'>> {}
 
 	// 3.4+ 版本 defineProps 暂不支持外文件类型导入
 	const props = withDefaults(defineProps<Props>(), {
@@ -37,7 +37,6 @@
 		(event: 'refresh'): void;
 		(event: 'mount', params: any): void;
 		(event: 'dragSort', { newIndex, oldIndex }: { newIndex?: number; oldIndex?: number }): void;
-		(event: 'expand-change', ...args: any): void;
 	}>();
 
 	const slots = defineSlots();
@@ -45,8 +44,6 @@
 
 	// 表格实例
 	const tableRef = ref<InstanceType<typeof ElTable>>();
-	// tooltip 实例
-	const toolTipRef = ref<InstanceType<typeof SoToolTip>>();
 	// 合并setProps传递的Props
 	const mergeProps = ref<TableProps>({});
 	// 表格唯一标识
@@ -80,7 +77,7 @@
 	});
 	// 去除el-table不需要的 props
 	const bindValue = computed(() => {
-		const obj: Record<string, any> = { ...attrs, ...unref(allProps) };
+		const obj: Record<string, any> = { cellStyle: { height: '63px' }, ...attrs, ...unref(allProps) };
 		delete obj.tableData;
 		delete obj.columnList;
 		delete obj.pageProps;
@@ -128,15 +125,6 @@
 		});
 	};
 
-	const expandChange = (...args: any) => {
-		console.log('里面的哦', args);
-		const [row, expanded] = args;
-		console.log(777, expanded);
-		if (typeof expanded === 'boolean' && expanded) {
-		}
-		emit('expand-change', args);
-	};
-
 	// 处理renderColumn
 	const renderColumn = (column: ColumnProps) => (
 		<ElTableColumn {...column} align={column.align ?? 'center'}>
@@ -156,7 +144,6 @@
 						<>
 							{column.overflowConfig?.initiate ? (
 								<SoToolTip
-									ref={toolTipRef}
 									textColor={column.overflowConfig.color}
 									popoverWidth={column.overflowConfig.width}
 									lineClamp={column.overflowConfig.line}
@@ -226,14 +213,7 @@
 		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
-		<el-table
-			ref="tableRef"
-			class="flex-1"
-			:id="uuid"
-			:data="allProps.tableData"
-			:cell-style="{ height: '63px' }"
-			v-bind="bindValue"
-			@expand-change="expandChange">
+		<el-table ref="tableRef" class="flex-1" :id="uuid" :data="allProps.tableData" v-bind="bindValue">
 			<template v-for="column in columns" :key="column.prop || column.type">
 				<el-table-column
 					v-if="column.type && column.visible"
