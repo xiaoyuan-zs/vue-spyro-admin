@@ -1,5 +1,5 @@
 export type TreeNode = {
-	id: string;
+	uuid: string;
 	label: string;
 	sex: string;
 	status: boolean;

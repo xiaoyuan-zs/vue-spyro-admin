@@ -30,6 +30,8 @@
 			};
 
 			watchEffect(() => {
+				// 若元素可见，则计算元素高度
+				// 否则不执行
 				if (targetIsVisible.value) computedShow();
 			});
 

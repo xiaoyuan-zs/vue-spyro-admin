@@ -17,6 +17,11 @@
 			width: '55'
 		},
 		{
+			prop: 'uuid',
+			label: 'uuid',
+			align: 'left'
+		},
+		{
 			prop: 'label',
 			label: '标签',
 			align: 'left',
