@@ -4,8 +4,10 @@ import type { ApiResponse } from '@spyro/axios';
 import type { ElTable } from 'element-plus';
 
 interface UseTableProps<T> {
+	// 是否初始化执行
+	immediate?: boolean;
 	// 表格数据获取及处理
-	fetchApi: () => Promise<{ data: T[]; total: number }>;
+	fetchApi?: () => Promise<{ data: T[]; total: number }>;
 	// 删除表格数据
 	fetchDelApi?: () => Promise<ApiResponse<any>>;
 }
@@ -21,6 +23,8 @@ interface TableState<T> {
  * @field fetchApi: 表格数据获取及处理(必填)
  */
 export const useTable = <T = any>(props: UseTableProps<T>) => {
+	const { immediate = true } = props;
+
 	// 表格数据状态
 	const state: TableState<T> = reactive({
 		loading: false,
@@ -52,21 +56,23 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 	const tableMethods = {
 		// 加载数据
 		getList: async () => {
-			state.loading = true;
-			try {
-				const { total, data } = await props.fetchApi();
-				state.data = data;
-				state.total = total;
-				tableMethods.setProps({
-					tableData: data,
-					pageProps: {
-						total
-					}
-				});
-			} catch (e) {
-				console.error('fetchApi error', e);
-			} finally {
-				state.loading = false;
+			if (props.fetchApi) {
+				state.loading = true;
+				try {
+					const { total, data } = await props.fetchApi();
+					state.data = data;
+					state.total = total;
+					tableMethods.setProps({
+						tableData: data,
+						pageProps: {
+							total
+						}
+					});
+				} catch (e) {
+					console.error('fetchApi error', e);
+				} finally {
+					state.loading = false;
+				}
 			}
 		},
 		// 设置表格props
@@ -106,7 +112,7 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 
 	// 挂在完成之后初始化数据
 	onMounted(() => {
-		tableMethods.getList();
+		if (immediate) tableMethods.getList();
 	});
 
 	return {

@@ -43,6 +43,15 @@ export default {
 						title: '树形表格',
 						keepAlive: true
 					}
+				},
+				{
+					path: '/components/table/editTable',
+					name: 'EditTable',
+					component: () => import('@/views/components/table/editTable/index.vue'),
+					meta: {
+						title: '可编辑表格',
+						keepAlive: true
+					}
 				}
 			]
 		},
