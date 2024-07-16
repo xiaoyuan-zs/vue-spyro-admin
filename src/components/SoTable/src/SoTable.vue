@@ -207,7 +207,7 @@
 			<el-col :span="1.5">
 				<slot name="operation" />
 			</el-col>
-			<template v-if="tableTool">
+			<template v-if="allProps.tableTool">
 				<SoTableTool v-model:show-search="showSearch" :columns="columns" @refresh="refresh" />
 			</template>
 		</el-row>

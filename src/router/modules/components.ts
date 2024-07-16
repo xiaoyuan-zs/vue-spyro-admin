@@ -40,7 +40,7 @@ export default {
 					name: 'TreeTable',
 					component: () => import('@/views/components/table/treeTable/index.vue'),
 					meta: {
-						title: 'treeTable',
+						title: '树形表格',
 						keepAlive: true
 					}
 				}

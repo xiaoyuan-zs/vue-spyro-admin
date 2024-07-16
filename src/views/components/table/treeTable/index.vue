@@ -95,13 +95,14 @@
 	onMounted(() => {
 		setProps({
 			rowKey: 'uuid',
+			tableTool: false,
 			columnList: columns
 		});
 	});
 </script>
 <template>
 	<div class="h-full flex-col">
-		<SoCard title="treeTable 示例" class="flex-1">
+		<SoCard title="树形表格示例" class="flex-1">
 			<SoTable height="100%" v-loading="loading" @refresh="refresh" @mount="tableMount" />
 		</SoCard>
 	</div>

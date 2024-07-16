@@ -206,7 +206,12 @@
 <template>
 	<div class="h-full flex-col">
 		<SoCard v-show="showSearch" title="useTable 操作" class="mb-4">
-			<div>
+			<el-alert
+				:closable="false"
+				title="基于基础表格封装useTable函数的高级用法"
+				type="info"
+				description="采用hook函数式搭配TSX语法的方式进行使用，配置高度灵活，表格都默认设置rowKey，优化表格渲染及保证树形、展开行、拖拽的正常功能。" />
+			<div class="mt-3">
 				<el-button @click="handlePage(true)">显示分页</el-button>
 				<el-button @click="handlePage(false)">隐藏分页</el-button>
 				<el-button @click="handleMultiSelect(true)">显示多选</el-button>

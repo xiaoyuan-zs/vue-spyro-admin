@@ -141,13 +141,12 @@
 </script>
 
 <template>
-	<SoCard class="h-full">
-		<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-sky-500 duration-200 flex items-center">
-			<span>基础表格示例</span>
-			<el-tooltip effect="dark" content="基于 ElementPlus 的 Table 组件进行二次封装" placement="top">
-				<Icon name="ep:info-filled" class="cursor-pointer ml-2" />
-			</el-tooltip>
-		</h2>
+	<SoCard title="基础表格示例" class="h-full">
+		<el-alert
+			:closable="false"
+			title="基于el-table表格的二次封装"
+			type="info"
+			description="采用h函数或tsx语法对列渲染进行封装，兼容el-table全部属性及API，并进行了一定自定义拓展，具有完整类型提示， 列配置可选择插槽方式或tsx渲染，高度灵活，表格都默认设置rowKey，优化表格渲染。" />
 		<SoTable
 			ref="soTableRef"
 			height="100%"
