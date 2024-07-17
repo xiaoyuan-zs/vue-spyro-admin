@@ -1,6 +1,7 @@
 import type { User } from '@/api/user/types';
 import type { ColumnProps } from '@/components/SoTable';
-import { ElButton, ElInput, ElSelect } from 'element-plus';
+import { ElButton, ElInput, ElOption, ElSelect } from 'element-plus';
+import { clone, selectDictLabel } from '@spyro/utils';
 
 interface TableData extends Partial<User> {
 	edit?: boolean;
@@ -15,6 +16,17 @@ interface TableData extends Partial<User> {
 // };
 
 export const useSingleEdit = () => {
+	// 性别字典
+	const sexOptions = reactive([
+		{
+			dictLabel: '男',
+			dictValue: 'male'
+		},
+		{
+			dictLabel: '女',
+			dictValue: 'female'
+		}
+	]);
 	const data: TableData[] = [
 		{
 			userId: '123456',
@@ -49,7 +61,7 @@ export const useSingleEdit = () => {
 		columns: ColumnProps<TableData>[];
 		data: TableData[];
 	}>({
-		data,
+		data: clone(data, true),
 		columns: [
 			{
 				type: 'index',
@@ -61,19 +73,35 @@ export const useSingleEdit = () => {
 				label: '用户名',
 				overflowConfig: {
 					initiate: true
-				}
+				},
+				renderer: ({ row }) => <>{row.edit ? <ElInput v-model={row.username} /> : <span>{row.username}</span>}</>
 			},
 			{
 				prop: 'nickname',
-				label: '昵称'
+				label: '昵称',
+				renderer: ({ row }) => <>{row.edit ? <ElInput v-model={row.nickname} /> : <span>{row.nickname}</span>}</>
 			},
 			{
 				prop: 'sex',
-				label: '性别'
+				label: '性别',
+				renderer: ({ row }) => (
+					<>
+						{row.edit ? (
+							<ElSelect v-model={row.sex}>
+								{sexOptions.map((dict) => (
+									<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
+								))}
+							</ElSelect>
+						) : (
+							<span>{selectDictLabel(sexOptions, row.sex!)}</span>
+						)}
+					</>
+				)
 			},
 			{
 				prop: 'phone',
-				label: '手机号'
+				label: '手机号',
+				renderer: ({ row }) => <>{row.edit ? <ElInput v-model={row.phone} /> : <span>{row.phone}</span>}</>
 			},
 			{
 				prop: 'email',
@@ -106,11 +134,16 @@ export const useSingleEdit = () => {
 	});
 
 	// 保存
-	const handleSave = (row: TableData) => {};
+	const handleSave = (row: TableData) => {
+		const index = data.findIndex((el) => el.userId === row.userId);
+		if (index > -1) data[index] = Object.assign(data[index], clone(row, true));
+		row.edit = false;
+	};
 
 	// 取消
 	const handleCancel = (row: TableData) => {
-		row = data.find((el) => el.userId === row.userId)!;
+		const item = data.find((el) => el.userId === row.userId);
+		if (item) row = Object.assign(row, item);
 		row.edit = false;
 	};
 	// 编辑
