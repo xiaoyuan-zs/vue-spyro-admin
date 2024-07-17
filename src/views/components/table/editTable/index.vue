@@ -1,7 +1,9 @@
 <script lang="tsx">
 	import { TabPaneName } from 'element-plus';
-	import { useSingleEdit, useOverallEdit } from './hooks/index';
+	import { useSingleEdit, useOverallEdit, useUnVerifyEdit, useVerifyEdit } from './hooks/index';
 	import { SoTable, useTable } from '@/components/SoTable';
+	import VueJsonPretty from 'vue-json-pretty';
+	import 'vue-json-pretty/lib/styles.css';
 
 	export default defineComponent({
 		name: 'EditTable',
@@ -25,6 +27,7 @@
 					name: 'verifyEdit'
 				}
 			]);
+			const tableData = ref<any>([]);
 
 			const { tableMethods, tableMount } = useTable({
 				immediate: false
@@ -32,22 +35,30 @@
 			const { setProps, refresh } = tableMethods;
 
 			// 具体的列
-			const columns = {
-				singleEdit: useSingleEdit().columnProp.columns,
-				overallEdit: useOverallEdit().columnProp.columns
+			const columnProp = {
+				singleEdit: useSingleEdit().columnProp,
+				overallEdit: useOverallEdit().columnProp,
+				unVerifyEdit: useUnVerifyEdit().columnProp,
+				verifyEdit: useVerifyEdit().columnProp
 			};
 			// el-tab切换事件
 			const handleChange = (name: TabPaneName) => {
+				const key = name as keyof typeof columnProp;
+				const prop = columnProp[key];
+				if (prop) initTable(prop);
+			};
+
+			const initTable = (prop: (typeof columnProp)[keyof typeof columnProp]) => {
 				setProps({
-					rowKey: 'uuid'
+					rowKey: 'userId',
+					columnList: prop.columns,
+					tableData: prop.data
 				});
+				tableData.value = prop.data;
 			};
 
 			onMounted(() => {
-				setProps({
-					rowKey: 'userId',
-					columnList: columns.singleEdit
-				});
+				initTable(columnProp.singleEdit);
 			});
 
 			return () => (
@@ -64,7 +75,14 @@
 								<el-tab-pane key={el.name} label={el.label} name={el.name} />
 							))}
 						</el-tabs>
-						<SoTable height="100%" onRefresh={refresh} onMount={tableMount} />
+						<div class="flex-1 flex overflow-hidden">
+							<div class="w-60 h-full mr-4">
+								<el-scrollbar>
+									<VueJsonPretty data={unref(tableData)} />
+								</el-scrollbar>
+							</div>
+							<SoTable class="flex-1" height="100%" tableTool={false} onRefresh={refresh} onMount={tableMount} />
+						</div>
 					</so-card>
 				</div>
 			);

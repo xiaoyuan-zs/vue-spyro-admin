@@ -1,7 +1,7 @@
 import type { User } from '@/api/user/types';
 import type { ColumnProps } from '@/components/SoTable';
 
-export const useOverallEdit = () => {
+export const useUnVerifyEdit = () => {
 	const columnProp = reactive<{
 		columns: ColumnProps<User>[];
 		data: User[];
