@@ -2,9 +2,11 @@ import type { User } from '@/api/user/types';
 import type { ColumnProps } from '@/components/SoTable';
 import { ElButton, ElInput, ElOption, ElSelect } from 'element-plus';
 import { clone, selectDictLabel } from '@spyro/utils';
+import { Icon } from '@/components/Icon';
 
 interface TableData extends Partial<User> {
 	edit?: boolean;
+	single?: boolean;
 }
 
 // const obj: User = {
@@ -79,7 +81,20 @@ export const useSingleEdit = () => {
 			{
 				prop: 'nickname',
 				label: '昵称',
-				renderer: ({ row }) => <>{row.edit ? <ElInput v-model={row.nickname} /> : <span>{row.nickname}</span>}</>
+				renderer: ({ row }) => (
+					<>
+						{row.edit ? (
+							<ElInput v-model={row.nickname} />
+						) : (
+							<>
+								<span>{row.nickname}</span>
+								<span onClick={() => handleSingle(row)}>
+									<Icon class="float-right cursor-pointer hover:text-primary" name="ep:edit" size={16} />
+								</span>
+							</>
+						)}
+					</>
+				)
 			},
 			{
 				prop: 'sex',
@@ -150,6 +165,8 @@ export const useSingleEdit = () => {
 	const handleEdit = (row: TableData) => {
 		row.edit = true;
 	};
+
+	const handleSingle = (row: TableData) => {};
 
 	return {
 		columnProp
