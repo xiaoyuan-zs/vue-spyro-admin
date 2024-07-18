@@ -214,7 +214,7 @@
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
 		<el-table ref="tableRef" class="flex-1" :id="uuid" :data="allProps.tableData" v-bind="bindValue">
-			<template v-for="column in columns" :key="column.prop || column.type">
+			<template v-for="column in columns" :key="column">
 				<el-table-column
 					v-if="column.type && column.visible"
 					v-bind="column"

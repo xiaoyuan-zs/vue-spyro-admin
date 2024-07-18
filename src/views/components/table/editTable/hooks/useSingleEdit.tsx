@@ -46,7 +46,8 @@ export const useSingleEdit = () => {
 			sex: 'male',
 			phone: '689.716.7451 x200',
 			email: 'Katarina.Klocko78@gmail.com',
-			edit: false
+			edit: false,
+			single: false
 		},
 		{
 			userId: '6eb627ff-c4a3-454d-b0f5-5ff2f10c8ab8',
@@ -82,18 +83,12 @@ export const useSingleEdit = () => {
 				prop: 'nickname',
 				label: '昵称',
 				renderer: ({ row }) => (
-					<>
-						{row.edit ? (
-							<ElInput v-model={row.nickname} />
-						) : (
-							<>
-								<span>{row.nickname}</span>
-								<span onClick={() => handleSingle(row)}>
-									<Icon class="float-right cursor-pointer hover:text-primary" name="ep:edit" size={16} />
-								</span>
-							</>
-						)}
-					</>
+					<span class="flex items-center w-full">
+						<span class="flex-1 mr-1">{row.edit || row.single ? <ElInput v-model={row.nickname} /> : <span>{row.nickname}</span>}</span>
+						<span onClick={() => handleSingle(row)}>
+							<Icon class="cursor-pointer hover:text-primary" name="ep:edit" size={16} />
+						</span>
+					</span>
 				)
 			},
 			{
@@ -166,7 +161,9 @@ export const useSingleEdit = () => {
 		row.edit = true;
 	};
 
-	const handleSingle = (row: TableData) => {};
+	const handleSingle = (row: TableData) => {
+		row.single = !row.single;
+	};
 
 	return {
 		columnProp

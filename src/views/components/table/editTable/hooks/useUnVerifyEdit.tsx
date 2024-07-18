@@ -14,7 +14,7 @@ export const useUnVerifyEdit = () => {
 			},
 			{
 				prop: 'username',
-				label: '用户名',
+				label: '用户名4',
 				overflowConfig: {
 					initiate: true
 				}

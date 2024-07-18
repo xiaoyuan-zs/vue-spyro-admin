@@ -78,7 +78,7 @@
 						<div class="flex-1 flex overflow-hidden">
 							<div class="w-60 h-full mr-4">
 								<el-scrollbar>
-									<VueJsonPretty data={unref(tableData)} />
+									<VueJsonPretty data={unref(tableData)} showLine={false} showDoubleQuotes={false} />
 								</el-scrollbar>
 							</div>
 							<SoTable class="flex-1" height="100%" tableTool={false} onRefresh={refresh} onMount={tableMount} />
