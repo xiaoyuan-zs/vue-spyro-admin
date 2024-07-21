@@ -14,7 +14,7 @@ export const useVerifyEdit = () => {
 			},
 			{
 				prop: 'username',
-				label: '用户名6',
+				label: '用户名',
 				overflowConfig: {
 					initiate: true
 				}

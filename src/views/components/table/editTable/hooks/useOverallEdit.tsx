@@ -36,7 +36,7 @@ export const useOverallEdit = () => {
 			},
 			{
 				prop: 'username',
-				label: '用户名2',
+				label: '用户名',
 				overflowConfig: {
 					initiate: true
 				},
