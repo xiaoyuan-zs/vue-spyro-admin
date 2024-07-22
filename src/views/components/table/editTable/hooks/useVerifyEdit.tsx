@@ -79,7 +79,7 @@ export const useVerifyEdit = () => {
 					</>
 				),
 				renderer: ({ row, $index, column }) => (
-					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: true, message: '请选则性别', trigger: 'change' }]}>
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: true, message: '请选择性别', trigger: 'change' }]}>
 						<ElSelect v-model={row.sex} clearable>
 							{sexOptions.map((dict) => (
 								<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
@@ -107,7 +107,7 @@ export const useVerifyEdit = () => {
 				prop: 'email',
 				label: '邮箱',
 				renderer: ({ row, $index, column }) => (
-					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: false, message: '请输入手机号', trigger: 'blur' }]}>
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: false, message: '请输入邮箱', trigger: 'blur' }]}>
 						<ElInput v-model={row.email} />
 					</ElFormItem>
 				)

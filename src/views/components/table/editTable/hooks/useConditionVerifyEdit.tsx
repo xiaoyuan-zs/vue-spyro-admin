@@ -1,9 +1,12 @@
 import type { User } from '@/api/user/types';
 import type { ColumnProps } from '@/components/SoTable';
-import { ElButton, ElInput, ElOption, ElSelect } from 'element-plus';
+import { ElButton, ElFormItem, ElInput, ElOption, ElSelect } from 'element-plus';
 import { clone } from '@spyro/utils';
+import { Icon } from '@/components/Icon';
 
-interface TableData extends Partial<User> {}
+interface TableData extends Partial<User> {
+	[key: string]: any;
+}
 
 export const useConditionVerifyEdit = () => {
 	// 性别字典
@@ -26,6 +29,7 @@ export const useConditionVerifyEdit = () => {
 		email: ''
 	};
 
+	// 根据条件判断  性别为女 手机号必填， 性别为男，不做要求
 	const columnProp = reactive<{
 		columns: ColumnProps<TableData>[];
 		data: TableData[];
@@ -42,33 +46,91 @@ export const useConditionVerifyEdit = () => {
 				overflowConfig: {
 					initiate: true
 				},
-				renderer: ({ row }) => <ElInput v-model={row.username} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem
+						prop={`data[${$index}][${column.property}]`}
+						rules={[{ required: row[`${column.property}Validate`], message: '请输入用户名', trigger: 'blur' }]}>
+						<ElInput v-model={row.username} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'nickname',
 				label: '昵称',
-				renderer: ({ row }) => <ElInput v-model={row.nickname} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem
+						prop={`data[${$index}][${column.property}]`}
+						rules={[{ required: row[`${column.property}Validate`], message: '请输入昵称', trigger: 'blur' }]}>
+						<ElInput v-model={row.nickname} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'sex',
 				label: '性别',
-				renderer: ({ row }) => (
-					<ElSelect v-model={row.sex}>
-						{sexOptions.map((dict) => (
-							<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
-						))}
-					</ElSelect>
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem
+						prop={`data[${$index}][${column.property}]`}
+						rules={[{ required: row[`${column.property}Validate`], message: '请选择性别', trigger: 'change' }]}>
+						<ElSelect v-model={row.sex} clearable onChange={(value) => changePhoneValid(row, value)}>
+							{sexOptions.map((dict) => (
+								<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
+							))}
+						</ElSelect>
+					</ElFormItem>
 				)
 			},
 			{
 				prop: 'phone',
 				label: '手机号',
-				renderer: ({ row }) => <ElInput v-model={row.phone} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem
+						prop={`data[${$index}][${column.property}]`}
+						rules={[{ required: row[`${column.property}Validate`], message: '请输入手机号', trigger: 'blur' }]}>
+						<ElInput v-model={row.phone} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'email',
 				label: '邮箱',
-				renderer: ({ row }) => <ElInput v-model={row.email} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem
+						prop={`data[${$index}][${column.property}]`}
+						rules={[{ required: row[`${column.property}Validate`], message: '请输入邮箱', trigger: 'blur' }]}>
+						<ElInput v-model={row.email} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'operation',
@@ -94,9 +156,15 @@ export const useConditionVerifyEdit = () => {
 
 	const handleAdd = () => {
 		const obj = clone(data, true);
+		Object.keys(obj).forEach((key) => {
+			obj[`${key}Validate`] = true;
+		});
 		columnProp.data.push(obj);
 	};
 
+	const changePhoneValid = (row: TableData, value: string) => {
+		row[`phoneValidate`] = value === 'female';
+	};
 	// 删除
 	const handleDelete = ($index: number) => {
 		columnProp.data.splice($index, 1);
