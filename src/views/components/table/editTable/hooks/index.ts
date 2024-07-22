@@ -1,4 +1,4 @@
 export { useSingleEdit } from './useSingleEdit';
 export { useOverallEdit } from './useOverallEdit';
-export { useUnVerifyEdit } from './useUnVerifyEdit';
+export { useConditionVerifyEdit } from './useConditionVerifyEdit';
 export { useVerifyEdit } from './useVerifyEdit';

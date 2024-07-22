@@ -5,7 +5,7 @@ import { clone } from '@spyro/utils';
 
 interface TableData extends Partial<User> {}
 
-export const useUnVerifyEdit = () => {
+export const useConditionVerifyEdit = () => {
 	// 性别字典
 	const sexOptions = reactive([
 		{

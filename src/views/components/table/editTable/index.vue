@@ -10,12 +10,12 @@
 			name: 'overallEdit'
 		},
 		{
-			label: '表单表格(无校验)',
-			name: 'unVerifyEdit'
+			label: '表单表格(普通校验)',
+			name: 'verifyEdit'
 		},
 		{
-			label: '表单表格(有校验)',
-			name: 'verifyEdit'
+			label: '表单表格(条件校验)',
+			name: 'conditionVerifyEdit'
 		}
 	]);
 
@@ -23,8 +23,8 @@
 	const columnProp = {
 		singleEdit: defineAsyncComponent(() => import('./components/SingleEdit.vue')),
 		overallEdit: defineAsyncComponent(() => import('./components/OverallEdit.vue')),
-		unVerifyEdit: defineAsyncComponent(() => import('./components/UnVerifyEdit.vue')),
-		verifyEdit: defineAsyncComponent(() => import('./components/VerifyEdit.vue'))
+		verifyEdit: defineAsyncComponent(() => import('./components/VerifyEdit.vue')),
+		conditionVerifyEdit: defineAsyncComponent(() => import('./components/conditionVerifyEdit.vue'))
 	};
 </script>
 

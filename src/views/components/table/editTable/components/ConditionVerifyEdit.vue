@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { useUnVerifyEdit } from '../hooks';
+	import { useConditionVerifyEdit } from '../hooks';
 	import { SoTable, useTable } from '@/components/SoTable';
 	import VueJsonPretty from 'vue-json-pretty';
 	import 'vue-json-pretty/lib/styles.css';
@@ -12,7 +12,7 @@
 	});
 	const { setProps, refresh } = tableMethods;
 
-	const { columnProp } = useUnVerifyEdit();
+	const { columnProp } = useConditionVerifyEdit();
 
 	const initTable = (prop: typeof columnProp) => {
 		setProps({
@@ -35,6 +35,8 @@
 				<VueJsonPretty :data="unref(tableData)" :showLine="false" :showDoubleQuotes="false" />
 			</el-scrollbar>
 		</div>
-		<SoTable class="flex-1" height="100%" :tableTool="false" @refresh="refresh" @mount="tableMount" />
+		<el-form :model="columnProp">
+			<SoTable class="flex-1" height="100%" :tableTool="false" @refresh="refresh" @mount="tableMount" />
+		</el-form>
 	</div>
 </template>
