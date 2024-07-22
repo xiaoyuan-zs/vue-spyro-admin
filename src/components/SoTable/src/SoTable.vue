@@ -214,7 +214,7 @@
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
 		<el-table ref="tableRef" class="flex-1" :id="uuid" :data="allProps.tableData" v-bind="bindValue">
-			<template v-for="column in columns" :key="column">
+			<template v-for="(column, index) in columns" :key="column">
 				<el-table-column
 					v-if="column.type && column.visible"
 					v-bind="column"
@@ -235,7 +235,7 @@
 						<slot v-else :name="`${column.type}Header`" v-bind="scope"></slot>
 					</template>
 				</el-table-column>
-				<SoTableColumn v-if="!column.type && column.prop && column.visible" :column />
+				<SoTableColumn v-if="!column.type && column.prop && column.visible" :column="{ ...column, index }" />
 			</template>
 			<!-- 默认插槽 支持el-table 的columns -->
 			<slot />

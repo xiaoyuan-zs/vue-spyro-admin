@@ -35,6 +35,8 @@
 				<VueJsonPretty :data="unref(tableData)" :showLine="false" :showDoubleQuotes="false" />
 			</el-scrollbar>
 		</div>
-		<SoTable class="flex-1" height="100%" :tableTool="false" @refresh="refresh" @mount="tableMount" />
+		<el-form class="flex-1" :model="columnProp">
+			<SoTable height="100%" :tableTool="false" @refresh="refresh" @mount="tableMount" />
+		</el-form>
 	</div>
 </template>

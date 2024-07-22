@@ -1,6 +1,6 @@
 import type { User } from '@/api/user/types';
 import type { ColumnProps } from '@/components/SoTable';
-import { ElButton, ElInput, ElOption, ElSelect } from 'element-plus';
+import { ElButton, ElFormItem, ElInput, ElOption, ElSelect } from 'element-plus';
 import { clone } from '@spyro/utils';
 
 interface TableData extends Partial<User> {}
@@ -42,33 +42,75 @@ export const useVerifyEdit = () => {
 				overflowConfig: {
 					initiate: true
 				},
-				renderer: ({ row }) => <ElInput v-model={row.username} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: true, message: '请输入用户名', trigger: 'blur' }]}>
+						<ElInput v-model={row.username} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'nickname',
 				label: '昵称',
-				renderer: ({ row }) => <ElInput v-model={row.nickname} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: true, message: '请输入昵称', trigger: 'blur' }]}>
+						<ElInput v-model={row.nickname} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'sex',
 				label: '性别',
-				renderer: ({ row }) => (
-					<ElSelect v-model={row.sex}>
-						{sexOptions.map((dict) => (
-							<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
-						))}
-					</ElSelect>
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: true, message: '请选则性别', trigger: 'change' }]}>
+						<ElSelect v-model={row.sex} clearable>
+							{sexOptions.map((dict) => (
+								<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
+							))}
+						</ElSelect>
+					</ElFormItem>
 				)
 			},
 			{
 				prop: 'phone',
 				label: '手机号',
-				renderer: ({ row }) => <ElInput v-model={row.phone} />
+				headerRenderer: ({ column }) => (
+					<>
+						<span class="text-red">*</span>
+						<span>{column.label}</span>
+					</>
+				),
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: true, message: '请输入手机号', trigger: 'blur' }]}>
+						<ElInput v-model={row.phone} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'email',
 				label: '邮箱',
-				renderer: ({ row }) => <ElInput v-model={row.email} />
+				renderer: ({ row, $index, column }) => (
+					<ElFormItem prop={`data[${$index}][${column.property}]`} rules={[{ required: false, message: '请输入手机号', trigger: 'blur' }]}>
+						<ElInput v-model={row.email} />
+					</ElFormItem>
+				)
 			},
 			{
 				prop: 'operation',
