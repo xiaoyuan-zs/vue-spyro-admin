@@ -24,7 +24,7 @@
 		singleEdit: defineAsyncComponent(() => import('./components/SingleEdit.vue')),
 		overallEdit: defineAsyncComponent(() => import('./components/OverallEdit.vue')),
 		verifyEdit: defineAsyncComponent(() => import('./components/VerifyEdit.vue')),
-		conditionVerifyEdit: defineAsyncComponent(() => import('./components/conditionVerifyEdit.vue'))
+		conditionVerifyEdit: defineAsyncComponent(() => import('./components/ConditionVerifyEdit.vue'))
 	};
 </script>
 

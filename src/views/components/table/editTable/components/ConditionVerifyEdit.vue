@@ -23,6 +23,13 @@
 		tableData.value = prop.data;
 	};
 
+	// 通过计算属性 过滤出表头插槽名称
+	const headerSlots = computed(() =>
+		columnProp.columns.map((el) => {
+			if (el.prop) return el.prop + 'Header';
+		})
+	);
+
 	onMounted(() => {
 		initTable(columnProp);
 	});
@@ -36,7 +43,12 @@
 			</el-scrollbar>
 		</div>
 		<el-form class="flex-1" :model="columnProp">
-			<SoTable height="100%" :tableTool="false" @refresh="refresh" @mount="tableMount" />
+			<SoTable height="100%" :tableTool="false" @refresh="refresh" @mount="tableMount">
+				<template v-for="item in headerSlots" :key="item" #[item!]="{ column }">
+					<span class="text-red">*</span>
+					<span>{{ column.label }}</span>
+				</template>
+			</SoTable>
 		</el-form>
 	</div>
 </template>

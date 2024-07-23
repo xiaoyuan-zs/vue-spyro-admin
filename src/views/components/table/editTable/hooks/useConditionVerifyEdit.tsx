@@ -1,6 +1,6 @@
 import type { User } from '@/api/user/types';
 import type { ColumnProps } from '@/components/SoTable';
-import { ElButton, ElFormItem, ElInput, ElOption, ElSelect } from 'element-plus';
+import { ElButton, ElFormItem, ElInput, ElOption, ElSelect, ElTooltip } from 'element-plus';
 import { clone } from '@spyro/utils';
 import { Icon } from '@/components/Icon';
 
@@ -24,7 +24,7 @@ export const useConditionVerifyEdit = () => {
 	const data: TableData = {
 		username: '',
 		nickname: '',
-		sex: 'male',
+		sex: 'female',
 		phone: '',
 		email: ''
 	};
@@ -46,16 +46,10 @@ export const useConditionVerifyEdit = () => {
 				overflowConfig: {
 					initiate: true
 				},
-				headerRenderer: ({ column }) => (
-					<>
-						<span class="text-red">*</span>
-						<span>{column.label}</span>
-					</>
-				),
 				renderer: ({ row, $index, column }) => (
 					<ElFormItem
 						prop={`data[${$index}][${column.property}]`}
-						rules={[{ required: row[`${column.property}Validate`], message: '请输入用户名', trigger: 'blur' }]}>
+						rules={[{ required: row[`${column.property}Required`], message: '请输入用户名', trigger: 'blur' }]}>
 						<ElInput v-model={row.username} />
 					</ElFormItem>
 				)
@@ -63,16 +57,10 @@ export const useConditionVerifyEdit = () => {
 			{
 				prop: 'nickname',
 				label: '昵称',
-				headerRenderer: ({ column }) => (
-					<>
-						<span class="text-red">*</span>
-						<span>{column.label}</span>
-					</>
-				),
 				renderer: ({ row, $index, column }) => (
 					<ElFormItem
 						prop={`data[${$index}][${column.property}]`}
-						rules={[{ required: row[`${column.property}Validate`], message: '请输入昵称', trigger: 'blur' }]}>
+						rules={[{ required: row[`${column.property}Required`], message: '请输入昵称', trigger: 'blur' }]}>
 						<ElInput v-model={row.nickname} />
 					</ElFormItem>
 				)
@@ -81,16 +69,19 @@ export const useConditionVerifyEdit = () => {
 				prop: 'sex',
 				label: '性别',
 				headerRenderer: ({ column }) => (
-					<>
+					<div class="flex-center">
 						<span class="text-red">*</span>
 						<span>{column.label}</span>
-					</>
+						<ElTooltip effect="dark" content="根据条件判断, 性别为女 手机号必填，性别为男，不做要求" placement="top">
+							<Icon name="ep:info-filled" class="ml-1" />
+						</ElTooltip>
+					</div>
 				),
 				renderer: ({ row, $index, column }) => (
 					<ElFormItem
 						prop={`data[${$index}][${column.property}]`}
-						rules={[{ required: row[`${column.property}Validate`], message: '请选择性别', trigger: 'change' }]}>
-						<ElSelect v-model={row.sex} clearable onChange={(value) => changePhoneValid(row, value)}>
+						rules={[{ required: row[`${column.property}Required`], message: '请选择性别', trigger: 'change' }]}>
+						<ElSelect v-model={row.sex} clearable onChange={(value) => sexChange(row, value)}>
 							{sexOptions.map((dict) => (
 								<ElOption key={dict.dictValue} label={dict.dictLabel} value={dict.dictValue} />
 							))}
@@ -101,16 +92,10 @@ export const useConditionVerifyEdit = () => {
 			{
 				prop: 'phone',
 				label: '手机号',
-				headerRenderer: ({ column }) => (
-					<>
-						<span class="text-red">*</span>
-						<span>{column.label}</span>
-					</>
-				),
 				renderer: ({ row, $index, column }) => (
 					<ElFormItem
 						prop={`data[${$index}][${column.property}]`}
-						rules={[{ required: row[`${column.property}Validate`], message: '请输入手机号', trigger: 'blur' }]}>
+						rules={[{ required: row[`${column.property}Required`], message: '请输入手机号', trigger: 'blur' }]}>
 						<ElInput v-model={row.phone} />
 					</ElFormItem>
 				)
@@ -118,16 +103,10 @@ export const useConditionVerifyEdit = () => {
 			{
 				prop: 'email',
 				label: '邮箱',
-				headerRenderer: ({ column }) => (
-					<>
-						<span class="text-red">*</span>
-						<span>{column.label}</span>
-					</>
-				),
 				renderer: ({ row, $index, column }) => (
 					<ElFormItem
 						prop={`data[${$index}][${column.property}]`}
-						rules={[{ required: row[`${column.property}Validate`], message: '请输入邮箱', trigger: 'blur' }]}>
+						rules={[{ required: row[`${column.property}Required`], message: '请输入邮箱', trigger: 'blur' }]}>
 						<ElInput v-model={row.email} />
 					</ElFormItem>
 				)
@@ -157,13 +136,13 @@ export const useConditionVerifyEdit = () => {
 	const handleAdd = () => {
 		const obj = clone(data, true);
 		Object.keys(obj).forEach((key) => {
-			obj[`${key}Validate`] = true;
+			obj[`${key}Required`] = true;
 		});
 		columnProp.data.push(obj);
 	};
 
-	const changePhoneValid = (row: TableData, value: string) => {
-		row[`phoneValidate`] = value === 'female';
+	const sexChange = (row: TableData, value: string) => {
+		row[`phoneRequired`] = value === 'female';
 	};
 	// 删除
 	const handleDelete = ($index: number) => {
