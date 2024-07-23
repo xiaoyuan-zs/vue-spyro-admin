@@ -1,4 +1,8 @@
 <script setup lang="ts">
+	defineOptions({
+		name: 'EditTable'
+	});
+
 	const activeName = ref<keyof typeof columnProp>('singleEdit');
 	const tabOptions = reactive([
 		{

@@ -23,19 +23,18 @@ router.beforeEach(async (to, _, next) => {
 			next({
 				path: `/login?redirect=${to.fullPath}`
 			});
+			return;
 		}
 	}
 	// 如去登陆页自动跳转到主页
 	if (to.path === '/login') {
 		next({ path: '/' });
+		return;
 	}
 
 	if (!permissionStore.wholeMenus.length) {
 		try {
 			await userStore.getUserInfoAction();
-		} catch (error) {
-			console.log('error --->', error);
-			next();
 		} finally {
 			await initRoutes();
 			next({ ...to, replace: true });

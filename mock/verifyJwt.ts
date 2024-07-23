@@ -13,7 +13,7 @@ export const createAccessToken = (user: VerifyUser) => {
 	delete user.exp;
 	delete user.iat;
 	return jwt.sign(user, privateAccessKey, {
-		expiresIn: 60 * 60
+		expiresIn: 1 * 60
 	});
 };
 

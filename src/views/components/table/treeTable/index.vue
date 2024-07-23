@@ -4,6 +4,10 @@
 	import { getTrees } from '@/api/tree';
 	import { TreeNode } from '@/api/tree/type';
 
+	defineOptions({
+		name: 'TreeTable'
+	});
+
 	// 表格列
 	const columns = reactive<ColumnProps<TreeNode>[]>([
 		{

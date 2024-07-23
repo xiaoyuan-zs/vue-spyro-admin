@@ -112,6 +112,8 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 
 	// 挂在完成之后初始化数据
 	onMounted(() => {
+		console.log(2311, immediate);
+
 		if (immediate) tableMethods.getList();
 	});
 
