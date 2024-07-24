@@ -3,13 +3,13 @@ import type { EChartsType } from 'echarts/core';
 import { useDebounceFn } from '@vueuse/core';
 import { useLayoutStore } from '@/store';
 
-export const useEcharts = (el: HTMLDivElement, options: Ref<ECOption>) => {
+export const useEcharts = (el: HTMLDivElement, options: ECOption) => {
 	let myChart: EChartsType | null = null;
 
 	const initCharts = () => {
 		const theme = useLayoutStore().colorMode;
 		myChart = markRaw(echarts.init(el, theme));
-		setOptions(options.value);
+		setOptions(options);
 	};
 
 	const setOptions = (options: ECOption) => {

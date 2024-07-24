@@ -1,6 +1,7 @@
 <script setup lang="ts" name="Home">
-	import echarts, { type ECOption } from '@/plugins/echarts';
 	import { useEcharts } from '@/hooks';
+	import { selectDictLabel } from '@spyro/utils';
+	import { useBarEcharts, useRadarEcharts } from './hooks/index';
 
 	const projectList = reactive([
 		{
@@ -51,11 +52,6 @@
 		dictLabel: string;
 		dictValue: string | number;
 		color?: string;
-	};
-
-	// TODO: 实现字典中的dictValue值是什么类型，该函数就传入什么类型， 后期改为通用方法
-	const echoDictLabel = (dicts: dictsType[], dictValue: string | number) => {
-		return dicts.find((item) => item.dictValue == dictValue)?.dictLabel;
 	};
 
 	const echoDictColor = (dicts: dictsType[], dictValue: string | number) => {
@@ -109,163 +105,12 @@
 		}
 	]);
 
-	const radarEcharts = ref<HTMLDivElement | null>(null);
-	const barEcharts = ref<HTMLDivElement | null>(null);
-
-	const radarOptions = ref<ECOption>({
-		title: {
-			// text: 'Basic Radar Chart'
-		},
-		tooltip: {
-			show: true,
-			trigger: 'item',
-			position: 'right'
-		},
-		radar: {
-			// 雷达区域分割颜色
-			// splitArea: {
-			//     areaStyle: {
-			//         color: ['rgba(201, 223, 255, 0.15)', 'rgba(201, 223, 255, 0.95)'].reverse()
-			//     }
-			// },
-			indicator: [
-				{ name: '前端开发', min: 0, max: 20 },
-				{ name: '后端开发', min: 0, max: 20 },
-				{ name: '产品经理', min: 0, max: 20 },
-				{ name: 'UI设计', min: 0, max: 20 },
-				{ name: '测试', min: 0, max: 20 }
-			]
-		},
-		series: [
-			{
-				name: '岗位',
-				type: 'radar',
-				symbol: 'circle',
-				symbolSize: 6,
-				itemStyle: {
-					borderColor: 'rgba(108,254,255, 0.6)',
-					color: '#fff',
-					borderWidth: 1
-				},
-				lineStyle: {
-					color: 'rgba(108,254,255, 0.6)'
-				},
-				areaStyle: {
-					// 单项区域填充样式
-					color: new echarts.graphic.LinearGradient(
-						0,
-						0,
-						0,
-						1,
-						[
-							{
-								offset: 0,
-								color: 'rgba(108,254,255, 0.6)'
-							},
-							{
-								offset: 1,
-								color: 'rgba(255,255,255, 0.65)'
-							}
-						],
-						false
-					),
-					// opacity:0.75, // 区域透明度
-					// 设置扇形的阴影
-					shadowBlur: 12,
-					shadowColor: 'rgba(108,254,255, 0.5)',
-					shadowOffsetX: 6,
-					shadowOffsetY: 6
-				},
-				data: [
-					{
-						value: [10, 19, 5, 3, 3]
-					}
-				]
-			}
-		]
-	});
-
-	const barOptions = ref<ECOption>({
-		tooltip: {
-			trigger: 'axis',
-			axisPointer: {
-				type: 'shadow'
-			}
-		},
-		grid: {
-			left: '3%',
-			right: '4%',
-			bottom: '3%',
-			containLabel: true
-		},
-		xAxis: [
-			{
-				type: 'category',
-				boundaryGap: true,
-				axisLine: {
-					show: false
-				},
-				axisTick: {
-					show: false
-				},
-				data: ['2017', '2018', '2019', '2020', '2021', '2022', '2023']
-			}
-		],
-		yAxis: [
-			{
-				type: 'value'
-			}
-		],
-		series: [
-			{
-				name: '总内容量',
-				type: 'line',
-				smooth: true,
-				symbol: 'circle',
-				showSymbol: true, // 只有在 tooltip hover 的时候显示
-				symbolSize: 5,
-				label: {
-					show: true
-				},
-				// 折线拐点标志的样式。
-				itemStyle: {
-					color: 'rgba(0,144,255, 0.8)'
-				},
-				lineStyle: {
-					color: 'rgba(54,206,158, 0.8)'
-				},
-				areaStyle: {
-					color: new echarts.graphic.LinearGradient(
-						0,
-						0,
-						0,
-						1,
-						[
-							{
-								offset: 0,
-								color: 'rgba(173,235,216, 0.8)'
-							},
-							{
-								offset: 1,
-								color: 'rgba(198,230,255, 0.6)'
-							}
-						],
-						false
-					),
-					shadowColor: 'rgba(198,230,255, 0.5)',
-					shadowBlur: 10
-				},
-				emphasis: {
-					focus: 'series'
-				},
-				data: [120, 132, 101, 134, 90, 230, 210]
-			}
-		]
-	});
+	const { barEcharts, barOptions } = useBarEcharts();
+	const { radarEcharts, radarOptions } = useRadarEcharts();
 
 	onMounted(() => {
-		useEcharts(radarEcharts.value as HTMLDivElement, radarOptions as Ref<ECOption>);
-		useEcharts(barEcharts.value as HTMLDivElement, barOptions as Ref<ECOption>);
+		useEcharts(unref(radarEcharts)!, unref(radarOptions));
+		useEcharts(unref(barEcharts)!, unref(barOptions));
 	});
 </script>
 
@@ -374,7 +219,7 @@
 								<el-scrollbar>
 									<div v-for="(item, index) in messageList" :key="index" class="flex w-full p-3 flex-nowrap items-center">
 										<span :class="echoDictColor(messageType, item.type)" class="flex-none">
-											{{ echoDictLabel(messageType, item.type) }}
+											{{ selectDictLabel(messageType, item.type) }}
 										</span>
 										<span class="font-500 subpixel-antialiased truncate flex-1 px-4 <sm:w-75">
 											{{ item.desc }}
@@ -390,5 +235,3 @@
 		</el-row>
 	</div>
 </template>
-
-<style scoped lang="scss"></style>
