@@ -88,7 +88,6 @@ function handleFilterAsyncRoute(asyncRoutes: RouteRecordRaw[], parentRoute?: Rou
  */
 function initRoutes() {
 	return new Promise((resolve) => {
-		// getAsyncRouters().then()
 		handleAsyncRoutes([]);
 		resolve(router);
 	});
