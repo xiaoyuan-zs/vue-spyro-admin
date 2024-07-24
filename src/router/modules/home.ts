@@ -15,10 +15,21 @@ export default {
 		{
 			path: '/index',
 			name: 'Index',
-			component: () => import('@/views/home/index.vue'),
+			component: () => import('@/views/home/workbench/index.vue'),
 			meta: {
-				icon: 'ep:home-filled',
-				title: 'menus.homepage',
+				icon: 'ep:platform',
+				title: '工作台',
+				isFixed: true,
+				keepAlive: true
+			}
+		},
+		{
+			path: '/analysis',
+			name: 'Analysis',
+			component: () => import('@/views/home/analysis/index.vue'),
+			meta: {
+				icon: 'ep:data-analysis',
+				title: '分析页',
 				isFixed: true,
 				keepAlive: true
 			}

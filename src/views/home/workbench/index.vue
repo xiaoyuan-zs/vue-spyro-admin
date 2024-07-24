@@ -5,46 +5,46 @@
 
 	const projectList = reactive([
 		{
-			icon: 'ep:checked',
-			projectName: '消息列表体验优化',
-			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
-			author: '特怪小分队',
-			createTime: '2小时前'
+			icon: 'logos:github-icon',
+			projectName: 'Github',
+			projectDesc: '是一个面向开源及私有软件项目的托管平台。',
+			author: '开源',
+			createTime: '2021-07-04'
 		},
 		{
-			icon: 'ep:checked',
-			projectName: 'xx 平台',
-			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
-			author: '特怪小分队',
-			createTime: '2小时前'
+			icon: 'logos:vue',
+			projectName: 'Vue',
+			projectDesc: '渐进式 JavaScript 框架',
+			author: '尤大大',
+			createTime: '2021-07-04'
 		},
 		{
-			icon: 'ep:checked',
-			projectName: '5月日常小需求',
-			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
-			author: '特怪小分队',
-			createTime: '2小时前'
+			icon: 'logos:react',
+			projectName: 'React',
+			projectDesc: '用于构建用户界面的 JavaScript 库',
+			author: '技术大牛',
+			createTime: '2020-08-13'
 		},
 		{
-			icon: 'ep:checked',
-			projectName: '功能效能',
-			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
-			author: '特怪小分队',
-			createTime: '2小时前'
+			icon: 'logos:javascript',
+			projectName: 'JavaScript',
+			projectDesc: '路是走出来的，而不是空想出来的',
+			author: '技术大牛',
+			createTime: '2020-08-13'
 		},
 		{
-			icon: 'ep:checked',
-			projectName: '智能运营中心',
-			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
-			author: '特怪精英战队',
-			createTime: '2小时前'
+			icon: 'logos:element',
+			projectName: 'ElemenPlus',
+			projectDesc: '一个Vue3的UI框架',
+			author: '技术大牛',
+			createTime: '2020-08-13'
 		},
 		{
-			icon: 'ep:checked',
-			projectName: 'bug处理',
-			projectDesc: '这是一条描述信息这是一条描述信息这是一条描述信息',
-			author: '特怪二分队',
-			createTime: '2小时前'
+			icon: 'logos:vitejs',
+			projectName: 'Vite',
+			projectDesc: '下一代的前端工具链',
+			author: '尤大大',
+			createTime: '2020-08-13'
 		}
 	]);
 
@@ -152,14 +152,13 @@
 			<el-col :xs="24" :lg="16" class="mt-3">
 				<el-card shadow="never">
 					<div class="flex justify-between relative">
-						<h3 class="font-semibold text-base antialiased ml-4 title-before">进行中的项目</h3>
-						<el-link type="primary" :underline="false">全部项目</el-link>
+						<h3 class="font-semibold text-base antialiased title-before">项目</h3>
 					</div>
 					<div class="grid gap-8 py-4 lg:h-66 <lg:grid-cols-2 <sm:grid-cols-1 <md:grid-cols-2 grid-cols-3">
 						<div v-for="(item, index) in projectList" :key="index">
 							<div class="flex items-center">
-								<Icon :name="item.icon" :size="20" color="var(--el-color-primary)" />
-								<span class="pl-2 font-700">{{ item.projectName }}</span>
+								<Icon :name="item.icon" :size="30" color="var(--el-color-primary)" />
+								<span class="pl-4 font-700">{{ item.projectName }}</span>
 							</div>
 							<p class="text-gray py-2 <sm:truncate line-clamp-2">{{ item.projectDesc }}</p>
 							<div class="flex justify-between">
@@ -173,7 +172,7 @@
 			<el-col :xs="24" :lg="8" class="mt-3">
 				<el-card shadow="never">
 					<div class="flex justify-between relative">
-						<h3 class="font-semibold text-base antialiased ml-4 title-before">岗位分布</h3>
+						<h3 class="font-semibold text-base antialiased title-before">岗位分布</h3>
 					</div>
 					<div ref="radarEcharts" class="w-full h-66"></div>
 				</el-card>
@@ -183,7 +182,7 @@
 			<el-col :xs="24" :lg="16" class="mt-3">
 				<el-card shadow="never">
 					<div class="flex justify-between relative">
-						<h3 class="font-semibold text-base antialiased ml-4 title-before">内容数据</h3>
+						<h3 class="font-semibold text-base antialiased title-before">内容数据</h3>
 					</div>
 					<div ref="barEcharts" class="w-full h-105.5"></div>
 				</el-card>
@@ -193,7 +192,7 @@
 					<el-col>
 						<el-card shadow="never">
 							<div class="flex justify-between relative">
-								<h3 class="font-semibold text-base antialiased ml-4 title-before">动态</h3>
+								<h3 class="font-semibold text-base antialiased title-before">动态</h3>
 							</div>
 							<div class="w-full h-50 py-4">
 								<el-scrollbar>
@@ -213,7 +212,7 @@
 					<el-col class="mt-3">
 						<el-card shadow="never">
 							<div class="flex justify-between relative">
-								<h3 class="font-semibold text-base antialiased ml-4 title-before">消息提醒</h3>
+								<h3 class="font-semibold text-base antialiased title-before">消息提醒</h3>
 							</div>
 							<div class="w-full h-36 py-4">
 								<el-scrollbar>
