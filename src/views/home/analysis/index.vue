@@ -5,5 +5,5 @@
 </script>
 
 <template>
-	<div>analysis</div>
+	<div class="pb-4">analysis</div>
 </template>
