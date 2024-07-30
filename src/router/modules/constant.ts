@@ -2,6 +2,16 @@ const Layout = () => import('@/layouts/index.vue');
 
 export default [
 	{
+		path: '/dashboard',
+		name: 'Dashboard',
+		component: () => import('@/views/dashboard/index.vue'),
+		meta: {
+			icon: 'ep:data-board',
+			title: '数据大屏',
+			sort: 1
+		}
+	},
+	{
 		path: '/login',
 		name: 'Login',
 		component: () => import('@/views/login/index.vue'),
