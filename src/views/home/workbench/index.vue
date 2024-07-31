@@ -116,7 +116,7 @@
 
 <template>
 	<div class="pb-4">
-		<el-card shadow="never">
+		<el-card shadow="hover">
 			<el-row :gutter="10">
 				<el-col :xs="24" :sm="24" :md="16">
 					<div class="flex items-center h-full">
@@ -150,7 +150,7 @@
 		</el-card>
 		<el-row :gutter="10">
 			<el-col :xs="24" :lg="16" class="mt-3">
-				<el-card shadow="never">
+				<el-card shadow="hover">
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">项目</h3>
 					</div>
@@ -170,7 +170,7 @@
 				</el-card>
 			</el-col>
 			<el-col :xs="24" :lg="8" class="mt-3">
-				<el-card shadow="never">
+				<el-card shadow="hover">
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">岗位分布</h3>
 					</div>
@@ -180,7 +180,7 @@
 		</el-row>
 		<el-row :gutter="10">
 			<el-col :xs="24" :lg="16" class="mt-3">
-				<el-card shadow="never">
+				<el-card shadow="hover">
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">内容数据</h3>
 					</div>
@@ -190,7 +190,7 @@
 			<el-col :xs="24" :lg="8" class="mt-3">
 				<el-row>
 					<el-col>
-						<el-card shadow="never">
+						<el-card shadow="hover">
 							<div class="flex justify-between relative">
 								<h3 class="font-semibold text-base antialiased title-before">动态</h3>
 							</div>
@@ -210,7 +210,7 @@
 						</el-card>
 					</el-col>
 					<el-col class="mt-3">
-						<el-card shadow="never">
+						<el-card shadow="hover">
 							<div class="flex justify-between relative">
 								<h3 class="font-semibold text-base antialiased title-before">消息提醒</h3>
 							</div>

@@ -3,9 +3,11 @@
 		defineProps<{
 			title?: string;
 			shadow?: 'always' | 'hover' | 'never';
+			underline?: boolean;
 		}>(),
 		{
-			shadow: 'hover'
+			shadow: 'hover',
+			underline: true
 		}
 	);
 
@@ -18,7 +20,11 @@
 			return (
 				<>
 					{props.title ? (
-						<h2 class="mb-4 underline underline-offset-8 decoration-2 hover:decoration-primary duration-200 flex items-center">
+						<h2
+							class={[
+								'mb-4 flex items-center',
+								props.underline && 'underline underline-offset-8 decoration-2 hover:decoration-primary duration-200'
+							]}>
 							<span>{props.title}</span>
 						</h2>
 					) : undefined}
@@ -49,7 +55,7 @@
 	.el-card {
 		@apply flex-col;
 		:deep(.el-card__body) {
-			@apply flex-col flex-1 min-h-0;
+			@apply flex-col flex-1 min-h-0 p-4;
 		}
 	}
 </style>
