@@ -41,7 +41,16 @@
 	<div class="pb-4">
 		<so-card title="数据统计" :underline="false">
 			<div class="w-full grid grid-cols-5 gap-4">
-				<div v-for="(item, index) in statistics" :key="index">{{ item.data }}</div>
+				<div v-for="(item, index) in statistics" :key="index" :class="`p-3 rounded-1.5 text-background ${item.bgColor}`">
+					<div class="flex flex-justify-start items-center">
+						<Icon :name="item.icon" :size="16" />
+						<span class="block pl-1">{{ item.title }}</span>
+					</div>
+					<div class="flex flex-justify-between items-end">
+						<span class="text-size-xl">{{ item.data }}</span>
+						<Icon :name="item.icon" :size="40" />
+					</div>
+				</div>
 			</div>
 		</so-card>
 	</div>
