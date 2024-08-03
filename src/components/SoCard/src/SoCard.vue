@@ -22,10 +22,10 @@
 					{props.title ? (
 						<h2
 							class={[
-								'mb-4 flex items-center',
+								'mb-4 flex items-center font-bold',
 								props.underline && 'underline underline-offset-8 decoration-2 hover:decoration-primary duration-200'
 							]}>
-							<span>{props.title}</span>
+							{props.title}
 						</h2>
 					) : undefined}
 					{slots['default'] ? slots['default']() : undefined}

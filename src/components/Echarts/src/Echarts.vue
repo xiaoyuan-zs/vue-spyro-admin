@@ -6,7 +6,7 @@
 
 	interface Props {
 		option: ECOption;
-		width: string;
+		width?: string;
 		height: string;
 		theme?: string | Object;
 		loading?: boolean;
@@ -16,6 +16,7 @@
 
 	const props = withDefaults(defineProps<Props>(), {
 		theme: useLayoutStore().colorMode,
+		width: '100%',
 		loading: false
 	});
 
