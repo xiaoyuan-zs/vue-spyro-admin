@@ -53,9 +53,9 @@
 
 <style lang="scss" scoped>
 	.el-card {
-		@apply flex-col;
+		@apply b-none;
 		:deep(.el-card__body) {
-			@apply flex-col flex-1 min-h-0 p-4;
+			@apply h-full p-4 grid grid-rows-[40px_auto];
 		}
 	}
 </style>

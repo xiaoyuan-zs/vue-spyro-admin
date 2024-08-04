@@ -1,10 +1,13 @@
 <script setup lang="ts">
-	import { useEchart01 } from './hooks';
+	import { useEchart01, useEchart02, useEchart03, useEchart04 } from './hooks';
 	defineOptions({
 		name: 'Analysis'
 	});
 
 	const { option01 } = useEchart01();
+	const { option02 } = useEchart02();
+	const { option03 } = useEchart03();
+	const { option04 } = useEchart04();
 
 	const statistics = [
 		{
@@ -43,6 +46,14 @@
 			gtColor: 'to-teal-300'
 		}
 	];
+
+	const preOrders = new Array(20).fill({
+		name: '南京物资运输管理有限公司',
+		unique: 'PO.265432',
+		phone: '12345678901',
+		status: '已出库',
+		time: '2021-01-01'
+	});
 </script>
 
 <template>
@@ -66,10 +77,44 @@
 				</div>
 			</div>
 		</so-card>
-		<el-row :gutter="10" class="mt-4">
-			<el-col :xs="24" :sm="24" :md="16">
-				<so-card title="货物支出统计" :underline="false">
-					<Echarts :option="option01" height="300px" />
+		<el-row :gutter="16" class="mt-4 h-90">
+			<el-col :xs="24" :sm="24" :md="16" class="h-full">
+				<so-card title="货物支出统计" :underline="false" class="h-full">
+					<Echarts :option="option01" height="100%" />
+				</so-card>
+			</el-col>
+			<el-col :xs="24" :sm="24" :md="8" class="h-full">
+				<so-card title="带出门订单" :underline="false" class="h-full">
+					<el-scrollbar>
+						<div v-for="(item, index) in preOrders" :key="index" class="py-1 flex-between">
+							<span>
+								<span :class="['p-1 text-size-12px bg-[var(--el-bg-color-page)]', index < 3 && 'bg-red text-background']">
+									{{ index + 1 }}
+								</span>
+								<span class="ml-3 text-sm">{{ item.name }}</span>
+							</span>
+							<span class="text-sm">{{ item.unique }}</span>
+						</div>
+					</el-scrollbar>
+				</so-card>
+			</el-col>
+		</el-row>
+		<el-row :gutter="16" class="mt-4 h-80">
+			<el-col :xs="24" :sm="24" :md="12" class="h-full">
+				<so-card title="资产分类占比" :underline="false" class="h-full">
+					<Echarts :option="option02" height="100%" />
+				</so-card>
+			</el-col>
+			<el-col :xs="24" :sm="24" :md="12" class="h-full">
+				<so-card title="货物处理率" :underline="false" class="h-full">
+					<Echarts :option="option03" height="100%" />
+				</so-card>
+			</el-col>
+		</el-row>
+		<el-row :gutter="16" class="mt-4 h-100">
+			<el-col :xs="24" :sm="24" :md="24" class="h-full">
+				<so-card title="每月物质统计" :underline="false" class="h-full">
+					<Echarts :option="option04" height="100%" />
 				</so-card>
 			</el-col>
 		</el-row>
