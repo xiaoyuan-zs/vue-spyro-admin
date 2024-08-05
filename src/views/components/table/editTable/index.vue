@@ -33,8 +33,8 @@
 </script>
 
 <template>
-	<div class="h-full flex-col">
-		<so-card title="树形表格示例" class="flex-1">
+	<so-card title="树形表格示例" class="h-full">
+		<div class="h-full flex-col overflow-hidden">
 			<el-alert
 				:closable="false"
 				title="表格搭配表单的可编辑用法"
@@ -44,6 +44,6 @@
 				<el-tab-pane v-for="el in tabOptions" :key="el.name" :label="el.label" :name="el.name" />
 			</el-tabs>
 			<component :is="columnProp[activeName]" />
-		</so-card>
-	</div>
+		</div>
+	</so-card>
 </template>
