@@ -59,7 +59,7 @@
 <template>
 	<div class="pb-4">
 		<so-card title="数据统计" :underline="false">
-			<div class="w-full grid <lg:grid-cols-3 <sm:grid-cols-1 grid-cols-5 gap-4">
+			<div class="w-full grid <xl:grid-cols-3 <sm:grid-cols-1 grid-cols-5 gap-4">
 				<div v-for="(item, index) in statistics" :key="index" :class="`p-3 rounded-1.5 text-background ${item.bgColor}`">
 					<div class="flex flex-justify-start items-center">
 						<Icon :name="item.icon" :size="16" />
@@ -84,7 +84,7 @@
 				</so-card>
 			</el-col>
 			<el-col :xs="24" :lg="8" class="mt-4 h-90">
-				<so-card title="带出门订单" :underline="false" class="h-full">
+				<so-card title="待出门订单" :underline="false" class="h-full">
 					<el-scrollbar>
 						<div v-for="(item, index) in preOrders" :key="index" class="py-1 flex-between">
 							<span>

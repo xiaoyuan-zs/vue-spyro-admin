@@ -33,4 +33,4 @@ const setApp = async () => {
 	app.mount('#app');
 };
 
-setApp();
+// setApp();
