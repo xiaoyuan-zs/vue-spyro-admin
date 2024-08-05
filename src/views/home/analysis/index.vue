@@ -59,7 +59,7 @@
 <template>
 	<div class="pb-4">
 		<so-card title="数据统计" :underline="false">
-			<div class="w-full grid grid-cols-5 gap-4">
+			<div class="w-full grid <lg:grid-cols-3 <sm:grid-cols-1 grid-cols-5 gap-4">
 				<div v-for="(item, index) in statistics" :key="index" :class="`p-3 rounded-1.5 text-background ${item.bgColor}`">
 					<div class="flex flex-justify-start items-center">
 						<Icon :name="item.icon" :size="16" />
@@ -77,13 +77,13 @@
 				</div>
 			</div>
 		</so-card>
-		<el-row :gutter="16" class="mt-4 h-90">
-			<el-col :xs="24" :sm="24" :md="16" class="h-full">
+		<el-row :gutter="16">
+			<el-col :xs="24" :lg="16" class="mt-4 h-90">
 				<so-card title="货物支出统计" :underline="false" class="h-full">
 					<Echarts :option="option01" height="100%" />
 				</so-card>
 			</el-col>
-			<el-col :xs="24" :sm="24" :md="8" class="h-full">
+			<el-col :xs="24" :lg="8" class="mt-4 h-90">
 				<so-card title="带出门订单" :underline="false" class="h-full">
 					<el-scrollbar>
 						<div v-for="(item, index) in preOrders" :key="index" class="py-1 flex-between">
@@ -99,20 +99,20 @@
 				</so-card>
 			</el-col>
 		</el-row>
-		<el-row :gutter="16" class="mt-4 h-80">
-			<el-col :xs="24" :sm="24" :md="12" class="h-full">
+		<el-row :gutter="16">
+			<el-col :xs="24" :sm="24" :md="12" class="mt-4 h-80">
 				<so-card title="资产分类占比" :underline="false" class="h-full">
 					<Echarts :option="option02" height="100%" />
 				</so-card>
 			</el-col>
-			<el-col :xs="24" :sm="24" :md="12" class="h-full">
+			<el-col :xs="24" :sm="24" :md="12" class="mt-4 h-80">
 				<so-card title="货物处理率" :underline="false" class="h-full">
 					<Echarts :option="option03" height="100%" />
 				</so-card>
 			</el-col>
 		</el-row>
-		<el-row :gutter="16" class="mt-4 h-100">
-			<el-col :xs="24" :sm="24" :md="24" class="h-full">
+		<el-row :gutter="16">
+			<el-col :xs="24" :sm="24" :md="24" class="mt-4 h-100">
 				<so-card title="每月物质统计" :underline="false" class="h-full">
 					<Echarts :option="option04" height="100%" />
 				</so-card>

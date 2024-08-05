@@ -26,7 +26,7 @@
 	const draw = () => {
 		if (chartInstance.value) {
 			// 是否不跟之前设置的 option 进行合并。默认为false。即表示合并。合并的规则，详见组件合并模式。如果为 true，表示所有组件都会被删除，然后根据新 option 创建所有新组件
-			chartInstance.value.setOption(props.option, { notMerge: true });
+			chartInstance.value.setOption({ ...props.option, backgroundColor: 'transparent' }, { notMerge: true });
 		}
 	};
 
@@ -77,6 +77,18 @@
 		() => props.loading,
 		(newValue) => {
 			newValue ? chartInstance.value?.showLoading() : chartInstance.value?.hideLoading();
+		}
+	);
+
+	// 暗黑模式切换
+	watch(
+		() => useLayoutStore().colorMode,
+		() => {
+			if (chartInstance.value) {
+				// 销毁实例，实例销毁后无法再被使用。
+				chartInstance.value.dispose();
+				init();
+			}
 		}
 	);
 
