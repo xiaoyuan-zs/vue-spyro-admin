@@ -1,10 +1,16 @@
 import { defineStore } from 'pinia';
 import { piniaPersist } from '@/store/helpers/piniaPersist';
 import { platformConfig } from '@/config';
+import { localForage } from '@/utils/localforage';
 export const useLayoutStore = defineStore('layout', {
 	state: (): PlatFormConfig => ({
 		...platformConfig
 	}),
-	actions: {},
+	actions: {
+		// 提供Loading使用
+		setPlatFormTheme() {
+			localForage().setItem('layout_theme', this.themeColor);
+		}
+	},
 	persist: piniaPersist({ key: 'layout' })
 });

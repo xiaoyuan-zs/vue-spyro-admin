@@ -13,7 +13,10 @@
 	const menuVisible = computed(() => !['horizontal', 'basic', 'mixins'].includes(layoutStore.layout!));
 
 	// 切换系统主题颜色
-	const changeThemeColor = (value: any) => setThemeColor(value);
+	const changeThemeColor = (value: any) => {
+		setThemeColor(value);
+		layoutStore.setPlatFormTheme();
+	};
 	// 切换主题模式
 	const changeColorModel = (value: any) => {
 		layoutStore.$patch({ colorMode: value });

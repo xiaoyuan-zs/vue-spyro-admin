@@ -1,3 +1,3 @@
-export { echarts } from './echarts';
-export type { ECOption } from './echarts';
+export { echarts, type ECOption } from './echarts';
 export { Nprogress, start, done } from './nprogress';
+export { setupLoading } from './loading';
