@@ -1,5 +1,5 @@
 import router from '@/router';
-import { start, done } from '@/plugins/nprogress';
+import { start, done } from '@/plugins';
 import { useUserStore, usePermissionStore } from '@/store';
 import { initRoutes } from '@/router/helpers/handleRoutes';
 import { translateRouteTitle } from '@/utils/locales';

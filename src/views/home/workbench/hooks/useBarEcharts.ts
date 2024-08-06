@@ -1,4 +1,4 @@
-import echarts, { type ECOption } from '@/plugins/echarts';
+import { echarts, type ECOption } from '@/plugins';
 
 export const useBarEcharts = () => {
 	const barEcharts = ref<HTMLDivElement>();

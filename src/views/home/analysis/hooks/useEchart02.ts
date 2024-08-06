@@ -1,4 +1,4 @@
-import type { ECOption } from '@/plugins/echarts';
+import type { ECOption } from '@/plugins';
 export const useEchart02 = () => {
 	const echartData = [
 		{

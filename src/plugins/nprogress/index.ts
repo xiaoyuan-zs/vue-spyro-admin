@@ -18,4 +18,4 @@ export const done = () => {
 	Nprogress.done();
 };
 
-export default Nprogress;
+export { Nprogress };

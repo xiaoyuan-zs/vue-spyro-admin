@@ -22,41 +22,42 @@
       padding: 0;
     }
 
-    .loading {
+    .preload_wrap {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 9999;
       background-color: #1D2139;
       width: 100%;
       height: 100%;
       color: #fff;
     }
 
-    .loading-title {
+    .preload_loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      width: 100%;
+      user-select: none;
+      flex-grow: 1;
+    }
+
+    .preload-title {
       font-size: 40px;
       padding-bottom: 16px;
     }
 
-    .loading-title:before {
-      content: "%VITE_APP_TITLE%"
-    }
-
-    .loading-text {
+    .preload-text {
       padding: 16px 0;
     }
 
-    .loading-text:before {
-      content: "正在加载资源..."
-    }
-
-    .loading-tip {
+    .preload-tip {
       font-size: 14px;
       color: grey;
-    }
-
-    .loading-tip::before {
-      content: "初次加载资源可能需要较多时间 请耐心等待"
     }
 
     .half-circle-spinner,
@@ -103,18 +104,19 @@
 </head>
 
 <body>
-  <div id="app">
-    <div class="loading">
-      <div class="loading-title"></div>
+  <!-- <div class="preload_wrap">
+    <div class="preload_loading">
+      <div class="preload-title">%VITE_APP_TITLE%</div>
       <div class="half-circle-spinner">
         <div class="circle circle-1"></div>
         <div class="circle circle-2"></div>
       </div>
-      <div class="loading-text"></div>
-      <div class="loading-tip"></div>
+      <div class="preload-text">正在加载资源...</div>
+      <div class="preload-tip">初次加载资源可能需要较多时间 请耐心等待</div>
     </div>
-  </div>
+  </div> -->
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
 </body>
-<script type="module" src="/src/main.ts"></script>
 
 </html>
