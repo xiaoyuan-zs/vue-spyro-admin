@@ -1,0 +1,19 @@
+{
+	"name": "@spyro/uno-preset",
+	"version": "1.0.0",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./src/*"
+			]
+		}
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "xiaoyuan-zs",
+	"license": "MIT"
+}

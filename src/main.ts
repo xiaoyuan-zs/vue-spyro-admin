@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+// 加载静态资源
 import './plugins/assets';
 // 插件
 import { setupLoading } from '@/plugins';

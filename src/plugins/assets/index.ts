@@ -1,5 +1,5 @@
 // unoCss.css
-import 'uno.css';
+import 'virtual:uno.css';
 // svg icons
 import 'virtual:svg-icons-register';
 // import scss
