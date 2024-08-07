@@ -38,32 +38,3 @@
 		}
 	}
 }
-
-// 屏幕分界点
-$width-small: 375px;
-$width-medium: 768px;
-$width-large: 1440px;
-
-@mixin responsive($width) {
-	@if $width == $width-large {
-		// 769 ~ 1440
-		@media only screen and (min-width: $width-medium) and (max-width: $width-large) {
-			@content;
-		}
-	} @else if $width == $width-medium {
-		// 376 ~ 768
-		@media only screen and (min-width: $width-small) and (max-width: $width-medium) {
-			@content;
-		}
-	} @else if $width == $width-small {
-		// <= 375
-		@media only screen and (max-width: $width-small) {
-			@content;
-		}
-	} @else {
-		// > 1440
-		@media only screen and (min-width: $width-large) {
-			@content;
-		}
-	}
-}
