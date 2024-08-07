@@ -1,25 +1,26 @@
 <script setup lang="ts">
 	import Menu from './index.vue';
+	import router from '@/router';
 	import { ClickOutside as vClickOutside } from 'element-plus';
 	import { RouteRecordRaw, useRouter } from 'vue-router';
 	import { translateRouteTitle } from '@/utils/locales';
 	import { toRaw, unref } from 'vue';
 	import { useMenu } from '@/layouts/hooks/useMenu';
-	import router from '@/router';
 
 	const showMenu = ref(false);
 
 	const appTitle = import.meta.env.VITE_APP_TITLE;
 
 	const { push } = useRouter();
-	const { parentRoutes, resolvePath, isActive } = useMenu();
+	const { parentRoutes, parentPath, resolvePath, isActive } = useMenu();
 
 	const goHome = () => router.push('/index');
 
 	const changeMenu = (route: RouteRecordRaw) => {
 		showMenu.value = true;
 		const path = resolvePath(route);
-		if (path) push(path);
+		// 若点击的父级是当前路由的父级，则不做处理
+		if (unref(parentPath) !== route.path) push(path);
 	};
 
 	const clickOut = () => {

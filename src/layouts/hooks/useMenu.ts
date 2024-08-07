@@ -10,9 +10,10 @@ export const useMenu = () => {
 
 	const { currentRoute } = useRouter();
 
-	function resolvePath(route: any) {
-		console.log(211, route);
+	// 当前路由的最外层父级路径
+	const parentPath = ref('');
 
+	function resolvePath(route: any) {
 		// 第一级菜单若为外链则跳转外链
 		if (isUrl(route.name)) {
 			window.open(route.name);
@@ -28,11 +29,13 @@ export const useMenu = () => {
 		const { path } = unref(currentRoute);
 		// 获取当前路由的父级路径
 		const parentPathArr = getParentPaths(path, unref(parentRoutes));
+		parentPath.value = parentPathArr[0];
 		return parentPathArr[0] === currentPath;
 	};
 
 	return {
 		parentRoutes,
+		parentPath,
 		resolvePath,
 		isActive
 	};
