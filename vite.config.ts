@@ -1,7 +1,7 @@
 import { defineConfig, type ConfigEnv, type UserConfig, loadEnv } from 'vite';
 import path from 'path';
-import { createVitePlugins } from './vite/plugins';
-import { include, exclude } from './vite/optimize';
+import { createVitePlugins } from './build/plugins';
+import { include, exclude } from './build/optimize';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {

@@ -42,8 +42,8 @@
 		"src/**/*.tsx",
 		"src/**/*.vue",
 		"types/*.d.ts",
-		"vite/**/*.ts",
-		"vite/**/*.d.ts",
+		"build/**/*.ts",
+		"build/**/*.d.ts",
 		"vite.config.ts"
 	],
 	"exclude": ["dist", "**/*.js", "node_modules"]
