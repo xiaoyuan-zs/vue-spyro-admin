@@ -18,7 +18,7 @@ export default {
 				{
 					path: '/components/table/basicTable',
 					name: 'BasicTable',
-					component: () => import('@/views/components/table/basicTable/index.vue'),
+					component: () => import('@/views/components/table/basic-table/index.vue'),
 					meta: {
 						title: '基础表格',
 						// 当只有一个子菜单时需要显示父级菜单时，需开启此配置
@@ -29,7 +29,7 @@ export default {
 				{
 					path: '/components/table/useTable',
 					name: 'UseTable',
-					component: () => import('@/views/components/table/useTable/index.vue'),
+					component: () => import('@/views/components/table/use-table/index.vue'),
 					meta: {
 						title: 'useTable',
 						keepAlive: true
@@ -38,7 +38,7 @@ export default {
 				{
 					path: '/components/table/treeTable',
 					name: 'TreeTable',
-					component: () => import('@/views/components/table/treeTable/index.vue'),
+					component: () => import('@/views/components/table/tree-table/index.vue'),
 					meta: {
 						title: '树形表格',
 						keepAlive: true
@@ -47,7 +47,7 @@ export default {
 				{
 					path: '/components/table/editTable',
 					name: 'EditTable',
-					component: () => import('@/views/components/table/editTable/index.vue'),
+					component: () => import('@/views/components/table/edit-table/index.vue'),
 					meta: {
 						title: '可编辑表格',
 						keepAlive: true
