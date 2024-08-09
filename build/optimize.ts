@@ -15,7 +15,6 @@ const include = [
 	'js-cookie',
 	'vue-tippy',
 	'pinyin-pro',
-	// 'sortablejs',
 	'@vueuse/core'
 ];
 

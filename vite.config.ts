@@ -62,10 +62,11 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			include,
 			exclude
 		},
-		// 打包构建
+		preview: {
+			port: 8888
+		},
 		build: {
 			target: 'es2015',
-			sourcemap: false,
 			rollupOptions: {
 				// 将js，css这些资源目录分别打包到对应的文件夹下
 				output: {
