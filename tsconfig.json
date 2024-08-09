@@ -3,10 +3,10 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		//用于选择模块解析策略
-		"moduleResolution": "bundler",
+		"moduleResolution": "node",
 		//将 class 声明中的字段语义从 [[Set]] 变更到 [[Define]]
 		"useDefineForClassFields": true,
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"lib": ["ESNext", "DOM"],
 		// 用来控制是否在编译时进行库文件检查的
 		"skipLibCheck": true,
 		"strict": true,
@@ -22,11 +22,10 @@
 		"resolveJsonModule": true,
 		// 用于 隔离（isolated）转译的功能 （具体原因请看 vite - TypeScript 编译器选项）
 		"isolatedModules": true,
-		"noEmit": true, // 是否生成编译后的文件，默认：false。
 		// 用来指定编译时是否生成.map文件
 		"sourceMap": false,
 		"jsx": "preserve",
-		"allowJs": false, // 允许编译JS
+		"allowJs": false, // 是否允许编译JS
 		"extendedDiagnostics": false, //是否查看 TS 在编译时花费的时间
 		"noEmitOnError": true, //有错误时不进行编译
 		"baseUrl": ".",
