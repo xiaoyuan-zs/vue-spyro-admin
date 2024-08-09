@@ -69,7 +69,6 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			minify: true,
 			chunkSizeWarningLimit: 2000,
 			rollupOptions: {
-				treeshake: true,
 				// 将js，css这些资源目录分别打包到对应的文件夹下
 				output: {
 					chunkFileNames: 'static/js/[name]-[hash].js', // 引入文件名的名称

@@ -62,6 +62,8 @@ export const useTable = <T = any>(props: UseTableProps<T>) => {
 					const { total, data } = await props.fetchApi();
 					state.data = data;
 					state.total = total;
+					console.log('useTable', data);
+
 					tableMethods.setProps({
 						tableData: data,
 						pageProps: {

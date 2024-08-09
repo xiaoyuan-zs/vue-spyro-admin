@@ -131,6 +131,7 @@
 		loading.value = true;
 		const res = await getUserList(queryParams);
 		tableData.value = res.data;
+		console.log('basic-table', res.data);
 		total.value = res.total!;
 		loading.value = false;
 	};

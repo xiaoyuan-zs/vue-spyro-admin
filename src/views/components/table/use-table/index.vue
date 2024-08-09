@@ -115,6 +115,7 @@
 	const { tableState, tableMethods, tableMount } = useTable({
 		fetchApi: async () => {
 			const { data, total = 0 } = await getUserList(queryParams);
+			console.log('data', data);
 			return { data, total };
 		}
 	});
