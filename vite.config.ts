@@ -1,5 +1,5 @@
 import { defineConfig, type ConfigEnv, type UserConfig, loadEnv } from 'vite';
-import path from 'path';
+import { fileURLToPath, URL } from 'node:url';
 import { createVitePlugins } from './build/plugins';
 import { include, exclude } from './build/optimize';
 
@@ -24,8 +24,8 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			alias: {
 				// 设置路径  __dirname返回的是当前脚本所在的目录的绝对路径。
 				// './' 返回的是当前路径下所有的文件路径  则 ./src ==> F:\study\vue\github\spyro\src
-				'~': path.resolve(__dirname, './src'),
-				'@': path.resolve(__dirname, 'src')
+				'~': fileURLToPath(new URL('./src', import.meta.url)),
+				'@': fileURLToPath(new URL('src', import.meta.url))
 			}
 		},
 		css: {
@@ -66,7 +66,8 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			port: 8888
 		},
 		build: {
-			minify: false,
+			minify: true,
+			chunkSizeWarningLimit: 2000,
 			rollupOptions: {
 				treeshake: true,
 				// 将js，css这些资源目录分别打包到对应的文件夹下
