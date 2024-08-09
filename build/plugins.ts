@@ -6,7 +6,7 @@ import unoCss from '@unocss/vite';
 import createCompression from './compression';
 import createAutoImport from './auto-import';
 import viteBuildInfo from './info';
-import vueDevTools from 'vite-plugin-vue-devtools';
+// import vueDevTools from 'vite-plugin-vue-devtools';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import removeNoMatch from 'vite-plugin-router-warn';
 import removeConsole from 'vite-plugin-remove-console';

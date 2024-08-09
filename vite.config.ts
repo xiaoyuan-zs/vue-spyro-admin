@@ -66,7 +66,6 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			port: 8888
 		},
 		build: {
-			target: 'es2015',
 			rollupOptions: {
 				// 将js，css这些资源目录分别打包到对应的文件夹下
 				output: {
