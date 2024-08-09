@@ -1,7 +1,7 @@
 import { buildHierarchyTree, flatTreeToArray } from '@spyro/utils';
 import { formatTwoStageRoutes, outerSortAsc } from './helpers/utils';
 import constantRoutes from './modules/constant';
-import { createRouter, createWebHashHistory, type Router, type RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, type Router, type RouteRecordRaw } from 'vue-router';
 import type { App } from 'vue';
 
 /** 导入modules 下的静态路由 */
@@ -31,7 +31,7 @@ export const excludePaths = constantRoutes.map((v) => v.path);
  * 注册路由
  */
 export const router: Router = createRouter({
-	history: createWebHashHistory(import.meta.env.BASE_URL),
+	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: staticRoutes.concat(...constantRoutes),
 	scrollBehavior: () => ({ top: 0, left: 0 })
 });

@@ -7,7 +7,7 @@
 	import SystemConfig from './components/SystemConfig.vue';
 
 	// 生产模式不需要可自行修改
-	const isShow = import.meta.env.DEV && import.meta.env.VITE_APP_SETTING === 'Y';
+	const isShow = import.meta.env.VITE_APP_SETTING === 'Y';
 </script>
 
 <template>
