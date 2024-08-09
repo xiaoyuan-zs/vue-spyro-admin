@@ -9,6 +9,7 @@
 		"build:dev": "vite build --mode development",
 		"build:prod": "vite build --mode production",
 		"build:stag": "vite build --mode staging",
+		"build:preview": "vite build --mode production && vite preview",
 		"check": "vue-tsc --noEmit --skipLibCheck",
 		"preview": "vite preview",
 		"lint:eslint": "eslint src --fix",
@@ -126,7 +127,6 @@
 		"vite-plugin-svg-icons": "^2.0.1",
 		"vite-plugin-vue-devtools": "^7.2.1",
 		"vite-plugin-vue-setup-extend": "0.4.0",
-		"vite-svg-loader": "^5.1.0",
 		"vue-tsc": "2.0.29"
 	},
 	"packageManager": "pnpm@8.6.10"

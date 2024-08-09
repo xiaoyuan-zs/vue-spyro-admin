@@ -66,22 +66,23 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			port: 8888
 		},
 		build: {
-			minify: false
-			// rollupOptions: {
-			// 	// 将js，css这些资源目录分别打包到对应的文件夹下
-			// 	output: {
-			// 		chunkFileNames: 'static/js/[name]-[hash].js', // 引入文件名的名称
-			// 		entryFileNames: 'static/js/[name]-[hash].js', // 包的入口文件名称
-			// 		assetFileNames: 'static/[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
-			// 		// js分包优化
-			// 		// https://rollup.nodejs.cn/configuration-options/#output-manualchunks
-			// 		manualChunks(id) {
-			// 			if (id.includes('node_modules')) {
-			// 				return id.toString().split('node_modules/')[1].split('/')[0].toString();
-			// 			}
-			// 		}
-			// 	}
-			// }
+			minify: false,
+			rollupOptions: {
+				treeshake: true,
+				// 将js，css这些资源目录分别打包到对应的文件夹下
+				output: {
+					chunkFileNames: 'static/js/[name]-[hash].js', // 引入文件名的名称
+					entryFileNames: 'static/js/[name]-[hash].js', // 包的入口文件名称
+					assetFileNames: 'static/[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
+					// js分包优化
+					// https://rollup.nodejs.cn/configuration-options/#output-manualchunks
+					manualChunks(id) {
+						if (id.includes('node_modules')) {
+							return id.toString().split('node_modules/')[1].split('/')[0].toString();
+						}
+					}
+				}
+			}
 		}
 	};
 });

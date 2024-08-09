@@ -3,7 +3,7 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		//用于选择模块解析策略
-		"moduleResolution": "node",
+		"moduleResolution": "Bundler",
 		//将 class 声明中的字段语义从 [[Set]] 变更到 [[Define]]
 		"useDefineForClassFields": true,
 		"lib": ["ESNext", "DOM"],
@@ -25,7 +25,6 @@
 		// 用来指定编译时是否生成.map文件
 		"sourceMap": false,
 		"jsx": "preserve",
-		"allowJs": false, // 是否允许编译JS
 		"extendedDiagnostics": false, //是否查看 TS 在编译时花费的时间
 		"noEmitOnError": true, //有错误时不进行编译
 		"baseUrl": ".",
