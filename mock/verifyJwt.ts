@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import type { User } from './user.fake';
 
 interface VerifyUser extends User {
@@ -6,41 +5,39 @@ interface VerifyUser extends User {
 	exp?: number;
 }
 
-const privateAccessKey = '@spyroAdminAccess!123';
-const privateRefreshKey = '@spyroAdminRefresh!123';
-
 export const createAccessToken = (user: VerifyUser) => {
 	delete user.exp;
 	delete user.iat;
-	return jwt.sign(user, privateAccessKey, {
-		expiresIn: 60 * 60
-	});
+	return 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjA1N2ZmYjdiLTRkZmEtNDQ4My05YzJlLWM5YjQyYjNkYWM5NCJ9.PK1VmupN1t7D7h7mxXEKc2kiB6ftzz9TkAYc9xAEnb3PtjZF9N4zWJ7vJl7-o7h-US6dTofTkSl8eJTkSbxlsA';
 };
 
 export const createRefreshToken = (user: VerifyUser) => {
 	delete user.exp;
 	delete user.iat;
-	return jwt.sign(user, privateRefreshKey, {
-		expiresIn: 60 * 60 * 24
-	});
+	return 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjA1N2ZmYjdiLTRkZmEtNDQ4My05YzJlLWM5YjQyYjNkYWM5NCJ9.PK1VmupN1t7D7h7mxXEKc2kiB6ftzz9TkAYc9xAEnb3PtjZF9N4zWJ7vJl7-o7h-US6dTofTkSl8eJTkSbxlsA';
 };
 
 export const verifyIdentity = (token: string, type: 'access' | 'refresh') => {
-	const key = type === 'access' ? privateAccessKey : privateRefreshKey;
 	let flag = true;
-	let data: any = {};
-	jwt.verify(token, key, function (err, decoded) {
-		if (err) {
-			flag = false;
-			data = {
-				code: 401,
-				data: err
-			};
-		} else {
-			flag = true;
-			data = { decoded };
+	let data: any = {
+		decoded: {
+			userId: '123456',
+			username: 'admin',
+			nickname: 'admin',
+			password: 'admin123',
+			sex: 'male',
+			status: true,
+			avatar: 'https://avatars.githubusercontent.com/u/60203443',
+			phone: '276.467.4807',
+			email: 'Kaylie.Dickens85@yahoo.com',
+			createTime: '2025-03-25T14:07:32.472Z',
+			role: ['admin'],
+			createBy: 'admin',
+			remark: '我是管理员',
+			iat: 1723196857,
+			exp: 1723200457
 		}
-	});
+	};
 	return {
 		flag,
 		data

@@ -1,5 +1,5 @@
 <script setup lang="ts" name="SubMenu">
-	import path from 'path-browserify';
+	import path from 'path';
 	import AppLink from './AppLink.vue';
 	import { PropType, toRaw } from 'vue';
 	import { propTypes } from '@/utils/propTypes';
