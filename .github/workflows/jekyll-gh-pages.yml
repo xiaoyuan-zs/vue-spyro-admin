@@ -5,10 +5,8 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  deploy:
-    concurrency: ci-${{ github.ref }}
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
