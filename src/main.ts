@@ -16,7 +16,7 @@ import App from './App.vue';
 import './permission';
 
 const setApp = async () => {
-	setupLoading();
+	await setupLoading();
 	const app = createApp(App);
 	setupStore(app);
 	await setupRouter(app);

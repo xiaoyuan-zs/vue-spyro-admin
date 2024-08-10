@@ -67,19 +67,37 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 		},
 		build: {
 			minify: true,
-			chunkSizeWarningLimit: 2000,
+			chunkSizeWarningLimit: 1000,
+			//小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
+			assetsInlineLimit: 4096,
+			sourcemap: false,
 			rollupOptions: {
 				// 将js，css这些资源目录分别打包到对应的文件夹下
 				output: {
-					chunkFileNames: 'static/js/[name]-[hash].js', // 引入文件名的名称
-					entryFileNames: 'static/js/[name]-[hash].js', // 包的入口文件名称
-					assetFileNames: 'static/[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
+					entryFileNames: 'assets/js/[name]-[hash].js', // 包的入口文件名称
+					assetFileNames: 'assets/[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
 					// js分包优化
 					// https://rollup.nodejs.cn/configuration-options/#output-manualchunks
 					manualChunks(id) {
-						if (id.includes('node_modules')) {
+						const otherChunks = [
+							'dayjs',
+							'xe-utils',
+							'lodash-es',
+							'vue-json-pretty',
+							'@element-plus',
+							'vue',
+							'vue-router',
+							'pinia',
+							'echarts'
+						];
+						if (otherChunks.find((chunk) => id.includes(`node_modules/${chunk}/`))) {
 							return id.toString().split('node_modules/')[1].split('/')[0].toString();
 						}
+					},
+					chunkFileNames: (chunkInfo) => {
+						const facedeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
+						const fileName = facedeModuleId[facedeModuleId.length - 2] || '[name]';
+						return `assets/js/${fileName}/[name].[hash].js`;
 					}
 				}
 			}

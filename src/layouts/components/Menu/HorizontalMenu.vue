@@ -25,7 +25,7 @@
 					<span v-if="toRaw(menu.meta?.icon)">
 						<Icon :name="toRaw(menu.meta?.icon)!" />
 					</span>
-					<span class="text-sm text-nowrap pl-1">
+					<span class="text-sm ws-nowrap pl-1">
 						{{ translateRouteTitle(menu.meta?.title!) }}
 					</span>
 				</div>
