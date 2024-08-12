@@ -30,7 +30,6 @@ export default {
 			meta: {
 				icon: 'ep:data-analysis',
 				title: '分析页',
-				isFixed: true,
 				keepAlive: true
 			}
 		}
