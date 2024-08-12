@@ -1,10 +1,10 @@
 name: Build and Deploy
 permissions:
   contents: write
-on:
+on: #触发条件
   push:
     branches:
-      - master
+      - master #推送到master 就触发
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,6 +13,7 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
+      # 安装node
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -26,6 +27,7 @@ jobs:
           version: 9
           run_install: false
 
+      # 构建
       - name: Deploy 🔧
         run: |
           pnpm install --no-frozen-lockfile
@@ -33,6 +35,7 @@ jobs:
           cd dist
           touch README.md .nojekyll
 
+      # 部署
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
