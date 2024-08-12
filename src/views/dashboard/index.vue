@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import ThreeTest from './components/ThreeTest.vue';
 	defineOptions({
 		name: 'Dashboard'
 	});
@@ -34,9 +35,12 @@
 </script>
 
 <template>
-	<div class="w-full h-full overflow-hidden">
+	<!-- <div class="w-full h-full overflow-hidden">
 		<div ref="screen" class="fixed w-480 h-270 left-2/4 top-2/4 transform-origin-lt">
-			<div class="w-full h-full bg-blue">23</div>
+			<div class="w-full h-full">
+				<ThreeTest />
+			</div>
 		</div>
-	</div>
+	</div> -->
+	<ThreeTest />
 </template>

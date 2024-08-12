@@ -95,8 +95,8 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 						}
 					},
 					chunkFileNames: (chunkInfo) => {
-						const facedeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
-						const fileName = facedeModuleId[facedeModuleId.length - 2] || '[name]';
+						const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
+						const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
 						return `assets/js/${fileName}/[name].[hash].js`;
 					}
 				}
