@@ -1,0 +1,1 @@
+import{p as t,a$ as c,F as p,r as u,s as _}from"../.pnpm/.pnpm.CNWdlwhF.js";const i=t({name:"Redirect"}),h=t({...i,setup(m){const{currentRoute:r,replace:a}=c(),{params:s,query:n}=p(r),{path:e}=s,o=Array.isArray(e)?e.join("/"):e;return a({path:"/"+o,query:n}),(f,l)=>(u(),_("div"))}});export{h as default};
