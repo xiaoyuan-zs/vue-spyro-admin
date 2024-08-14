@@ -34,7 +34,7 @@ Spyro Vue Admin
     <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis_theme.png">
 </p>
 
-## 📑 本地开发
+### 📑 本地开发
 
 > ⚠️ 本地开发需要保证 `nodejs 18`、`pnpm 9` 以上
 
