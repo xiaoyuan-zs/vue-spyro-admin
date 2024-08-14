@@ -29,9 +29,9 @@ Spyro Vue Admin
 [预览](https://xiaoyuan-zs.github.io/spyro-vue-admin/#/)
 
 <p align="center">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/analysis.png">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/analysis_dark.png">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/analysis_theme.png">
+    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis.png">
+    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis_dark.png">
+    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis_theme.png">
 </p>
 
 ## 📑 本地开发
