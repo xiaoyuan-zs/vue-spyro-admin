@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-Spyro Vue Admin
+Spyro-Admin
 
 <div align="center">
 
