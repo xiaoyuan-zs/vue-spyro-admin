@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/public/logo.svg"/>
+  <img src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/public/logo.svg"/>
 </p>
 
 <h1 align="center">
@@ -12,7 +12,7 @@ Spyro Vue Admin
 ![version](https://img.shields.io/badge/unocss-0.61.9-red)
 ![version](https://img.shields.io/badge/elementPlus-2.7.x-blue)
 ![version](https://img.shields.io/badge/@iconify/vue-4.1.x-white)
-![stars](https://img.shields.io/github/stars/xiaoyuan-zs/spyro-vue-admin.svg?style=social&label=Stars)
+![stars](https://img.shields.io/github/stars/xiaoyuan-zs/vue-spyro-admin.svg?style=social&label=Stars)
 
 </div>
 </h1>
@@ -26,12 +26,12 @@ Spyro Vue Admin
 
 ### 预览
 
-[预览](https://xiaoyuan-zs.github.io/spyro-vue-admin/#/)
+[预览](https://xiaoyuan-zs.github.io/vue-spyro-admin/#/)
 
 <p align="center">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis.png">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis_dark.png">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/spyro-vue-admin/raw/master/src/assets/images/analysis_theme.png">
+    <img width="50%" src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/src/assets/images/analysis.png">
+    <img width="50%" src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/src/assets/images/analysis_dark.png">
+    <img width="50%" src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/src/assets/images/analysis_theme.png">
 </p>
 
 ### 📑 本地开发
@@ -39,7 +39,7 @@ Spyro Vue Admin
 > ⚠️ 本地开发需要保证 `nodejs 18`、`pnpm 9` 以上
 
 ```
-git clone https://github.com/xiaoyuan-zs/spyro-vue-admin.git
+git clone https://github.com/xiaoyuan-zs/vue-spyro-admin.git
 
 cd spyro-vue-admin
 
