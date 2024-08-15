@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/public/logo.svg"/>
+  <img src="https://gitee.com/xiaoyuan-zs/vue-spyro-admin/raw/master/public/logo.svg"/>
 </p>
 
 <h1 align="center">
@@ -29,9 +29,9 @@ Spyro-Admin
 [预览](https://xiaoyuan-zs.github.io/vue-spyro-admin/#/)
 
 <p align="center">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/src/assets/images/analysis.png">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/src/assets/images/analysis_dark.png">
-    <img width="50%" src="https://gitee.com/shuxiaoluo/vue-spyro-admin/raw/master/src/assets/images/analysis_theme.png">
+    <img width="50%" src="https://gitee.com/xiaoyuan-zs/vue-spyro-admin/raw/master/src/assets/images/analysis.png">
+    <img width="50%" src="https://gitee.com/xiaoyuan-zs/vue-spyro-admin/raw/dev/src/assets/images/analysis_dark.png">
+    <img width="50%" src="https://gitee.com/xiaoyuan-zs/vue-spyro-admin/raw/master/src/assets/images/analysis_theme.png">
 </p>
 
 ### 📑 本地开发
