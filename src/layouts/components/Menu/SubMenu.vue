@@ -11,7 +11,6 @@
 			type: Object as PropType<MenuOption>,
 			required: true
 		},
-		isNest: propTypes.bool.def(false),
 		basePath: propTypes.string.def('')
 	});
 
@@ -56,7 +55,7 @@
 
 <template>
 	<app-link v-if="hasOneShowChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren)" :to="item">
-		<el-menu-item :index="resolvePath(onlyOneChild.path!)" :class="{ 'submenu-title-noDropdown': !isNest }">
+		<el-menu-item :index="resolvePath(onlyOneChild.path!)">
 			<Icon v-if="toRaw(onlyOneChild.meta?.icon)" :name="toRaw(onlyOneChild.meta?.icon) || item.meta?.icon!" :size="16" />
 			<template #title>
 				<!-- truncate 多行溢出省略号 -->
