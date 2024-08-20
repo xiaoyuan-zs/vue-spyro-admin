@@ -60,18 +60,12 @@
 				subMenuData.value = parentRoute?.children;
 			}
 
-			// 切换布局后操作
-			function menuSelect(indexPath: string) {
-				if (wholeMenus.value.length === 0 || excludePaths.includes(indexPath)) return;
-			}
-
 			// 监听路由的变化，过滤出当前路由的子路由集合(作用于栅格和混合布局)
 			watch(
 				() => [route.path, permissionStore.wholeMenus],
 				() => {
 					if (route.path.includes('/redirect')) return;
 					getSubMenuData();
-					menuSelect(route.path);
 				}
 			);
 
@@ -88,9 +82,10 @@
 					unique-opened={unref(menuUnique)}
 					collapse={unref(menuCollapse)}
 					collapse-transition={false}>
-					{menuList.value.map((menu, index) => (
-						<SubMenu key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />
-					))}
+					{{
+						default: () =>
+							menuList.value.map((menu, index) => <SubMenu key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />)
+					}}
 				</ElMenu>
 			);
 
