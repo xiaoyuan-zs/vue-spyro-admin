@@ -1,4 +1,4 @@
-import { useResizeObserver, MaybeComputedElementRef, breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { useResizeObserver, type MaybeComputedElementRef, breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { useAppStore } from '@/store';
 import { unref } from 'vue';
 export function isMobile() {

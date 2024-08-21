@@ -1,9 +1,9 @@
 <script setup lang="ts" name="Home">
 	import { useEcharts } from '@/hooks';
 	import { selectDictLabel } from '@spyro/utils';
-	import { useBarEcharts, useRadarEcharts } from './hooks/index';
+	import { useBarEcharts } from './hooks/index';
 
-	const projectList = reactive([
+	const projectList = [
 		{
 			icon: 'logos:github-icon',
 			projectName: 'Github',
@@ -46,7 +46,7 @@
 			author: '尤大大',
 			createTime: '2020-08-13'
 		}
-	]);
+	];
 
 	type dictsType = {
 		dictLabel: string;
@@ -82,7 +82,7 @@
 		}
 	];
 
-	const messageList = reactive([
+	const messageList = [
 		{
 			type: '01',
 			desc: 'xxx即将于2023年12月25日入职, 请提前准备相关流程',
@@ -103,13 +103,11 @@
 			desc: 'xxx即将于2023年12月25日入职, 请提前准备相关流程',
 			createTime: '2023-12-20'
 		}
-	]);
+	];
 
 	const { barEcharts, barOptions } = useBarEcharts();
-	const { radarEcharts, radarOptions } = useRadarEcharts();
 
 	onMounted(() => {
-		useEcharts(unref(radarEcharts)!, unref(radarOptions));
 		useEcharts(unref(barEcharts)!, unref(barOptions));
 	});
 </script>
@@ -148,8 +146,8 @@
 				</el-col>
 			</el-row>
 		</el-card>
-		<el-row :gutter="10">
-			<el-col :xs="24" :lg="16" class="mt-3">
+		<el-row :gutter="16">
+			<el-col :xs="24" :lg="16" class="mt-4">
 				<el-card shadow="hover">
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">项目</h3>
@@ -169,25 +167,25 @@
 					</div>
 				</el-card>
 			</el-col>
-			<el-col :xs="24" :lg="8" class="mt-3">
+			<el-col :xs="24" :lg="8" class="mt-4">
 				<el-card shadow="hover">
 					<div class="flex justify-between relative">
-						<h3 class="font-semibold text-base antialiased title-before">岗位分布</h3>
+						<h3 class="font-semibold text-base antialiased title-before">快捷操作</h3>
 					</div>
-					<div ref="radarEcharts" class="w-full h-66"></div>
+					<div class="w-full h-66"></div>
 				</el-card>
 			</el-col>
 		</el-row>
-		<el-row :gutter="10">
-			<el-col :xs="24" :lg="16" class="mt-3">
+		<el-row :gutter="16">
+			<el-col :xs="24" :lg="16" class="mt-4">
 				<el-card shadow="hover">
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">内容数据</h3>
 					</div>
-					<div ref="barEcharts" class="w-full h-105.5"></div>
+					<div ref="barEcharts" class="w-full h-106.5"></div>
 				</el-card>
 			</el-col>
-			<el-col :xs="24" :lg="8" class="mt-3">
+			<el-col :xs="24" :lg="8" class="mt-4">
 				<el-row>
 					<el-col>
 						<el-card shadow="hover">
@@ -209,7 +207,7 @@
 							</div>
 						</el-card>
 					</el-col>
-					<el-col class="mt-3">
+					<el-col class="mt-4">
 						<el-card shadow="hover">
 							<div class="flex justify-between relative">
 								<h3 class="font-semibold text-base antialiased title-before">消息提醒</h3>
@@ -234,3 +232,9 @@
 		</el-row>
 	</div>
 </template>
+
+<style lang="scss" scoped>
+	:deep(.el-card) {
+		@apply b-0;
+	}
+</style>
