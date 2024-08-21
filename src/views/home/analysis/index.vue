@@ -1,5 +1,7 @@
 <script setup lang="ts">
 	import { useEchart01, useEchart02, useEchart03, useEchart04 } from './hooks';
+	import { useTransition } from '@vueuse/core';
+
 	defineOptions({
 		name: 'Analysis'
 	});
@@ -9,44 +11,6 @@
 	const { option03 } = useEchart03();
 	const { option04 } = useEchart04();
 
-	const statistics = [
-		{
-			icon: 'ep:trend-charts',
-			title: '在线评标率',
-			data: '78%',
-			bgColor: 'bg-sky-300',
-			gtColor: 'to-sky-300'
-		},
-		{
-			icon: 'ant-design:property-safety-filled',
-			title: '进场金额',
-			data: '￥9204.00',
-			bgColor: 'bg-teal-300',
-			gtColor: 'to-teal-300'
-		},
-		{
-			icon: 'ant-design:account-book-filled',
-			title: '结算金额',
-			data: '￥10273.40',
-			bgColor: 'bg-sky-300',
-			gtColor: 'to-sky-300'
-		},
-		{
-			icon: 'ant-design:database-filled',
-			title: '开累消耗',
-			data: '6480',
-			bgColor: 'bg-indigo-300',
-			gtColor: 'to-indigo-300'
-		},
-		{
-			icon: 'ant-design:golden-filled',
-			title: '现有库存',
-			data: '￥9204.00',
-			bgColor: 'bg-teal-300',
-			gtColor: 'to-teal-300'
-		}
-	];
-
 	const preOrders = new Array(20).fill({
 		name: '南京物资运输管理有限公司',
 		unique: 'PO.265432',
@@ -54,24 +18,114 @@
 		status: '已出库',
 		time: '2021-01-01'
 	});
+
+	const infinitValue = ref(0);
+	const infinitValue1 = ref(0);
+	const infinitValue2 = ref(0);
+	const infinitValue3 = ref(0);
+	const infinitValue4 = ref(0);
+
+	const data = useTransition(infinitValue, {
+		duration: 1500
+	});
+	const data1 = useTransition(infinitValue1, {
+		duration: 1500
+	});
+	const data2 = useTransition(infinitValue2, {
+		duration: 1500
+	});
+	const data3 = useTransition(infinitValue3, {
+		duration: 1500
+	});
+	const data4 = useTransition(infinitValue4, {
+		duration: 1500
+	});
+
+	onMounted(() => {
+		infinitValue.value = 78;
+		infinitValue1.value = 9204.0;
+		infinitValue2.value = 10273.4;
+		infinitValue3.value = 6480;
+		infinitValue4.value = 9204;
+	});
 </script>
 
 <template>
 	<div class="pb-4">
 		<so-card title="数据统计" :underline="false">
 			<div class="w-full grid <xl:grid-cols-3 <sm:grid-cols-1 grid-cols-5 gap-4">
-				<div v-for="(item, index) in statistics" :key="index" :class="`p-3 rounded-1.5 text-background ${item.bgColor}`">
+				<div class="p-3 rounded-1.5 text-background bg-sky-300">
 					<div class="flex flex-justify-start items-center">
-						<Icon :name="item.icon" :size="16" />
-						<span class="block pl-1">{{ item.title }}</span>
+						<Icon name="ep:trend-charts" :size="16" />
+						<span class="block pl-1">在线评标率(%)</span>
 					</div>
 					<div class="flex flex-justify-between items-end">
-						<span class="text-size-xl">{{ item.data }}</span>
+						<el-statistic :value="data" value-style="color: var(--el-bg-color)" />
 						<!-- 实现文字渐变效果 -->
 						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
 						<div class="relative">
-							<Icon :name="item.icon" :size="40" />
-							<div :class="`absolute-lt w-full h-full bg-gradient-to-b from-transparent ${item.gtColor}`"></div>
+							<Icon name="ep:trend-charts" :size="40" />
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-sky-300"></div>
+						</div>
+					</div>
+				</div>
+				<div class="p-3 rounded-1.5 text-background bg-teal-300">
+					<div class="flex flex-justify-start items-center">
+						<Icon name="ant-design:property-safety-filled" :size="16" />
+						<span class="block pl-1">进场金额(￥)</span>
+					</div>
+					<div class="flex flex-justify-between items-end">
+						<el-statistic :value="data1" :precision="2" value-style="color: var(--el-bg-color)" />
+						<!-- 实现文字渐变效果 -->
+						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
+						<div class="relative">
+							<Icon name="ant-design:property-safety-filled" :size="40" />
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-teal-300"></div>
+						</div>
+					</div>
+				</div>
+				<div class="p-3 rounded-1.5 text-background bg-sky-300">
+					<div class="flex flex-justify-start items-center">
+						<Icon name="ant-design:account-book-filled" :size="16" />
+						<span class="block pl-1">结算金额(￥)</span>
+					</div>
+					<div class="flex flex-justify-between items-end">
+						<el-statistic :value="data2" :precision="2" value-style="color: var(--el-bg-color)" />
+						<!-- 实现文字渐变效果 -->
+						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
+						<div class="relative">
+							<Icon name="ant-design:account-book-filled" :size="40" />
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-sky-300"></div>
+						</div>
+					</div>
+				</div>
+				<div class="p-3 rounded-1.5 text-background bg-indigo-300">
+					<div class="flex flex-justify-start items-center">
+						<Icon name="ant-design:database-filled" :size="16" />
+						<span class="block pl-1">开累消耗</span>
+					</div>
+					<div class="flex flex-justify-between items-end">
+						<el-statistic :value="data3" value-style="color: var(--el-bg-color)" />
+						<!-- 实现文字渐变效果 -->
+						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
+						<div class="relative">
+							<Icon name="ant-design:database-filled" :size="40" />
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-indigo-300"></div>
+						</div>
+					</div>
+				</div>
+				<div class="p-3 rounded-1.5 text-background bg-teal-300">
+					<div class="flex flex-justify-start items-center">
+						<Icon name="ant-design:golden-filled" :size="16" />
+						<span class="block pl-1">现有库存</span>
+					</div>
+					<div class="flex flex-justify-between items-end">
+						<el-statistic :value="data4" value-style="color: var(--el-bg-color)" />
+						<!-- 实现文字渐变效果 -->
+						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
+						<div class="relative">
+							<Icon name="ant-design:golden-filled" :size="40" />
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-teal-300"></div>
 						</div>
 					</div>
 				</div>
