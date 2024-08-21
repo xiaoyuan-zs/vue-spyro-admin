@@ -1,10 +1,10 @@
 <script lang="tsx">
 	import { excludePaths } from '@/router';
-	import SubMenu from './SubMenu.vue';
+	import SubMenuItem from './SubMenu.vue';
 	import { findRouteByPath, getParentPaths } from '@/router/helpers/utils';
 	import { usePermissionStore, useLayoutStore, useAppStore } from '@/store';
 	import { RouteRecordRaw, useRoute } from 'vue-router';
-	import { unref } from 'vue';
+	import { KeepAlive, unref } from 'vue';
 	import { ElMenu } from 'element-plus';
 
 	export default defineComponent({
@@ -40,7 +40,7 @@
 				['mixins', 'lattice'].includes(layoutStore.layout!) && !unref(isMobile) ? subMenuData.value : wholeMenus.value
 			);
 
-			const activeMenu = computed<string>(() => {
+			const activeMenu = computed(() => {
 				const { path, meta } = route;
 				if (meta.activeMenu) return meta.activeMenu;
 				return path;
@@ -73,24 +73,26 @@
 				getSubMenuData();
 			});
 
-			const renderMenu = () => (
-				<ElMenu
-					router
-					popper-class="el-menu-layout-popper"
-					default-active={unref(activeMenu)}
-					mode={unref(menuMode)}
-					unique-opened={unref(menuUnique)}
-					collapse={unref(menuCollapse)}
-					collapse-transition={false}>
-					{{
-						default: () =>
-							menuList.value.map((menu, index) => <SubMenu key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />)
-					}}
-				</ElMenu>
-			);
-
 			return () => {
-				return <div class={`el-menu-layout el-menu-layout__${unref(menuMode)}`}>{renderMenu()}</div>;
+				return (
+					<div class={`el-menu-layout el-menu-layout__${unref(menuMode)}`}>
+						<ElMenu
+							router
+							mode={unref(menuMode)}
+							unique-opened={unref(menuUnique)}
+							collapse={unref(menuCollapse)}
+							collapse-transition={false}
+							default-active={unref(activeMenu)}>
+							{{
+								default: () =>
+									menuList.value.map((menu, index) => {
+										console.log('menu', menu.meta?.title);
+										return <SubMenuItem key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />;
+									})
+							}}
+						</ElMenu>
+					</div>
+				);
 			};
 		}
 	});

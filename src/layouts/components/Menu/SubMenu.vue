@@ -1,10 +1,14 @@
-<script setup lang="ts" name="SubMenu">
+<script setup lang="ts">
 	import path from 'path';
 	import AppLink from './AppLink.vue';
 	import { PropType, toRaw } from 'vue';
 	import { propTypes } from '@/utils/propTypes';
 	import { isUrl } from '@spyro/utils';
 	import { translateRouteTitle } from '@/utils/locales';
+
+	defineOptions({
+		name: 'SubMenuItem'
+	});
 
 	const props = defineProps({
 		item: {
@@ -58,7 +62,6 @@
 		<el-menu-item :index="resolvePath(onlyOneChild.path!)">
 			<Icon v-if="toRaw(onlyOneChild.meta?.icon)" :name="toRaw(onlyOneChild.meta?.icon) || item.meta?.icon!" :size="16" />
 			<template #title>
-				<!-- truncate 多行溢出省略号 -->
 				<span :class="['truncate', !toRaw(onlyOneChild.meta?.icon) && 'pl-7']">{{ translateRouteTitle(onlyOneChild.meta?.title!) }}</span>
 			</template>
 		</el-menu-item>
@@ -66,9 +69,8 @@
 	<el-sub-menu v-else teleported :index="resolvePath(item.path!)">
 		<template #title>
 			<Icon v-if="toRaw(item.meta?.icon)" :name="toRaw(item.meta?.icon) || item.meta?.icon!" :size="16" />
-			<!-- truncate 多行溢出省略号 -->
 			<span :class="['truncate', !toRaw(item.meta?.icon) && 'pl-7']">{{ translateRouteTitle(item.meta?.title!) }}</span>
 		</template>
-		<SubMenu v-for="(child, index) in item.children" :key="child.path! + index" :item="child" :base-path="child.path" />
+		<SubMenuItem v-for="(child, index) in item.children" :key="child.path! + index" :item="child" :base-path="resolvePath(child.path!)" />
 	</el-sub-menu>
 </template>

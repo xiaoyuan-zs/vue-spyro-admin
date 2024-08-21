@@ -92,3 +92,13 @@
 	opacity: 0;
 	transform: scale(0);
 }
+
+/**
+ * @description 重置el-menu的展开收起动画时长
+ */
+.el-menu-layout {
+	.el-menu .el-collapse-transition-leave-active,
+	.el-menu .el-collapse-transition-enter-active {
+		transition: 0.2s all ease-in-out !important;
+	}
+}
