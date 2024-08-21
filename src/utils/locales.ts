@@ -1,4 +1,4 @@
-import i18n from '@/locales';
+import i18n from '@/i18n';
 
 /**
  * 获取国际化路由，如果不存在则原生返回

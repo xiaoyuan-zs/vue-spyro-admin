@@ -12,7 +12,6 @@ const include = [
 	'path',
 	'vue-types',
 	'js-cookie',
-	'vue-tippy',
 	'pinyin-pro',
 	'@vueuse/core'
 ];
