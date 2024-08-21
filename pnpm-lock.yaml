@@ -35,9 +35,6 @@ importers:
       js-cookie:
         specifier: 3.0.5
         version: 3.0.5
-      localforage:
-        specifier: ^1.10.0
-        version: 1.10.0
       mitt:
         specifier: 3.0.1
         version: 3.0.1
@@ -300,6 +297,9 @@ importers:
 
   packages/utils:
     dependencies:
+      localforage:
+        specifier: ^1.10.0
+        version: 1.10.0
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7

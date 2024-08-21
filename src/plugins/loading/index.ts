@@ -1,6 +1,6 @@
 // @unocss-include
 // 告诉 UnoCSS 扫描该文件，从而识别 unocss 类名
-import { localForage } from '@/utils/localforage';
+import { localForage } from '@spyro/utils';
 import { platformConfig } from '@/config';
 export async function setupLoading() {
 	// 获取主题颜色

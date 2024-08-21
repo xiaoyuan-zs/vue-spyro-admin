@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { useLayoutStore } from '@/store';
 import type { TabsMenuType } from '../types';
-import { localForage } from '@/utils/localforage';
+import { localForage } from '@spyro/utils';
 import router from '@/router';
 
 // 标签栏持久化key

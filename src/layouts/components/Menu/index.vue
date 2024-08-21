@@ -1,10 +1,9 @@
 <script lang="tsx">
-	import { excludePaths } from '@/router';
 	import SubMenuItem from './SubMenu.vue';
 	import { findRouteByPath, getParentPaths } from '@/router/helpers/utils';
 	import { usePermissionStore, useLayoutStore, useAppStore } from '@/store';
 	import { RouteRecordRaw, useRoute } from 'vue-router';
-	import { KeepAlive, unref } from 'vue';
+	import { unref } from 'vue';
 	import { ElMenu } from 'element-plus';
 
 	export default defineComponent({

@@ -17,6 +17,7 @@
 	"author": "xiaoyuan-zs",
 	"license": "MIT",
 	"dependencies": {
+		"localforage": "^1.10.0",
 		"nanoid": "^5.0.7",
 		"xe-utils": "^3.5.27"
 	}
