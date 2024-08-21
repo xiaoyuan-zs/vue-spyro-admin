@@ -48,7 +48,6 @@
 		"vue-i18n": "9.14.0",
 		"vue-json-pretty": "^2.4.0",
 		"vue-router": "4.4.3",
-		"vue-tippy": "^6.4.1",
 		"vue-types": "^5.1.2"
 	},
 	"engines": {
@@ -118,7 +117,6 @@
 		"vite-plugin-fake-server": "^2.1.1",
 		"vite-plugin-remove-console": "^2.2.0",
 		"vite-plugin-router-warn": "1.0.0",
-		"vite-plugin-style-import": "2.0.0",
 		"vite-plugin-svg-icons": "^2.0.1",
 		"vite-plugin-vue-devtools": "^7.3.8",
 		"vite-plugin-vue-setup-extend": "0.4.0",

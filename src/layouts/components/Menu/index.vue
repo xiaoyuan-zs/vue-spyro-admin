@@ -85,10 +85,9 @@
 							default-active={unref(activeMenu)}>
 							{{
 								default: () =>
-									menuList.value.map((menu, index) => {
-										console.log('menu', menu.meta?.title);
-										return <SubMenuItem key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />;
-									})
+									menuList.value.map((menu, index) => (
+										<SubMenuItem key={menu.path + index} item={menu as MenuOption} base-path={menu.path} />
+									))
 							}}
 						</ElMenu>
 					</div>
