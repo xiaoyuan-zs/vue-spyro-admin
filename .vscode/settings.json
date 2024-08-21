@@ -24,7 +24,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	// 什么类型的文件需要遵守stylelint规则
-	"stylelint.validate": ["css", "less",  "scss", "sass", "vue"],
+	"stylelint.validate": ["css", "less", "scss", "sass", "vue"],
 	// 为ESLint启用“保存时自动修复”，并且仍然具有格式和快速修复功能
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "always",
@@ -43,5 +43,9 @@
 	"[scss]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"i18n-ally.localesPaths": ["src/locales"]
+	"i18n-ally.localesPaths": ["src/i18n"],
+	"i18n-ally.pathMatcher": "{locale}/**.json",
+	"i18n-ally.enabledParsers": ["json"],
+	"i18n-ally.sourceLanguage": "en", // 翻译源语言
+	"i18n-ally.displayLanguage": "zh" //显示语言， 这里也可以设置显示英文为en
 }
