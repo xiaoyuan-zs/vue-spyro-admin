@@ -1,6 +1,7 @@
-import type { LocaleKey } from '@/locales/locales';
+import type { LocaleKey } from '@/i18n/locales';
 import { defineStore } from 'pinia';
 import type { AppStateType } from '../types';
+import Cookies from 'js-cookie';
 
 export const useAppStore = defineStore('app', {
 	state: (): AppStateType => ({
@@ -11,13 +12,13 @@ export const useAppStore = defineStore('app', {
 		// 刷新
 		reload: true,
 		// i18n
-		language: 'zh-CN'
+		language: Cookies.get('language') || 'zh_CN'
 	}),
 	getters: {},
 	actions: {
 		setLanguage(language: LocaleKey) {
 			this.language = language;
-			// setStorage('language', language);
+			Cookies.set('language', language);
 		},
 		// 刷新页面
 		reloadPage() {

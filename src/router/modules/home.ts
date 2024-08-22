@@ -1,5 +1,4 @@
 const Layout = () => import('@/layouts/index.vue');
-
 export default {
 	path: '/',
 	name: 'Home',

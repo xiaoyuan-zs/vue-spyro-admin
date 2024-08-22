@@ -19,34 +19,34 @@
 		time: '2021-01-01'
 	});
 
-	const infinitValue = ref(0);
-	const infinitValue1 = ref(0);
-	const infinitValue2 = ref(0);
-	const infinitValue3 = ref(0);
-	const infinitValue4 = ref(0);
+	const InitialValue = ref(0);
+	const InitialValue1 = ref(0);
+	const InitialValue2 = ref(0);
+	const InitialValue3 = ref(0);
+	const InitialValue4 = ref(0);
 
-	const data = useTransition(infinitValue, {
+	const data = useTransition(InitialValue, {
 		duration: 1500
 	});
-	const data1 = useTransition(infinitValue1, {
+	const data1 = useTransition(InitialValue1, {
 		duration: 1500
 	});
-	const data2 = useTransition(infinitValue2, {
+	const data2 = useTransition(InitialValue2, {
 		duration: 1500
 	});
-	const data3 = useTransition(infinitValue3, {
+	const data3 = useTransition(InitialValue3, {
 		duration: 1500
 	});
-	const data4 = useTransition(infinitValue4, {
+	const data4 = useTransition(InitialValue4, {
 		duration: 1500
 	});
 
 	onMounted(() => {
-		infinitValue.value = 78;
-		infinitValue1.value = 9204.0;
-		infinitValue2.value = 10273.4;
-		infinitValue3.value = 6480;
-		infinitValue4.value = 9204;
+		InitialValue.value = 78;
+		InitialValue1.value = 9204.0;
+		InitialValue2.value = 10273.4;
+		InitialValue3.value = 6480;
+		InitialValue4.value = 9204;
 	});
 </script>
 

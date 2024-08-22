@@ -1,5 +1,5 @@
-import zhCN from '../../locales/zh-CN.json';
-import en from '../../locales/en-US.json';
+import zhCN from '../../locales/zh_CN.json';
+import en from '../../locales/en_US.json';
 
 const locales = {
 	'zh-CN': {

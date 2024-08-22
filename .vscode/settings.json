@@ -43,9 +43,17 @@
 	"[scss]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"i18n-ally.localesPaths": ["src/i18n"],
-	"i18n-ally.pathMatcher": "{locale}/**.json",
-	"i18n-ally.enabledParsers": ["json"],
-	"i18n-ally.sourceLanguage": "en", // 翻译源语言
-	"i18n-ally.displayLanguage": "zh" //显示语言， 这里也可以设置显示英文为en
+	"i18n-ally.localesPaths": ["locales"], // 翻译文件(json/yaml)路径 (自动生成) 相对于项目根目录的语言环境目录路径
+	"i18n-ally.keystyle": "nested", // 翻译路径格式 (变量对象格式 nested：嵌套式  flat:扁平式)
+	"i18n-ally.readonly": false, // 翻译文件是否只读
+	"i18n-ally.sortKeys": true, // 字母顺序排序
+	"i18n-ally.namespace": true, // 开启命名空间
+	"i18n-ally.keepFulfilled": true, // 始终用空字符串填充所有的键
+	"i18n-ally.enabledParsers": ["json", "yaml"], // 翻译文件可允许的格式，默认json
+	"i18n-ally.sourceLanguage": "zh_CN", // 翻译源语言
+	"i18n-ally.displayLanguage": "zh_CN", //显示语言， 这里也可以设置显示英文为en
+	// 翻译引擎
+	"i18n-ally.translate.engines": ["google-cn", "google", "deepl"],
+	"i18n-ally.extract.keygenStyle": "camelCase", // 翻译字段命名样式采用驼峰
+	"i18n-ally.enabledFrameworks": ["vue"] // 指定要使用的框架。 如果未设置值，扩展将自动检测框架
 }
