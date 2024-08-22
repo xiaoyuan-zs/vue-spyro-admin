@@ -1,10 +1,15 @@
 // loading 加载页面
-export { setupLoading } from './loading';
+import { setupLoading } from './loading';
 // 粒子动画效果
-export { setupParticles } from './particles';
+import { setupParticles } from './particles';
 // 国际化
-export { setupI18n, i18n, $t, type LocaleKey } from './i18n';
+import { setupI18n, i18n, $t, type LocaleKey } from './i18n';
 // Echarts 图表
-export { echarts, type ECOption } from './echarts';
+import { echarts, type ECOption } from './echarts';
 // 进度条
-export { Nprogress, start, done } from './nprogress';
+import { Nprogress, start, done } from './nprogress';
+
+// 导出实例
+export { setupLoading, setupParticles, setupI18n, i18n, $t, echarts, Nprogress, start, done };
+// 导出类型
+export type { LocaleKey, ECOption };

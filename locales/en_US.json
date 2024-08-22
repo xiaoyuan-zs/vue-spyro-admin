@@ -1,6 +1,8 @@
 {
 	"common": {
-		"switchLanguage": "Switch Language Success"
+		"switchLanguageTip": "Switch Language Success",
+		"switchLanguage": "Switch Language",
+		"fullScreen": "Full Screen"
 	},
 	"menus": {
 		"homepage": "Home Page"

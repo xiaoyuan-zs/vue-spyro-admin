@@ -1,8 +1,10 @@
 {
+	"common": {
+		"switchLanguageTip": "切换语言成功",
+		"switchLanguage": "语言切换",
+		"fullScreen": "语言切换"
+	},
 	"menus": {
 		"homepage": "首页"
-	},
-	"common": {
-		"switchLanguage": "切换语言成功"
 	}
 }
