@@ -1,3 +1,5 @@
+import { $t } from '@/plugins';
+
 const Layout = () => import('@/layouts/index.vue');
 
 export default [
@@ -7,7 +9,7 @@ export default [
 		component: () => import('@/views/dashboard/index.vue'),
 		meta: {
 			icon: 'ep:data-board',
-			title: '数据大屏',
+			title: $t('menus.dataScreen'),
 			sort: 1
 		}
 	},

@@ -1,3 +1,5 @@
+import { $t } from '@/plugins';
+
 const IframeView = () => import('@/layouts/iframeView.vue');
 // iframe 内嵌的使用方式
 export default {
@@ -5,7 +7,7 @@ export default {
 	redirect: '/iframe/v3',
 	meta: {
 		icon: 'ant-design:select-outlined',
-		title: '文档（内嵌）',
+		title: $t('menus.docEmbedded'),
 		sort: 4
 	},
 	children: [

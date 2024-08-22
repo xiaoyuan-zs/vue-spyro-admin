@@ -1,10 +1,61 @@
 {
 	"common": {
+		"close": "Close",
+		"cancel": "Cancel",
+		"confirm": "Confirm",
+		"back": "Back",
+		"save": "Save",
+		"add": "Add",
+		"edit": "Edit",
+		"delete": "Delete",
+		"operation": "Operation",
+		"submit": "Submit",
+		"view": "View",
+		"more": "More",
+		"confirmDelete": "Confirm Delete",
+		"confirmDeleteTip": "Are you sure to delete this item?"
+	},
+	"platform": {
 		"switchLanguageTip": "Switch Language Success",
 		"switchLanguage": "Switch Language",
-		"fullScreen": "Full Screen"
+		"toggleFullScreen": "Toggle Full Screen",
+		"search": "Search",
+		"refresh": "Refresh",
+		"systemSetting": "System Setting",
+		"layout": "Layout",
+		"theme": "Theme",
+		"themeMode": "Theme Mode",
+		"systemTheme": "System Theme",
+		"interface": "Interface",
+		"darkMenu": "Dark Menu",
+		"menuUnique": "Menu Unique",
+		"tab": "Tab",
+		"tabStyle": "Tab Style",
+		"tabIcon": "Tab Icon",
+		"tabCache": "Tab Cache",
+		"breadCrumb": "BreadCrumb",
+		"breadCrumbIcon": "BreadCrumb Icon",
+		"grayMode": "Gray Mode",
+		"weaknessMode": "Weakness Mode",
+		"animateType": "Animation Type",
+		"tip": "Tip",
+		"tipDesc": "The configuration bar is only used to preview the development environment. It is not displayed in the production environment. To customize the theme, manually modify the configuration file /src/config/theme",
+		"clearCache": "Clear Cache"
 	},
 	"menus": {
-		"homepage": "Home Page"
+		"homepage": "Home Page",
+		"workbench": "Workbench",
+		"analysis": "Analysis",
+		"monitor": "Monitor",
+		"dataScreen": "Data Screen",
+		"docEmbedded": "Doc (embedded)",
+		"docExternal": "Doc (external link)",
+		"component": "Components",
+		"table": "Table",
+		"basicTable": "Basic Table",
+		"treeTable": "Tree Table",
+		"editTable": "Edit Table",
+		"exception": "Exception Page",
+		"about": "About"
 	}
 }

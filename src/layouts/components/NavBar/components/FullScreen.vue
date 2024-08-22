@@ -8,7 +8,7 @@
 </script>
 
 <template>
-	<el-tooltip effect="dark" content="全屏" placement="bottom">
+	<el-tooltip effect="dark" :content="$t('platform.toggleFullScreen')" placement="bottom">
 		<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer" @click="handleFull">
 			<Icon :name="icon" :size="20" />
 		</div>

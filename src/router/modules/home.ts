@@ -20,7 +20,7 @@ export default {
 			component: () => import('@/views/home/workbench/index.vue'),
 			meta: {
 				icon: 'ep:platform',
-				title: '工作台',
+				title: $t('menus.workbench'),
 				isFixed: true,
 				keepAlive: true
 			}
@@ -31,7 +31,7 @@ export default {
 			component: () => import('@/views/home/analysis/index.vue'),
 			meta: {
 				icon: 'ep:data-analysis',
-				title: '分析页',
+				title: $t('menus.analysis'),
 				keepAlive: true
 			}
 		}

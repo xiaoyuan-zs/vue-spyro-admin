@@ -1,10 +1,12 @@
+import { $t } from '@/plugins';
+
 export default {
 	path: '/components',
 	redirect: '/components/table',
 	meta: {
 		icon: 'ant-design:gold-outlined',
 		sort: 6,
-		title: '组件'
+		title: $t('menus.component')
 	},
 	children: [
 		{
@@ -12,7 +14,7 @@ export default {
 			redirect: '/components/table/basicTable',
 			meta: {
 				icon: 'ant-design:table-outlined',
-				title: '表格'
+				title: $t('menus.table')
 			},
 			children: [
 				{
@@ -20,7 +22,7 @@ export default {
 					name: 'BasicTable',
 					component: () => import('@/views/components/table/basic-table/index.vue'),
 					meta: {
-						title: '基础表格',
+						title: $t('menus.basicTable'),
 						// 当只有一个子菜单时需要显示父级菜单时，需开启此配置
 						// showParent: true
 						keepAlive: true
@@ -40,7 +42,7 @@ export default {
 					name: 'TreeTable',
 					component: () => import('@/views/components/table/tree-table/index.vue'),
 					meta: {
-						title: '树形表格',
+						title: $t('menus.treeTable'),
 						keepAlive: true
 					}
 				},
@@ -49,7 +51,7 @@ export default {
 					name: 'EditTable',
 					component: () => import('@/views/components/table/edit-table/index.vue'),
 					meta: {
-						title: '可编辑表格',
+						title: $t('menus.editTable'),
 						keepAlive: true
 					}
 				}

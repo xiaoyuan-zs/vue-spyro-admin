@@ -10,7 +10,7 @@
 	const handleCommand = (val: LocaleKey) => {
 		locale.value = val;
 		appStore.setLanguage(val);
-		ElMessage.success(t('common.switchLanguageTip'));
+		ElMessage.success(t('platform.switchLanguageTip'));
 	};
 
 	const disabled = computed(() => {
@@ -19,7 +19,7 @@
 </script>
 
 <template>
-	<el-tooltip effect="dark" :content="$t('common.switchLanguage')" placement="left">
+	<el-tooltip effect="dark" :content="$t('platform.switchLanguage')" placement="left">
 		<el-dropdown trigger="click" @command="handleCommand">
 			<div class="flex-center p-3 hover:bg-[var(--el-fill-color)] transition rounded-lg cursor-pointer">
 				<Icon name="spyro:language" :size="20" />

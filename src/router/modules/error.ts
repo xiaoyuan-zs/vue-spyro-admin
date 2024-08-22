@@ -1,9 +1,11 @@
+import { $t } from '@/plugins';
+
 export default {
 	path: '/error',
 	redirect: '/error/403',
 	meta: {
 		icon: 'ri:information-line',
-		title: '异常页面',
+		title: $t('menus.exception'),
 		sort: 98
 	},
 	children: [

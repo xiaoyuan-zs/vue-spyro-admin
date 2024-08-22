@@ -1,10 +1,64 @@
 {
 	"common": {
+		"close": "关闭",
+		"cancel": "取消",
+		"confirm": "确定",
+		"back": "返回",
+		"save": "保存",
+		"add": "新增",
+		"edit": "编辑",
+		"delete": "删除",
+		"operation": "操作",
+		"submit": "提交",
+		"view": "查看",
+		"more": "更多",
+		"confirmDelete": "确认删除？",
+		"confirmDeleteTip": "确认删除该条数据？"
+	},
+	"platform": {
 		"switchLanguageTip": "切换语言成功",
 		"switchLanguage": "语言切换",
-		"fullScreen": "语言切换"
+		"toggleFullScreen": "切换全屏",
+		"search": "搜索",
+		"refresh": "刷新",
+		"systemSetting": "系统设置",
+		"layout": "布局",
+		"theme": "主题",
+		"themeMode": "主题模式",
+		"systemTheme": "系统主题",
+		"interface": "界面",
+		"darkMenu": "深色菜单",
+		"menuUnique": "菜单手风琴模式",
+		"tab": "标签页",
+		"tabStyle": "标签风格",
+		"tabIcon": "标签页图标",
+		"tabCache": "标签页缓存",
+		"breadCrumb": "面包屑",
+		"breadCrumbIcon": "面包屑图标",
+		"grayMode": "灰色模式",
+		"weaknessMode": "色弱模式",
+		"animateType": "动画类型",
+		"tip": "提示",
+		"tipDesc": "配置栏仅用于开发环境预览，生产环境不会展现，若需自定义请手动修改配置文件 /src/config/theme",
+		"clearCache": "清除缓存"
 	},
 	"menus": {
-		"homepage": "首页"
+		"homepage": "首页",
+		"workbench": "工作台",
+		"analysis": "分析页",
+		"monitor": "监控页",
+		"dataScreen": "数据大屏",
+		"docEmbedded": "文档 (内嵌)",
+		"docExternal": "文档 (外链)",
+		"component": "组件",
+		"table": "表格",
+		"basicTable": "基础表格",
+		"treeTable": "树形表格",
+		"editTable": "可编辑表格",
+		"exception": "异常页",
+		"about": "关于本站"
+	},
+	"theme": {
+		"themeColor": "主题色"
 	}
 }

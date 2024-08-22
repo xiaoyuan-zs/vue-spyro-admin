@@ -1,3 +1,5 @@
+import { $t } from '@/plugins';
+
 const LinkView = () => import('@/layouts/linkView.vue');
 
 // 外链的使用方式
@@ -10,7 +12,7 @@ export default [
 		component: LinkView,
 		meta: {
 			icon: 'mdi:about',
-			title: '关于本站',
+			title: $t('menus.about'),
 			sort: 99
 		}
 	},
@@ -19,7 +21,7 @@ export default [
 		redirect: '/link/strapi',
 		meta: {
 			icon: 'ant-design:export-outlined',
-			title: '文档（外链）',
+			title: $t('menus.docExternal'),
 			sort: 5
 		},
 		children: [
