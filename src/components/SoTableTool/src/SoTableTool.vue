@@ -23,21 +23,21 @@
 			const Draggable = useIcon({ name: 'ri:draggable' });
 
 			// 实现 showSearch 的 v-model
-			const showSearch = computed({
+			const isShowSearch = computed({
 				get: () => props.showSearch,
 				set: (value) => emit('update:show-search', value)
 			});
 
-			const columns = computed(() => props.columns);
+			const columnList = computed(() => props.columns);
 
 			const onUpdate = (e: SortableEvent) => {
-				const [column] = unref(columns).splice(e.oldIndex!, 1);
-				unref(columns).splice(e.newIndex!, 0, column);
+				const [column] = unref(columnList).splice(e.oldIndex!, 1);
+				unref(columnList).splice(e.newIndex!, 0, column);
 			};
 
 			return {
-				showSearch,
-				columns,
+				isShowSearch,
+				columnList,
 				Draggable,
 				Search,
 				Refresh,
@@ -50,14 +50,14 @@
 
 <template>
 	<div class="relative flex flex-justify-end">
-		<el-button size="small" circle :icon="Search" @click="showSearch = !showSearch" />
+		<el-button size="small" circle :icon="Search" @click="isShowSearch = !isShowSearch" />
 		<el-button size="small" circle :icon="Refresh" @click="$emit('refresh')" />
 		<el-dropdown trigger="click" popper-class="dropdown-menu" placement="bottom-end" :hide-on-click="false">
 			<el-button size="small" class="ml-3" circle :icon="Setting" />
 			<template #dropdown>
 				<el-dropdown-menu
 					v-draggable="[
-						columns,
+						columnList,
 						{
 							animation: 200,
 							ghostClass: 'ghost',
@@ -65,7 +65,7 @@
 							onUpdate
 						}
 					]">
-					<el-dropdown-item v-for="item in columns" :key="item.prop || item.type">
+					<el-dropdown-item v-for="item in columnList" :key="item.prop || item.type">
 						<Icon name="ri:draggable" class="handle cursor-move" />
 						<el-checkbox v-model="item.visible" :label="item.label" size="small" />
 					</el-dropdown-item>

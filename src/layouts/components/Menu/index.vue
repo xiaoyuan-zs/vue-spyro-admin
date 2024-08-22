@@ -7,7 +7,7 @@
 	import { ElMenu } from 'element-plus';
 
 	export default defineComponent({
-		name: 'Menu',
+		name: 'SoMenu',
 		setup() {
 			const appStore = useAppStore();
 			const route = useRoute();
