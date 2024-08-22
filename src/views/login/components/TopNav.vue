@@ -31,7 +31,7 @@
 <script setup lang="ts">
 	import { useLayoutStore } from '@/store';
 	import { useTheme } from '@/layouts/hooks';
-	import { LocaleKey } from '@/i18n/locales';
+	import { LocaleKey } from '@/plugins/i18n/locales';
 	import { useAppStore } from '@/store';
 	import { useI18n } from 'vue-i18n';
 	import { useIcon } from '@/hooks/modules/useIcon';

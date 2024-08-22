@@ -8,7 +8,7 @@ import { setupRouter } from '@/router';
 // pinia
 import { setupStore } from '@/store';
 // i18n
-import { setupI18n } from '@/i18n';
+import { setupI18n } from '@/plugins/i18n';
 
 import App from './App.vue';
 

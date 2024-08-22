@@ -2,7 +2,6 @@ import router from '@/router';
 import { start, done } from '@/plugins';
 import { useUserStore, usePermissionStore } from '@/store';
 import { initRoutes } from '@/router/helpers/handleRoutes';
-import { translateRouteTitle } from '@/utils/locales';
 
 // 白名单
 const whiteList = ['/login'];
@@ -46,7 +45,7 @@ router.beforeEach(async (to, _, next) => {
 
 router.afterEach((to) => {
 	if (to.meta.title) {
-		document.title = translateRouteTitle(to.meta.title) + '-' + title;
+		document.title = to.meta.title + '-' + title;
 	}
 	done();
 });
