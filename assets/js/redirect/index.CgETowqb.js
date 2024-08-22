@@ -1,0 +1,1 @@
+import{d as t,a_ as c,R as p,o as _,a as u}from"../.pnpm/.pnpm.DllKR9sa.js";const i=t({name:"Redirect"}),h=t({...i,setup(m){const{currentRoute:a,replace:r}=c(),{params:o,query:n}=p(a),{path:e}=o,s=Array.isArray(e)?e.join("/"):e;return r({path:"/"+s,query:n}),(d,f)=>(_(),u("div"))}});export{h as default};
