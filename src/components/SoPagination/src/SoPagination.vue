@@ -38,9 +38,9 @@
 
 <template>
 	<el-pagination
-		class="pt-4"
 		v-model:current-page="currentPage"
 		v-model:page-size="pageSize"
+		class="pt-4"
 		:page-sizes="pageSizes"
 		:small="small"
 		:disabled="disabled"

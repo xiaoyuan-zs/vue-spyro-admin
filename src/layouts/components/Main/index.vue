@@ -67,7 +67,7 @@
 						<el-backtop target=".el-main div .el-scrollbar__wrap" title="回到顶部" />
 						<transitionMain :route>
 							<keep-alive :include="permissionStore.cachePages">
-								<component :is="Component" :key="route.name" v-if="appStore.reload" />
+								<component :is="Component" v-if="appStore.reload" :key="route.name" />
 							</keep-alive>
 						</transitionMain>
 					</template>

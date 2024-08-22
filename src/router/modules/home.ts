@@ -1,4 +1,7 @@
+import { $t } from '@/plugins';
+
 const Layout = () => import('@/layouts/index.vue');
+
 export default {
 	path: '/',
 	name: 'Home',
@@ -7,7 +10,7 @@ export default {
 	redirect: '/index',
 	meta: {
 		icon: 'ep:home-filled',
-		title: 'menus.homepage',
+		title: $t('menus.homepage'),
 		sort: 0
 	},
 	children: [

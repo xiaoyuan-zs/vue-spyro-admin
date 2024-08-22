@@ -16,7 +16,7 @@
 </script>
 
 <template>
-	<el-drawer class="drawer" append-to-body v-model="settingVisible" :title="$t('setting.settings')" size="320px" direction="rtl">
+	<el-drawer v-model="settingVisible" class="drawer" append-to-body :title="$t('setting.settings')" size="320px" direction="rtl">
 		<layout-drawer />
 	</el-drawer>
 </template>

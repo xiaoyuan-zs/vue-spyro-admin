@@ -225,11 +225,11 @@
 		</SoCard>
 		<SoCard title="useTable 示例" class="flex-1">
 			<SoTable
-				height="100%"
 				v-model:currentPage="queryParams.pageNum"
 				v-model:pageSize="queryParams.pageSize"
 				v-model:showSearch="showSearch"
 				v-loading="loading"
+				height="100%"
 				@refresh="refresh"
 				@mount="tableMount"
 				@dragSort="dragSort" />

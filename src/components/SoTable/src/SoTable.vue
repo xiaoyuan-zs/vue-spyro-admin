@@ -213,7 +213,7 @@
 		</el-row>
 		<!-- flex布局默认min-height/min-weight:auto，导致子元素min-height为子元素的height，撑大了父元素 -->
 		<!-- 使用 overflow-hidden 或 min-h-0 解决子元素高度超出父元素高度问题 -->
-		<el-table ref="tableRef" class="flex-1" :id="uuid" :data="allProps.tableData" v-bind="bindValue">
+		<el-table :id="uuid" ref="tableRef" class="flex-1" :data="allProps.tableData" v-bind="bindValue">
 			<template v-for="(column, index) in columns" :key="column">
 				<el-table-column
 					v-if="column.type && column.visible"
@@ -223,7 +223,7 @@
 					<template #default="scope">
 						<template v-if="column.type === 'expand'">
 							<component :is="column.renderer" v-bind="scope" v-if="column.renderer" />
-							<slot v-else :name="column.type" v-bind="scope"></slot>
+							<slot v-else :name="column.type" v-bind="scope" />
 						</template>
 						<!-- 拖拽排序 -->
 						<el-tag v-if="column.type === 'sortable'" class="move cursor-move">
@@ -232,7 +232,7 @@
 					</template>
 					<template #header="scope">
 						<component :is="column.headerRenderer" v-bind="scope" v-if="column.headerRenderer" />
-						<slot v-else :name="`${column.type}Header`" v-bind="scope"></slot>
+						<slot v-else :name="`${column.type}Header`" v-bind="scope" />
 					</template>
 				</el-table-column>
 				<SoTableColumn v-if="!column.type && column.prop && column.visible" :column="{ ...column, index }" />
@@ -241,7 +241,7 @@
 			<slot />
 			<!-- append -->
 			<template #append>
-				<slot name="append"></slot>
+				<slot name="append" />
 			</template>
 			<!-- empty -->
 			<template #empty>

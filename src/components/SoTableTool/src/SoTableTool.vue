@@ -5,6 +5,9 @@
 	import { SortableEvent, vDraggable } from 'vue-draggable-plus';
 	export default defineComponent({
 		name: 'SoTableTool',
+		directives: {
+			draggable: vDraggable
+		},
 		props: {
 			showSearch: propTypes.bool.def(true),
 			columns: {
@@ -13,9 +16,6 @@
 			}
 		},
 		emits: ['update:show-search', 'update:columns', 'refresh'],
-		directives: {
-			draggable: vDraggable
-		},
 		setup(props, { emit }) {
 			const Setting = useIcon({ name: 'ep:setting', size: 12 });
 			const Refresh = useIcon({ name: 'ep:refresh', size: 12 });
@@ -50,10 +50,10 @@
 
 <template>
 	<div class="relative flex flex-justify-end">
-		<el-button size="small" circle :icon="Search" @click="showSearch = !showSearch"></el-button>
-		<el-button size="small" circle :icon="Refresh" @click="$emit('refresh')"></el-button>
+		<el-button size="small" circle :icon="Search" @click="showSearch = !showSearch" />
+		<el-button size="small" circle :icon="Refresh" @click="$emit('refresh')" />
 		<el-dropdown trigger="click" popper-class="dropdown-menu" placement="bottom-end" :hide-on-click="false">
-			<el-button size="small" class="ml-3" circle :icon="Setting"></el-button>
+			<el-button size="small" class="ml-3" circle :icon="Setting" />
 			<template #dropdown>
 				<el-dropdown-menu
 					v-draggable="[

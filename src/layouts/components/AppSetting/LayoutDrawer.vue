@@ -69,7 +69,7 @@
 			</div>
 			<!-- 深色侧边栏 -->
 			<Transition name="fade-slide" mode="out-in">
-				<div class="drawer-item" v-show="unref(menuVisible)">
+				<div v-show="unref(menuVisible)" class="drawer-item">
 					<span>{{ $t('setting.darkMenu') }}</span>
 					<el-switch v-model="layoutStore.darkMenu" inline-prompt @change="setDarkMenu" />
 				</div>

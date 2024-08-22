@@ -1,4 +1,4 @@
-import type { LocaleKey } from '@/plugins/i18n/locales';
+import type { LocaleKey } from '@/plugins';
 import { defineStore } from 'pinia';
 import type { AppStateType } from '../types';
 import Cookies from 'js-cookie';

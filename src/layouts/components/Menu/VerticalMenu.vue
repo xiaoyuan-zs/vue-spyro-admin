@@ -29,7 +29,7 @@
 </script>
 
 <template>
-	<div class="h-full" v-click-outside="clickOut">
+	<div v-click-outside="clickOut" class="h-full">
 		<el-aside class="aside !w-[var(--left-vertical-menu-width)] !h-full">
 			<div class="flex-center shrink-0 h-[var(--logo-height)] w-full nowrap-hidden cursor-pointer" @click="goHome">
 				<Icon name="spyro:logo" :size="30" color="var(--el-color-primary)" />

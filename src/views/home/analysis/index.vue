@@ -65,7 +65,7 @@
 						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
 						<div class="relative">
 							<Icon name="ep:trend-charts" :size="40" />
-							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-sky-300"></div>
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-sky-300" />
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
 						<div class="relative">
 							<Icon name="ant-design:property-safety-filled" :size="40" />
-							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-teal-300"></div>
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-teal-300" />
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
 						<div class="relative">
 							<Icon name="ant-design:account-book-filled" :size="40" />
-							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-sky-300"></div>
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-sky-300" />
 						</div>
 					</div>
 				</div>
@@ -110,7 +110,7 @@
 						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
 						<div class="relative">
 							<Icon name="ant-design:database-filled" :size="40" />
-							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-indigo-300"></div>
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-indigo-300" />
 						</div>
 					</div>
 				</div>
@@ -125,7 +125,7 @@
 						<!-- <div class="bg-gradient-to-b from-white to-transparent bg-clip-text"> -->
 						<div class="relative">
 							<Icon name="ant-design:golden-filled" :size="40" />
-							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-teal-300"></div>
+							<div class="absolute-lt w-full h-full bg-gradient-to-b from-transparent to-teal-300" />
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { LocaleKey } from '@/plugins/i18n/locales';
+	import type { LocaleKey } from '@/plugins';
 	import { useAppStore } from '@/store';
 	import { ElMessage } from 'element-plus';
 	// 引入i18n

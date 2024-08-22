@@ -94,7 +94,6 @@ export default defineFlatConfig([
 		languageOptions: {
 			ecmaVersion: 'latest',
 			parser: parserVue,
-			jsxPragma: 'React',
 			parserOptions: {
 				ecmaFeatures: {
 					jsx: true

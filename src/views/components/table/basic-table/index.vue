@@ -141,7 +141,7 @@
 			title="基于el-table表格的二次封装"
 			type="info"
 			description="采用h函数或tsx语法对列渲染进行封装，兼容el-table全部属性及API，并进行了一定自定义拓展，具有完整类型提示， 列配置可选择插槽方式或tsx渲染，高度灵活，表格都默认设置rowKey，优化表格渲染。" />
-		<SoTable ref="soTableRef" height="100%" v-loading="loading" :column-list="columns" :table-data :table-tool="false" @refresh="getList">
+		<SoTable ref="soTableRef" v-loading="loading" height="100%" :column-list="columns" :table-data :table-tool="false" @refresh="getList">
 			<template #usernameHeader>
 				<el-button type="primary" @click="handleSlotRender('表头')">用户名</el-button>
 			</template>

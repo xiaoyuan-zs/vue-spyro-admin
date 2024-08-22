@@ -104,5 +104,5 @@
 </script>
 
 <template>
-	<div ref="echartRef" :style="{ width, height }"></div>
+	<div ref="echartRef" :style="{ width, height }" />
 </template>

@@ -172,7 +172,7 @@
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">快捷操作</h3>
 					</div>
-					<div class="w-full h-66"></div>
+					<div class="w-full h-66" />
 				</el-card>
 			</el-col>
 		</el-row>
@@ -182,7 +182,7 @@
 					<div class="flex justify-between relative">
 						<h3 class="font-semibold text-base antialiased title-before">内容数据</h3>
 					</div>
-					<div ref="barEcharts" class="w-full h-106.5"></div>
+					<div ref="barEcharts" class="w-full h-106.5" />
 				</el-card>
 			</el-col>
 			<el-col :xs="24" :lg="8" class="mt-4">

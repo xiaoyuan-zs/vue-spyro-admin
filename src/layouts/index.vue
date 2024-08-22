@@ -48,7 +48,7 @@
 </script>
 
 <template>
-	<el-container class="h-full" ref="containerRef">
+	<el-container ref="containerRef" class="h-full">
 		<AppMask v-show="showAppMask" @click.prevent="closeAppMask" />
 		<LayoutModel />
 	</el-container>

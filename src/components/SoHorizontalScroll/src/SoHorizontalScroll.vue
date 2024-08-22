@@ -22,7 +22,7 @@
 	<div ref="horizontalRef" class="h-full w-full mask-image-left">
 		<div class="scroll">
 			<div class="content">
-				<slot></slot>
+				<slot />
 			</div>
 		</div>
 	</div>

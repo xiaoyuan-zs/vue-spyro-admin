@@ -14,7 +14,7 @@
 		"preview": "vite preview",
 		"lint:eslint": "eslint src --fix",
 		"lint:format": "prettier --write --log-level warn \"src/**/*.{js,ts,json,tsx,css,less,vue,html,md}\"",
-		"lint:check": "prettier --check --log-level warn \"src/**/*.{js,ts,json,jsx,tsx,css,less,scss,vue,html,md}\" \"vite/**/*.ts\"",
+		"lint:check": "prettier --check --log-level warn \"src/**/*.{js,ts,json,jsx,tsx,css,less,scss,vue,html,md}\"",
 		"lint:stylelint": "stylelint \"**/*.{css,scss,vue,html}\" --fix",
 		"preinstall": "npx only-allow pnpm",
 		"prepare": "husky install"

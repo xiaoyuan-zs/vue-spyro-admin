@@ -27,7 +27,7 @@
 		<transition name="el-zoom-in-top">
 			<div v-show="showContextMenu" class="context-menu shadow-md" :style="menuStyle">
 				<ul v-for="item in options" :key="item.prop" class="flex-center">
-					<li v-if="item.show" @click="handleClickItem(item.prop)" class="flex-center">
+					<li v-if="item.show" class="flex-center" @click="handleClickItem(item.prop)">
 						<Icon :name="item.icon" :size="14" />
 						<span class="ml-1 text-xs">{{ item.label }}</span>
 					</li>
