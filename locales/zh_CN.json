@@ -38,6 +38,11 @@
 		"grayMode": "灰色模式",
 		"weaknessMode": "色弱模式",
 		"animateType": "动画类型",
+		"verticalMode": "纵向模式",
+		"classicalMode": "经典模式",
+		"horizontalMode": "横向模式",
+		"latticeMode": "栅格模式",
+		"mixedMode": "混合模式",
 		"tip": "提示",
 		"tipDesc": "配置栏仅用于开发环境预览，生产环境不会展现，若需自定义请手动修改配置文件 /src/config/theme",
 		"clearCache": "清除缓存"

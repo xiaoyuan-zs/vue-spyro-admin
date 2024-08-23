@@ -38,6 +38,11 @@
 		"grayMode": "Gray Mode",
 		"weaknessMode": "Weakness Mode",
 		"animateType": "Animation Type",
+		"verticalMode": "Vertical Mode",
+		"classicalMode": "Classical Mode",
+		"horizontalMode": "Horizontal Mode",
+		"latticeMode": "Lattice Mode",
+		"mixedMode": "Mixed Mode",
 		"tip": "Tip",
 		"tipDesc": "The configuration bar is only used to preview the development environment. It is not displayed in the production environment. To customize the theme, manually modify the configuration file /src/config/theme",
 		"clearCache": "Clear Cache"

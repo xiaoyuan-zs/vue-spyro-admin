@@ -1,10 +1,12 @@
 <script lang="tsx">
 	import { useLayoutStore } from '@/store';
 	import { unref } from 'vue';
+	import { useI18n } from 'vue-i18n';
 
 	export default defineComponent({
 		name: 'LayoutSelect',
 		setup() {
+			const { t } = useI18n();
 			const layoutStore = useLayoutStore();
 			const layoutMode = computed(() => layoutStore.layout);
 			const darkMenu = computed(() => layoutStore.darkMenu);
@@ -21,7 +23,7 @@
 
 			return () => (
 				<div class="flex-center flex-wrap gap-x-8 gap-y-4">
-					<el-tooltip effect="dark" content="纵向模式" placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.verticalMode')} placement="bottom">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex gap-x-1 cursor-pointer b-2 hover:b-primary',
@@ -35,7 +37,7 @@
 							</div>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content="经典模式" placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.classicalMode')} placement="bottom">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
@@ -49,7 +51,7 @@
 							</div>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content="横向模式" placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.horizontalMode')} placement="bottom">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
@@ -60,7 +62,7 @@
 							<div class="w-full flex-1 bg-[var(--el-color-primary-light-9)] rounded-1" />
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content="栅格模式" placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.latticeMode')} placement="bottom">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex gap-x-1 cursor-pointer b-2 hover:b-primary',
@@ -75,7 +77,7 @@
 							</div>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content="混合模式" placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.mixedMode')} placement="bottom">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
