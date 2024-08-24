@@ -28,7 +28,7 @@
 				<ElIcon size={props.size} color={props.color}>
 					{isLocal.value ? (
 						<svg aria-hidden>
-							<use xlinkHref={symbolId.value}></use>
+							<use xlinkHref={symbolId.value} fill="currentColor"></use>
 						</svg>
 					) : (
 						<Icon icon={props.name} inline={props.inline}></Icon>

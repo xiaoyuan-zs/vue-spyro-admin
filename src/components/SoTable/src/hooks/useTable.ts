@@ -1,5 +1,5 @@
 import type { ColumnProps, SoTable, TableProps } from '@/components/SoTable';
-import { useConfirm } from '@/hooks/modules/useConfirm';
+import { useConfirm } from '@/hooks';
 import type { ApiResponse } from '@spyro/axios';
 import type { ElTable } from 'element-plus';
 

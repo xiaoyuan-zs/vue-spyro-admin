@@ -2,7 +2,7 @@
 	import { useLayoutStore, useAppStore } from '@/store';
 	import { RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 	import { translateRouteTitle } from '@/utils/locales';
-	import { useIcon } from '@/hooks/modules/useIcon';
+	import { useIcon } from '@/hooks';
 	import { findRouteByPath, getParentPaths } from '@/router/helpers/utils';
 
 	const route = useRoute();

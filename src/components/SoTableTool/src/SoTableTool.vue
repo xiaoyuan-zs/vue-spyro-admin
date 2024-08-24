@@ -1,5 +1,5 @@
 <script lang="tsx">
-	import { useIcon } from '@/hooks/modules/useIcon';
+	import { useIcon } from '@/hooks';
 	import { ColumnProps } from '@/components/SoTable';
 	import { propTypes } from '@/utils/propTypes';
 	import { SortableEvent, vDraggable } from 'vue-draggable-plus';

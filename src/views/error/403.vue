@@ -1,7 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import { useIcon } from '@/hooks';
+	const IconNotFound = useIcon({ name: 'spyro:403', size: 600 });
+</script>
 
 <template>
-	<div>403</div>
+	<div>
+		<component :is="IconNotFound" />
+	</div>
 </template>
 
 <style lang="scss" scoped></style>

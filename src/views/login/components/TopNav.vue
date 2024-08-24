@@ -31,10 +31,10 @@
 <script setup lang="ts">
 	import { useLayoutStore } from '@/store';
 	import { useTheme } from '@/layouts/hooks';
-	import { LocaleKey } from '@/plugins/i18n/locales';
+	import type { LocaleKey } from '@/plugins';
 	import { useAppStore } from '@/store';
 	import { useI18n } from 'vue-i18n';
-	import { useIcon } from '@/hooks/modules/useIcon';
+	import { useIcon } from '@/hooks';
 	const { locale } = useI18n();
 	const appStore = useAppStore();
 	const layoutStore = useLayoutStore();
