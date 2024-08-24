@@ -7,7 +7,7 @@
 	import { ElMenu } from 'element-plus';
 
 	export default defineComponent({
-		name: 'SoMenu',
+		name: 'AsideMenu',
 		setup() {
 			const appStore = useAppStore();
 			const route = useRoute();
@@ -29,8 +29,8 @@
 			});
 			// 是否只保持一个子菜单的展开
 			const menuUnique = computed(() => layoutStore.menuUnique);
-
-			const { wholeMenus } = storeToRefs(permissionStore);
+			// 全部菜单
+			const wholeMenus = computed(() => permissionStore.wholeMenus);
 
 			// 当前路由下的子菜单
 			const subMenuData = ref<Array<RouteRecordRaw>>([]);

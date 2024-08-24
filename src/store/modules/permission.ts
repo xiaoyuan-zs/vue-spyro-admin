@@ -1,4 +1,4 @@
-import { constantMenus } from '@/router';
+import { constantMenus } from '@/router/helpers/process';
 import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
 import { defineStore } from 'pinia';
 import type { PermissionStateType } from '../types';

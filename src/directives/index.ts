@@ -1,7 +1,8 @@
 import type { App } from 'vue';
-import type { DirectiveOptions } from './interface';
+import type { DirectiveOptions } from './types';
 
 const directModules = import.meta.glob('./modules/*.ts');
+
 const directives = {
 	install: async function (app: App<Element>) {
 		for (const key in directModules) {
