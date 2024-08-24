@@ -33,7 +33,7 @@ export default {
 					name: 'UseTable',
 					component: () => import('@/views/components/table/use-table/index.vue'),
 					meta: {
-						title: 'useTable',
+						title: $t('menus.useTable'),
 						keepAlive: true
 					}
 				},

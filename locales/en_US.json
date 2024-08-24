@@ -16,6 +16,8 @@
 		"confirmDeleteTip": "Are you sure to delete this item?"
 	},
 	"platform": {
+		"personalCenter": "Personal Center",
+		"logout": "Logout",
 		"switchLanguageTip": "Switch Language Success",
 		"switchLanguage": "Switch Language",
 		"toggleFullScreen": "Toggle Full Screen",
@@ -58,9 +60,11 @@
 		"component": "Components",
 		"table": "Table",
 		"basicTable": "Basic Table",
+		"useTable": "Use Table",
 		"treeTable": "Tree Table",
 		"editTable": "Edit Table",
 		"exception": "Exception Page",
 		"about": "About"
-	}
+	},
+	"login": {}
 }

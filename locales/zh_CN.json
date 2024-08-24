@@ -16,6 +16,8 @@
 		"confirmDeleteTip": "确认删除该条数据？"
 	},
 	"platform": {
+		"personalCenter": "个人中心",
+		"logout": "退出登录",
 		"switchLanguageTip": "切换语言成功",
 		"switchLanguage": "语言切换",
 		"toggleFullScreen": "切换全屏",
@@ -58,12 +60,11 @@
 		"component": "组件",
 		"table": "表格",
 		"basicTable": "基础表格",
+		"useTable": "useTable",
 		"treeTable": "树形表格",
 		"editTable": "可编辑表格",
 		"exception": "异常页",
 		"about": "关于本站"
 	},
-	"theme": {
-		"themeColor": "主题色"
-	}
+	"login": {}
 }
