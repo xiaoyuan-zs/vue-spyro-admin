@@ -5,18 +5,6 @@ const LinkView = () => import('@/layouts/linkView.vue');
 // 外链的使用方式
 export default [
 	{
-		// path 必须以 / 开始，后面随意编写
-		path: '/v3',
-		// name 为 外链地址(不能重复)
-		name: 'https://cn.vuejs.org/guide/quick-start.html',
-		component: LinkView,
-		meta: {
-			icon: 'mdi:about',
-			title: $t('menus.about'),
-			sort: 99
-		}
-	},
-	{
 		path: '/link',
 		redirect: '/link/strapi',
 		meta: {
@@ -49,5 +37,17 @@ export default [
 				}
 			}
 		]
+	},
+	{
+		// path 必须以 / 开始，后面随意编写
+		path: '/v3',
+		// name 为 外链地址(不能重复)
+		name: 'https://cn.vuejs.org/guide/quick-start.html',
+		component: LinkView,
+		meta: {
+			icon: 'mdi:about',
+			title: $t('menus.about'),
+			sort: 99
+		}
 	}
 ] satisfies RouteOption[];
