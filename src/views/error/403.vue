@@ -1,11 +1,18 @@
 <script setup lang="ts">
-	import { useIcon } from '@/hooks';
-	const IconNotFound = useIcon({ name: 'spyro:403', size: 600 });
+	import { useRouter } from 'vue-router';
+	const router = useRouter();
+
+	const backHome = () => {
+		router.push('/');
+	};
 </script>
 
 <template>
-	<div>
-		<component :is="IconNotFound" />
+	<div class="flex-center">
+		<div class="flex-col-center">
+			<Icon name="spyro:403" :size="600" />
+			<el-button type="primary" @click="backHome">返回首页</el-button>
+		</div>
 	</div>
 </template>
 

@@ -11,13 +11,6 @@ export default {
 		'stylelint-config-recommended-vue/scss',
 		'stylelint-config-recess-order'
 	],
-	// 指定不同文件对应的解析器
-	overrides: [
-		{
-			files: ['**/*.(css|html|vue)'],
-			customSyntax: 'postcss-html'
-		}
-	],
 	// 自定义规则
 	rules: {
 		'property-no-unknown': null, // 禁止未知的属性
