@@ -2,6 +2,7 @@ import { buildHierarchyTree, flatTreeToArray } from '@spyro/utils';
 import { formatTwoStageRoutes, outerSortAsc } from './utils';
 import type { RouteRecordRaw } from 'vue-router';
 import constantRoutes from '../modules/constant';
+import dynamicRoutes from '../modules/dynamic';
 
 /** 导入modules 下的静态路由 */
 const modules: Record<string, any> = import.meta.glob(['../modules/**/*.ts', '!../modules/**/dynamic.ts', '!../modules/**/constant.ts'], {
@@ -23,5 +24,5 @@ export const staticRoutes: RouteRecordRaw[] = formatTwoStageRoutes(
 /** 用于渲染本地静态、常量菜单，保持原始层级 */
 export const constantMenus = routes.flat(Infinity).concat(constantRoutes) as RouteRecordRaw[];
 
-/** 过滤出常量路由，不参与菜单绘制 */
-// export const excludePaths = constantRoutes.map((v) => v.path);
+/** 本地动态权限菜单 */
+export const dynamicMenus = dynamicRoutes as RouteRecordRaw[];

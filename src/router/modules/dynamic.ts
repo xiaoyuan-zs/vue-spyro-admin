@@ -1,7 +1,7 @@
 import { $t } from '@/plugins';
 const Layout = () => import('@/layouts/index.vue');
 
-const dynamicRoutes: Array<RouteOption> = [
+export default [
 	{
 		path: '/permissions',
 		redirect: '/permissions/permissions',
@@ -44,6 +44,4 @@ const dynamicRoutes: Array<RouteOption> = [
 			}
 		]
 	}
-];
-
-export { dynamicRoutes };
+] satisfies Array<RouteOption>;

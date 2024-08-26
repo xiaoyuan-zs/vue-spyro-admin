@@ -1,7 +1,6 @@
 import router from '@/router';
 import { defineStore } from 'pinia';
-import { constantMenus } from '@/router/helpers/process';
-import { dynamicRoutes } from '@/router/modules/dynamic';
+import { constantMenus, dynamicMenus } from '@/router/helpers/process';
 import { filterHiddenTree, outerSortAsc, filterDynamicRoutes } from '@/router/helpers/utils';
 import { flatTreeToArray } from '@spyro/utils';
 import type { PermissionStateType } from '../types';
@@ -11,6 +10,8 @@ export const usePermissionStore = defineStore('permission', {
 	state: (): PermissionStateType => ({
 		// 静态路由生成菜单
 		constantMenus: constantMenus,
+		// 本地权限路由生成菜单
+		dynamicMenus: dynamicMenus,
 		// 静态、动态路由生成菜单
 		wholeMenus: []
 	}),
@@ -28,7 +29,7 @@ export const usePermissionStore = defineStore('permission', {
 		 */
 		handleWholeMenus(routes: RouteRecordRaw[]) {
 			// 动态路由验证权限并注册
-			const asyncRoutes = filterDynamicRoutes(dynamicRoutes as RouteRecordRaw[]);
+			const asyncRoutes = filterDynamicRoutes(dynamicMenus);
 			asyncRoutes.forEach((route) => {
 				router.addRoute(route);
 			});
