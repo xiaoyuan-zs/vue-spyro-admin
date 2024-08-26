@@ -1,9 +1,11 @@
-import { constantMenus } from '@/router/helpers/process';
-import { filterHiddenTree, outerSortAsc } from '@/router/helpers/utils';
+import router from '@/router';
 import { defineStore } from 'pinia';
+import { constantMenus } from '@/router/helpers/process';
+import { dynamicRoutes } from '@/router/modules/dynamic';
+import { filterHiddenTree, outerSortAsc, filterDynamicRoutes } from '@/router/helpers/utils';
+import { flatTreeToArray } from '@spyro/utils';
 import type { PermissionStateType } from '../types';
 import type { RouteRecordRaw } from 'vue-router';
-import { flatTreeToArray } from '@spyro/utils';
 
 export const usePermissionStore = defineStore('permission', {
 	state: (): PermissionStateType => ({
@@ -25,7 +27,13 @@ export const usePermissionStore = defineStore('permission', {
 		 * 合并静态动态路由生成菜单
 		 */
 		handleWholeMenus(routes: RouteRecordRaw[]) {
-			this.wholeMenus = filterHiddenTree(outerSortAsc(this.constantMenus.concat(routes)));
+			// 动态路由验证权限并注册
+			const asyncRoutes = filterDynamicRoutes(dynamicRoutes as RouteRecordRaw[]);
+			asyncRoutes.forEach((route) => {
+				router.addRoute(route);
+			});
+			// 获取动态和静态路由菜单
+			this.wholeMenus = filterHiddenTree(outerSortAsc(this.constantMenus.concat(asyncRoutes).concat(routes)));
 		}
 	}
 });

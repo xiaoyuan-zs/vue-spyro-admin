@@ -13,7 +13,8 @@ const adminUser = {
 	phone: faker.phone.number(),
 	email: faker.internet.email(),
 	createTime: faker.date.anytime(),
-	role: ['admin'],
+	roles: ['admin'],
+	permissions: ['*:*:*'],
 	createBy: 'admin',
 	remark: '我是管理员'
 };
@@ -37,7 +38,8 @@ function fakeUsers() {
 			phone: faker.phone.number(),
 			email: faker.internet.email(),
 			createTime: faker.date.anytime(),
-			role: ['common'],
+			roles: ['common'],
+			permissions: ['system:permission:view'],
 			createBy: 'admin',
 			remark: faker.string.sample()
 		});

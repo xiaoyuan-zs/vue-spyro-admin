@@ -8,7 +8,7 @@ import { staticRoutes } from './helpers/process';
  */
 export const router: Router = createRouter({
 	history: createWebHashHistory(import.meta.env.BASE_URL),
-	routes: staticRoutes.concat(...constantRoutes),
+	routes: staticRoutes.concat(constantRoutes),
 	scrollBehavior: () => ({ top: 0, left: 0 })
 });
 

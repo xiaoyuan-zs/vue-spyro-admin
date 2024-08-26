@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import constantRoutes from '../modules/constant';
 
 /** 导入modules 下的静态路由 */
-const modules: Record<string, any> = import.meta.glob(['../modules/**/*.ts', '!../modules/**/constant.ts'], {
+const modules: Record<string, any> = import.meta.glob(['../modules/**/*.ts', '!../modules/**/dynamic.ts', '!../modules/**/constant.ts'], {
 	eager: true
 });
 
@@ -21,7 +21,7 @@ export const staticRoutes: RouteRecordRaw[] = formatTwoStageRoutes(
 );
 
 /** 用于渲染本地静态、常量菜单，保持原始层级 */
-export const constantMenus = routes.flat(Infinity).concat(...constantRoutes) as RouteRecordRaw[];
+export const constantMenus = routes.flat(Infinity).concat(constantRoutes) as RouteRecordRaw[];
 
 /** 过滤出常量路由，不参与菜单绘制 */
 // export const excludePaths = constantRoutes.map((v) => v.path);

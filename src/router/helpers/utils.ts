@@ -20,8 +20,8 @@ function outerSortAsc(routes: any[]) {
  * @param data 路由数据
  * @returns 返回去除hidden:true的路由对象数组
  */
-function filterHiddenTree(data: RouteRecordRaw[]) {
-	const newTree = clone(data).filter((v) => !v.meta?.hidden);
+function filterHiddenTree(routes: RouteRecordRaw[]) {
+	const newTree = clone(routes).filter((v) => !v.meta?.hidden);
 	newTree.forEach((v) => v.children && (v.children = filterHiddenTree(v.children)));
 	return newTree;
 }
@@ -109,19 +109,17 @@ function findRouteByPath(path: string, routes: RouteRecordRaw[]): RouteRecordRaw
  * @param routes 路由数据
  */
 function filterDynamicRoutes(routes: RouteRecordRaw[]) {
-	const res: RouteRecordRaw[] = [];
-	routes.forEach((route) => {
-		if (route.meta?.permissions) {
-			if (usePermission().hasPermissions(route.meta.permissions)) {
-				res.push(route);
-			}
-		} else if (route.meta?.roles) {
-			if (usePermission().hasRoles(route.meta.roles)) {
-				res.push(route);
-			}
+	const newTree = routes.filter((v) => {
+		if (v.meta?.permissions) {
+			return usePermission().hasPermissions(v.meta.permissions);
 		}
+		if (v.meta?.roles) {
+			return usePermission().hasRoles(v.meta.roles);
+		}
+		return true;
 	});
-	return res;
+	newTree.forEach((v) => v.children && (v.children = filterDynamicRoutes(v.children)));
+	return newTree;
 }
 
 export { outerSortAsc, formatTwoStageRoutes, filterHiddenTree, findRouteByPath, getParentPaths, filterDynamicRoutes };
