@@ -1,0 +1,1 @@
+import{d as t,aW as c,N as p,m as u,p as _}from"../.pnpm/.pnpm.DHp8PurU.js";const m=t({name:"Redirect"}),h=t({...m,setup(i){const{currentRoute:a,replace:r}=c(),{params:n,query:o}=p(a),{path:e}=n,s=Array.isArray(e)?e.join("/"):e;return r({path:"/"+s,query:o}),(d,f)=>(u(),_("div"))}});export{h as default};
