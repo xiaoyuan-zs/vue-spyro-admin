@@ -13,6 +13,12 @@ export const useUserStore = defineStore('user', {
 		nickname: '',
 		userInfo: {}
 	}),
+	getters: {
+		// 用户权限
+		permissions: (state) => state.userInfo.permissions || [],
+		// 用户角色
+		roles: (state) => state.userInfo.roles || []
+	},
 	actions: {
 		async loginAction(params: LoginParams) {
 			const { data } = await login(params);

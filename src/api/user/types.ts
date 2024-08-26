@@ -9,7 +9,8 @@ export interface User {
 	phone: string;
 	email: string;
 	createTime: Date;
-	role: string[];
+	roles: string[];
+	permissions: string[];
 	createBy: string;
 	remark: string;
 }

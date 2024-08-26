@@ -25,7 +25,7 @@ declare global {
 		iframeSrc?: string;
 		// 页面级别权限设置 ['admin', 'common']
 		roles?: string[];
-		// 菜单级别权限设置 ['xxx:xxx:xxx]
+		// 菜单级别权限设置 ['*:*:*']
 		permissions?: string[];
 		// 页面是否缓存
 		keepAlive?: boolean;
@@ -90,7 +90,7 @@ declare global {
 			hidden?: boolean;
 			// 页面级别权限设置 ['admin', 'common']
 			roles?: string[];
-			// 菜单级别权限设置 ['xxx:xxx:xxx]
+			// 菜单级别权限设置 ['*:*:*']
 			permissions?: string[];
 			// 排序
 			sort?: number;

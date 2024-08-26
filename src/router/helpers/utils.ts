@@ -1,5 +1,6 @@
 import { clone, isUndefined, orderBy } from '@spyro/utils';
 import type { RouteRecordRaw } from 'vue-router';
+import { usePermission } from '@/hooks';
 
 /**
  * 对最外层路由进行过滤
@@ -103,4 +104,24 @@ function findRouteByPath(path: string, routes: RouteRecordRaw[]): RouteRecordRaw
 	}
 }
 
-export { outerSortAsc, formatTwoStageRoutes, filterHiddenTree, findRouteByPath, getParentPaths };
+/**
+ * 动态遍历路由，验证是否具有权限
+ * @param routes 路由数据
+ */
+function filterDynamicRoutes(routes: RouteRecordRaw[]) {
+	const res: RouteRecordRaw[] = [];
+	routes.forEach((route) => {
+		if (route.meta?.permissions) {
+			if (usePermission().hasPermissions(route.meta.permissions)) {
+				res.push(route);
+			}
+		} else if (route.meta?.roles) {
+			if (usePermission().hasRoles(route.meta.roles)) {
+				res.push(route);
+			}
+		}
+	});
+	return res;
+}
+
+export { outerSortAsc, formatTwoStageRoutes, filterHiddenTree, findRouteByPath, getParentPaths, filterDynamicRoutes };
