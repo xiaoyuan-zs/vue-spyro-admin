@@ -1,41 +1,42 @@
 import { $t } from '@/plugins';
 
 export default {
-	path: '/perms',
-	redirect: '/perms/perms',
+	path: '/permissions',
+	redirect: '/permissions/permissions',
 	meta: {
 		icon: 'ant-design:verified-outlined',
-		title: $t('权限'),
+		title: $t('menus.permissions'),
 		sort: 7
 	},
 	children: [
 		{
-			path: '/perms/perms',
-			name: 'Perms',
-			component: () => import('@/views/error/403.vue'),
+			path: '/permissions/permissions',
+			name: 'Permissions',
+			component: () => import('@/views/permission/example/index.vue'),
 			meta: {
-				title: '权限示例',
+				title: $t('menus.permissionsExample'),
 				keepAlive: true
 			}
 		},
 		{
-			path: '/perms/adminPerms',
-			name: 'AdminPerms',
-			component: () => import('@/views/error/403.vue'),
+			path: '/permissions/adminVisible',
+			name: 'AdminVisible',
+			component: () => import('@/views/permission/admin-visible/index.vue'),
 			meta: {
-				title: '管理员可见',
+				title: $t('menus.adminVisible'),
 				roles: ['admin'],
 				keepAlive: true
 			}
 		},
 		{
-			path: '/perms/otherPerms',
-			name: 'OtherPerms',
-			component: () => import('@/views/error/403.vue'),
+			path: '/permissions/permVisibleVisible',
+			name: 'PermVisible',
+			component: () => import('@/views/permission/permission-visible/index.vue'),
 			meta: {
-				title: '拥有某权限可见',
-				perms: ['system:otherPerms:view'],
-				keepAlive: true
+				title: $t('menus.permissionVisible'),
+				permissions: ['system:permissions:view'],
+				keepAlive: true,
+				hidden: true
 			}
 		}
 	]

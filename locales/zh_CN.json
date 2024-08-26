@@ -62,6 +62,10 @@
 		"useTable": "useTable",
 		"treeTable": "树形表格",
 		"editTable": "可编辑表格",
+		"permissions": "权限",
+		"permissionsExample": "权限示例",
+		"adminVisible": "管理员可见",
+		"permissionVisible": "具有某权限可见",
 		"exception": "异常页",
 		"about": "关于本站"
 	},

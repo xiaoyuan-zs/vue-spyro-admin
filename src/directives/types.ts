@@ -1,7 +1,7 @@
 import type { Directive } from 'vue';
 
 export interface Directives {
-	vPerms: Directive<any, string[]>;
+	vPermissions: Directive<any, string[]>;
 	vRole: Directive<any, string>;
 }
 

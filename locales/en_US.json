@@ -62,6 +62,10 @@
 		"useTable": "Use Table",
 		"treeTable": "Tree Table",
 		"editTable": "Edit Table",
+		"permissions": "Permissions",
+		"permissionsExample": "Permissions Example",
+		"adminVisible": "AdminVisible",
+		"permissionVisible": "PermissionVisible",
 		"exception": "Exception Page",
 		"about": "About"
 	},

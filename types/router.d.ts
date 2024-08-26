@@ -23,10 +23,10 @@ declare global {
 		isFixed?: boolean;
 		// 需要内嵌的iframe链接地址
 		iframeSrc?: string;
-		// 页面级别权限设置
+		// 页面级别权限设置 ['admin', 'common']
 		roles?: string[];
-		// 按钮级别权限设置
-		perms?: string[];
+		// 菜单级别权限设置 ['xxx:xxx:xxx]
+		permissions?: string[];
 		// 页面是否缓存
 		keepAlive?: boolean;
 		// 页面路由动画
@@ -88,6 +88,10 @@ declare global {
 			title?: string;
 			// 是否隐藏某个菜单
 			hidden?: boolean;
+			// 页面级别权限设置 ['admin', 'common']
+			roles?: string[];
+			// 菜单级别权限设置 ['xxx:xxx:xxx]
+			permissions?: string[];
 			// 排序
 			sort?: number;
 		};
