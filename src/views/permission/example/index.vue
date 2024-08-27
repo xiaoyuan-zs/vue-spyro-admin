@@ -17,31 +17,26 @@
 	const isCommonAndNormal = computed(() => hasRoles(['normal', 'common']));
 	const isViewPerm = computed(() => hasPermissions(['system:permissions:view']));
 
-	const permissionObj = {
+	const permissionObj: Record<string, string> = {
 		admin: '*:*:*',
 		common: 'system:permissions:view',
 		normal: ''
 	};
 
 	const handleClick = () => router.push({ name: 'PermVisible' });
-	const handleChangeRole = (value: keyof typeof permissionObj) => {
-		userStore.userInfo.roles = [value];
-		userStore.userInfo.permissions = [permissionObj[value]];
-	};
+	const handleChangeRole = (value: string) => {};
 </script>
 
 <template>
 	<SoCard title="权限示例" class="h-full">
-		<div>
+		<div class="p-4">
 			<div>
 				<h1 class="text-6">当前角色: {{ currRole }}</h1>
 				<el-button-group class="m-4">
-					<el-button @click="handleChangeRole('admin')">admin</el-button>
-					<el-button @click="handleChangeRole('common')">common</el-button>
-					<el-button @click="handleChangeRole('normal')">normal</el-button>
+					<el-button v-for="item in Object.keys(permissionObj)" :key="item" @click="handleChangeRole(item)">{{ item }}</el-button>
 				</el-button-group>
 			</div>
-			<div>
+			<div class="my-4">
 				<h1 class="text-6">指令v-permissions 和 v-roles</h1>
 				<el-button-group class="m-4">
 					<el-button v-roles="['admin']">仅admin可见</el-button>
