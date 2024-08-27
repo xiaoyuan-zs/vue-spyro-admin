@@ -31,8 +31,6 @@ export default defineFakeRoute([
 		url: '/getUserInfo',
 		method: 'GET',
 		response: ({ query }) => {
-			console.log(33, query);
-
 			const { nickname } = query;
 			const { data } = verifyIdentity(nickname as string);
 			return {

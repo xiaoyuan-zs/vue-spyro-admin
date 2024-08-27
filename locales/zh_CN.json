@@ -69,5 +69,14 @@
 		"exception": "异常页",
 		"about": "关于本站"
 	},
-	"login": {}
+	"login": {
+		"login": "登录",
+		"username": "用户名",
+		"password": "密码",
+		"verificationCode": "验证码",
+		"rememberMe": "记住我",
+		"forgotPassword": "忘记密码？",
+		"usernamePlaceholder": "请输入用户名",
+		"passwordPlaceholder": "请输入密码"
+	}
 }

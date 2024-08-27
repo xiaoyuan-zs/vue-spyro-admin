@@ -69,5 +69,14 @@
 		"exception": "Exception Page",
 		"about": "About"
 	},
-	"login": {}
+	"login": {
+		"login": "Login",
+		"username": "username",
+		"password": "password",
+		"verificationCode": "VerificationCode",
+		"rememberMe": "Remember Me",
+		"forgotPassword": "ForgotPassword?",
+		"usernamePlaceholder": "Please enter your username",
+		"passwordPlaceholder": "Please enter your password"
+	}
 }

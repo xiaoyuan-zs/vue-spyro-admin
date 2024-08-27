@@ -19,10 +19,10 @@
 				<el-form-item>
 					<div class="w-full flex-between">
 						<el-checkbox v-model:model-value="rememberPassword" class="<sm:text-sm">
-							{{ $t(`login.remember`) }}
+							{{ $t(`login.rememberMe`) }}
 						</el-checkbox>
 						<el-text type="primary" class="cursor-pointer <sm:!text-sm">
-							{{ $t(`login.forgetPassword`) }}
+							{{ $t(`login.forgotPassword`) }}
 						</el-text>
 					</div>
 				</el-form-item>
