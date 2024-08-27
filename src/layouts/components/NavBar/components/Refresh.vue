@@ -8,7 +8,7 @@
 	const handleRefresh = () => {
 		clearTimeout(timer.value);
 		loading.value = true;
-		appStore.reloadPage();
+		appStore.reloadPageActions();
 		timer.value = setTimeout(() => {
 			loading.value = false;
 		}, 1000);

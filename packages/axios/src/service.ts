@@ -40,13 +40,13 @@ class AxiosConfig {
 		//2. 初始化请求拦截器
 		this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 			// 修改axios中 GET请求参数的默认序列化方式
-			if (config.method === 'get') {
-				let url = config.url! + (config.params && !isAllEmpty(config.params) ? '?' : '');
-				let params = qs.stringify(config.params, { arrayFormat: 'comma' });
-				url += params;
-				config.params = {};
-				config.url = url;
-			}
+			// if (config.method === 'get') {
+			// 	let url = config.url! + (config.params && !isAllEmpty(config.params) ? '?' : '');
+			// 	let params = qs.stringify(config.params, { arrayFormat: 'comma' });
+			// 	url += params;
+			// 	config.params = {};
+			// 	config.url = url;
+			// }
 
 			// 是否清除重复请求标识
 			const abortRepetitiveRequest = (config as unknown as any).abortRepetitiveRequest ?? this.axiosOptions.abortRepetitiveRequest;

@@ -42,7 +42,7 @@
 	// 切换语言
 	const handleCommand = (val: LocaleKey) => {
 		locale.value = val;
-		appStore.setLanguage(val);
+		appStore.setLanguageActions(val);
 	};
 
 	const Moon = useIcon({ name: 'ep:moon' });

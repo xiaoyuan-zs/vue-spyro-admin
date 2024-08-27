@@ -8,7 +8,7 @@ export const useLayoutStore = defineStore('layout', {
 	}),
 	actions: {
 		// 提供Loading使用
-		setPlatFormTheme() {
+		setPlatFormThemeActions() {
 			localForage().setItem('layout_theme', this.themeColor);
 		}
 	},

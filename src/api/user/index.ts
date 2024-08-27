@@ -11,9 +11,10 @@ export function getUserList(): Promise<ApiResponse<User[]>> {
 }
 
 // 获取用户信息
-export function getUserInfo(): Promise<ApiResponse<User>> {
+export function getUserInfo<T>(params?: T): Promise<ApiResponse<User>> {
 	return service.request({
 		url: '/getUserInfo',
-		method: 'get'
+		method: 'get',
+		params
 	});
 }

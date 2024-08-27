@@ -37,7 +37,7 @@ export default [
 				component: () => import('@/views/permission/permission-visible/index.vue'),
 				meta: {
 					title: $t('menus.permissionVisible'),
-					permissions: ['system:permissions:view'],
+					permissions: ['common:permissions:view'],
 					keepAlive: true,
 					hidden: true
 				}

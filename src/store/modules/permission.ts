@@ -27,7 +27,7 @@ export const usePermissionStore = defineStore('permission', {
 		/**
 		 * 合并静态动态路由生成菜单
 		 */
-		handleWholeMenus(routes: RouteRecordRaw[]) {
+		handleWholeMenusActions(routes: RouteRecordRaw[]) {
 			// 动态路由验证权限并注册
 			const asyncRoutes = filterDynamicRoutes(dynamicMenus);
 			asyncRoutes.forEach((route) => {

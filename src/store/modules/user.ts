@@ -6,6 +6,8 @@ import { defineStore } from 'pinia';
 import type { UserStateType } from '../types';
 import router from '@/router';
 
+const isMock = import.meta.env.VITE_MOCK_SERVER === 'true';
+
 export const useUserStore = defineStore('user', {
 	state: (): UserStateType => ({
 		accessToken: '',
@@ -27,7 +29,9 @@ export const useUserStore = defineStore('user', {
 			this.nickname = data.nickname;
 		},
 		async getUserInfoAction() {
-			const { data } = await getUserInfo();
+			// mock 环境需要传递 角色信息
+			const parmas = isMock ? { nickname: this.nickname } : undefined;
+			const { data } = await getUserInfo(parmas);
 			this.nickname = data.nickname;
 			this.userInfo = data;
 		},
@@ -44,5 +48,5 @@ export const useUserStore = defineStore('user', {
 			router.push('/login');
 		}
 	},
-	persist: piniaPersist({ key: 'user', paths: ['accessToken', 'refreshToken'] })
+	persist: piniaPersist({ key: 'user', paths: ['accessToken', 'refreshToken', 'nickname'] })
 });

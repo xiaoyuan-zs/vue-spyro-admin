@@ -9,7 +9,7 @@
 	// 切换语言
 	const handleCommand = (val: LocaleKey) => {
 		locale.value = val;
-		appStore.setLanguage(val);
+		appStore.setLanguageActions(val);
 		ElMessage.success(t('platform.switchLanguageTip'));
 	};
 

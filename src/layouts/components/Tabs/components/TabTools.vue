@@ -13,7 +13,7 @@
 	const appStore = useAppStore();
 
 	const handleRefresh = () => {
-		appStore.reloadPage();
+		appStore.reloadPageActions();
 	};
 	const handleCommand = (prop: string) => {
 		prop === 'refresh' ? handleRefresh() : (tabStore as any)[prop](props.currTabMenu);

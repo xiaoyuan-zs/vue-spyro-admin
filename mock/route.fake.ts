@@ -1,6 +1,5 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { $t } from '@/plugins/i18n';
-import { verifyIdentity } from './verifyJwt';
 
 const dashBroadRoute: RouteOption = {
 	path: '/dashboard',
@@ -20,9 +19,7 @@ export default defineFakeRoute([
 	{
 		url: '/getAsyncRoutes',
 		method: 'GET',
-		response: ({ headers }) => {
-			const { flag, data } = verifyIdentity(headers.authorization!, 'access');
-			if (!flag) return data;
+		response: () => {
 			return {
 				code: 200,
 				data: routes,

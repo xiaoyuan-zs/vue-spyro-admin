@@ -55,7 +55,7 @@ function handleAsyncRoutes(routes: RouteRecordRaw[]) {
 			}
 		});
 	}
-	usePermissionStore().handleWholeMenus(routes);
+	usePermissionStore().handleWholeMenusActions(routes);
 
 	// 最后添加匹配路由
 	addPathMatch();

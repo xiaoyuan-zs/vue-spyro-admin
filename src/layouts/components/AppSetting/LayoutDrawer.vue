@@ -15,7 +15,7 @@
 	// 切换系统主题颜色
 	const changeThemeColor = (value: any) => {
 		setThemeColor(value);
-		layoutStore.setPlatFormTheme();
+		layoutStore.setPlatFormThemeActions();
 	};
 	// 切换主题模式
 	const changeColorModel = (value: any) => {

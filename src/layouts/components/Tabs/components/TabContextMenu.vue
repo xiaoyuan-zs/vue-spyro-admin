@@ -14,7 +14,7 @@
 	const appStore = useAppStore();
 
 	const handleRefresh = () => {
-		appStore.reloadPage();
+		appStore.reloadPageActions();
 	};
 	// 点击对应菜单调用对应方法
 	const handleClickItem = (key: string) => {

@@ -16,12 +16,12 @@ export const useAppStore = defineStore('app', {
 	}),
 	getters: {},
 	actions: {
-		setLanguage(language: LocaleKey) {
+		setLanguageActions(language: LocaleKey) {
 			this.language = language;
 			Cookies.set('language', language);
 		},
 		// 刷新页面
-		reloadPage() {
+		reloadPageActions() {
 			this.reload = false;
 			nextTick(() => {
 				this.reload = true;
