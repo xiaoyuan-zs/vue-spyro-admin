@@ -17,5 +17,3 @@ export const start = () => {
 export const done = () => {
 	Nprogress.done();
 };
-
-export { Nprogress };
