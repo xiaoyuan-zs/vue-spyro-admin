@@ -2,6 +2,9 @@
 	import { useEcharts } from '@/hooks';
 	import { selectDictLabel } from '@spyro/utils';
 	import { useBarEcharts } from './hooks/index';
+	import { useUserStore } from '@/store';
+
+	const userStore = useUserStore();
 
 	const projectList = [
 		{
@@ -107,6 +110,8 @@
 
 	const { barEcharts, barOptions } = useBarEcharts();
 
+	const nickname = computed(() => userStore.nickname);
+
 	onMounted(() => {
 		useEcharts(unref(barEcharts)!, unref(barOptions));
 	});
@@ -120,7 +125,7 @@
 					<div class="flex items-center h-full">
 						<img src="@/assets/images/avatar.jpg" class="w-20 rounded-full p-3" alt="avatar" />
 						<div class="flex-col justify-around">
-							<h3 class="font-bold text-lg">Admin, 欢迎你!</h3>
+							<h3 class="font-bold text-lg">{{ nickname }}, 欢迎你!</h3>
 							<span class="text-gray text-sm">一天写点，天天写点，不知道写了个啥，今天在下雪，天气很冷!</span>
 						</div>
 					</div>
