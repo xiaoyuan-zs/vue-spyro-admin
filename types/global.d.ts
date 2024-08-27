@@ -1,4 +1,3 @@
-export {};
 declare global {
 	/**
 	 * 打包压缩格式的类型声明
@@ -9,6 +8,11 @@ declare global {
 	 * 布局类型声明
 	 */
 	type LayoutConfig = 'basic' | 'vertical' | 'lattice' | 'horizontal' | 'mixins';
+
+	// 全局导入模块类型
+	type importModules<T> = {
+		default: T;
+	};
 
 	/**
 	 * 全局配置类型
@@ -30,18 +34,6 @@ declare global {
 		weakness?: boolean;
 		animateMode?: string;
 	}
-
-	// 全局导入模块类型
-	type importModules<T> = {
-		default: T;
-	};
-
-	/**
-	 * 平台里所有组件实例都能访问到的全局属性对象的类型声明
-	 */
-	interface GlobalPropertiesApi {
-		$echarts: ECharts;
-		$storage: ResponsiveStorage;
-		$config: PlatformConfigs;
-	}
 }
+
+export {};

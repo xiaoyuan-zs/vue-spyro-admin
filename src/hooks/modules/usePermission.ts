@@ -14,7 +14,7 @@ export const usePermission = () => {
 			const hasPermission = permissions.some((el) => allPermission === el || value.includes(el));
 			return hasPermission;
 		} else {
-			console.warn(
+			console.error(
 				'hasPermissions: value must be an array and not empty! example: hasPermissions(["system:user:add", "system:user:edit"])'
 			);
 			return false;
@@ -30,7 +30,7 @@ export const usePermission = () => {
 			const hasRole = roles.some((el) => allRoles === el || value.includes(el));
 			return hasRole;
 		} else {
-			console.warn('hasRoles: value must be an array and not empty! example: hasRoles(["admin", "common"])');
+			console.error('hasRoles: value must be an array and not empty! example: hasRoles(["admin", "common"])');
 			return false;
 		}
 	};
