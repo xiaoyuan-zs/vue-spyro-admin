@@ -1,0 +1,1 @@
+import{d as e,H as s,I as n}from"../.pnpm/.pnpm.B8Y_MyBh.js";const a=e({name:"PermissionVisible",__name:"index",setup(i){return(o,t)=>(s(),n("div",null,"具有['system:permissions:view']权限可见"))}});export{a as default};
