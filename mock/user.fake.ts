@@ -58,7 +58,7 @@ export type User = (typeof loginUser)[0];
 // 生成随机10条用户数据
 function fakeUsers() {
 	const users: User[] = [];
-	for (let i = 0; i <= 10; i++) {
+	for (let i = 0; i < 65; i++) {
 		users.push({
 			userId: faker.string.uuid(),
 			username: faker.internet.userName(),
@@ -85,10 +85,13 @@ export default defineFakeRoute([
 	{
 		url: '/users',
 		method: 'GET',
-		response: () => {
+		response: ({ query }) => {
+			const { pageNum = 1, pageSize = 10 } = query;
+			const data = users.slice((Number(pageNum) - 1) * Number(pageSize), Number(pageSize) * Number(pageNum));
 			return {
 				code: 200,
-				data: users,
+				data: data,
+				total: users.length,
 				message: '操作成功'
 			};
 		}

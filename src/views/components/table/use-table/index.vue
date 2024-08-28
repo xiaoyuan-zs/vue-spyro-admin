@@ -114,11 +114,11 @@
 
 	const { tableState, tableMethods, tableMount } = useTable({
 		fetchApi: async () => {
-			const { data, total = 0 } = await getUserList();
+			const { data, total = 0 } = await getUserList(queryParams);
 			return { data, total };
 		}
 	});
-	const { loading, data } = toRefs(tableState);
+	const { loading, data, total } = toRefs(tableState);
 	const { setProps, addColumn, delColumn, getElTableInstance, refresh } = tableMethods;
 
 	const handleUpdate = () => {
@@ -229,6 +229,9 @@
 				v-model:pageSize="queryParams.pageSize"
 				v-model:showSearch="showSearch"
 				v-loading="loading"
+				:pageProps="{
+					total
+				}"
 				height="100%"
 				@refresh="refresh"
 				@mount="tableMount"

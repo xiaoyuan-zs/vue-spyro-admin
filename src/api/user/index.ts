@@ -3,10 +3,11 @@ import type { ApiResponse } from '@spyro/axios';
 import type { User } from './types';
 
 // 获取用户列表
-export function getUserList(): Promise<ApiResponse<User[]>> {
+export function getUserList<T>(params?: T): Promise<ApiResponse<User[]>> {
 	return service.request({
 		url: '/users',
-		method: 'get'
+		method: 'get',
+		params
 	});
 }
 

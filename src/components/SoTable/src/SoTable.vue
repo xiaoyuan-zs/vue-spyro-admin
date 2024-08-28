@@ -201,7 +201,7 @@
 </script>
 
 <template>
-	<div class="flex-col flex-1 h-full overflow-hidden">
+	<div class="flex-col h-full overflow-hidden">
 		<!-- 表格工具栏 -->
 		<el-row justify="space-between" class="mb-2">
 			<el-col :span="1.5">

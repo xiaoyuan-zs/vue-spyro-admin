@@ -39,7 +39,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			}
 		},
 		// command === 'serve' 表示serve独有配置     command === 'build' 表示 build 独有配置
-		plugins: createVitePlugins(env, command === 'build'),
+		plugins: createVitePlugins(env, command),
 		// 服务代理
 		server: {
 			port: VITE_APP_PORT,
@@ -64,16 +64,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 		},
 		// 预览 配置默认值为 server 配置的默认值
 		preview: {
-			port: 8888,
-			host: '0.0.0.0',
-			open: false,
-			proxy: {
-				[VITE_APP_BASE_API]: {
-					target: 'http://localhost:8080/mock',
-					changeOrigin: true,
-					rewrite: (api) => api.replace(new RegExp('^' + VITE_APP_BASE_API), '')
-				}
-			}
+			port: 8888
 		},
 		build: {
 			minify: true,
