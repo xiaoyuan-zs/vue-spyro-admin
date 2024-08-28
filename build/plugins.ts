@@ -49,7 +49,6 @@ export function createVitePlugins(env: Record<string, string>, command: 'build' 
 			// 请求前缀
 			basename: 'mock',
 			enableDev: VITE_MOCK_SERVER === 'true',
-      // 开启该配置，需要由 XHook 技术提供支持
 			enableProd: VITE_MOCK_SERVER === 'true',
       // node 模块不能在伪文件中使用，否则会导致生产环境失败。作为与开发环境保持一致的替代方法，您可以构建独立的部署服务器
       // build: {
