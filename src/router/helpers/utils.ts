@@ -1,4 +1,4 @@
-import { clone, isUndefined, orderBy } from '@spyro/utils';
+import { isUndefined, orderBy } from '@spyro/utils';
 import type { RouteRecordRaw } from 'vue-router';
 import { usePermission } from '@/hooks';
 
@@ -21,7 +21,7 @@ function outerSortAsc(routes: any[]) {
  * @returns 返回去除hidden:true的路由对象数组
  */
 function filterHiddenTree(routes: RouteRecordRaw[]) {
-	const newTree = clone(routes).filter((v) => !v.meta?.hidden);
+	const newTree = routes.filter((v) => !v.meta?.hidden);
 	newTree.forEach((v) => v.children && (v.children = filterHiddenTree(v.children)));
 	return newTree;
 }

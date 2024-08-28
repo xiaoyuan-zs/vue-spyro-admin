@@ -25,11 +25,12 @@
 
 	const handleClick = () => router.push({ name: 'PermVisible' });
 	const handleChangeRole = async (value: string) => {
+		userStore.userInfo = {};
 		await userStore.loginAction({
 			username: value,
 			password: 'admin123'
 		});
-		window.location.reload();
+		router.push('/');
 	};
 </script>
 

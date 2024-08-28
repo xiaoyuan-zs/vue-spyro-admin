@@ -18,6 +18,7 @@ export default [
 				component: () => import('@/views/permission/example/index.vue'),
 				meta: {
 					title: $t('menus.permissionsExample'),
+					showParent: true,
 					keepAlive: true
 				}
 			},

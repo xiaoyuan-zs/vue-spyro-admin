@@ -1,6 +1,6 @@
 import router from '@/router';
 import { start, done } from '@/plugins';
-import { useUserStore, usePermissionStore } from '@/store';
+import { useUserStore } from '@/store';
 import { initRoutes } from '@/router/helpers/handleRoutes';
 import { translateRouteTitle } from '@/utils/locales';
 
@@ -10,7 +10,6 @@ const title = import.meta.env.VITE_APP_TITLE;
 
 router.beforeEach(async (to, _, next) => {
 	start();
-	const permissionStore = usePermissionStore();
 	const userStore = useUserStore();
 	if (!userStore.accessToken) {
 		// 没有token
@@ -32,7 +31,7 @@ router.beforeEach(async (to, _, next) => {
 		return;
 	}
 
-	if (!permissionStore.wholeMenus.length) {
+	if (!userStore.roles.length) {
 		try {
 			await userStore.getUserInfoAction();
 		} finally {

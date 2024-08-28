@@ -1,10 +1,10 @@
+import router from '@/router';
 import { login, logout, refresh } from '@/api/login';
-import type { LoginParams } from '@/api/login/types';
 import { getUserInfo } from '@/api/user';
 import { piniaPersist } from '@/store/helpers/piniaPersist';
 import { defineStore } from 'pinia';
 import type { UserStateType } from '../types';
-import router from '@/router';
+import type { LoginParams } from '@/api/login/types';
 
 const isMock = import.meta.env.VITE_MOCK_SERVER === 'true';
 
@@ -30,8 +30,8 @@ export const useUserStore = defineStore('user', {
 		},
 		async getUserInfoAction() {
 			// mock 环境需要传递 角色信息
-			const parmas = isMock ? { nickname: this.nickname } : undefined;
-			const { data } = await getUserInfo(parmas);
+			const params = isMock ? { nickname: this.nickname } : undefined;
+			const { data } = await getUserInfo(params);
 			this.nickname = data.nickname;
 			this.userInfo = data;
 		},
@@ -45,6 +45,7 @@ export const useUserStore = defineStore('user', {
 			this.accessToken = '';
 			this.refreshToken = '';
 			this.nickname = '';
+			this.userInfo = {};
 			router.push('/login');
 		}
 	},
