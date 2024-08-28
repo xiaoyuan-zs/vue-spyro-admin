@@ -18,7 +18,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
  * Vite注册所需插件
  */
 export function createVitePlugins(env: Record<string, string>, command: boolean): PluginOption[] {
-	const { VITE_BUILD_COMPRESS, VITE_MOCK_SERVER } = env as ImportMetaEnv;
+	const { VITE_BUILD_COMPRESS, VITE_MOCK_SERVER, VITE_APP_BASE_API } = env as ImportMetaEnv;
 	const vitePlugins: PluginOption[] = [
 		vue(),
 		// vue 开发工具
@@ -49,7 +49,14 @@ export function createVitePlugins(env: Record<string, string>, command: boolean)
 			// 请求前缀
 			basename: 'mock',
 			enableDev: VITE_MOCK_SERVER === 'true',
-			enableProd: VITE_MOCK_SERVER === 'true'
+      // 开启该配置，需要由 XHook 技术提供支持 （使用该配置，启动项目预览不需要配置）
+			enableProd: VITE_MOCK_SERVER === 'true',
+      // node 模块不能在伪文件中使用，否则会导致生产环境失败。作为与开发环境保持一致的替代方法，您可以构建独立的部署服务器
+      // 使用独立部署, 启动项目预览需要进行代理配置，但是这样打包的mock可能会缺少许多依赖
+      build: {
+        port: 8080,
+        outDir: 'dist/mock',
+      }
 		}),
 		/**
 		 * 开发环境下移除非必要的vue-router动态路由警告No match found for location with path

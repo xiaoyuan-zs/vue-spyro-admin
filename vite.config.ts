@@ -62,8 +62,18 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
 			include,
 			exclude
 		},
+		// 预览 配置默认值为 server 配置的默认值
 		preview: {
-			port: 8888
+			port: 8888,
+			host: '0.0.0.0',
+			open: false,
+			proxy: {
+				[VITE_APP_BASE_API]: {
+					target: 'http://localhost:8080/mock',
+					changeOrigin: true,
+					rewrite: (api) => api.replace(new RegExp('^' + VITE_APP_BASE_API), '')
+				}
+			}
 		},
 		build: {
 			minify: true,

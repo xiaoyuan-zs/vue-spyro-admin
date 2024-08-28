@@ -58,7 +58,7 @@
 				</ElButton>
 			),
 			headerRenderer: () => (
-				<ElButton type="primary" onClick={() => handleTsxRender('表头')}>
+				<ElButton type="primary" link onClick={() => handleTsxRender('表头')}>
 					昵称
 				</ElButton>
 			)
@@ -143,7 +143,7 @@
 			description="采用h函数或tsx语法对列渲染进行封装，兼容el-table全部属性及API，并进行了一定自定义拓展，具有完整类型提示， 列配置可选择插槽方式或tsx渲染，高度灵活，表格都默认设置rowKey，优化表格渲染。" />
 		<SoTable ref="soTableRef" v-loading="loading" height="100%" :column-list="columns" :table-data :table-tool="false" @refresh="getList">
 			<template #usernameHeader>
-				<el-button type="primary" @click="handleSlotRender('表头')">用户名</el-button>
+				<el-button type="primary" link @click="handleSlotRender('表头')">用户名</el-button>
 			</template>
 			<template #username="{ row }">
 				<el-button type="primary" link @click="handleSlotRender('内容')">{{ row.username }}</el-button>
