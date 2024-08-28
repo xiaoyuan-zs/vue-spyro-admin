@@ -28,6 +28,7 @@
 			if (path !== '/') matched.push(findRouteByPath(path, routes)!);
 		});
 
+		// 先查出父级，在把父级path放进去，最后放入当前path
 		matched.push(currentRoute!);
 
 		// 去除与子级中相同的路由信息

@@ -1,7 +1,7 @@
 import { router } from '@/router';
 import { usePermissionStore } from '@/store/modules/permission';
 import { buildHierarchyTree, flatTreeToArray } from '@spyro/utils';
-import { formatTwoStageRoutes, outerSortAsc } from './utils';
+import { permissionRoutes } from './process';
 import type { RouteRecordRaw } from 'vue-router';
 
 // 导入views 下的所有 vue 或 tsx
@@ -38,23 +38,26 @@ function addPathMatch() {
 }
 
 /**
- * 处理动态路由（后端返回的路由）
- * @param routes 动态路由数据
+ * 处理异步路由（后端返回的路由）
+ * @param routes 异步路由数据
  */
 function handleAsyncRoutes(routes: RouteRecordRaw[]) {
+	let flatAsyncRoutes: RouteRecordRaw[] = [];
+	// 处理异步路由
 	if (Array.isArray(routes) && routes.length) {
-		// 扁平化处理之后的路由数据
-		formatTwoStageRoutes(flatTreeToArray(buildHierarchyTree(outerSortAsc(handleFilterAsyncRoute(routes).flat(Infinity))))).map((el) => {
-			// 防止重复添加路由
-			if (router.options.routes[0].children?.findIndex((v) => v.name === el.name) !== -1) {
-				return;
-			} else {
-				// 将路由信息push到routes里面，然后再试addRoute添加路由
-				router.options.routes[0].children.push(el);
-				if (!router.hasRoute(el.name!)) router.addRoute(el);
-			}
-		});
+		flatAsyncRoutes = flatTreeToArray(buildHierarchyTree(handleFilterAsyncRoute(routes).flat(Infinity))) as RouteRecordRaw[];
 	}
+	// 注册添加异步、动态权限路由
+	permissionRoutes.concat(flatAsyncRoutes).forEach((el) => {
+		// 防止重复添加路由
+		if (router.options.routes[0].children?.findIndex((v) => v.path === el.path) !== -1) {
+			return;
+		} else {
+			// 将路由信息push到routes里面，与静态路由同级，然后在使用addRoute添加路由，使其能正常工作
+			router.options.routes[0].children.push(el);
+			if (!router.hasRoute(el.name!)) router.addRoute(el);
+		}
+	});
 	usePermissionStore().handleWholeMenusActions(routes);
 
 	// 最后添加匹配路由
@@ -62,8 +65,8 @@ function handleAsyncRoutes(routes: RouteRecordRaw[]) {
 }
 
 /**
- * 过滤后端传来的动态路由 重新生成规范路由
- * @param asyncRoutes 动态路由数据
+ * 过滤后端传来的异步路由 重新生成规范路由
+ * @param asyncRoutes 异步路由数据
  * @param parentRoute 父级路由
  * @returns
  */
@@ -84,7 +87,7 @@ function handleFilterAsyncRoute(asyncRoutes: RouteRecordRaw[], parentRoute?: Rou
 }
 
 /**
- * 获取动态路由
+ * 获取异步路由
  */
 function initRoutes() {
 	return new Promise((resolve) => {

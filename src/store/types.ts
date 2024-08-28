@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router';
 
 export type PermissionStateType = {
 	constantMenus: RouteRecordRaw[];
-	dynamicMenus: RouteRecordRaw[];
+	permissionMenus: RouteRecordRaw[];
 	wholeMenus: RouteRecordRaw[];
 };
 

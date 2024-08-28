@@ -27,7 +27,7 @@ function filterHiddenTree(routes: RouteRecordRaw[]) {
 }
 
 /**
- * 一维数组处理成多级嵌套数组（三级及以上的路由全部扁平为二级，keep-alive 只支持到二级缓存）
+ * 一维数组处理成二级级嵌套数组（三级及以上的路由全部扁平为二级，keep-alive 只支持到二级缓存）
  * @param routesList 处理后的一维路由菜单数组
  * @returns 返回将一维数组重新处理成规定路由的格式
  */
