@@ -23,7 +23,7 @@
 
 			return () => (
 				<div class="flex-center flex-wrap gap-x-8 gap-y-4">
-					<el-tooltip effect="dark" content={t('platform.verticalMode')} placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.verticalMode')} placement="top">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex gap-x-1 cursor-pointer b-2 hover:b-primary',
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content={t('platform.classicalMode')} placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.classicalMode')} placement="top">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
@@ -51,7 +51,7 @@
 							</div>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content={t('platform.horizontalMode')} placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.horizontalMode')} placement="top">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
@@ -62,7 +62,7 @@
 							<div class="w-full flex-1 bg-[var(--el-color-primary-light-9)] rounded-1" />
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content={t('platform.latticeMode')} placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.latticeMode')} placement="top">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex gap-x-1 cursor-pointer b-2 hover:b-primary',
@@ -77,7 +77,7 @@
 							</div>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content={t('platform.mixedMode')} placement="bottom">
+					<el-tooltip effect="dark" content={t('platform.mixedMode')} placement="top">
 						<div
 							class={[
 								'w-25 h-17 p-1 shadow-[var(--el-box-shadow-lighter)] rounded-1 flex-col gap-y-1 cursor-pointer b-2 hover:b-primary',
