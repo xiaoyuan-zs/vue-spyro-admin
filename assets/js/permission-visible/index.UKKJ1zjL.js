@@ -1,0 +1,1 @@
+import{d as e,G as n,H as o}from"../.pnpm/.pnpm.BKF2UWsc.js";const t=e({name:"PermissionVisible",__name:"index",setup(s){return(i,m)=>(n(),o("div",null,"具有['common:permissions:view']权限可见"))}});export{t as default};
