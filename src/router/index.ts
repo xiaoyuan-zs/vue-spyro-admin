@@ -1,13 +1,14 @@
-import constantRoutes from './modules/constant';
-import { createRouter, createWebHashHistory, type Router } from 'vue-router';
 import type { App } from 'vue';
+import { createRouter, type Router } from 'vue-router';
 import { staticRoutes } from './helpers/process';
+import { judgeRouterHistoryMode } from './helpers/utils';
+import constantRoutes from './modules/constant';
 
 /**
  * 注册路由
  */
 export const router: Router = createRouter({
-	history: createWebHashHistory(import.meta.env.BASE_URL),
+	history: judgeRouterHistoryMode(import.meta.env.VITE_ROUTER_MODE),
 	routes: staticRoutes.concat(constantRoutes),
 	scrollBehavior: () => ({ top: 0, left: 0 })
 });

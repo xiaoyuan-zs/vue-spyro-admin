@@ -1,5 +1,5 @@
 import { isUndefined, orderBy } from '@spyro/utils';
-import type { RouteRecordRaw } from 'vue-router';
+import { createWebHashHistory, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { usePermission } from '@/hooks';
 
 /**
@@ -13,6 +13,20 @@ function outerSortAsc(routes: any[]) {
 		}
 	});
 	return orderBy(routes, [[(item: any) => item.meta.sort, 'asc']]);
+}
+
+/**
+ * 判断路由模式
+ * @param mode 路由模式
+ */
+function judgeRouterHistoryMode(mode: string) {
+	if (mode === 'hash') {
+		return createWebHashHistory();
+	}
+	if (mode === 'h5') {
+		return createWebHistory(import.meta.env.BASE_URL);
+	}
+	return createWebHashHistory();
 }
 
 /**
@@ -122,4 +136,12 @@ function filterDynamicRoutes(routes: RouteRecordRaw[]) {
 	return newTree;
 }
 
-export { outerSortAsc, formatTwoStageRoutes, filterHiddenTree, findRouteByPath, getParentPaths, filterDynamicRoutes };
+export {
+	outerSortAsc,
+	formatTwoStageRoutes,
+	filterHiddenTree,
+	findRouteByPath,
+	getParentPaths,
+	filterDynamicRoutes,
+	judgeRouterHistoryMode
+};
