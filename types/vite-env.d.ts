@@ -9,6 +9,10 @@ interface ImportMetaEnv {
 	 */
 	readonly VITE_ICONIFY_PREFIX: string;
 	/**
+	 * 路由模式
+	 */
+	readonly VITE_ROUTER_MODE: string;
+	/**
 	 * 环境路径
 	 */
 	readonly VITE_APP_CONTEXT_PATH: string;
