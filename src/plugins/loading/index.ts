@@ -1,5 +1,6 @@
 // @unocss-include
 // 告诉 UnoCSS 扫描该文件，从而识别 unocss 类名
+// TODO 带改成模板形式
 import { localForage } from '@spyro/utils';
 import { platformConfig } from '@/config';
 export async function setupLoading() {
