@@ -13,7 +13,19 @@ const dashBroadRoute: RouteOption = {
 	}
 };
 
-const routes: Array<RouteOption> = [dashBroadRoute];
+const componentsRoute: RouteOption = {
+	path: '/components',
+	name: 'Components',
+	component: 'components/index',
+	meta: {
+		icon: 'ep:component',
+		title: $t('menus.component'),
+		sort: 8
+	},
+	children: []
+};
+
+const routes: Array<RouteOption> = [dashBroadRoute, componentsRoute];
 
 export default defineFakeRoute([
 	{
