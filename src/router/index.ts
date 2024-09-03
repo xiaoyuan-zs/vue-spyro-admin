@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import { createRouter, type Router } from 'vue-router';
+import { createRouter, type RouteRecordRaw, type Router } from 'vue-router';
 import { staticRoutes } from './helpers/process';
 import { judgeRouterHistoryMode } from './helpers/utils';
 import constantRoutes from './modules/constant';
@@ -9,7 +9,7 @@ import constantRoutes from './modules/constant';
  */
 export const router: Router = createRouter({
 	history: judgeRouterHistoryMode(import.meta.env.VITE_ROUTER_MODE),
-	routes: staticRoutes.concat(constantRoutes),
+	routes: staticRoutes.concat(constantRoutes as RouteRecordRaw[]),
 	scrollBehavior: () => ({ top: 0, left: 0 })
 });
 

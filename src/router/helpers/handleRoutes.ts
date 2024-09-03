@@ -3,6 +3,7 @@ import { usePermissionStore } from '@/store/modules/permission';
 import { buildHierarchyTree, flatTreeToArray } from '@spyro/utils';
 import { permissionRoutes } from './process';
 import type { RouteRecordRaw } from 'vue-router';
+import { getAsyncRoutes } from '@/api/login';
 
 // 导入views 下的所有 vue 或 tsx
 const modulesRoutes = import.meta.glob('/src/views/**/*.{vue,tsx}');
@@ -19,7 +20,7 @@ const layoutView = {
  * @param component
  */
 function resolveView(component: any) {
-	let reg = /\..\/..\/views\/|.vue/g;
+	let reg = /\/src\/views\/|.vue/g;
 	const path = Object.keys(modulesRoutes).find((key) => key.replaceAll(reg, '') === component) as string;
 	return modulesRoutes[path];
 }
@@ -55,9 +56,14 @@ function handleAsyncRoutes(routes: RouteRecordRaw[]) {
 		} else {
 			// 将路由信息push到routes里面，与静态路由同级，然后在使用addRoute添加路由，使其能正常工作
 			router.options.routes[0].children.push(el);
+			// 注册不存在的路由
 			if (!router.hasRoute(el.name!)) router.addRoute(el);
+			// 找到 / 路由，将其重新添加到路由表中，否则会导致页面子父级不对
+			const allRoutes = router.getRoutes().find((v) => v.path === '/');
+			router.addRoute(allRoutes!);
 		}
 	});
+
 	usePermissionStore().handleWholeMenusActions(routes);
 
 	// 最后添加匹配路由
@@ -90,8 +96,9 @@ function handleFilterAsyncRoute(asyncRoutes: RouteRecordRaw[], parentRoute?: Rou
  * 获取异步路由
  */
 function initRoutes() {
-	return new Promise((resolve) => {
-		handleAsyncRoutes([]);
+	return new Promise(async (resolve) => {
+		const { data } = await getAsyncRoutes();
+		handleAsyncRoutes(data);
 		resolve(router);
 	});
 }
