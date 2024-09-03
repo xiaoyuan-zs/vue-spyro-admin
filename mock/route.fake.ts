@@ -1,31 +1,59 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import { $t } from '@/plugins/i18n';
 
-const dashBroadRoute: RouteOption = {
-	path: '/dashboard',
-	name: 'Dashboard',
-	component: 'dashboard/index',
-	meta: {
-		icon: 'ep:data-board',
-		title: $t('menus.dataScreen'),
-		roles: ['admin'],
-		sort: 1
+const componentsRoute: RouteOption[] = [
+	{
+		path: '/table',
+		redirect: '/table/basicTable',
+		meta: {
+			icon: 'ant-design:gold-outlined',
+			sort: 6,
+			title: $t('menus.table')
+		},
+		children: [
+			{
+				path: '/table/basicTable',
+				name: 'BasicTable',
+				component: 'components/table/basic-table/index',
+				meta: {
+					title: $t('menus.basicTable'),
+					// 当只有一个子菜单时需要显示父级菜单时，需开启此配置
+					// showParent: true
+					keepAlive: true
+				}
+			},
+			{
+				path: '/table/useTable',
+				name: 'UseTable',
+				component: 'components/table/use-table/index',
+				meta: {
+					title: $t('menus.useTable'),
+					keepAlive: true
+				}
+			},
+			{
+				path: '/table/treeTable',
+				name: 'TreeTable',
+				component: 'components/table/tree-table/index',
+				meta: {
+					title: $t('menus.treeTable'),
+					keepAlive: true
+				}
+			},
+			{
+				path: '/table/editTable',
+				name: 'EditTable',
+				component: 'components/table/edit-table/index',
+				meta: {
+					title: $t('menus.editTable'),
+					keepAlive: true
+				}
+			}
+		]
 	}
-};
+];
 
-const componentsRoute: RouteOption = {
-	path: '/components',
-	name: 'Components',
-	component: 'components/index',
-	meta: {
-		icon: 'ep:component',
-		title: $t('menus.component'),
-		sort: 8
-	},
-	children: []
-};
-
-const routes: Array<RouteOption> = [dashBroadRoute, componentsRoute];
+const routes: Array<RouteOption> = componentsRoute;
 
 export default defineFakeRoute([
 	{

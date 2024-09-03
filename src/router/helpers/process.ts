@@ -5,7 +5,8 @@ import constantRoutes from '../modules/constant';
 import dynamicRoutes from '../modules/dynamic';
 
 /** 导入modules 下的静态路由 */
-const modules: Record<string, any> = import.meta.glob(['../modules/**/*.ts', '!../modules/**/dynamic.ts', '!../modules/**/constant.ts'], {
+// const modules: Record<string, any> = import.meta.glob(['../modules/**/*.ts', '!../modules/**/constant.ts'], {
+const modules: Record<string, any> = import.meta.glob(['../modules/static/**/*.ts'], {
 	eager: true
 });
 
