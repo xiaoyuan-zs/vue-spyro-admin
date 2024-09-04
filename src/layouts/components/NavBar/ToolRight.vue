@@ -2,7 +2,7 @@
 	import ClassicUser from './components/ClassicUser.vue';
 	import SystemMessage from './components/SystemMessage.vue';
 	import Language from './components/Language.vue';
-	import Search from './components/Search.vue';
+	// import Search from './components/Search.vue';
 	import FullScreen from './components/FullScreen.vue';
 	import SystemConfig from './components/SystemConfig.vue';
 
@@ -13,10 +13,9 @@
 <template>
 	<div class="flex-y-center h-full">
 		<!-- 搜索 -->
-		<Search />
+		<!-- <Search /> -->
 		<!-- i18图标 -->
 		<Language />
-		<!-- 布局尺寸图标 -->
 		<!-- 全屏 -->
 		<FullScreen />
 		<!-- 系统消息 -->
