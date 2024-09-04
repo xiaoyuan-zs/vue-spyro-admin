@@ -20,7 +20,7 @@ export default {
 			component: IframeView,
 			meta: {
 				icon: 'logos:vue',
-				title: 'Vue3 官网',
+				title: $t('menus.vueDoc'),
 				// showParent: true, // 只有一个子级需要开启该配置
 				iframeSrc: 'https://cn.vuejs.org/guide/quick-start.html',
 				keepAlive: true
@@ -35,7 +35,7 @@ export default {
 			component: IframeView,
 			meta: {
 				icon: 'logos:vitejs',
-				title: 'Vite 官网',
+				title: $t('menus.viteDoc'),
 				iframeSrc: 'https://cn.vitejs.dev/',
 				keepAlive: true
 			}

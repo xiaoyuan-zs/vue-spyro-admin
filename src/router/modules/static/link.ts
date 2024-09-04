@@ -21,7 +21,7 @@ export default [
 				component: LinkView,
 				meta: {
 					icon: 'logos:strapi-icon',
-					title: 'strapi 官网',
+					title: $t('menus.strapiDoc'),
 					showParent: true
 				}
 			},
@@ -33,7 +33,7 @@ export default [
 				component: LinkView,
 				meta: {
 					icon: 'logos:element',
-					title: 'element-plus 官网'
+					title: $t('menus.elementDoc')
 				}
 			}
 		]
